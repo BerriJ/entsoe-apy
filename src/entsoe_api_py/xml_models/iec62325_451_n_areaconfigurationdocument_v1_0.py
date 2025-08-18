@@ -3,7 +3,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     CodingSchemeTypeList,
     MessageTypeList,

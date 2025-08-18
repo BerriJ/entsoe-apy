@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from xml_models.urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
     AuctionTypeList,
     CategoryTypeList,

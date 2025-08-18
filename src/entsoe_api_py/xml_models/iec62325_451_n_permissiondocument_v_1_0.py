@@ -1,14 +1,14 @@
 from dataclasses import dataclass, field
-from decimal import Decimal
 from typing import Optional
 
-from xsdata.models.datatype import XmlDuration
+from xsdata.models.datatype import XmlDateTime, XmlDuration
 
 from xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
-    CurrencyTypeList,
-    DirectionTypeList,
+    CurveTypeList,
+    EnergyProductTypeList,
+    FlowCommodityTypeList,
     MessageTypeList,
     ProcessTypeList,
     ReasonCodeTypeList,
@@ -17,7 +17,7 @@ from xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0"
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0"
 
 
 @dataclass
@@ -29,7 +29,7 @@ class EsmpDateTimeInterval:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         },
@@ -38,7 +38,7 @@ class EsmpDateTimeInterval:
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         },
@@ -46,63 +46,15 @@ class EsmpDateTimeInterval:
 
 
 @dataclass
-class Point:
-    position: Optional[int] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-            "min_inclusive": 1,
-            "max_inclusive": 999999,
-        },
-    )
-    quantity: Optional[Decimal] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    price_amount: Optional[Decimal] = field(
-        default=None,
-        metadata={
-            "name": "price.amount",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "total_digits": 17,
-        },
-    )
-    energy_price_amount: Optional[Decimal] = field(
-        default=None,
-        metadata={
-            "name": "energy_Price.amount",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "total_digits": 17,
-        },
-    )
-    activated_quantity_quantity: Optional[Decimal] = field(
-        default=None,
-        metadata={
-            "name": "activated_Quantity.quantity",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-        },
-    )
-
-
-@dataclass
-class AreaIdString:
+class MeasurementPointIdString:
     class Meta:
-        name = "AreaID_String"
+        name = "MeasurementPointID_String"
 
     value: str = field(
         default="",
         metadata={
             "required": True,
-            "max_length": 18,
+            "max_length": 60,
         },
     )
     coding_scheme: Optional[CodingSchemeTypeList] = field(
@@ -138,159 +90,14 @@ class PartyIdString:
 
 
 @dataclass
-class Reason:
-    code: Optional[ReasonCodeTypeList] = field(
+class Series:
+    m_rid: Optional[str] = field(
         default=None,
         metadata={
+            "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    text: Optional[str] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "max_length": 512,
-        },
-    )
-
-
-@dataclass
-class ResourceIdString:
-    class Meta:
-        name = "ResourceID_String"
-
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-            "max_length": 18,
-        },
-    )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
-        metadata={
-            "name": "codingScheme",
-            "type": "Attribute",
-            "required": True,
-        },
-    )
-
-
-@dataclass
-class SeriesPeriod:
-    class Meta:
-        name = "Series_Period"
-
-    time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
-        metadata={
-            "name": "timeInterval",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    resolution: Optional[XmlDuration] = field(
-        default=None,
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    point: list[Point] = field(
-        default_factory=list,
-        metadata={
-            "name": "Point",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "min_occurs": 1,
-        },
-    )
-
-
-@dataclass
-class MolTimeSeries:
-    class Meta:
-        name = "MOL_TimeSeries"
-
-    market_agreement_m_rid: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "marketAgreement.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-            "max_length": 35,
-        },
-    )
-    market_agreement_created_date_time: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "marketAgreement.createdDateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
-    )
-    order_number_attribute_instance_component_position: Optional[int] = field(
-        default=None,
-        metadata={
-            "name": "orderNumber_AttributeInstanceComponent.position",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "min_inclusive": 1,
-            "max_inclusive": 999999,
-        },
-    )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "resourceProvider_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-                "required": True,
-            },
-        )
-    )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "registeredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-        },
-    )
-    acquiring_domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
-        metadata={
-            "name": "acquiring_Domain.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    connecting_domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
-        metadata={
-            "name": "connecting_Domain.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    auction_m_rid: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "auction.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-            "max_length": 35,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "max_length": 60,
         },
     )
     business_type: Optional[BusinessTypeList] = field(
@@ -298,112 +105,265 @@ class MolTimeSeries:
         metadata={
             "name": "businessType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    bid_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    product: Optional[EnergyProductTypeList] = field(
         default=None,
         metadata={
-            "name": "bid_Period.timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    quantity_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    curve_type: Optional[CurveTypeList] = field(
         default=None,
         metadata={
-            "name": "quantityMeasurement_Unit.name",
+            "name": "curveType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    flow_commodity_option: Optional[FlowCommodityTypeList] = field(
         default=None,
         metadata={
-            "name": "currency_Unit.name",
+            "name": "flowCommodityOption",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
         default=None,
         metadata={
-            "name": "priceMeasurement_Unit.name",
+            "name": "measurement_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "energyPriceMeasurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            },
-        )
-    )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    reading_period_resolution: Optional[XmlDuration] = field(
         default=None,
         metadata={
-            "name": "flowDirection.direction",
+            "name": "reading_Period.resolution",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    minimum_activation_quantity_quantity: Optional[Decimal] = field(
+    reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
         metadata={
-            "name": "minimumActivation_Quantity.quantity",
+            "name": "reading_Period.timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-        },
-    )
-    step_increment_quantity_quantity: Optional[Decimal] = field(
-        default=None,
-        metadata={
-            "name": "stepIncrement_Quantity.quantity",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-        },
-    )
-    market_object_status_status: Optional[StatusTypeList] = field(
-        default=None,
-        metadata={
-            "name": "marketObjectStatus.status",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
-    )
-    period: list[SeriesPeriod] = field(
-        default_factory=list,
-        metadata={
-            "name": "Period",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "min_occurs": 1,
-        },
-    )
-    reason: list[Reason] = field(
-        default_factory=list,
-        metadata={
-            "name": "Reason",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
 
 
 @dataclass
-class MeritOrderListMarketDocument:
+class Permission:
+    m_rid: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "max_length": 60,
+        },
+    )
+    created_date_time: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "createdDateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
+        },
+    )
+    permitted_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "permitted_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    permitted_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "permitted_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            },
+        )
+    )
+    permitting_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "permitting_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    permitting_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "permitting_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            },
+        )
+    )
+    purpose_reason_code: Optional[ReasonCodeTypeList] = field(
+        default=None,
+        metadata={
+            "name": "purpose_Reason.code",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    purpose_reason_text: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "purpose_Reason.text",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "max_length": 512,
+        },
+    )
+    permission_end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+        default=None,
+        metadata={
+            "name": "permissionEnd_DateAndOrTime.dateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    max_lifetime_permission_date_and_or_time_date_time: Optional[
+        XmlDateTime
+    ] = field(
+        default=None,
+        metadata={
+            "name": "maxLifetimePermission_DateAndOrTime.dateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    end_of_permission_reason_code: Optional[ReasonCodeTypeList] = field(
+        default=None,
+        metadata={
+            "name": "endOfPermission_Reason.code",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    end_of_permission_reason_text: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "endOfPermission_Reason.text",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "max_length": 512,
+        },
+    )
+    permission_status_status: Optional[StatusTypeList] = field(
+        default=None,
+        metadata={
+            "name": "permissionStatus.status",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    transmission_schedule_period_resolution: Optional[XmlDuration] = field(
+        default=None,
+        metadata={
+            "name": "transmissionSchedule_Period.resolution",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    transmission_schedule_period_time_interval: Optional[
+        EsmpDateTimeInterval
+    ] = field(
+        default=None,
+        metadata={
+            "name": "transmissionSchedule_Period.timeInterval",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    series: list[Series] = field(
+        default_factory=list,
+        metadata={
+            "name": "Series",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+
+
+@dataclass
+class AccountingPoint:
+    m_rid: Optional[MeasurementPointIdString] = field(
+        default=None,
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    flow_commodity_option: Optional[FlowCommodityTypeList] = field(
+        default=None,
+        metadata={
+            "name": "flowCommodityOption",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+    permission: list[Permission] = field(
+        default_factory=list,
+        metadata={
+            "name": "Permission",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+
+
+@dataclass
+class MktActivityRecord:
+    m_rid: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "required": True,
+        },
+    )
+    type_value: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "required": True,
+        },
+    )
+    accounting_point: list[AccountingPoint] = field(
+        default_factory=list,
+        metadata={
+            "name": "AccountingPoint",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
+    )
+
+
+@dataclass
+class PermissionMarketDocument:
     class Meta:
-        name = "MeritOrderList_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0"
+        name = "Permission_MarketDocument"
+        namespace = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -411,16 +371,7 @@ class MeritOrderListMarketDocument:
             "name": "mRID",
             "type": "Element",
             "required": True,
-            "max_length": 35,
-        },
-    )
-    revision_number: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "revisionNumber",
-            "type": "Element",
-            "required": True,
-            "pattern": r"[1-9]([0-9]){0,2}",
+            "max_length": 60,
         },
     )
     type_value: Optional[MessageTypeList] = field(
@@ -436,6 +387,7 @@ class MeritOrderListMarketDocument:
         metadata={
             "name": "process.processType",
             "type": "Element",
+            "required": True,
         },
     )
     sender_market_participant_m_rid: Optional[PartyIdString] = field(
@@ -481,25 +433,18 @@ class MeritOrderListMarketDocument:
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    valid_time_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
         metadata={
-            "name": "valid_Time_Period.timeInterval",
+            "name": "period.timeInterval",
             "type": "Element",
             "required": True,
         },
     )
-    domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
-        metadata={
-            "name": "domain.mRID",
-            "type": "Element",
-        },
-    )
-    mol_time_series: list[MolTimeSeries] = field(
+    mkt_activity_record: list[MktActivityRecord] = field(
         default_factory=list,
         metadata={
-            "name": "MOL_TimeSeries",
+            "name": "MktActivityRecord",
             "type": "Element",
         },
     )

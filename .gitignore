@@ -6,6 +6,7 @@
 .LSOverride
 .direnv
 .bin
+*.xsd
 
 # Icon must end with two \r
 Icon
