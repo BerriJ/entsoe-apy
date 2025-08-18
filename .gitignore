@@ -4,6 +4,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.direnv
+.bin
 
 # Icon must end with two \r
 Icon

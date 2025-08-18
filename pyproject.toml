@@ -3,7 +3,7 @@ name = "entsoe-api-py"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.9.0,<=3.11.11"
+requires-python = ">=3.9.0"
 dependencies = [
   "xsdata[cli,lxml,soap]~=25.7",
   "httpx~=0.28.1",
