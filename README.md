@@ -12,3 +12,5 @@ After that, update the created modules with a replace all so that the imports lo
 ```python
 from entsoe_api_py.xml_models.{...}
 ```
+
+python find_py.py response.xml src/entsoe_api_py/xml_models 
