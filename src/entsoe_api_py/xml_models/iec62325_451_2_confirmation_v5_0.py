@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     ContractTypeList,
@@ -537,15 +537,13 @@ class ConfirmationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     schedule_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
@@ -586,14 +584,12 @@ class ConfirmationMarketDocument:
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     process_process_type: Optional[ProcessTypeList] = field(
         default=None,

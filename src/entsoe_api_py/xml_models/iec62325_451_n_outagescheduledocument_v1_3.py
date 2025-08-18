@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -224,9 +224,7 @@ class RegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
         },
     )
-    p_srtype_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    p_srtype_power_system_resources_high_voltage_limit: Optional[EsmpVoltage] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.highVoltageLimit",
@@ -234,9 +232,7 @@ class RegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
         },
     )
-    p_srtype_power_system_resources_low_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    p_srtype_power_system_resources_low_voltage_limit: Optional[EsmpVoltage] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.lowVoltageLimit",
@@ -317,25 +313,21 @@ class TimeSeries:
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    positive_offset_constraint_duration_duration: Optional[XmlDuration] = (
-        field(
-            default=None,
-            metadata={
-                "name": "positiveOffset_ConstraintDuration.duration",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
-            },
-        )
+    positive_offset_constraint_duration_duration: Optional[XmlDuration] = field(
+        default=None,
+        metadata={
+            "name": "positiveOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
+        },
     )
-    negative_offset_constraint_duration_duration: Optional[XmlDuration] = (
-        field(
-            default=None,
-            metadata={
-                "name": "negativeOffset_ConstraintDuration.duration",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
-            },
-        )
+    negative_offset_constraint_duration_duration: Optional[XmlDuration] = field(
+        default=None,
+        metadata={
+            "name": "negativeOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
+        },
     )
     no_restitution_constraint_duration_type: Optional[str] = field(
         default=None,
@@ -345,19 +337,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
         },
     )
-    maximum_restitution_constraint_duration_duration: Optional[XmlDuration] = (
-        field(
-            default=None,
-            metadata={
-                "name": "maximumRestitution_ConstraintDuration.duration",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
-            },
-        )
+    maximum_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
+        default=None,
+        metadata={
+            "name": "maximumRestitution_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
+        },
     )
-    day_time_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
+    day_time_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "dayTimeRestitution_ConstraintDuration.duration",
@@ -365,9 +353,7 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
         },
     )
-    night_time_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
+    night_time_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "nightTimeRestitution_ConstraintDuration.duration",
@@ -375,9 +361,7 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
         },
     )
-    week_end_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
+    week_end_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
         default=None,
         metadata={
             "name": "weekEndRestitution_ConstraintDuration.duration",
@@ -468,15 +452,13 @@ class TimeSeries:
             "min_occurs": 1,
         },
     )
-    alternative_registered_resource: list[AlternativeRegisteredResource] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "Alternative_RegisteredResource",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
-            },
-        )
+    alternative_registered_resource: list[AlternativeRegisteredResource] = field(
+        default_factory=list,
+        metadata={
+            "name": "Alternative_RegisteredResource",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3",
+        },
     )
     switched_back_period: list[SwitchedBackTimePeriod] = field(
         default_factory=list,
@@ -492,9 +474,7 @@ class TimeSeries:
 class OutageScheduleMarketDocument:
     class Meta:
         name = "OutageSchedule_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:outagescheduledocument:1:3"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -554,15 +534,13 @@ class OutageScheduleMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

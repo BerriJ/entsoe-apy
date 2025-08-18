@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDate, XmlDuration, XmlTime
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -386,9 +386,7 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:3:0",
         },
     )
-    production_registered_resource_p_srtype_psr_type: Optional[
-        AssetTypeList
-    ] = field(
+    production_registered_resource_p_srtype_psr_type: Optional[AssetTypeList] = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.pSRType.psrType",
@@ -533,19 +531,15 @@ class UnavailabilityMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
-    unavailability_time_period_time_interval: Optional[
-        EsmpDateTimeInterval
-    ] = field(
+    unavailability_time_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
         metadata={
             "name": "unavailability_Time_Period.timeInterval",

@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
     AuctionTypeList,
     BusinessTypeList,
@@ -417,15 +417,13 @@ class AuctionTimeSeries:
             "required": True,
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:1",
-            },
-        )
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:1",
+        },
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
@@ -467,9 +465,7 @@ class AuctionTimeSeries:
 class CapacityAuctionSpecificationMarketDocument:
     class Meta:
         name = "CapacityAuctionSpecification_MarketDocument"
-        namespace = (
-            "iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:1"
-        )
+        namespace = "iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:1"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -528,14 +524,12 @@ class CapacityAuctionSpecificationMarketDocument:
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

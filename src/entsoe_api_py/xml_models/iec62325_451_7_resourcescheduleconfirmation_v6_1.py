@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     ContractTypeList,
@@ -255,16 +255,14 @@ class PlannedResourceTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "resourceProvider_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
-                "required": True,
-            },
-        )
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
+            "required": True,
+        },
     )
     acquiring_domain_m_rid: Optional[AreaIdString] = field(
         default=None,
@@ -384,26 +382,24 @@ class UnavailableReserveTimeSeries:
             "required": True,
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
+            "required": True,
+        },
+    )
+    substitute_resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
         field(
             default=None,
             metadata={
-                "name": "resourceProvider_MarketParticipant.mRID",
+                "name": "substituteResourceProvider_MarketParticipant.mRID",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
-                "required": True,
             },
         )
-    )
-    substitute_resource_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
-        default=None,
-        metadata={
-            "name": "substituteResourceProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
-        },
     )
     acquiring_domain_m_rid: Optional[AreaIdString] = field(
         default=None,
@@ -516,15 +512,13 @@ class OriginalMarketDocument:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
-            },
-        )
+    subject_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
+        },
     )
     process_process_type: Optional[ProcessTypeList] = field(
         default=None,
@@ -542,15 +536,13 @@ class OriginalMarketDocument:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
         },
     )
-    unavailable_reserve_time_series: list[UnavailableReserveTimeSeries] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "UnavailableReserve_TimeSeries",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
-            },
-        )
+    unavailable_reserve_time_series: list[UnavailableReserveTimeSeries] = field(
+        default_factory=list,
+        metadata={
+            "name": "UnavailableReserve_TimeSeries",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1",
+        },
     )
 
 
@@ -558,7 +550,9 @@ class OriginalMarketDocument:
 class ResourceScheduleConfirmationMarketDocument:
     class Meta:
         name = "ResourceScheduleConfirmation_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-7:resourcescheduleconfirmationdocument:6:1"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -601,15 +595,13 @@ class ResourceScheduleConfirmationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

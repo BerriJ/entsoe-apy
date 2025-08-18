@@ -5,7 +5,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime, XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AnalogTypeList,
     AssetTypeList,
     BusinessTypeList,
@@ -22,9 +22,7 @@ from xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0"
 
 
 @dataclass
@@ -491,15 +489,15 @@ class MonitoredRegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
         },
     )
-    flow_based_study_domain_flow_based_margin_quantity_quantity: Optional[
-        Decimal
-    ] = field(
-        default=None,
-        metadata={
-            "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quantity",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
-        },
+    flow_based_study_domain_flow_based_margin_quantity_quantity: Optional[Decimal] = (
+        field(
+            default=None,
+            metadata={
+                "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quantity",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
+            },
+        )
     )
     flow_based_study_domain_flow_based_margin_quantity_quality: Optional[
         QualityTypeList
@@ -601,15 +599,13 @@ class ConstraintTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
         },
     )
-    shadow_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "shadowPrice_Measurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
-            },
-        )
+    shadow_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+        default=None,
+        metadata={
+            "name": "shadowPrice_Measurement_Unit.name",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
+        },
     )
     currency_unit_name: Optional[CurrencyTypeList] = field(
         default=None,
@@ -636,9 +632,7 @@ class ConstraintTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:0",
         },
     )
-    remedial_action_registered_resource: list[
-        RemedialActionRegisteredResource
-    ] = field(
+    remedial_action_registered_resource: list[RemedialActionRegisteredResource] = field(
         default_factory=list,
         metadata={
             "name": "RemedialAction_RegisteredResource",
@@ -856,15 +850,13 @@ class CriticalNetworkElementMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

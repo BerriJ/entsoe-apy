@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     ContractTypeList,
@@ -18,9 +18,7 @@ from xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4"
 
 
 @dataclass
@@ -271,16 +269,14 @@ class TimeSeries:
             "pattern": r"[1-9]([0-9]){0,2}",
         },
     )
-    bid_original_market_document_bid_bid_time_series_m_rid: Optional[str] = (
-        field(
-            default=None,
-            metadata={
-                "name": "bid_Original_MarketDocument.bid_BidTimeSeries.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4",
-                "max_length": 60,
-            },
-        )
+    bid_original_market_document_bid_bid_time_series_m_rid: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "bid_Original_MarketDocument.bid_BidTimeSeries.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4",
+            "max_length": 60,
+        },
     )
     bid_original_market_document_tendering_market_participant_m_rid: Optional[
         PartyIdString
@@ -493,7 +489,9 @@ class TimeSeries:
 class ReserveAllocationResultMarketDocument:
     class Meta:
         name = "ReserveAllocationResult_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:4"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -552,15 +550,13 @@ class ReserveAllocationResultMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -273,15 +273,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:smtaresultsdocument:1:1",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:smtaresultsdocument:1:1",
-            },
-        )
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:smtaresultsdocument:1:1",
+        },
     )
     mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
         default=None,
@@ -374,15 +372,13 @@ class ShortMediumTermAdequacyResultsMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

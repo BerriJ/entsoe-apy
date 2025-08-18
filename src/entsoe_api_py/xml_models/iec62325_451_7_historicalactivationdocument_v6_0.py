@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     DirectionTypeList,
@@ -16,9 +16,7 @@ from xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0"
 
 
 @dataclass
@@ -265,16 +263,14 @@ class TimeSeries:
             "max_length": 35,
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "resourceProvider_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0",
-                "required": True,
-            },
-        )
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0",
+            "required": True,
+        },
     )
     business_type: Optional[BusinessTypeList] = field(
         default=None,
@@ -360,9 +356,7 @@ class TimeSeries:
 class HistoricalActivationMarketDocument:
     class Meta:
         name = "HistoricalActivation_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -421,15 +415,13 @@ class HistoricalActivationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

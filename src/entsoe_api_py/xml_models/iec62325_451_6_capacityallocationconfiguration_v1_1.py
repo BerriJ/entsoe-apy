@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
     AuctionTypeList,
     CategoryTypeList,
@@ -15,7 +15,9 @@ from xml_models.urn_entsoe_eu_wgedi_codelists import (
     RoleTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1"
+)
 
 
 @dataclass
@@ -244,9 +246,7 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
         },
     )
-    offered_capacity_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    offered_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
         metadata={
             "name": "offeredCapacityProvider_MarketParticipant.mRID",
@@ -254,9 +254,7 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
         },
     )
-    use_of_capacity_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    use_of_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
         metadata={
             "name": "useOfCapacityProvider_MarketParticipant.mRID",
@@ -274,9 +272,7 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
         },
     )
-    auction_revenue_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    auction_revenue_provider_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
         metadata={
             "name": "auctionRevenueProvider_MarketParticipant.mRID",
@@ -294,15 +290,13 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
         },
     )
-    congestion_income_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "congestionIncome_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
-            },
-        )
+    congestion_income_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "congestionIncome_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:1",
+        },
     )
     conducting_party_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
@@ -385,15 +379,13 @@ class CapacityAllocationConfigurationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

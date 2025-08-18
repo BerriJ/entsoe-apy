@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     EnergyProductTypeList,
@@ -257,9 +257,7 @@ class TimeSeries:
 class MeasurementValueMarketDocument:
     class Meta:
         name = "MeasurementValue_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:measurementvaluedocument:1:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:measurementvaluedocument:1:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -319,15 +317,13 @@ class MeasurementValueMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

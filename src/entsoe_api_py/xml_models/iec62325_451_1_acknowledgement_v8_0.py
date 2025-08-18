@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     CodingSchemeTypeList,
     MessageTypeList,
     ProcessTypeList,
@@ -146,9 +146,7 @@ class TimeSeries:
 class AcknowledgementMarketDocument:
     class Meta:
         name = "Acknowledgement_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-1:acknowledgementdocument:8:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-1:acknowledgementdocument:8:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -192,14 +190,12 @@ class AcknowledgementMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     received_market_document_m_rid: Optional[str] = field(
         default=None,
@@ -224,9 +220,7 @@ class AcknowledgementMarketDocument:
             "type": "Element",
         },
     )
-    received_market_document_process_process_type: Optional[
-        ProcessTypeList
-    ] = field(
+    received_market_document_process_process_type: Optional[ProcessTypeList] = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.process.processType",

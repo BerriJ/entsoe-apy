@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -260,9 +260,7 @@ class MktPsrtype:
             "required": True,
         },
     )
-    voltage_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    voltage_power_system_resources_high_voltage_limit: Optional[EsmpVoltage] = field(
         default=None,
         metadata={
             "name": "voltage_PowerSystemResources.highVoltageLimit",
@@ -390,9 +388,7 @@ class TimeSeries:
 class GlMarketDocument:
     class Meta:
         name = "GL_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:1"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:1"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -452,15 +448,13 @@ class GlMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

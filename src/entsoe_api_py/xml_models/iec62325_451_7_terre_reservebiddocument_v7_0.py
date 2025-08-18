@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     ContractTypeList,
@@ -482,9 +482,7 @@ class BidTimeSeries:
 class ReserveBidMarketDocument:
     class Meta:
         name = "ReserveBid_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -543,15 +541,13 @@ class ReserveBidMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,
@@ -586,15 +582,13 @@ class ReserveBidMarketDocument:
             "required": True,
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    subject_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     bid_time_series: list[BidTimeSeries] = field(
         default_factory=list,

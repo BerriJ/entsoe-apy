@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -146,15 +146,13 @@ class Point:
             "required": True,
         },
     )
-    uncertainty_percentage_quantity: list[UncertaintyPercentageQuantity] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "UncertaintyPercentage_Quantity",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:energyprognosisdocument:1:0",
-            },
-        )
+    uncertainty_percentage_quantity: list[UncertaintyPercentageQuantity] = field(
+        default_factory=list,
+        metadata={
+            "name": "UncertaintyPercentage_Quantity",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:energyprognosisdocument:1:0",
+        },
     )
 
 
@@ -293,9 +291,7 @@ class TimeSeries:
 class EnergyPrognosisMarketDocument:
     class Meta:
         name = "EnergyPrognosis_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:energyprognosisdocument:1:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:energyprognosisdocument:1:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -347,15 +343,13 @@ class EnergyPrognosisMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,
