@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Optional
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     MessageTypeList,

@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from xml_models.urn_entsoe_eu_wgedi_codelists import (
+from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     AuctionTypeList,
     BusinessTypeList,
     CategoryTypeList,
