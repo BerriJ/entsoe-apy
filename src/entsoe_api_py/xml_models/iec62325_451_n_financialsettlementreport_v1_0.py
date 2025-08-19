@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     CurrencyTypeList,
@@ -18,7 +18,9 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0"
+)
 
 
 @dataclass
@@ -289,13 +291,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "connectingLine_RegisteredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0",
-        },
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "connectingLine_RegisteredResource.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0",
+            },
+        )
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
@@ -320,9 +324,7 @@ class TimeSeries:
 class FinancialSettlementReportMarketDocument:
     class Meta:
         name = "FinancialSettlementReport_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -382,13 +384,15 @@ class FinancialSettlementReportMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

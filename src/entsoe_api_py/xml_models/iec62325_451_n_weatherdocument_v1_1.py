@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     CurveTypeList,
@@ -167,13 +167,15 @@ class Point:
             "required": True,
         },
     )
-    uncertainty_percentage_quantity: list[UncertaintyPercentageQuantity] = field(
-        default_factory=list,
-        metadata={
-            "name": "UncertaintyPercentage_Quantity",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
-        },
+    uncertainty_percentage_quantity: list[UncertaintyPercentageQuantity] = (
+        field(
+            default_factory=list,
+            metadata={
+                "name": "UncertaintyPercentage_Quantity",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
+            },
+        )
     )
     risk_reason: list[Reason] = field(
         default_factory=list,
@@ -254,23 +256,25 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    main_environmental_monitoring_station_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "main_EnvironmentalMonitoringStation.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
-        },
-    )
-    alternate_environmental_monitoring_station_m_rid: Optional[ResourceIdString] = (
+    main_environmental_monitoring_station_m_rid: Optional[ResourceIdString] = (
         field(
             default=None,
             metadata={
-                "name": "alternate_EnvironmentalMonitoringStation.mRID",
+                "name": "main_EnvironmentalMonitoringStation.mRID",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
             },
         )
+    )
+    alternate_environmental_monitoring_station_m_rid: Optional[
+        ResourceIdString
+    ] = field(
+        default=None,
+        metadata={
+            "name": "alternate_EnvironmentalMonitoringStation.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
+        },
     )
     measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
         default=None,
@@ -362,13 +366,15 @@ class WeatherMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

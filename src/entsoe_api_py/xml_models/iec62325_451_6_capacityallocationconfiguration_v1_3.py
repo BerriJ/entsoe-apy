@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
     AuctionTypeList,
     CategoryTypeList,
@@ -15,9 +15,7 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     RoleTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3"
 
 
 @dataclass
@@ -268,7 +266,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
         },
     )
-    offered_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    offered_capacity_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "offeredCapacityProvider_MarketParticipant.mRID",
@@ -276,7 +276,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
         },
     )
-    use_of_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    use_of_capacity_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "useOfCapacityProvider_MarketParticipant.mRID",
@@ -294,7 +296,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
         },
     )
-    auction_revenue_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    auction_revenue_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "auctionRevenueProvider_MarketParticipant.mRID",
@@ -312,13 +316,15 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
         },
     )
-    congestion_income_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "congestionIncome_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
-        },
+    congestion_income_market_participant_m_rid: Optional[PartyIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "congestionIncome_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
+            },
+        )
     )
     conducting_party_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
@@ -328,13 +334,15 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "connectingLine_RegisteredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
-        },
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "connectingLine_RegisteredResource.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:capacityallocationconfigurationdocument:1:3",
+            },
+        )
     )
     point: list[Point] = field(
         default_factory=list,
@@ -409,13 +417,15 @@ class CapacityAllocationConfigurationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

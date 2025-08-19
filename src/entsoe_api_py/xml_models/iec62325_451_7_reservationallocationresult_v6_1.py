@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     ContractTypeList,
@@ -17,7 +17,9 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1"
+)
 
 
 @dataclass
@@ -670,15 +672,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1",
         },
     )
-    order_number_attribute_instance_component: Optional[AttributeInstanceComponent] = (
-        field(
-            default=None,
-            metadata={
-                "name": "OrderNumber_AttributeInstanceComponent",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1",
-            },
-        )
+    order_number_attribute_instance_component: Optional[
+        AttributeInstanceComponent
+    ] = field(
+        default=None,
+        metadata={
+            "name": "OrderNumber_AttributeInstanceComponent",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1",
+        },
     )
     activation_constraint_duration: Optional[ConstraintDuration] = field(
         default=None,
@@ -735,9 +737,7 @@ class TimeSeries:
 class ReserveAllocationResultMarketDocument:
     class Meta:
         name = "ReserveAllocationResult_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:1"
 
     m_rid: Optional[str] = field(
         default=None,

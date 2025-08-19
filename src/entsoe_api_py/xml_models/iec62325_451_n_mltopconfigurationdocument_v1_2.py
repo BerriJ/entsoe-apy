@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDate
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     CodingSchemeTypeList,
     IndicatorTypeList,
@@ -16,7 +16,9 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:2"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:2"
+)
 
 
 @dataclass
@@ -189,7 +191,9 @@ class RegisteredResource:
             "required": True,
         },
     )
-    p_srtype_power_system_resources_high_voltage_limit: Optional[EsmpVoltage] = field(
+    p_srtype_power_system_resources_high_voltage_limit: Optional[
+        EsmpVoltage
+    ] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.highVoltageLimit",
@@ -198,7 +202,9 @@ class RegisteredResource:
             "required": True,
         },
     )
-    p_srtype_power_system_resources_low_voltage_limit: Optional[EsmpVoltage] = field(
+    p_srtype_power_system_resources_low_voltage_limit: Optional[
+        EsmpVoltage
+    ] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.lowVoltageLimit",
@@ -387,7 +393,9 @@ class TimeSeries:
 class RefMarketDocument:
     class Meta:
         name = "Ref_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:2"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:2"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -438,13 +446,15 @@ class RefMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

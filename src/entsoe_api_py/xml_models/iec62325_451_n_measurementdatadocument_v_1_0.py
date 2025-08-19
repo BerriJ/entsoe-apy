@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     EnergyProductTypeList,
@@ -230,7 +230,9 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    accounting_point_party_market_participant_m_rid: Optional[PartyIdString] = field(
+    accounting_point_party_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "accountingPointParty_MarketParticipant.mRID",
@@ -287,7 +289,9 @@ class TimeSeries:
 class MeasurementDataMarketDocument:
     class Meta:
         name = "MeasurementData_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -338,13 +342,15 @@ class MeasurementDataMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

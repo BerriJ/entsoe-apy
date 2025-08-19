@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime, XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AuctionTypeList,
     BusinessTypeList,
     CategoryTypeList,
@@ -331,39 +331,41 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
         },
     )
-    classification_sequence_attribute_instance_component_position: Optional[int] = (
-        field(
-            default=None,
-            metadata={
-                "name": "classificationSequence_AttributeInstanceComponent.position",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
-                "min_inclusive": 1,
-                "max_inclusive": 999999,
-            },
-        )
-    )
-    participant_number_attribute_instance_component_position: Optional[int] = field(
+    classification_sequence_attribute_instance_component_position: Optional[
+        int
+    ] = field(
         default=None,
         metadata={
-            "name": "participantNumber_AttributeInstanceComponent.position",
+            "name": "classificationSequence_AttributeInstanceComponent.position",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
             "min_inclusive": 1,
             "max_inclusive": 999999,
         },
     )
-    winner_participant_number_attribute_instance_component_position: Optional[int] = (
+    participant_number_attribute_instance_component_position: Optional[int] = (
         field(
             default=None,
             metadata={
-                "name": "winnerParticipantNumber_AttributeInstanceComponent.position",
+                "name": "participantNumber_AttributeInstanceComponent.position",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
                 "min_inclusive": 1,
                 "max_inclusive": 999999,
             },
         )
+    )
+    winner_participant_number_attribute_instance_component_position: Optional[
+        int
+    ] = field(
+        default=None,
+        metadata={
+            "name": "winnerParticipantNumber_AttributeInstanceComponent.position",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
+            "min_inclusive": 1,
+            "max_inclusive": 999999,
+        },
     )
     curve_type: Optional[CurveTypeList] = field(
         default=None,
@@ -381,13 +383,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "connectingLine_RegisteredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
-        },
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "connectingLine_RegisteredResource.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:4",
+            },
+        )
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
@@ -470,12 +474,14 @@ class PublicationMarketDocument:
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

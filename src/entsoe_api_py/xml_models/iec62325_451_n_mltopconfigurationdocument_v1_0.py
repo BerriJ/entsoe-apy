@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDate
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     CodingSchemeTypeList,
     IndicatorTypeList,
@@ -15,7 +15,9 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0"
+)
 
 
 @dataclass
@@ -346,7 +348,9 @@ class TimeSeries:
 class RefMarketDocument:
     class Meta:
         name = "Ref_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -397,13 +401,15 @@ class RefMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

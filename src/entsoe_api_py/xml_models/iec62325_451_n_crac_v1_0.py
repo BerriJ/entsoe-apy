@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AnalogTypeList,
     AssetTypeList,
     BusinessTypeList,
@@ -516,14 +516,16 @@ class RemedialActionSeries:
             "required": True,
         },
     )
-    application_mode_market_object_status_status: Optional[StatusTypeList] = field(
-        default=None,
-        metadata={
-            "name": "applicationMode_MarketObjectStatus.status",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:1:0",
-            "required": True,
-        },
+    application_mode_market_object_status_status: Optional[StatusTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "applicationMode_MarketObjectStatus.status",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:1:0",
+                "required": True,
+            },
+        )
     )
     shared_domain: list[SharedDomain] = field(
         default_factory=list,
@@ -848,13 +850,15 @@ class CracMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

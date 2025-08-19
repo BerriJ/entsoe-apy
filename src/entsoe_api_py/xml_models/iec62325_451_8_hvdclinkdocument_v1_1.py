@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime, XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     CurveTypeList,
@@ -264,23 +264,25 @@ class TimeSeries:
             "required": True,
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "connectingLine_RegisteredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
-        },
-    )
-    h_vdcmode_attribute_instance_component_attribute: Optional[HvdcmodeTypeList] = (
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
         field(
             default=None,
             metadata={
-                "name": "hVDCMode_AttributeInstanceComponent.attribute",
+                "name": "connectingLine_RegisteredResource.mRID",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
             },
         )
+    )
+    h_vdcmode_attribute_instance_component_attribute: Optional[
+        HvdcmodeTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "hVDCMode_AttributeInstanceComponent.attribute",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
+        },
     )
     out_domain_m_rid: Optional[AreaIdString] = field(
         default=None,
@@ -431,13 +433,15 @@ class HvdclinkMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

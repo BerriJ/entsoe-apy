@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     BusinessTypeList,
     CodingSchemeTypeList,
@@ -466,13 +466,15 @@ class BidTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
         },
     )
-    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
-        default=None,
-        metadata={
-            "name": "energyPrice_Measurement_Unit.name",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
-        },
+    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "energyPrice_Measurement_Unit.name",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
+            },
+        )
     )
     market_agreement_type: Optional[ContractTypeList] = field(
         default=None,
@@ -532,25 +534,25 @@ class BidTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
         },
     )
-    standard_market_product_market_product_type: Optional[MarketProductTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "standard_MarketProduct.marketProductType",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
-            },
-        )
+    standard_market_product_market_product_type: Optional[
+        MarketProductTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "standard_MarketProduct.marketProductType",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
+        },
     )
-    original_market_product_market_product_type: Optional[MarketProductTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "original_MarketProduct.marketProductType",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
-            },
-        )
+    original_market_product_market_product_type: Optional[
+        MarketProductTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "original_MarketProduct.marketProductType",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:5",
+        },
     )
     validity_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
@@ -699,13 +701,15 @@ class ReserveBidMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,
@@ -739,12 +743,14 @@ class ReserveBidMarketDocument:
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "subject_MarketParticipant.marketRole.type",
-            "type": "Element",
-        },
+    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "subject_MarketParticipant.marketRole.type",
+                "type": "Element",
+            },
+        )
     )
     bid_time_series: list[BidTimeSeries] = field(
         default_factory=list,

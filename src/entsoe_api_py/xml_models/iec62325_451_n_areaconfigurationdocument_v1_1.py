@@ -3,7 +3,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
     CodingSchemeTypeList,
     MessageTypeList,
@@ -173,34 +173,38 @@ class BorderConnectionSeries:
             "max_length": 60,
         },
     )
-    border_connection_registered_resource_m_rid: Optional[ResourceIdString] = field(
-        default=None,
-        metadata={
-            "name": "borderConnection_RegisteredResource.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1",
-            "required": True,
-        },
-    )
-    border_component_type_mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
-        default=None,
-        metadata={
-            "name": "borderComponentType_MktPSRType.psrType",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1",
-            "required": True,
-        },
-    )
-    connection_detail_registered_resource: list[ConnectionDetailRegisteredResource] = (
+    border_connection_registered_resource_m_rid: Optional[ResourceIdString] = (
         field(
-            default_factory=list,
+            default=None,
             metadata={
-                "name": "ConnectionDetail_RegisteredResource",
+                "name": "borderConnection_RegisteredResource.mRID",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1",
-                "max_occurs": 2,
+                "required": True,
             },
         )
+    )
+    border_component_type_mkt_psrtype_psr_type: Optional[AssetTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "borderComponentType_MktPSRType.psrType",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1",
+                "required": True,
+            },
+        )
+    )
+    connection_detail_registered_resource: list[
+        ConnectionDetailRegisteredResource
+    ] = field(
+        default_factory=list,
+        metadata={
+            "name": "ConnectionDetail_RegisteredResource",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1",
+            "max_occurs": 2,
+        },
     )
 
 
@@ -333,7 +337,9 @@ class AreaSpecificationSeries:
 class AreaConfigurationMarketDocument:
     class Meta:
         name = "AreaConfiguration_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:1"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -384,13 +390,15 @@ class AreaConfigurationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

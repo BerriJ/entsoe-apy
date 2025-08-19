@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CategoryTypeList,
     CodingSchemeTypeList,
@@ -357,7 +357,9 @@ class TimeSeries:
 class AllocationResultMarketDocument:
     class Meta:
         name = "AllocationResult_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-3:allocationresultdocument:7:1"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-3:allocationresultdocument:7:1"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -409,13 +411,15 @@ class AllocationResultMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,
@@ -450,7 +454,9 @@ class AllocationResultMarketDocument:
             "required": True,
         },
     )
-    subject_party_market_participant_market_role_type: Optional[RoleTypeList] = field(
+    subject_party_market_participant_market_role_type: Optional[
+        RoleTypeList
+    ] = field(
         default=None,
         metadata={
             "name": "subjectParty_MarketParticipant.marketRole.type",

@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDateTime, XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     AnalogTypeList,
     AssetTypeList,
     BusinessTypeList,
@@ -22,7 +22,9 @@ from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2"
+)
 
 
 @dataclass
@@ -505,15 +507,15 @@ class UnitRegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
         },
     )
-    g_ps_location_g_ps_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "gPS_Location.gPS_CoordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
-            },
-        )
+    g_ps_location_g_ps_coordinate_system_m_rid: Optional[
+        CoordinateSystemTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "gPS_Location.gPS_CoordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
+        },
     )
     g_ps_location_g_ps_position_points_x_position: Optional[str] = field(
         default=None,
@@ -621,13 +623,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "resourceProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
-        },
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "resourceProvider_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
+            },
+        )
     )
     resource_provider_market_participant_name: Optional[str] = field(
         default=None,
@@ -637,23 +641,25 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
         },
     )
-    resource_provider_market_participant_street_address: Optional[StreetAddress] = (
+    resource_provider_market_participant_street_address: Optional[
+        StreetAddress
+    ] = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.streetAddress",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
+        },
+    )
+    resource_provider_market_participant_phone1: Optional[TelephoneNumber] = (
         field(
             default=None,
             metadata={
-                "name": "resourceProvider_MarketParticipant.streetAddress",
+                "name": "resourceProvider_MarketParticipant.phone1",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
             },
         )
-    )
-    resource_provider_market_participant_phone1: Optional[TelephoneNumber] = field(
-        default=None,
-        metadata={
-            "name": "resourceProvider_MarketParticipant.phone1",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
-        },
     )
     resource_provider_market_participant_electronic_address: Optional[
         ElectronicAddress
@@ -691,13 +697,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
         },
     )
-    initial_registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
-        default=None,
-        metadata={
-            "name": "initialRegistration_DateAndOrTime.dateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
-        },
+    initial_registration_date_and_or_time_date_time: Optional[XmlDateTime] = (
+        field(
+            default=None,
+            metadata={
+                "name": "initialRegistration_DateAndOrTime.dateTime",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
+            },
+        )
     )
     registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
         default=None,
@@ -707,13 +715,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
         },
     )
-    last_verification_date_and_or_time_date_time: Optional[XmlDateTime] = field(
-        default=None,
-        metadata={
-            "name": "lastVerification_DateAndOrTime.dateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
-        },
+    last_verification_date_and_or_time_date_time: Optional[XmlDateTime] = (
+        field(
+            default=None,
+            metadata={
+                "name": "lastVerification_DateAndOrTime.dateTime",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2",
+            },
+        )
     )
     primary_market_participation_market_object_status_status: Optional[
         StatusTypeList
@@ -791,9 +801,7 @@ class TimeSeries:
 class ResourceCapacityMarketUnitMarketDocument:
     class Meta:
         name = "ResourceCapacityMarketUnit_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:2"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -853,13 +861,15 @@ class ResourceCapacityMarketUnitMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

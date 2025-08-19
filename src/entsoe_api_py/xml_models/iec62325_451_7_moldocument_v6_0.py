@@ -4,7 +4,7 @@ from typing import Optional
 
 from xsdata.models.datatype import XmlDuration
 
-from entsoe_api_py.xml_models.urn_entsoe_eu_wgedi_codelists import (
+from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     CurrencyTypeList,
@@ -246,14 +246,16 @@ class MolTimeSeries:
             "max_inclusive": 999999,
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "resourceProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-            "required": True,
-        },
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "resourceProvider_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+                "required": True,
+            },
+        )
     )
     registered_resource_m_rid: Optional[ResourceIdString] = field(
         default=None,
@@ -334,13 +336,15 @@ class MolTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
         },
     )
-    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
-        default=None,
-        metadata={
-            "name": "energyPriceMeasurement_Unit.name",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
-        },
+    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "energyPriceMeasurement_Unit.name",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:6:0",
+            },
+        )
     )
     flow_direction_direction: Optional[DirectionTypeList] = field(
         default=None,
@@ -458,13 +462,15 @@ class MeritOrderListMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "required": True,
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "required": True,
+            },
+        )
     )
     created_date_time: Optional[str] = field(
         default=None,

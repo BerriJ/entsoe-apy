@@ -47,7 +47,6 @@
           # Project specific
           pypkgs.numpy
           pypkgs.pandas
-          pypkgs.xsdata
 
           # Must have
           pkgs.R
