@@ -1,5 +1,7 @@
 from typing import Literal, Optional
 
+from ..Base.Base import Base
+
 
 class OMI(Base):
     """Other Market Information (OMI) parameters for ENTSO-E Transparency

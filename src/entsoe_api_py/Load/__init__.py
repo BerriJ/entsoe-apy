@@ -1,6 +1,5 @@
 """Load data parameter classes for ENTSO-E Transparency Platform."""
 
-from ..Base.Load import Load as LoadParams
 from .specific_params import (
     ActualTotalLoad,
     DayAheadTotalLoadForecast,
@@ -11,7 +10,6 @@ from .specific_params import (
 )
 
 __all__ = [
-    "LoadParams",
     "ActualTotalLoad",
     "DayAheadTotalLoadForecast",
     "WeekAheadTotalLoadForecast",

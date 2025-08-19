@@ -2,6 +2,8 @@
 
 from typing import Any, Dict, Optional
 
+from ..query_api import query_api
+
 
 class Base:
     """Base class for ENTSO-E Transparency Platform query parameters."""
@@ -173,3 +175,13 @@ class Base:
         )
         self.add_optional_param("periodStartUpdate", period_start_update)
         self.add_optional_param("periodEndUpdate", period_end_update)
+
+    def query_api(self) -> dict:
+        """
+        Query the ENTSO-E API with the specified parameters.
+
+        Returns:
+            The API response
+        """
+        response = query_api(self.params)
+        return response
