@@ -7,7 +7,7 @@ This page provides practical examples of using the ENTSO-E API Python library.
 ### Fetching Accepted Aggregated Offers
 
 ```python
-from entsoe_api_py.Items import AcceptedAggregatedOffers
+from entsoe.Items import AcceptedAggregatedOffers
 
 # Create parameters for fetching data
 params = AcceptedAggregatedOffers(
@@ -23,7 +23,7 @@ params = AcceptedAggregatedOffers(
 
 ```python
 # Access by ENTSO-E code
-from entsoe_api_py.Items import _17
+from entsoe.Items import _17
 AcceptedAggregatedOffers = _17._1.D
 
 params = AcceptedAggregatedOffers(
@@ -37,7 +37,7 @@ params = AcceptedAggregatedOffers(
 ### Dynamic Class Selection
 
 ```python
-from entsoe_api_py.Items import get_class_by_code
+from entsoe.Items import get_class_by_code
 
 # Dynamically select class based on code
 code = "17.1.D"
@@ -56,7 +56,7 @@ params = param_class(
 ### Working with Multiple Time Periods
 
 ```python
-from entsoe_api_py.Items import ImbalancePrices
+from entsoe.Items import ImbalancePrices
 from datetime import datetime, timedelta
 
 def get_imbalance_prices_for_week(start_date, bidding_zone):
@@ -88,7 +88,7 @@ weekly_params = get_imbalance_prices_for_week(start, "10Y1001A1001A83F")
 ### Cross-Border Balancing
 
 ```python
-from entsoe_api_py.Items import CrossBorderBalancing
+from entsoe.Items import CrossBorderBalancing
 
 # Fetch cross-border balancing data between two areas
 params = CrossBorderBalancing(
@@ -103,7 +103,7 @@ params = CrossBorderBalancing(
 ### Working with IF Codes
 
 ```python
-from entsoe_api_py.Items import IF
+from entsoe.Items import IF
 
 # Access classes with IF codes
 NettedAndExchangedVolumes = IF._3_10_3_16_3_17
@@ -150,7 +150,7 @@ end_time = create_time_period(2023, 1, 1, 23, 59)    # 202301012359
 ## Error Handling
 
 ```python
-from entsoe_api_py.Items import get_class_by_code
+from entsoe.Items import get_class_by_code
 
 def safe_get_class(code):
     """Safely get a class by code with error handling."""
@@ -158,7 +158,7 @@ def safe_get_class(code):
         return get_class_by_code(code)
     except KeyError:
         print(f"Code '{code}' not found. Available codes:")
-        from entsoe_api_py.Items import list_available_codes
+        from entsoe.Items import list_available_codes
         list_available_codes()
         return None
 

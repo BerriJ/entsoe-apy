@@ -1,7 +1,7 @@
 import inspect
 from xml.etree import ElementTree as ET
 
-import entsoe-apy.xml_models as xml_models
+import entsoe.xml_models as xml_models
 
 
 def extract_namespace_and_find_classes(response) -> tuple[str, type]:

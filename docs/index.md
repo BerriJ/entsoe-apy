@@ -18,7 +18,7 @@ The package structure mirrors the [official ENTSO-E API documentation](https://d
 
 ```python
 # Import item from the Market Group
-from entsoe_api_py.Market import EnergyPrices
+from entsoe.Market import EnergyPrices
 
 EIC = "10Y1001A1001A82H"
 

@@ -4,4 +4,4 @@ This page provides detailed information about balancing-related parameter classe
 
 ## Balancing
 
-::: entsoe-apy.Balancing
+::: entsoe.Balancing

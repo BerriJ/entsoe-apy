@@ -141,5 +141,5 @@ mappings_dict = convert_csv_list_to_dict(read_eic_codes_csv())
 mappings_consolidated = consolidate_cty_entries(mappings_dict)
 
 # Write the consolidated mappings to file
-write_mappings_to_file(mappings_consolidated, "./src/entsoe_api_py/mappings_dict.py")
+write_mappings_to_file(mappings_consolidated, "./src/entsoe/mappings_dict.py")
 # %%

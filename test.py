@@ -1,7 +1,7 @@
 # %%
 from os import getenv
 
-from entsoe-apy.Market import EnergyPrices
+from entsoe.Market import EnergyPrices
 
 _ENTSOE_API = getenv("ENTSOE_API")
 assert _ENTSOE_API is not None

@@ -20,7 +20,7 @@ pip install entsoe-apy
 ### Traditional Class Import
 
 ```python
-from entsoe_api_py.Items import AcceptedAggregatedOffers
+from entsoe.Items import AcceptedAggregatedOffers
 
 # Create parameter object
 params = AcceptedAggregatedOffers(
@@ -45,7 +45,7 @@ You can see the complete list of EIC codes [here](https://transparencyplatform.z
 A python dictionary representing the EIC mapping can be accessed using:
 
 ```python
-from entsoe-apy import mappings
+from entsoe import mappings
 ```
 
 Check out the mappings [here](mappings.md).
