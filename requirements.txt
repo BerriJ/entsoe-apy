@@ -1,0 +1,2 @@
+xsdata[cli,lxml,soap]==25.7
+httpx==0.28.1

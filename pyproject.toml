@@ -1,0 +1,32 @@
+[project]
+name = "entsoe-api-py"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.9.0"
+dependencies = [
+  "xsdata[cli,lxml,soap]~=25.7",
+  "httpx~=0.28.1",
+]
+
+[dependency-groups]
+dev = ["pytest~=8.3.3", "pytest-xdist~=3.6.1"]
+
+[tool.ruff.lint]
+preview = true
+extend-select = ["E501", "E302", "E301", "I"]
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["entsoe_api_py"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
