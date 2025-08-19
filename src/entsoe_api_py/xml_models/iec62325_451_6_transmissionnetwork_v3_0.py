@@ -19,9 +19,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:3:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:3:0"
 
 
 @dataclass
@@ -362,9 +360,7 @@ class TimeSeries:
 class TransmissionNetworkMarketDocument:
     class Meta:
         name = "TransmissionNetwork_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:3:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:3:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -433,15 +429,13 @@ class TransmissionNetworkMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,

@@ -243,26 +243,24 @@ class TimeSeries:
             "required": True,
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
+            "required": True,
+        },
+    )
+    h_vdcmode_attribute_instance_component_attribute: Optional[HvdcmodeTypeList] = (
         field(
             default=None,
             metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
+                "name": "hVDCMode_AttributeInstanceComponent.attribute",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
-                "required": True,
             },
         )
-    )
-    h_vdcmode_attribute_instance_component_attribute: Optional[
-        HvdcmodeTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "hVDCMode_AttributeInstanceComponent.attribute",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
-        },
     )
     out_domain_m_rid: Optional[AreaIdString] = field(
         default=None,
@@ -390,15 +388,13 @@ class HvdclinkMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

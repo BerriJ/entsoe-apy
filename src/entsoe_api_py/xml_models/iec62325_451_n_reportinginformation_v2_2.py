@@ -17,9 +17,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2"
 
 
 @dataclass
@@ -272,15 +270,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2",
-            },
-        )
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2",
+        },
     )
     measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
         default=None,
@@ -331,9 +327,7 @@ class TimeSeries:
 class ReportingInformationMarketDocument:
     class Meta:
         name = "ReportingInformation_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:2"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -393,15 +387,13 @@ class ReportingInformationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

@@ -267,25 +267,23 @@ class EiccodeMarketDocument:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:0",
         },
     )
-    e_iccontact_market_participant_electronic_address: Optional[
-        ElectronicAddress
-    ] = field(
-        default=None,
-        metadata={
-            "name": "eICContact_MarketParticipant.electronicAddress",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:0",
-        },
-    )
-    e_iccode_market_participant_street_address: Optional[StreetAddress] = (
+    e_iccontact_market_participant_electronic_address: Optional[ElectronicAddress] = (
         field(
             default=None,
             metadata={
-                "name": "eICCode_MarketParticipant.streetAddress",
+                "name": "eICContact_MarketParticipant.electronicAddress",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:0",
             },
         )
+    )
+    e_iccode_market_participant_street_address: Optional[StreetAddress] = field(
+        default=None,
+        metadata={
+            "name": "eICCode_MarketParticipant.streetAddress",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:0",
+        },
     )
     e_iccode_market_participant_a_cercode_names_name: Optional[str] = field(
         default=None,
@@ -398,14 +396,12 @@ class EicMarketDocument:
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

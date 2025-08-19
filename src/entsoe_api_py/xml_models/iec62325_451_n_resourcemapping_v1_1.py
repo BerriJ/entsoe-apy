@@ -184,9 +184,7 @@ class TimeSeries:
 class ResourceMappingMarketDocument:
     class Meta:
         name = "ResourceMapping_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:1"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:1"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -238,15 +236,13 @@ class ResourceMappingMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

@@ -16,9 +16,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-n:outageconfigurationdocument:1:3"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:outageconfigurationdocument:1:3"
 
 
 @dataclass
@@ -191,9 +189,7 @@ class RegisteredResource:
             "required": True,
         },
     )
-    p_srtype_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    p_srtype_power_system_resources_high_voltage_limit: Optional[EsmpVoltage] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.highVoltageLimit",
@@ -202,9 +198,7 @@ class RegisteredResource:
             "required": True,
         },
     )
-    p_srtype_power_system_resources_low_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    p_srtype_power_system_resources_low_voltage_limit: Optional[EsmpVoltage] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.lowVoltageLimit",
@@ -393,9 +387,7 @@ class TimeSeries:
 class OutageConfigurationMarketDocument:
     class Meta:
         name = "OutageConfiguration_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:outageconfigurationdocument:1:3"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:outageconfigurationdocument:1:3"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -446,15 +438,13 @@ class OutageConfigurationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

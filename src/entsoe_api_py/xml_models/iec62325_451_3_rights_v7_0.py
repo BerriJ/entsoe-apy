@@ -236,15 +236,13 @@ class TimeSeries:
             "required": True,
         },
     )
-    transferee_rights_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "transferee_Rights_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
-            },
-        )
+    transferee_rights_market_participant_m_rid: Optional[PartyIdString] = field(
+        default=None,
+        metadata={
+            "name": "transferee_Rights_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
+        },
     )
     market_agreement_m_rid: Optional[str] = field(
         default=None,
@@ -391,15 +389,13 @@ class RightsMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

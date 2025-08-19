@@ -12,9 +12,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     StatusTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1"
 
 
 @dataclass
@@ -156,15 +154,13 @@ class EnvironmentalMonitoringStation:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "location.coordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
-            },
-        )
+    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = field(
+        default=None,
+        metadata={
+            "name": "location.coordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
+        },
     )
 
 
@@ -235,15 +231,13 @@ class RegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "location.coordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
-            },
-        )
+    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = field(
+        default=None,
+        metadata={
+            "name": "location.coordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
+        },
     )
 
 
@@ -305,15 +299,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    environmental_monitoring_station: list[EnvironmentalMonitoringStation] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "EnvironmentalMonitoringStation",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
-            },
-        )
+    environmental_monitoring_station: list[EnvironmentalMonitoringStation] = field(
+        default_factory=list,
+        metadata={
+            "name": "EnvironmentalMonitoringStation",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
+        },
     )
 
 
@@ -321,9 +313,7 @@ class TimeSeries:
 class WeatherConfigurationMarketDocument:
     class Meta:
         name = "WeatherConfiguration_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -375,15 +365,13 @@ class WeatherConfigurationMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

@@ -17,9 +17,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:0"
 
 
 @dataclass
@@ -489,7 +487,9 @@ class TimeSeries:
 class ReserveAllocationResultMarketDocument:
     class Meta:
         name = "ReserveAllocationResult_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:0"
+        namespace = (
+            "urn:iec62325.351:tc57wg16:451-7:reserveallocationresultdocument:6:0"
+        )
 
     m_rid: Optional[str] = field(
         default=None,
@@ -548,15 +548,13 @@ class ReserveAllocationResultMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

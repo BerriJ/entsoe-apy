@@ -802,15 +802,15 @@ class MonitoredRegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
         },
     )
-    flow_based_study_domain_flow_based_margin_quantity_quantity: Optional[
-        Decimal
-    ] = field(
-        default=None,
-        metadata={
-            "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quantity",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
-        },
+    flow_based_study_domain_flow_based_margin_quantity_quantity: Optional[Decimal] = (
+        field(
+            default=None,
+            metadata={
+                "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quantity",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
+            },
+        )
     )
     flow_based_study_domain_flow_based_margin_quantity_quality: Optional[
         QualityTypeList
@@ -895,15 +895,13 @@ class RemedialActionSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
         },
     )
-    application_mode_market_object_status_status: Optional[StatusTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "applicationMode_MarketObjectStatus.status",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
-            },
-        )
+    application_mode_market_object_status_status: Optional[StatusTypeList] = field(
+        default=None,
+        metadata={
+            "name": "applicationMode_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
+        },
     )
     party_market_participant: list[PartyMarketParticipant] = field(
         default_factory=list,
@@ -1028,15 +1026,13 @@ class BorderSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
         },
     )
-    connecting_line_registered_resource: list[MonitoredRegisteredResource] = (
-        field(
-            default_factory=list,
-            metadata={
-                "name": "ConnectingLine_RegisteredResource",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
-            },
-        )
+    connecting_line_registered_resource: list[MonitoredRegisteredResource] = field(
+        default_factory=list,
+        metadata={
+            "name": "ConnectingLine_RegisteredResource",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
+        },
     )
 
 
@@ -1167,15 +1163,13 @@ class ConstraintSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
         },
     )
-    shadow_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "shadowPrice_Measurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
-            },
-        )
+    shadow_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+        default=None,
+        metadata={
+            "name": "shadowPrice_Measurement_Unit.name",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
+        },
     )
     currency_unit_name: Optional[CurrencyTypeList] = field(
         default=None,
@@ -1201,15 +1195,13 @@ class ConstraintSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
         },
     )
-    constraint_status_market_object_status_status: Optional[StatusTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "constraintStatus_MarketObjectStatus.status",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
-            },
-        )
+    constraint_status_market_object_status_status: Optional[StatusTypeList] = field(
+        default=None,
+        metadata={
+            "name": "constraintStatus_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:cnedocument:2:5",
+        },
     )
     additional_constraint_series: list[AdditionalConstraintSeries] = field(
         default_factory=list,
@@ -1469,15 +1461,13 @@ class CriticalNetworkElementMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

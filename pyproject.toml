@@ -19,6 +19,11 @@ extend-select = ["E501", "E302", "E301", "I"]
 [tool.ruff.format]
 preview = true
 
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+known-first-party = ["entsoe_api_py"]
+
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 

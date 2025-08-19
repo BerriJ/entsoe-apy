@@ -185,15 +185,13 @@ class Permission:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    permitted_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "permitted_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            },
-        )
+    permitted_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "permitted_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
     )
     permitting_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
@@ -203,15 +201,13 @@ class Permission:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    permitting_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "permitting_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            },
-        )
+    permitting_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "permitting_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+        },
     )
     purpose_reason_code: Optional[ReasonCodeTypeList] = field(
         default=None,
@@ -238,9 +234,7 @@ class Permission:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    max_lifetime_permission_date_and_or_time_date_time: Optional[
-        XmlDateTime
-    ] = field(
+    max_lifetime_permission_date_and_or_time_date_time: Optional[XmlDateTime] = field(
         default=None,
         metadata={
             "name": "maxLifetimePermission_DateAndOrTime.dateTime",
@@ -281,9 +275,7 @@ class Permission:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    transmission_schedule_period_time_interval: Optional[
-        EsmpDateTimeInterval
-    ] = field(
+    transmission_schedule_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
         metadata={
             "name": "transmissionSchedule_Period.timeInterval",
@@ -414,15 +406,13 @@ class PermissionMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,

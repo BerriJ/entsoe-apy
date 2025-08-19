@@ -347,25 +347,25 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    standard_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "standard_MarketProduct.marketProductType",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
-        },
+    standard_market_product_market_product_type: Optional[MarketProductTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "standard_MarketProduct.marketProductType",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
+            },
+        )
     )
-    original_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "original_MarketProduct.marketProductType",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
-        },
+    original_market_product_market_product_type: Optional[MarketProductTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "original_MarketProduct.marketProductType",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
+            },
+        )
     )
     mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
         default=None,
@@ -514,15 +514,13 @@ class BalancingMarketDocument:
             "required": True,
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "required": True,
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "required": True,
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,
@@ -547,14 +545,12 @@ class BalancingMarketDocument:
             "type": "Element",
         },
     )
-    allocation_decision_date_and_or_time_date_time: Optional[XmlDateTime] = (
-        field(
-            default=None,
-            metadata={
-                "name": "allocationDecision_DateAndOrTime.dateTime",
-                "type": "Element",
-            },
-        )
+    allocation_decision_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+        default=None,
+        metadata={
+            "name": "allocationDecision_DateAndOrTime.dateTime",
+            "type": "Element",
+        },
     )
     period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,

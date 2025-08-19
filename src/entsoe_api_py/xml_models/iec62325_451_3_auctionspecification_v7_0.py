@@ -23,9 +23,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0"
 
 
 @dataclass
@@ -369,38 +367,32 @@ class AuctionTimeSeries:
             "required": True,
         },
     )
-    notification_market_agreement_created_date_time: Optional[XmlDateTime] = (
-        field(
-            default=None,
-            metadata={
-                "name": "notification_MarketAgreement.createdDateTime",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
-                "required": True,
-            },
-        )
+    notification_market_agreement_created_date_time: Optional[XmlDateTime] = field(
+        default=None,
+        metadata={
+            "name": "notification_MarketAgreement.createdDateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
+            "required": True,
+        },
     )
-    contestation_market_agreement_created_date_time: Optional[XmlDateTime] = (
-        field(
-            default=None,
-            metadata={
-                "name": "contestation_MarketAgreement.createdDateTime",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
-                "required": True,
-            },
-        )
+    contestation_market_agreement_created_date_time: Optional[XmlDateTime] = field(
+        default=None,
+        metadata={
+            "name": "contestation_MarketAgreement.createdDateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
+            "required": True,
+        },
     )
-    publication_market_agreement_created_date_time: Optional[XmlDateTime] = (
-        field(
-            default=None,
-            metadata={
-                "name": "publication_MarketAgreement.createdDateTime",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
-                "required": True,
-            },
-        )
+    publication_market_agreement_created_date_time: Optional[XmlDateTime] = field(
+        default=None,
+        metadata={
+            "name": "publication_MarketAgreement.createdDateTime",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0",
+            "required": True,
+        },
     )
     resale_market_agreement_created_date_time: Optional[XmlDateTime] = field(
         default=None,
@@ -459,9 +451,7 @@ class AuctionTimeSeries:
 class CapacityAuctionSpecificationMarketDocument:
     class Meta:
         name = "CapacityAuctionSpecification_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:0"
 
     m_rid: Optional[str] = field(
         default=None,
@@ -520,14 +510,12 @@ class CapacityAuctionSpecificationMarketDocument:
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: Optional[str] = field(
         default=None,
