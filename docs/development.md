@@ -14,8 +14,8 @@ This page provides information for developers who want to contribute to or exten
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/BerriJ/entsoe-api-py.git
-cd entsoe-api-py
+git clone https://github.com/BerriJ/entsoe-apy.git
+cd entsoe-apy
 ```
 
 2. Create and activate a virtual environment:
@@ -32,7 +32,7 @@ pip install -e ".[dev]"
 ## Project Structure
 
 ```
-entsoe-api-py/
+entsoe-apy/
 ├── src/entsoe_api_py/
 │   ├── Base/
 │   │   └── Balancing.py          # Base classes

@@ -4,22 +4,15 @@ This guide will help you get started with the ENTSO-E API Python library.
 
 ## Prerequisites
 
-- Python 3.8 or higher
+- Python 3.11 or higher
 - An ENTSO-E Transparency Platform API security token
-
-## Getting Your API Token
-
-1. Register at the [ENTSO-E Transparency Platform](https://transparency.entsoe.eu/)
-2. Navigate to your account settings
-3. Generate a new security token
-4. Keep this token secure - you'll need it for all API requests
 
 ## Installation
 
 Install the library using pip:
 
-```bash
-pip install entsoe-api-py
+```sh
+pip install entsoe-apy
 ```
 
 ## Basic Usage
@@ -38,35 +31,6 @@ params = AcceptedAggregatedOffers(
 )
 ```
 
-### Code-Based Access
-
-The library provides a unique feature where you can access classes using their ENTSO-E codes:
-
-```python
-# Access using ENTSO-E code structure
-from entsoe_api_py.Items import _17
-AcceptedAggregatedOffers = _17._1.D
-
-# Or for other codes
-from entsoe_api_py.Items import _12
-CurrentBalancingState = _12._3.A
-```
-
-### Using the Utility Function
-
-```python
-from entsoe_api_py.Items import get_class_by_code
-
-# Get class by code string
-cls = get_class_by_code("17.1.D")
-params = cls(
-    security_token="your-token",
-    period_start=202301010000,
-    period_end=202301020000,
-    bidding_zone_domain="10Y1001A1001A83F"
-)
-```
-
 ## Understanding EIC Codes
 
 EIC (Energy Identification Code) codes are used to identify different entities in the European energy market:
@@ -74,11 +38,15 @@ EIC (Energy Identification Code) codes are used to identify different entities i
 - **Bidding Zones**: Geographic areas for electricity trading
 - **Control Areas**: Areas managed by transmission system operators
 - **Market Balance Areas**: Areas for balancing supply and demand
+- **Countries**: National boundaries for electricity trading
 
-Common EIC codes include:
-- `10Y1001A1001A83F` - Germany/Luxembourg
-- `10YFR-RTE------C` - France
-- `10YGB----------A` - Great Britain
+You can see the complete list of EIC codes [here](https://transparencyplatform.zendesk.com/hc/en-us/articles/15885757676308-Area-List-with-Energy-Identification-Code-EIC).
+
+A python dictionary representing the EIC mapping can be accessed using:
+
+```python
+from entsoe-apy import mappings
+```
 
 ## Time Formats
 

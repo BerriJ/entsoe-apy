@@ -3,7 +3,7 @@ from os import getenv
 
 import pytest
 
-from entsoe_api_py.Market import EnergyPrices
+from entsoe_apy.Market import EnergyPrices
 
 _ENTSOE_API = getenv("ENTSOE_API")
 

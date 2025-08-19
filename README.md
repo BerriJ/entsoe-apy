@@ -1,3 +1,3 @@
-# entsoe-api-py
+# entsoe-apy
 
 This is a Python package for accessing the ENTSO-E Transparency Platform API.

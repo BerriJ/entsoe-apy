@@ -1,5 +1,5 @@
 [project]
-name = "entsoe-api-py"
+name = "entsoe-apy"
 authors = [
   {name="Jonathan Berrisch", email="jonathan.berrisch@uni-due.de"},
   {name="Jie Xu", email="jie.xu@uni-due.de"}
