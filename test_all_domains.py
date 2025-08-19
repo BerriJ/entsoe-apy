@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprehensive test showing all Load and Generation parameter classes."""
+"""Comprehensive test showing all Load, Generation, and Outages parameter classes."""
 
 import os
 import sys
@@ -24,10 +24,18 @@ from entsoe_api_py.Load import (
     YearAheadForecastMarginParams,
     YearAheadTotalLoadForecastParams,
 )
+from entsoe_api_py.Outages import (
+    ForcedProductionUnitUnavailabilityParams,
+    ForcedTransmissionUnavailabilityParams,
+    PlannedProductionUnitUnavailabilityParams,
+    PlannedTransmissionUnavailabilityParams,
+    ProductionUnitUnavailabilityParams,
+    TransmissionUnavailabilityParams,
+)
 
 
 def test_all_domains():
-    """Test all Load and Generation parameter classes."""
+    """Test all Load, Generation, and Outages parameter classes."""
     
     # Test data
     security_token = "test_token_12345"
@@ -106,23 +114,55 @@ def test_all_domains():
         print(f"   {code}: {description}")
         print(f"        docType={doc_type}, processType={proc_type}")
     
+    # Outages Domain Tests
+    print("\n🚨 OUTAGES DOMAIN - 6 Parameter Classes:")
+    print("-" * 40)
+    
+    outages_classes = [
+        ("7.1.A", PlannedProductionUnitUnavailabilityParams, 
+         "Planned Production Unit Unavailability"),
+        ("7.1.B", ForcedProductionUnitUnavailabilityParams, 
+         "Forced Production Unit Unavailability"),
+        ("7.1.C", PlannedTransmissionUnavailabilityParams, 
+         "Planned Transmission Unavailability"),
+        ("7.1.D", ForcedTransmissionUnavailabilityParams, 
+         "Forced Transmission Unavailability"),
+        ("7.1.E", ProductionUnitUnavailabilityParams, 
+         "Production Unit Unavailability (All)"),
+        ("7.1.F", TransmissionUnavailabilityParams, 
+         "Transmission Unavailability (All)"),
+    ]
+    
+    for code, cls, description in outages_classes:
+        params = cls(
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            bidding_zone_domain=domain
+        )
+        doc_type = params.params['documentType']
+        business_type = params.params.get('businessType', 'None')
+        print(f"   {code}: {description}")
+        print(f"        docType={doc_type}, businessType={business_type}")
+    
     # Summary
     print("\n" + "=" * 60)
     print("📊 SUMMARY:")
-    gen_count = len(generation_classes)
-    total_count = len(load_classes) + len(generation_classes)
+    total_count = len(load_classes) + len(generation_classes) + len(outages_classes)
     print(f"✅ Load Domain: {len(load_classes)} parameter classes implemented")
-    print(f"✅ Generation Domain: {gen_count} parameter classes implemented")
+    print(f"✅ Generation Domain: {len(generation_classes)} parameter classes implemented")
+    print(f"✅ Outages Domain: {len(outages_classes)} parameter classes implemented")
     print(f"✅ Total: {total_count} endpoint parameter classes")
     print("\n🎯 All classes inherit from their respective base classes:")
     print("   • Load classes inherit from LoadParams")
     print("   • Generation classes inherit from GenerationParams")
-    print("   • Both base classes inherit from BaseParams")
+    print("   • Outages classes inherit from OutagesParams")
+    print("   • All base classes inherit from BaseParams")
     print("\n🔧 Each class provides:")
-    print("   • Preset documentType and processType values")
+    print("   • Preset documentType and processType/businessType values")
     print("   • Proper parameter validation and structure")
     print("   • Easy-to-use constructor with required parameters")
-    print("   • Optional parameters for filtering (PSR type, etc.)")
+    print("   • Optional parameters for filtering (PSR type, registered resource, etc.)")
 
 
 if __name__ == "__main__":
