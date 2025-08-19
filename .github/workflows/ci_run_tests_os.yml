@@ -1,0 +1,39 @@
+name: Automated Tests for OS
+on:
+  push:
+    branches:    
+      - main            # only run on pushes to main
+      - '!gh-pages'     # excludes gh-pages
+  pull_request:
+    branches:    
+    - '**'              # matches every branch
+    - '!gh-pages'       # excludes gh-pages
+permissions:
+  contents: read
+jobs:
+  build:
+    # runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{matrix.python-version}}
+      - name: Install dependencies
+        run: |
+          python -m ensurepip --upgrade
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools build
+          pip install -e .
+          pip install pytest pytest-xdist
+      - name: Run tests with pytest
+        env:
+          ENTSOE_API: ${{ secrets.ENTSOE_API }}
+        run: |
+          pytest tests
