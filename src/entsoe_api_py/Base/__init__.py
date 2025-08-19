@@ -1,13 +1,7 @@
-from .Base import BaseParams
-from .Balancing import BalancingParams
-from .Market import MarketParams
-from .Generation import GenerationParams
-from .Load import LoadParams
+from .Balancing import Balancing
+from .Base import Base
+from .Generation import Generation
+from .Load import Load
+from .Market import Market
 
-__all__ = [
-    "BaseParams",
-    "BalancingParams",
-    "MarketParams",
-    "GenerationParams",
-    "LoadParams",
-]
+__all__ = ["Base", "Balancing", "Market", "Generation", "Load"]

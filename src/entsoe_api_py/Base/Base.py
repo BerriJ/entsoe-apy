@@ -3,7 +3,7 @@
 from typing import Any, Dict, Optional
 
 
-class BaseParams:
+class Base:
     """Base class for ENTSO-E Transparency Platform query parameters."""
 
     def __init__(

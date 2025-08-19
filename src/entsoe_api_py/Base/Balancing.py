@@ -1,9 +1,9 @@
 from typing import Optional
 
-from .Base import BaseParams
+from .Base import Base
 
 
-class BalancingParams(BaseParams):
+class Balancing(Base):
     """Balancing data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(

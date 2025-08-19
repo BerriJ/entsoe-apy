@@ -1,9 +1,7 @@
 from typing import Literal, Optional
 
-from .Base import BaseParams
 
-
-class OMIParams(BaseParams):
+class OMI(Base):
     """Other Market Information (OMI) parameters for ENTSO-E Transparency
     Platform queries."""
 

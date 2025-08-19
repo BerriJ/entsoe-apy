@@ -7,10 +7,10 @@ fixed parameters.
 
 from typing import Optional
 
-from ..Base.Outages import OutagesParams
+from ..Base.Outages import Outages
 
 
-class PlannedProductionUnitUnavailabilityParams(OutagesParams):
+class PlannedProductionUnitUnavailability(Outages):
     """Parameters for 7.1.A Planned Production Unit Unavailability.
 
     Data view:
@@ -79,7 +79,7 @@ class PlannedProductionUnitUnavailabilityParams(OutagesParams):
         )
 
 
-class ForcedProductionUnitUnavailabilityParams(OutagesParams):
+class ForcedProductionUnitUnavailability(Outages):
     """Parameters for 7.1.B Forced Production Unit Unavailability.
 
     Data view:
@@ -148,7 +148,7 @@ class ForcedProductionUnitUnavailabilityParams(OutagesParams):
         )
 
 
-class PlannedTransmissionUnavailabilityParams(OutagesParams):
+class PlannedTransmissionUnavailability(Outages):
     """Parameters for 7.1.C Planned Transmission Unavailability.
 
     Data view:
@@ -217,7 +217,7 @@ class PlannedTransmissionUnavailabilityParams(OutagesParams):
         )
 
 
-class ForcedTransmissionUnavailabilityParams(OutagesParams):
+class ForcedTransmissionUnavailability(Outages):
     """Parameters for 7.1.D Forced Transmission Unavailability.
 
     Data view:
@@ -286,7 +286,7 @@ class ForcedTransmissionUnavailabilityParams(OutagesParams):
         )
 
 
-class ProductionUnitUnavailabilityParams(OutagesParams):
+class ProductionUnitUnavailability(Outages):
     """Parameters for 7.1.E Production Unit Unavailability (All Types).
 
     Data view:
@@ -355,7 +355,7 @@ class ProductionUnitUnavailabilityParams(OutagesParams):
         )
 
 
-class TransmissionUnavailabilityParams(OutagesParams):
+class TransmissionUnavailability(Outages):
     """Parameters for 7.1.F Transmission Unavailability (All Types).
 
     Data view:

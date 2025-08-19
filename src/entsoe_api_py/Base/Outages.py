@@ -1,9 +1,9 @@
 from typing import Optional
 
-from .Base import BaseParams
+from .Base import Base
 
 
-class OutagesParams(BaseParams):
+class Outages(Base):
     """Outages data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(

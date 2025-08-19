@@ -5,19 +5,19 @@ providing easy-to-use interfaces for different outage data types.
 """
 
 from .specific_params import (
-    ForcedProductionUnitUnavailabilityParams,
-    ForcedTransmissionUnavailabilityParams,
-    PlannedProductionUnitUnavailabilityParams,
-    PlannedTransmissionUnavailabilityParams,
-    ProductionUnitUnavailabilityParams,
-    TransmissionUnavailabilityParams,
+    ForcedProductionUnitUnavailability,
+    ForcedTransmissionUnavailability,
+    PlannedProductionUnitUnavailability,
+    PlannedTransmissionUnavailability,
+    ProductionUnitUnavailability,
+    TransmissionUnavailability,
 )
 
 __all__ = [
-    "PlannedProductionUnitUnavailabilityParams",
-    "ForcedProductionUnitUnavailabilityParams",
-    "PlannedTransmissionUnavailabilityParams",
-    "ForcedTransmissionUnavailabilityParams",
-    "ProductionUnitUnavailabilityParams",
-    "TransmissionUnavailabilityParams",
+    "PlannedProductionUnitUnavailability",
+    "ForcedProductionUnitUnavailability",
+    "PlannedTransmissionUnavailability",
+    "ForcedTransmissionUnavailability",
+    "ProductionUnitUnavailability",
+    "TransmissionUnavailability",
 ]

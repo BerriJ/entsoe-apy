@@ -1,9 +1,9 @@
 from typing import Optional
 
-from .Base import BaseParams
+from .Base import Base
 
 
-class GenerationParams(BaseParams):
+class Generation(Base):
     """Generation data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(

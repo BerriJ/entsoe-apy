@@ -6,10 +6,10 @@ each inheriting from MarketParams and providing preset values for fixed paramete
 
 from typing import Literal, Optional
 
-from ..Base.Market import MarketParams
+from ..Base.Market import Market
 
 
-class ImplicitFlowBasedAllocationsCongestionIncomeParams(MarketParams):
+class ImplicitFlowBasedAllocationsCongestionIncome(Market):
     """Parameters for 12.1.E Implicit and Flow-based Allocations - Congestion Income.
 
     Data view:
@@ -63,7 +63,7 @@ class ImplicitFlowBasedAllocationsCongestionIncomeParams(MarketParams):
         )
 
 
-class TotalNominatedCapacityParams(MarketParams):
+class TotalNominatedCapacity(Market):
     """Parameters for 12.1.B Total Nominated Capacity.
 
     Data view:
@@ -113,7 +113,7 @@ class TotalNominatedCapacityParams(MarketParams):
         )
 
 
-class ImplicitAllocationsOfferedCapacityParams(MarketParams):
+class ImplicitAllocationsOfferedCapacity(Market):
     """Parameters for 11.1 Implicit Allocations - Offered Transfer Capacity.
 
     Data view:
@@ -176,7 +176,7 @@ class ImplicitAllocationsOfferedCapacityParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class EnergyPricesParams(MarketParams):
+class EnergyPrices(Market):
     """Parameters for 12.1.D Energy Prices.
 
     Data view: https://transparency.entsoe.eu/market/prices/show
@@ -239,7 +239,7 @@ class EnergyPricesParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class TotalCapacityAllocatedParams(MarketParams):
+class TotalCapacityAllocated(Market):
     """Parameters for 12.1.C Total Capacity Already Allocated.
 
     Data view:
@@ -292,7 +292,7 @@ class TotalCapacityAllocatedParams(MarketParams):
         )
 
 
-class ExplicitAllocationsOfferedCapacityParams(MarketParams):
+class ExplicitAllocationsOfferedCapacity(Market):
     """Parameters for 11.1.A Explicit Allocations - Offered Transfer Capacity.
 
     Data view:
@@ -354,7 +354,7 @@ class ExplicitAllocationsOfferedCapacityParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class FlowBasedAllocationsParams(MarketParams):
+class FlowBasedAllocations(Market):
     """Parameters for 11.1.B Flow Based Allocations.
 
     Data view:
@@ -408,7 +408,7 @@ class FlowBasedAllocationsParams(MarketParams):
         )
 
 
-class ContinuousAllocationsOfferedCapacityParams(MarketParams):
+class ContinuousAllocationsOfferedCapacity(Market):
     """Parameters for 11.1 Continuous Allocations - Offered Transfer Capacity.
 
     Data view:
@@ -473,7 +473,7 @@ class ContinuousAllocationsOfferedCapacityParams(MarketParams):
         )
 
 
-class ExplicitAllocationsUseTransferCapacityParams(MarketParams):
+class ExplicitAllocationsUseTransferCapacity(Market):
     """Parameters for 12.1.A Explicit Allocations - Use of the Transfer Capacity.
 
     Data view:
@@ -541,7 +541,7 @@ class ExplicitAllocationsUseTransferCapacityParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class ExplicitAllocationsAuctionRevenueParams(MarketParams):
+class ExplicitAllocationsAuctionRevenue(Market):
     """Parameters for 12.1.A Explicit Allocations - Auction Revenue.
 
     Data view:
@@ -600,7 +600,7 @@ class ExplicitAllocationsAuctionRevenueParams(MarketParams):
         )
 
 
-class TransferCapacitiesThirdCountriesExplicitParams(MarketParams):
+class TransferCapacitiesThirdCountriesExplicit(Market):
     """Parameters for 12.1.H Transfer Capacities Allocated with Third Countries.
 
     Data view:
@@ -668,7 +668,7 @@ class TransferCapacitiesThirdCountriesExplicitParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class TransferCapacitiesThirdCountriesImplicitParams(MarketParams):
+class TransferCapacitiesThirdCountriesImplicit(Market):
     """Parameters for 12.1.H Transfer Capacities Allocated with Third Countries.
 
     Data view:
@@ -729,7 +729,7 @@ class TransferCapacitiesThirdCountriesImplicitParams(MarketParams):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class ImplicitAuctionNetPositionsParams(MarketParams):
+class ImplicitAuctionNetPositions(Market):
     """Parameters for 12.1.E Implicit Auction — Net Positions.
 
     Fixed parameters:
@@ -780,7 +780,7 @@ class ImplicitAuctionNetPositionsParams(MarketParams):
         )
 
 
-class FlowBasedAllocationsLegacyParams(MarketParams):
+class FlowBasedAllocationsLegacy(Market):
     """Parameters for 11.1.B Flow Based Allocations (legacy).
 
     Data view:

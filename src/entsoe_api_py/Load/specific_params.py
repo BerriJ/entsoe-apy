@@ -6,10 +6,10 @@ each inheriting from LoadParams and providing preset values for fixed parameters
 
 from typing import Optional
 
-from ..Base.Load import LoadParams
+from ..Base.Load import Load
 
 
-class ActualTotalLoadParams(LoadParams):
+class ActualTotalLoad(Load):
     """Parameters for 6.1.A Actual Total Load.
 
     Data view:
@@ -60,7 +60,7 @@ class ActualTotalLoadParams(LoadParams):
         )
 
 
-class DayAheadTotalLoadForecastParams(LoadParams):
+class DayAheadTotalLoadForecast(Load):
     """Parameters for 6.1.B Day-ahead Total Load Forecast.
 
     Data view:
@@ -111,7 +111,7 @@ class DayAheadTotalLoadForecastParams(LoadParams):
         )
 
 
-class WeekAheadTotalLoadForecastParams(LoadParams):
+class WeekAheadTotalLoadForecast(Load):
     """Parameters for 6.1.C Week-ahead Total Load Forecast.
 
     Data view:
@@ -162,7 +162,7 @@ class WeekAheadTotalLoadForecastParams(LoadParams):
         )
 
 
-class MonthAheadTotalLoadForecastParams(LoadParams):
+class MonthAheadTotalLoadForecast(Load):
     """Parameters for 6.1.D Month-ahead Total Load Forecast.
 
     Data view:
@@ -213,7 +213,7 @@ class MonthAheadTotalLoadForecastParams(LoadParams):
         )
 
 
-class YearAheadTotalLoadForecastParams(LoadParams):
+class YearAheadTotalLoadForecast(Load):
     """Parameters for 6.1.E Year-ahead Total Load Forecast.
 
     Data view:
@@ -264,7 +264,7 @@ class YearAheadTotalLoadForecastParams(LoadParams):
         )
 
 
-class YearAheadForecastMarginParams(LoadParams):
+class YearAheadForecastMargin(Load):
     """Parameters for 8.1 Year-ahead Forecast Margin.
 
     Data view:

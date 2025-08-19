@@ -1,29 +1,29 @@
 """Transmission data parameter classes for ENTSO-E Transparency Platform."""
 
-from ..Base.Transmission import TransmissionParams
+from ..Base.Transmission import Transmission as TransmissionParams
 from .specific_params import (
-    CommercialSchedulesParams,
-    CrossBorderPhysicalFlowsParams,
-    ExplicitAllocationsOfferedCapacityParams,
-    FlowBasedAllocationsParams,
-    ForecastedTransferCapacitiesParams,
-    ImplicitAllocationsOfferedCapacityParams,
-    TotalCapacityAlreadyAllocatedParams,
-    TotalNominatedCapacityParams,
-    UnavailabilityOffshoreGridInfrastructureParams,
-    UnavailabilityTransmissionInfrastructureParams,
+    CommercialSchedules,
+    CrossBorderPhysicalFlows,
+    ExplicitAllocationsOfferedCapacity,
+    FlowBasedAllocations,
+    ForecastedTransferCapacities,
+    ImplicitAllocationsOfferedCapacity,
+    TotalCapacityAlreadyAllocated,
+    TotalNominatedCapacity,
+    UnavailabilityOffshoreGridInfrastructure,
+    UnavailabilityTransmissionInfrastructure,
 )
 
 __all__ = [
     "TransmissionParams",
-    "TotalNominatedCapacityParams",
-    "ImplicitAllocationsOfferedCapacityParams",
-    "ExplicitAllocationsOfferedCapacityParams",
-    "TotalCapacityAlreadyAllocatedParams",
-    "CrossBorderPhysicalFlowsParams",
-    "CommercialSchedulesParams",
-    "ForecastedTransferCapacitiesParams",
-    "FlowBasedAllocationsParams",
-    "UnavailabilityTransmissionInfrastructureParams",
-    "UnavailabilityOffshoreGridInfrastructureParams",
+    "TotalNominatedCapacity",
+    "ImplicitAllocationsOfferedCapacity",
+    "ExplicitAllocationsOfferedCapacity",
+    "TotalCapacityAlreadyAllocated",
+    "CrossBorderPhysicalFlows",
+    "CommercialSchedules",
+    "ForecastedTransferCapacities",
+    "FlowBasedAllocations",
+    "UnavailabilityTransmissionInfrastructure",
+    "UnavailabilityOffshoreGridInfrastructure",
 ]

@@ -7,10 +7,10 @@ fixed parameters.
 
 from typing import Optional
 
-from ..Base.Generation import GenerationParams
+from ..Base.Generation import Generation
 
 
-class InstalledCapacityPerProductionTypeParams(GenerationParams):
+class InstalledCapacityPerProductionType(Generation):
     """Parameters for 14.1.A Installed Capacity per Production Type.
 
     Data view:
@@ -68,7 +68,7 @@ class InstalledCapacityPerProductionTypeParams(GenerationParams):
         )
 
 
-class WaterReservoirsAndHydroStorageParams(GenerationParams):
+class WaterReservoirsAndHydroStorage(Generation):
     """Parameters for 16.1.D Water Reservoirs and Hydro Storage Plants.
 
     Data view:
@@ -119,7 +119,7 @@ class WaterReservoirsAndHydroStorageParams(GenerationParams):
         )
 
 
-class ActualGenerationPerProductionTypeParams(GenerationParams):
+class ActualGenerationPerProductionType(Generation):
     """Parameters for 16.1.B&C Actual Generation per Production Type.
 
     Data view:
@@ -177,7 +177,7 @@ class ActualGenerationPerProductionTypeParams(GenerationParams):
         )
 
 
-class ActualGenerationPerGenerationUnitParams(GenerationParams):
+class ActualGenerationPerGenerationUnit(Generation):
     """Parameters for 16.1.A Actual Generation per Generation Unit.
 
     Data view:
@@ -236,7 +236,7 @@ class ActualGenerationPerGenerationUnitParams(GenerationParams):
         )
 
 
-class GenerationForecastDayAheadParams(GenerationParams):
+class GenerationForecastDayAhead(Generation):
     """Parameters for 14.1.C Generation Forecast - Day ahead.
 
     Data view:
@@ -288,7 +288,7 @@ class GenerationForecastDayAheadParams(GenerationParams):
         )
 
 
-class GenerationForecastWindAndSolarParams(GenerationParams):
+class GenerationForecastWindAndSolar(Generation):
     """Parameters for 14.1.D Generation Forecasts for Wind and Solar.
 
     Data view:
@@ -346,7 +346,7 @@ class GenerationForecastWindAndSolarParams(GenerationParams):
         )
 
 
-class InstalledCapacityPerProductionUnitParams(GenerationParams):
+class InstalledCapacityPerProductionUnit(Generation):
     """Parameters for 14.1.B Installed Capacity Per Production Unit.
 
     Data view:

@@ -1,11 +1,7 @@
 # %%
 from os import getenv
 
-from httpx import get
-from xsdata.formats.dataclass.parsers import XmlParser
-
-from entsoe_api_py.Base.Market import MarketParams
-from entsoe_api_py.utils import extract_namespace_and_find_classes
+import entsoe_api_py.Base.Market as Market
 from entsoe_api_py.query import query_api
 
 _ENTSOE_API = getenv("ENTSOE_API")
@@ -18,7 +14,7 @@ processType = "A16"
 period_start = 202012312300
 period_end = 202101022300
 
-params = MarketParams(
+params = Market(
     security_token=_ENTSOE_API,
     document_type="A25",
     business_type="B10",

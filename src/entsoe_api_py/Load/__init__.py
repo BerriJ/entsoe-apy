@@ -1,21 +1,21 @@
 """Load data parameter classes for ENTSO-E Transparency Platform."""
 
-from ..Base.Load import LoadParams
+from ..Base.Load import Load as LoadParams
 from .specific_params import (
-    ActualTotalLoadParams,
-    DayAheadTotalLoadForecastParams,
-    MonthAheadTotalLoadForecastParams,
-    WeekAheadTotalLoadForecastParams,
-    YearAheadForecastMarginParams,
-    YearAheadTotalLoadForecastParams,
+    ActualTotalLoad,
+    DayAheadTotalLoadForecast,
+    MonthAheadTotalLoadForecast,
+    WeekAheadTotalLoadForecast,
+    YearAheadForecastMargin,
+    YearAheadTotalLoadForecast,
 )
 
 __all__ = [
     "LoadParams",
-    "ActualTotalLoadParams",
-    "DayAheadTotalLoadForecastParams",
-    "WeekAheadTotalLoadForecastParams",
-    "MonthAheadTotalLoadForecastParams",
-    "YearAheadTotalLoadForecastParams",
-    "YearAheadForecastMarginParams",
+    "ActualTotalLoad",
+    "DayAheadTotalLoadForecast",
+    "WeekAheadTotalLoadForecast",
+    "MonthAheadTotalLoadForecast",
+    "YearAheadTotalLoadForecast",
+    "YearAheadForecastMargin",
 ]

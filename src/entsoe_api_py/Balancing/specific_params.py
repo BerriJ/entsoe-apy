@@ -7,10 +7,10 @@ fixed parameters.
 
 from typing import Optional
 
-from ..Base.Balancing import BalancingParams
+from ..Base.Balancing import Balancing
 
 
-class CrossBorderBalancingParams(BalancingParams):
+class CrossBorderBalancing(Balancing):
     """Parameters for 17.1.J Cross Border Balancing.
 
     Data view:
@@ -62,7 +62,7 @@ class CrossBorderBalancingParams(BalancingParams):
         )
 
 
-class AcceptedAggregatedOffersParams(BalancingParams):
+class AcceptedAggregatedOffers(Balancing):
     """Parameters for 17.1.D Accepted Aggregated Offers.
 
     Data view:
@@ -116,7 +116,7 @@ class AcceptedAggregatedOffersParams(BalancingParams):
         )
 
 
-class ActivatedBalancingEnergyParams(BalancingParams):
+class ActivatedBalancingEnergy(Balancing):
     """Parameters for 17.1.E Activated Balancing Energy.
 
     Data view:
@@ -170,7 +170,7 @@ class ActivatedBalancingEnergyParams(BalancingParams):
         )
 
 
-class PricesOfActivatedBalancingEnergyParams(BalancingParams):
+class PricesOfActivatedBalancingEnergy(Balancing):
     """Parameters for 17.1.F Prices of Activated Balancing Energy.
 
     Data view:
@@ -230,7 +230,7 @@ class PricesOfActivatedBalancingEnergyParams(BalancingParams):
         )
 
 
-class VolumesAndPricesOfContractedReservesParams(BalancingParams):
+class VolumesAndPricesOfContractedReserves(Balancing):
     """Parameters for 17.1.B&C Volumes and Prices of Contracted Reserves.
 
     Data view:
@@ -285,7 +285,7 @@ class VolumesAndPricesOfContractedReservesParams(BalancingParams):
         )
 
 
-class ImbalancePricesParams(BalancingParams):
+class ImbalancePrices(Balancing):
     """Parameters for 17.1.G Imbalance Prices.
 
     Data view:
@@ -334,7 +334,7 @@ class ImbalancePricesParams(BalancingParams):
         )
 
 
-class TotalImbalanceVolumesParams(BalancingParams):
+class TotalImbalanceVolumes(Balancing):
     """Parameters for 17.1.H Total Imbalance Volumes.
 
     Data view:
@@ -386,7 +386,7 @@ class TotalImbalanceVolumesParams(BalancingParams):
         )
 
 
-class FinancialExpensesAndIncomeForBalancingParams(BalancingParams):
+class FinancialExpensesAndIncomeForBalancing(Balancing):
     """Parameters for 17.1.I Financial Expenses and Income for Balancing.
 
     Data view:
@@ -435,7 +435,7 @@ class FinancialExpensesAndIncomeForBalancingParams(BalancingParams):
         )
 
 
-class BalancingEnergyBidsParams(BalancingParams):
+class BalancingEnergyBids(Balancing):
     """Parameters for 12.3.B&C Balancing Energy Bids.
 
     Data view:
@@ -489,7 +489,7 @@ class BalancingEnergyBidsParams(BalancingParams):
         )
 
 
-class AggregatedBalancingEnergyBidsParams(BalancingParams):
+class AggregatedBalancingEnergyBids(Balancing):
     """Parameters for 12.3.E Aggregated Balancing Energy Bids (GL EB).
 
     Data view:
@@ -543,7 +543,7 @@ class AggregatedBalancingEnergyBidsParams(BalancingParams):
         )
 
 
-class ProcuredBalancingCapacityParams(BalancingParams):
+class ProcuredBalancingCapacity(Balancing):
     """Parameters for 12.3.F Procured Balancing Capacity (GL EB).
 
     Data view:
@@ -596,7 +596,7 @@ class ProcuredBalancingCapacityParams(BalancingParams):
         )
 
 
-class AllocationAndUseOfCrossZonalBalancingCapacityParams(BalancingParams):
+class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
     """Parameters for 12.3.H&I Allocation and Use of Cross-zonal Balancing Capacity.
 
     Data view:
@@ -649,7 +649,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacityParams(BalancingParams):
         )
 
 
-class CurrentBalancingStateParams(BalancingParams):
+class CurrentBalancingState(Balancing):
     """Parameters for 12.3.A Current Balancing State (GL EB).
 
     Data view:
@@ -700,7 +700,7 @@ class CurrentBalancingStateParams(BalancingParams):
         )
 
 
-class FCRTotalCapacityParams(BalancingParams):
+class FCRTotalCapacity(Balancing):
     """Parameters for 187.2 FCR Total Capacity (SO GL).
 
     Data view:
@@ -751,7 +751,7 @@ class FCRTotalCapacityParams(BalancingParams):
         )
 
 
-class SharesOfFCRCapacityParams(BalancingParams):
+class SharesOfFCRCapacity(Balancing):
     """Parameters for 187.2 Shares of FCR Capacity (SO GL).
 
     Data view:
@@ -802,7 +802,7 @@ class SharesOfFCRCapacityParams(BalancingParams):
         )
 
 
-class SharingOfFCRBetweenSAsParams(BalancingParams):
+class SharingOfFCRBetweenSAs(Balancing):
     """Parameters for 190.2 Sharing of FCR between SAs (SO GL).
 
     Data view:
@@ -855,7 +855,7 @@ class SharingOfFCRBetweenSAsParams(BalancingParams):
         )
 
 
-class FRRAndRRCapacityOutlookParams(BalancingParams):
+class FRRAndRRCapacityOutlook(Balancing):
     """Parameters for 188.3 & 189.2 FRR & RR Capacity Outlook (SO GL).
 
     Data view:
@@ -908,7 +908,7 @@ class FRRAndRRCapacityOutlookParams(BalancingParams):
         )
 
 
-class FRRAndRRActualCapacityParams(BalancingParams):
+class FRRAndRRActualCapacity(Balancing):
     """Parameters for 188.4 & 189.3 FRR and RR Actual Capacity (SO GL).
 
     Data view:
@@ -963,7 +963,7 @@ class FRRAndRRActualCapacityParams(BalancingParams):
         )
 
 
-class OutlookOfReserveCapacitiesOnRRParams(BalancingParams):
+class OutlookOfReserveCapacitiesOnRR(Balancing):
     """Parameters for 189.2 Outlook of Reserve Capacities on RR (SO GL).
 
     Data view:
@@ -1016,7 +1016,7 @@ class OutlookOfReserveCapacitiesOnRRParams(BalancingParams):
         )
 
 
-class RRActualCapacityParams(BalancingParams):
+class RRActualCapacity(Balancing):
     """Parameters for 189.3 RR Actual Capacity (SO GL).
 
     Data view:
@@ -1069,7 +1069,7 @@ class RRActualCapacityParams(BalancingParams):
         )
 
 
-class SharingOfRRAndFRRParams(BalancingParams):
+class SharingOfRRAndFRR(Balancing):
     """Parameters for 190.1 Sharing of RR and FRR (SO GL).
 
     Data view:
@@ -1120,7 +1120,7 @@ class SharingOfRRAndFRRParams(BalancingParams):
         )
 
 
-class ExchangedReserveCapacityParams(BalancingParams):
+class ExchangedReserveCapacity(Balancing):
     """Parameters for 190.3 Exchanged Reserve Capacity (SO GL).
 
     Data view:
@@ -1171,7 +1171,7 @@ class ExchangedReserveCapacityParams(BalancingParams):
         )
 
 
-class CrossBorderMarginalPricesForAFRRParams(BalancingParams):
+class CrossBorderMarginalPricesForAFRR(Balancing):
     """Parameters for IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS).
 
     Data view:
@@ -1224,7 +1224,7 @@ class CrossBorderMarginalPricesForAFRRParams(BalancingParams):
         )
 
 
-class NettedAndExchangedVolumesParams(BalancingParams):
+class NettedAndExchangedVolumes(Balancing):
     """Parameters for IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes.
 
     Data view:
@@ -1276,7 +1276,7 @@ class NettedAndExchangedVolumesParams(BalancingParams):
         )
 
 
-class NettedAndExchangedVolumesPerBorderParams(BalancingParams):
+class NettedAndExchangedVolumesPerBorder(Balancing):
     """Parameters for IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes per Border.
 
     Data view:
@@ -1331,7 +1331,7 @@ class NettedAndExchangedVolumesPerBorderParams(BalancingParams):
         )
 
 
-class ElasticDemandsParams(BalancingParams):
+class ElasticDemands(Balancing):
     """Parameters for IFs aFRR 3.4 & mFRR 3.4 Elastic Demands.
 
     Data view:
@@ -1385,7 +1385,7 @@ class ElasticDemandsParams(BalancingParams):
         )
 
 
-class ChangesToBidAvailabilityParams(BalancingParams):
+class ChangesToBidAvailability(Balancing):
     """Parameters for IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability.
 
     Data view:
@@ -1443,7 +1443,7 @@ class ChangesToBidAvailabilityParams(BalancingParams):
         )
 
 
-class BalancingBorderCapacityLimitationsParams(BalancingParams):
+class BalancingBorderCapacityLimitations(Balancing):
     """Parameters for IFs 4.3 & 4.4 Balancing Border Capacity Limitations.
 
     Data view:
@@ -1498,7 +1498,7 @@ class BalancingBorderCapacityLimitationsParams(BalancingParams):
         )
 
 
-class PermanentAllocationLimitationsToHVDCLinesParams(BalancingParams):
+class PermanentAllocationLimitationsToHVDCLines(Balancing):
     """Parameters for IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines.
 
     Data view:
@@ -1553,7 +1553,7 @@ class PermanentAllocationLimitationsToHVDCLinesParams(BalancingParams):
         )
 
 
-class ResultsOfCriteriaApplicationProcessParams(BalancingParams):
+class ResultsOfCriteriaApplicationProcess(Balancing):
     """Parameters for 185.4 Results of the Criteria Application Process - Measurements (SO GL).
 
     Data view:
@@ -1605,7 +1605,7 @@ class ResultsOfCriteriaApplicationProcessParams(BalancingParams):
         )
 
 
-class BalancingEnergyBidsArchivesParams(BalancingParams):
+class BalancingEnergyBidsArchives(Balancing):
     """Parameters for 12.3.B&C Balancing Energy Bids Archives.
 
     Data view:
@@ -1663,7 +1663,7 @@ class BalancingEnergyBidsArchivesParams(BalancingParams):
         )
 
 
-class FRRActualCapacityLegacyParams(BalancingParams):
+class FRRActualCapacityLegacy(Balancing):
     """Parameters for 188.4 FRR Actual Capacity (SO GL) - Legacy.
 
     Data view:
@@ -1720,7 +1720,7 @@ class FRRActualCapacityLegacyParams(BalancingParams):
         )
 
 
-class RRActualCapacityLegacyParams(BalancingParams):
+class RRActualCapacityLegacy(Balancing):
     """Parameters for 189.3 RR Actual Capacity (SO GL) Legacy.
 
     Data view:
@@ -1773,7 +1773,7 @@ class RRActualCapacityLegacyParams(BalancingParams):
         )
 
 
-class SharingOfRRAndFRRLegacyParams(BalancingParams):
+class SharingOfRRAndFRRLegacy(Balancing):
     """Parameters for 190.1 Sharing of RR and FRR (SO GL) Legacy.
 
     Data view:
@@ -1824,7 +1824,7 @@ class SharingOfRRAndFRRLegacyParams(BalancingParams):
         )
 
 
-class SharesOfFCRCapacityLegacyParams(BalancingParams):
+class SharesOfFCRCapacityLegacy(Balancing):
     """Parameters for 187.2 Shares of FCR Capacity - Share of Capacity (SO GL) Legacy.
 
     Data view:

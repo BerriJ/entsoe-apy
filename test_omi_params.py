@@ -7,7 +7,6 @@ import sys
 # Add the src directory to the Python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
-from entsoe_api_py.Base.OMI import OMIParams
 
 
 def test_omi_params():
@@ -25,7 +24,7 @@ def test_omi_params():
     # Test 1: Basic functionality with valid A05 status
     print("\n1. Testing basic functionality with A05 status...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -42,7 +41,7 @@ def test_omi_params():
     # Test 2: Valid A09 status
     print("\n2. Testing A09 status...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -58,7 +57,7 @@ def test_omi_params():
     # Test 3: Valid A13 status
     print("\n3. Testing A13 status...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -74,7 +73,7 @@ def test_omi_params():
     # Test 4: Invalid status should raise ValueError
     print("\n4. Testing invalid status validation...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -96,7 +95,7 @@ def test_omi_params():
     # Test 5: No doc_status (should be optional)
     print("\n5. Testing optional doc_status...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -113,7 +112,7 @@ def test_omi_params():
     # Test 6: Document type is always B47
     print("\n6. Testing fixed document type...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
@@ -128,7 +127,7 @@ def test_omi_params():
     # Test 7: Update period parameters
     print("\n7. Testing update period parameters...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start_update=period_start,
             period_end_update=period_end,
@@ -148,7 +147,7 @@ def test_omi_params():
     # Test 8: Complete parameter test
     print("\n8. Testing complete parameter set...")
     try:
-        omi = OMIParams(
+        omi = OMI(
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,

@@ -1,9 +1,9 @@
 from typing import Optional
 
-from .Base import BaseParams
+from .Base import Base
 
 
-class TransmissionParams(BaseParams):
+class Transmission(Base):
     """Transmission data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(

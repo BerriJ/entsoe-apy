@@ -7,10 +7,10 @@ fixed parameters.
 
 from typing import Optional
 
-from ..Base.Transmission import TransmissionParams
+from ..Base.Transmission import Transmission
 
 
-class TotalNominatedCapacityParams(TransmissionParams):
+class TotalNominatedCapacity(Transmission):
     """Parameters for 12.1.B Total Nominated Capacity.
 
     Data view:
@@ -64,7 +64,7 @@ class TotalNominatedCapacityParams(TransmissionParams):
         )
 
 
-class ImplicitAllocationsOfferedCapacityParams(TransmissionParams):
+class ImplicitAllocationsOfferedCapacity(Transmission):
     """Parameters for 11.1 Implicit Allocations - Offered Transfer Capacity.
 
     Data view:
@@ -116,13 +116,13 @@ class ImplicitAllocationsOfferedCapacityParams(TransmissionParams):
             timeout=timeout,
             offset=offset,
         )
-        
+
         # Add specific parameters for implicit allocations
         self.add_optional_param("auction.Type", "A01")
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class ExplicitAllocationsOfferedCapacityParams(TransmissionParams):
+class ExplicitAllocationsOfferedCapacity(Transmission):
     """Parameters for 11.1.A Explicit Allocations - Offered Transfer Capacity.
 
     Data view:
@@ -174,13 +174,13 @@ class ExplicitAllocationsOfferedCapacityParams(TransmissionParams):
             timeout=timeout,
             offset=offset,
         )
-        
+
         # Add specific parameters for explicit allocations
         self.add_optional_param("auction.Type", "A02")
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class TotalCapacityAlreadyAllocatedParams(TransmissionParams):
+class TotalCapacityAlreadyAllocated(Transmission):
     """Parameters for 12.1.C Total Capacity Already Allocated.
 
     Data view:
@@ -233,12 +233,12 @@ class TotalCapacityAlreadyAllocatedParams(TransmissionParams):
             timeout=timeout,
             offset=offset,
         )
-        
+
         # Add specific parameters
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class CrossBorderPhysicalFlowsParams(TransmissionParams):
+class CrossBorderPhysicalFlows(Transmission):
     """Parameters for 12.1.G Cross-Border Physical Flows.
 
     Data view:
@@ -290,7 +290,7 @@ class CrossBorderPhysicalFlowsParams(TransmissionParams):
         )
 
 
-class CommercialSchedulesParams(TransmissionParams):
+class CommercialSchedules(Transmission):
     """Parameters for 12.1.F Commercial Schedules.
 
     Data view:
@@ -341,12 +341,12 @@ class CommercialSchedulesParams(TransmissionParams):
             timeout=timeout,
             offset=offset,
         )
-        
+
         # Add specific parameters
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class ForecastedTransferCapacitiesParams(TransmissionParams):
+class ForecastedTransferCapacities(Transmission):
     """Parameters for 11.1.A Forecasted Transfer Capacities.
 
     Data view:
@@ -397,12 +397,12 @@ class ForecastedTransferCapacitiesParams(TransmissionParams):
             timeout=timeout,
             offset=offset,
         )
-        
+
         # Add specific parameters
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class FlowBasedAllocationsParams(TransmissionParams):
+class FlowBasedAllocations(Transmission):
     """Parameters for 11.1.B Flow Based Allocations.
 
     Data view:
@@ -453,7 +453,7 @@ class FlowBasedAllocationsParams(TransmissionParams):
         )
 
 
-class UnavailabilityTransmissionInfrastructureParams(TransmissionParams):
+class UnavailabilityTransmissionInfrastructure(Transmission):
     """Parameters for 10.1.A&B Unavailability of Transmission Infrastructure.
 
     Data view:
@@ -502,7 +502,7 @@ class UnavailabilityTransmissionInfrastructureParams(TransmissionParams):
         )
 
 
-class UnavailabilityOffshoreGridInfrastructureParams(TransmissionParams):
+class UnavailabilityOffshoreGridInfrastructure(Transmission):
     """Parameters for 10.1.C Unavailability of Offshore Grid Infrastructure.
 
     Data view:
