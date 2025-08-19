@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class TransmissionParams:
+
+class TransmissionParams(BaseParams):
     """Transmission data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -53,26 +55,25 @@ class TransmissionParams:
             - Unlike Web GUI, API responds not netted values as data is requested
               per direction
         """
-        # Build query parameters
-        self.params = {
-            "documentType": document_type,
-            "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
-        }
+        # Initialize base parameters
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
-        # Add domain parameters - at least one typically required
-        if in_domain:
-            self.params["in_Domain"] = in_domain
-        if out_domain:
-            self.params["out_Domain"] = out_domain
-        if bidding_zone_domain:
-            self.params["biddingZone_Domain"] = bidding_zone_domain
+        # Add domain parameters
+        self.add_domain_params(
+            in_domain=in_domain,
+            out_domain=out_domain,
+            bidding_zone_domain=bidding_zone_domain,
+        )
 
-        # Add optional parameters if provided
-        if business_type:
-            self.params["businessType"] = business_type
-        if process_type:
-            self.params["processType"] = process_type
-        if offset:
-            self.params["offset"] = offset
+        # Add business parameters
+        self.add_business_params(
+            business_type=business_type,
+            process_type=process_type,
+        )

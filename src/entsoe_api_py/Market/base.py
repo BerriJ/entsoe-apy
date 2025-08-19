@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class MarketParams:
+
+class MarketParams(BaseParams):
     """Market data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -53,39 +55,39 @@ class MarketParams:
         Raises:
             ValidationError: If any input parameter is invalid
         """
-        # Build query parameters
-        self.params = {
-            "documentType": document_type,
-            "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
-        }
+        # Initialize base parameters
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
-        # Add domain parameters - at least one typically required
-        if in_domain:
-            self.params["in_Domain"] = in_domain
-        if out_domain:
-            self.params["out_Domain"] = out_domain
-        if domain_mrid:
-            self.params["domain.mRID"] = domain_mrid
+        # Add domain parameters
+        self.add_domain_params(
+            in_domain=in_domain,
+            out_domain=out_domain,
+            domain_mrid=domain_mrid,
+        )
 
-        # Add optional parameters if provided
-        if business_type:
-            self.params["businessType"] = business_type
-        if process_type:
-            self.params["processType"] = process_type
-        if contract_market_agreement_type:
-            self.params["contract_MarketAgreement.Type"] = (
-                contract_market_agreement_type
-            )
-        if auction_type:
-            self.params["auction.Type"] = auction_type
-        if auction_category:
-            self.params["auction.category"] = auction_category
+        # Add business parameters
+        self.add_business_params(
+            business_type=business_type,
+            process_type=process_type,
+        )
+
+        # Add market parameters
+        self.add_market_params(
+            contract_market_agreement_type=contract_market_agreement_type,
+            auction_type=auction_type,
+            auction_category=auction_category,
+        )
+
+        # Add classification parameter if provided
         if classification_sequence_attribute_instance_component_position:
             key = "classificationSequence_AttributeInstanceComponent.position"
             self.params[key] = (
                 classification_sequence_attribute_instance_component_position
             )
-        if offset:
-            self.params["offset"] = offset

@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class GenerationParams:
+
+class GenerationParams(BaseParams):
     """Generation data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -57,28 +59,28 @@ class GenerationParams:
               B12=Hydro Water Reservoir, B14=Nuclear, B16=Solar,
               B18=Wind Offshore, B19=Wind Onshore, etc.
         """
-        # Build query parameters
-        self.params = {
-            "documentType": document_type,
-            "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
-        }
+        # Initialize base parameters
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
-        # Add domain parameters - at least one typically required
-        if in_domain:
-            self.params["in_Domain"] = in_domain
-        if bidding_zone_domain:
-            self.params["biddingZone_Domain"] = bidding_zone_domain
+        # Add domain parameters
+        self.add_domain_params(
+            in_domain=in_domain,
+            bidding_zone_domain=bidding_zone_domain,
+        )
 
-        # Add optional parameters if provided
-        if process_type:
-            self.params["processType"] = process_type
-        if business_type:
-            self.params["businessType"] = business_type
-        if psr_type:
-            self.params["psrType"] = psr_type
-        if registered_resource:
-            self.params["registeredResource"] = registered_resource
-        if offset:
-            self.params["offset"] = offset
+        # Add business parameters
+        self.add_business_params(
+            business_type=business_type,
+            process_type=process_type,
+            psr_type=psr_type,
+        )
+
+        # Add resource parameters
+        self.add_resource_params(registered_resource=registered_resource)

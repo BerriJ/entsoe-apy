@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class OMIParams:
+
+class OMIParams(BaseParams):
     """Other Market Information (OMI) parameters for ENTSO-E Transparency
     Platform queries."""
 
@@ -56,30 +58,29 @@ class OMIParams:
             - Supports both standard period queries and update-based queries
             - Time range limitations may apply depending on query type
         """
-        # Build query parameters
+        # Initialize base parameters - handle period parameters separately for OMI
         self.params = {
             "documentType": document_type,
             "securityToken": security_token,
         }
+        self.timeout = timeout
 
-        # Add time period parameters
+        # Add time period parameters (optional for OMI)
         if period_start is not None:
             self.params["periodStart"] = period_start
         if period_end is not None:
             self.params["periodEnd"] = period_end
-        if period_start_update is not None:
-            self.params["periodStartUpdate"] = period_start_update
-        if period_end_update is not None:
-            self.params["periodEndUpdate"] = period_end_update
+
+        # Add update period parameters
+        self.add_update_params(
+            period_start_update=period_start_update,
+            period_end_update=period_end_update,
+        )
 
         # Add domain parameters
-        if control_area_domain:
-            self.params["controlArea_Domain"] = control_area_domain
+        self.add_domain_params(control_area_domain=control_area_domain)
 
-        # Add optional parameters if provided
-        if doc_status:
-            self.params["docStatus"] = doc_status
-        if m_rid:
-            self.params["mRID"] = m_rid
-        if offset:
-            self.params["offset"] = offset
+        # Add OMI-specific parameters
+        self.add_optional_param("docStatus", doc_status)
+        self.add_optional_param("mRID", m_rid)
+        self.add_optional_param("offset", offset)

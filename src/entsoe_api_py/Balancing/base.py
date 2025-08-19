@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class BalancingParams:
+
+class BalancingParams(BaseParams):
     """Balancing data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -60,32 +62,32 @@ class BalancingParams:
             - For activated reserves: Use A96 document type
             - For procured reserves: Use A95 document type
         """
-        # Build query parameters
-        self.params = {
-            "documentType": document_type,
-            "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
-        }
+        # Initialize base parameters
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
-        # Add domain parameters based on query type
-        if acquiring_domain:
-            self.params["acquiring_Domain"] = acquiring_domain
-        if connecting_domain:
-            self.params["connecting_Domain"] = connecting_domain
-        if control_area_domain:
-            self.params["controlArea_Domain"] = control_area_domain
-        if bidding_zone_domain:
-            self.params["biddingZone_Domain"] = bidding_zone_domain
+        # Add domain parameters
+        self.add_domain_params(
+            acquiring_domain=acquiring_domain,
+            connecting_domain=connecting_domain,
+            control_area_domain=control_area_domain,
+            bidding_zone_domain=bidding_zone_domain,
+        )
 
-        # Add optional parameters if provided
-        if business_type:
-            self.params["businessType"] = business_type
-        if process_type:
-            self.params["processType"] = process_type
-        if psr_type:
-            self.params["psrType"] = psr_type
-        if type_marketplace_agreement_type:
-            self.params["type_MarketAgreement.type"] = type_marketplace_agreement_type
-        if offset:
-            self.params["offset"] = offset
+        # Add business parameters
+        self.add_business_params(
+            business_type=business_type,
+            process_type=process_type,
+            psr_type=psr_type,
+        )
+
+        # Add market parameters
+        self.add_market_params(
+            type_marketplace_agreement_type=type_marketplace_agreement_type
+        )

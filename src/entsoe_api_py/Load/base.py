@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class LoadParams:
+
+class LoadParams(BaseParams):
     """Load data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -43,23 +45,27 @@ class LoadParams:
             ValidationError: If any input parameter is invalid
         """
 
-        # Build query parameters
-        self.params = {
-            "documentType": document_type,
-            "outBiddingZone_Domain": out_bidding_zone_domain,
-            "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
-        }
+        # Initialize base parameters
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
-        # Add optional parameters if provided
-        if process_type:
-            self.params["processType"] = process_type
-        if business_type:
-            self.params["businessType"] = business_type
-        if psr_type:
-            self.params["psrType"] = psr_type
-        if type_marketplace_agreement_type:
-            self.params["type_MarketAgreement.type"] = type_marketplace_agreement_type
-        if offset:
-            self.params["offset"] = offset
+        # Add domain parameters
+        self.add_domain_params(out_bidding_zone_domain=out_bidding_zone_domain)
+
+        # Add business parameters
+        self.add_business_params(
+            business_type=business_type,
+            process_type=process_type,
+            psr_type=psr_type,
+        )
+
+        # Add market parameters
+        self.add_market_params(
+            type_marketplace_agreement_type=type_marketplace_agreement_type
+        )

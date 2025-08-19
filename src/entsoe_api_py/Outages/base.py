@@ -1,7 +1,9 @@
 from typing import Optional
 
+from ..base_params import BaseParams
 
-class OutagesParams:
+
+class OutagesParams(BaseParams):
     """Outages data parameters for ENTSO-E Transparency Platform queries."""
 
     def __init__(
@@ -62,34 +64,35 @@ class OutagesParams:
             - TimeIntervalUpdate corresponds to 'Updated(UTC)' timestamp in
               platform value details
         """
-        # Build query parameters
+        # Initialize base parameters - handle period parameters separately for outages
         self.params = {
             "documentType": document_type,
             "securityToken": security_token,
         }
+        self.timeout = timeout
 
-        # Add time period parameters
+        # Add time period parameters (optional for outages)
         if period_start is not None:
             self.params["periodStart"] = period_start
         if period_end is not None:
             self.params["periodEnd"] = period_end
-        if period_start_update is not None:
-            self.params["periodStartUpdate"] = period_start_update
-        if period_end_update is not None:
-            self.params["periodEndUpdate"] = period_end_update
+
+        # Add update period parameters
+        self.add_update_params(
+            period_start_update=period_start_update,
+            period_end_update=period_end_update,
+        )
 
         # Add domain parameters
-        if bidding_zone_domain:
-            self.params["biddingZone_Domain"] = bidding_zone_domain
+        self.add_domain_params(bidding_zone_domain=bidding_zone_domain)
 
-        # Add optional parameters if provided
-        if business_type:
-            self.params["businessType"] = business_type
-        if doc_status:
-            self.params["docStatus"] = doc_status
-        if registered_resource:
-            self.params["registeredResource"] = registered_resource
-        if m_rid:
-            self.params["mRID"] = m_rid
-        if offset:
-            self.params["offset"] = offset
+        # Add business parameters
+        self.add_business_params(business_type=business_type)
+
+        # Add resource parameters
+        self.add_resource_params(registered_resource=registered_resource)
+
+        # Add outage-specific parameters
+        self.add_optional_param("docStatus", doc_status)
+        self.add_optional_param("mRID", m_rid)
+        self.add_optional_param("offset", offset)
