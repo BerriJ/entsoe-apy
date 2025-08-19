@@ -1,9 +1,13 @@
 [project]
 name = "entsoe-api-py"
+authors = [
+  {name="Jonathan Berrisch", email="jonathan.berrisch@uni-due.de"},
+  {name="Jie Xu", email="jie.xu@uni-due.de"}
+]
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.9.0"
+requires-python = ">=3.11.0"
 dependencies = [
   "xsdata[cli,lxml,soap]~=25.7",
   "httpx~=0.28.1",
@@ -27,6 +31,19 @@ known-first-party = ["entsoe_api_py"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py", "test-*.py"]
+python_functions = ["test_*"]
+python_classes = ["Test*"]
+addopts = [
+    "-v",
+    "--tb=short",
+]
+
 [build-system]
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

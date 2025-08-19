@@ -47,6 +47,11 @@
           # Project specific
           pypkgs.numpy
           pypkgs.pandas
+          pkgs.mkdocs
+          pypkgs.mkdocs-material
+          pypkgs.mkdocstrings
+          pypkgs.mkdocstrings-python
+          pypkgs.pytest
 
           # Must have
           pkgs.R
