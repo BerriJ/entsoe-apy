@@ -48,7 +48,7 @@ A python dictionary representing the EIC mapping can be accessed using:
 from entsoe-apy import mappings
 ```
 
-::: entsoe-apy.mappings
+Check out the mappings [here](mappings.md).
 
 ## Time Formats
 
