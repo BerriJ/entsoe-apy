@@ -47,5 +47,4 @@ pip install entsoe-apy
 ## Next Steps
 
 - [Getting Started](getting_started.md) - Learn how to set up and use the library
-- [API Reference](items.md) - Detailed documentation of all available classes
 - [Examples](examples.md) - Practical examples and use cases

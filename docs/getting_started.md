@@ -48,6 +48,8 @@ A python dictionary representing the EIC mapping can be accessed using:
 from entsoe-apy import mappings
 ```
 
+::: entsoe-apy.mappings
+
 ## Time Formats
 
 The API uses a specific time format: `YYYYMMDDHHMM`
@@ -58,6 +60,4 @@ Examples:
 
 ## Next Steps
 
-- Explore the [API Reference](items.md) for all available parameter classes
 - Check out [Examples](examples.md) for more complex use cases
-- Learn about [Balancing](balancing.md) parameters specifically

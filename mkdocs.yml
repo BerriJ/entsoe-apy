@@ -4,7 +4,6 @@ nav:
   - Home: index.md
   - Getting Started: getting_started.md
   - API Reference: 
-    - Items: items.md
     - Balancing: balancing.md
     - Base Classes: base.md
   - Examples: examples.md
