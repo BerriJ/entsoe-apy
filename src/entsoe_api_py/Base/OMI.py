@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Literal, Optional
 
 from .Base import BaseParams
 
@@ -18,7 +18,7 @@ class OMIParams(BaseParams):
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
         # Optional parameters for OMI queries
-        doc_status: Optional[str] = None,
+        doc_status: Optional[Literal["A05", "A09", "A13"]] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
