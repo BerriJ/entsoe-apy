@@ -4,14 +4,14 @@ nav:
   - Home: index.md
   - Getting Started: getting_started.md
   - API Reference: 
-    - Items: items.md
     - Balancing: balancing.md
     - Base Classes: base.md
   - Examples: examples.md
+  - Mappings: mappings.md
   - Development: development.md
-  - Issues [Github]: "https://github.com/BerriJ/entsoe-api-py/issues"
-  - Source [Github]: "https://github.com/BerriJ/entsoe-api-py"
-  - License [Github]: "https://github.com/BerriJ/entsoe-api-py/blob/main/LICENSE"
+  - Issues [Github]: "https://github.com/BerriJ/entsoe-apy/issues"
+  - Source [Github]: "https://github.com/BerriJ/entsoe-apy"
+  - License [Github]: "https://github.com/BerriJ/entsoe-apy/blob/main/LICENSE"
 
 theme:
   name: "material"

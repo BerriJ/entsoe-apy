@@ -2,4 +2,4 @@
 # Put them into a folder (e.g. ./xsd/) and run
 
 xsdata generate ./xsd/ --relative-imports --package  xml_models
-mv xml_models src/entsoe_api_py/xml_models/
+mv xml_models src/entsoe/xml_models/

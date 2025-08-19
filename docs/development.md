@@ -14,8 +14,8 @@ This page provides information for developers who want to contribute to or exten
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/BerriJ/entsoe-api-py.git
-cd entsoe-api-py
+git clone https://github.com/BerriJ/entsoe-apy.git
+cd entsoe-apy
 ```
 
 2. Create and activate a virtual environment:
@@ -32,8 +32,8 @@ pip install -e ".[dev]"
 ## Project Structure
 
 ```
-entsoe-api-py/
-├── src/entsoe_api_py/
+entsoe-apy/
+├── src/entsoe/
 │   ├── Base/
 │   │   └── Balancing.py          # Base classes
 │   ├── Balancing/
@@ -51,7 +51,7 @@ entsoe-api-py/
 
 ### Step 1: Define the Class
 
-Create a new parameter class in `src/entsoe_api_py/Balancing/specific_params.py`:
+Create a new parameter class in `src/entsoe/Balancing/specific_params.py`:
 
 ```python
 class NewParameterClass(Balancing):
@@ -93,7 +93,7 @@ class NewParameterClass(Balancing):
 
 ### Step 2: Add to Imports
 
-Add the new class to the imports in `src/entsoe_api_py/Items/__init__.py`:
+Add the new class to the imports in `src/entsoe/Items/__init__.py`:
 
 ```python
 from ..Balancing.specific_params import (
@@ -126,7 +126,7 @@ Include the class name in the `__all__` list for proper exports.
 python -m pytest
 
 # Run with coverage
-python -m pytest --cov=entsoe_api_py
+python -m pytest --cov=entsoe
 
 # Run specific test file
 python -m pytest tests/test_specific_file.py
@@ -138,7 +138,7 @@ Create test files in the `tests/` directory:
 
 ```python
 import pytest
-from entsoe_api_py.Items import NewParameterClass
+from entsoe.Items import NewParameterClass
 
 def test_new_parameter_class():
     """Test the new parameter class."""

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Run pytest for the entsoe-api-py project
+# Run pytest for the entsoe-apy project
 # This script activates the virtual environment and runs all tests
 
 set -e
