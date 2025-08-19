@@ -4,9 +4,9 @@ from os import getenv
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from entsoe_api_py.utils import extract_namespace_and_find_classes
 from entsoe_api_py.Market.base import Market_params
-
+from entsoe_api_py.utils import extract_namespace_and_find_classes
+from entsoe_api_py.query import query_api
 
 _ENTSOE_API = getenv("ENTSOE_API")
 assert _ENTSOE_API is not None
@@ -28,15 +28,8 @@ params = Market_params(
     period_start=period_start,
     period_end=period_end,
 )
-TIME_OUT_SECONDS = 60
 
-URL = "https://web-api.tp.entsoe.eu/api"
+result = query_api(params)
 
-response = get(URL, params=params, timeout=TIME_OUT_SECONDS)
-
-
-namespace, matching_class = extract_namespace_and_find_classes(response)
-
-result: matching_class = XmlParser().from_string(response.text, matching_class)
 print(result.time_series[0])
 # %%
