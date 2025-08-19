@@ -6,7 +6,7 @@ each inheriting from MarketParams and providing preset values for fixed paramete
 
 from typing import Literal, Optional
 
-from .base import MarketParams
+from ..Base.Market import MarketParams
 
 
 class ImplicitFlowBasedAllocationsCongestionIncomeParams(MarketParams):

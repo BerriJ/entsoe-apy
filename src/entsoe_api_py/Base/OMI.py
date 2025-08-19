@@ -1,10 +1,11 @@
 from typing import Optional
 
-from ..base_params import BaseParams
+from .Base import BaseParams
 
 
-class OutagesParams(BaseParams):
-    """Outages data parameters for ENTSO-E Transparency Platform queries."""
+class OMIParams(BaseParams):
+    """Other Market Information (OMI) parameters for ENTSO-E Transparency
+    Platform queries."""
 
     def __init__(
         self,
@@ -12,42 +13,37 @@ class OutagesParams(BaseParams):
         security_token: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
-        # Domain parameters - typically required
-        bidding_zone_domain: Optional[str] = None,
+        # Domain parameters - required based on query type
+        control_area_domain: Optional[str] = None,
         # Alternative period parameters for update-based queries
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
-        # Optional parameters for outage queries
-        business_type: Optional[str] = None,
+        # Optional parameters for OMI queries
         doc_status: Optional[str] = None,
-        registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
         offset: Optional[int] = None,
     ):
         """
-        Initialize outage data parameters for ENTSO-E Transparency Platform.
+        Initialize Other Market Information parameters for ENTSO-E Transparency
+        Platform.
 
         Args:
-            document_type: Document type (e.g., A77, A78, A79, A80, A81, A82, A83)
+            document_type: Document type (e.g., B47 = Other market information)
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update is defined)
             period_end: End period (YYYYMMDDHHMM format, optional if
                        period_end_update is defined)
-            bidding_zone_domain: EIC code of Control Area, Bidding Zone
-                               (optional if mRID is present)
+            control_area_domain: EIC code of Scheduling Area (typically required)
             period_start_update: Start of update period (YYYYMMDDHHMM format,
                                mandatory if period_start and period_end not defined)
             period_end_update: End of update period (YYYYMMDDHHMM format,
                              mandatory if period_start and period_end not defined)
-            business_type: Business type (e.g., A53=Planned maintenance,
-                          A54=Forced unavailability/unplanned outage)
-            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn;
-                       when not defined only Active and Cancelled outages returned)
-            registered_resource: EIC Code of Production Unit or Transmission Element
-            m_rid: Message ID - older versions of outage returned only when used
+            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
+            m_rid: Message ID - if included, individual versions of particular
+                  event are queried using rest of parameters
             timeout: Request timeout in seconds
             offset: Offset for pagination (allows downloading more than 200 docs,
                    offset ∈ [0,4800] so paging restricted to 5000 docs max)
@@ -56,22 +52,20 @@ class OutagesParams(BaseParams):
             ValidationError: If any input parameter is invalid
 
         Notes:
-            - For production unit unavailability: Use A77 document type
-            - For transmission unavailability: Use A78 document type
-            - Time range limited to 1 year for period_start & period_end
-            - If using update parameters, time range limit applies only to
-              period_start_update & period_end_update
-            - TimeIntervalUpdate corresponds to 'Updated(UTC)' timestamp in
-              platform value details
+            - Primary document type is B47 for Other Market Information
+            - Used for various market notifications and information not covered
+              by other specific document types
+            - Supports both standard period queries and update-based queries
+            - Time range limitations may apply depending on query type
         """
-        # Initialize base parameters - handle period parameters separately for outages
+        # Initialize base parameters - handle period parameters separately for OMI
         self.params = {
             "documentType": document_type,
             "securityToken": security_token,
         }
         self.timeout = timeout
 
-        # Add time period parameters (optional for outages)
+        # Add time period parameters (optional for OMI)
         if period_start is not None:
             self.params["periodStart"] = period_start
         if period_end is not None:
@@ -84,15 +78,9 @@ class OutagesParams(BaseParams):
         )
 
         # Add domain parameters
-        self.add_domain_params(bidding_zone_domain=bidding_zone_domain)
+        self.add_domain_params(control_area_domain=control_area_domain)
 
-        # Add business parameters
-        self.add_business_params(business_type=business_type)
-
-        # Add resource parameters
-        self.add_resource_params(registered_resource=registered_resource)
-
-        # Add outage-specific parameters
+        # Add OMI-specific parameters
         self.add_optional_param("docStatus", doc_status)
         self.add_optional_param("mRID", m_rid)
         self.add_optional_param("offset", offset)

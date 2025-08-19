@@ -1,6 +1,6 @@
 from typing import Optional
 
-from ..base_params import BaseParams
+from .Base import BaseParams
 
 
 class BalancingParams(BaseParams):

@@ -4,7 +4,7 @@ from os import getenv
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from entsoe_api_py.Market.base import MarketParams
+from entsoe_api_py.Base.Market import MarketParams
 from entsoe_api_py.utils import extract_namespace_and_find_classes
 from entsoe_api_py.query import query_api
 
