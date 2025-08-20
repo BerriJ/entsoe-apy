@@ -1,7 +1,83 @@
+from dataclasses import fields, is_dataclass
+from datetime import datetime
 import inspect
 from xml.etree import ElementTree as ET
 
 import entsoe.xml_models as xml_models
+
+
+class RangeLimitError(Exception):
+    """Raised when the requested date range exceeds API limits."""
+
+    pass
+
+
+def parse_entsoe_datetime(date_int: int) -> datetime:
+    """
+    Parse ENTSOE datetime format (YYYYMMDDHHMM) to datetime object.
+
+    Args:
+        date_int: Date in YYYYMMDDHHMM format
+
+    Returns:
+        datetime object
+    """
+    date_str = str(date_int)
+    return datetime.strptime(date_str, "%Y%m%d%H%M")
+
+
+def format_entsoe_datetime(dt: datetime) -> int:
+    """
+    Format datetime object to ENTSOE datetime format (YYYYMMDDHHMM).
+
+    Args:
+        dt: datetime object
+
+    Returns:
+        Date in YYYYMMDDHHMM format as integer
+    """
+    return int(dt.strftime("%Y%m%d%H%M"))
+
+
+def check_date_range_limit(
+    period_start: int, period_end: int, max_days: int = 365
+) -> bool:
+    """
+    Check if date range exceeds the specified limit.
+
+    Args:
+        period_start: Start date in YYYYMMDDHHMM format
+        period_end: End date in YYYYMMDDHHMM format
+        max_days: Maximum allowed days (default: 365 for 1 year)
+
+    Returns:
+        True if range exceeds limit, False otherwise
+    """
+    start_dt = parse_entsoe_datetime(period_start)
+    end_dt = parse_entsoe_datetime(period_end)
+    diff = end_dt - start_dt
+    return diff.days > max_days
+
+
+def split_date_range(period_start: int, period_end: int) -> tuple[int, int]:
+    """
+    Split a date range into two equal parts.
+
+    Args:
+        period_start: Start date in YYYYMMDDHHMM format
+        period_end: End date in YYYYMMDDHHMM format
+
+    Returns:
+        Tuple of (pivot_date, end_date) where pivot_date is the midpoint
+    """
+    start_dt = parse_entsoe_datetime(period_start)
+    end_dt = parse_entsoe_datetime(period_end)
+
+    # Calculate the midpoint
+    diff = end_dt - start_dt
+    pivot_dt = start_dt + (diff / 2)
+
+    return format_entsoe_datetime(pivot_dt), period_end
 
 
 def extract_namespace_and_find_classes(response) -> tuple[str, type]:
@@ -34,3 +110,40 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
             f"Multiple classes found matching namespace '{namespace}': {class_names}"
         )
     return namespace, matching_classes[0][1]
+
+
+def merge_documents(base, other):
+    """
+    Merge `other` document into `base` document.
+
+    Args:
+        base: Base document to merge into (modified in-place)
+        other: Other document to merge from
+
+    Rules:
+    - If base is None, returns other
+    - If other is None, returns base
+    - Lists: extend base list with other's items
+    - Nested dataclasses: merge recursively
+    - Scalars: keep base value, use other only if base is None
+
+    Returns:
+        The modified base document, or other/base if one is None
+    """
+    if not base:
+        return other
+    if not other:
+        return base
+
+    for field in fields(base):
+        base_value = getattr(base, field.name)
+        other_value = getattr(other, field.name)
+
+        if isinstance(base_value, list) and isinstance(other_value, list):
+            base_value.extend(other_value)
+        elif is_dataclass(base_value) and is_dataclass(other_value):
+            merge_documents(base_value, other_value)
+        elif base_value is None and other_value is not None:
+            setattr(base, field.name, other_value)
+
+    return base
