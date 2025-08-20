@@ -1,3 +1,4 @@
 xsdata[cli,lxml,soap]==25.7
 httpx==0.28.1
 ruff==0.12.4
+loguru>=0.7.3

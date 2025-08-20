@@ -26,13 +26,13 @@ def range_limited(func):
         period_start = params.get("periodStart")
         period_end = params.get("periodEnd")
 
-        logger.debug(f"range_limited decorator called for function: {func.__name__}")
-        logger.debug(f"Period range: {period_start} to {period_end}")
-
         # If no period parameters, just call the function normally
         if period_start is None or period_end is None:
             logger.debug("No period parameters found, calling function directly")
             return func(params, *args, **kwargs)
+
+        logger.debug(f"range_limited decorator called for function: {func.__name__}")
+        logger.debug(f"Period range: {period_start} to {period_end}")
 
         # Check if the range exceeds the limit (1 year = 365 days)
         if check_date_range_limit(period_start, period_end, max_days=365):
@@ -45,12 +45,16 @@ def range_limited(func):
             # Create new params for the first half
             params1 = params.copy()
             params1["periodEnd"] = pivot_date
-            logger.debug(f"First half: {params1['periodStart']} to {params1['periodEnd']}")
+            logger.debug(
+                f"First half: {params1['periodStart']} to {params1['periodEnd']}"
+            )
 
             # Create new params for the second half
             params2 = params.copy()
             params2["periodStart"] = pivot_date
-            logger.debug(f"Second half: {params2['periodStart']} to {params2['periodEnd']}")
+            logger.debug(
+                f"Second half: {params2['periodStart']} to {params2['periodEnd']}"
+            )
 
             # Recursively call for both halves
             logger.debug("Making recursive call for first half")
@@ -73,24 +77,25 @@ def acknowledgement(func):
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs):
         logger.debug(f"acknowledgement decorator called for function: {func.__name__}")
-        
+
         name, response = func(params, *args, **kwargs)
-        
+
         logger.debug(f"Received response with name: {name}")
-        
+
         if "acknowledgementdocument" in name.lower():
             logger.debug("Response contains acknowledgement document")
             reason = response.reason[0].text
             logger.debug(f"Acknowledgement reason: {reason}")
-            
+
             if "No matching data found" in reason:
-                print(reason)
-                logger.debug("No matching data found, returning None")
+                logger.debug(f"{reason}\nReturning None")
                 return None, None
             else:
-                logger.debug("Acknowledgement document indicates error, raising exception")
+                logger.debug(
+                    "Acknowledgement document indicates error, raising exception"
+                )
                 raise AcknowledgementDocumentError(response.reason)
-        
+
         logger.debug("Acknowledgement check passed, returning response")
         return name, response
 
@@ -101,7 +106,7 @@ def pagination(func):
     @wraps(func)
     def pagination_wrapper(params, *args, **kwargs):
         logger.debug(f"pagination decorator called for function: {func.__name__}")
-        
+
         # Check if offset is in params (indicating pagination may be needed)
         if "offset" not in params:
             logger.debug("No offset parameter found, calling function directly")
@@ -112,7 +117,6 @@ def pagination(func):
 
         for offset in range(0, 4801, 100):  # 0 to 4800 in increments of 100
             logger.debug(f"Processing pagination offset: {offset}")
-            print(offset)
             params["offset"] = offset
 
             result = func(params, *args, **kwargs)
@@ -124,7 +128,9 @@ def pagination(func):
 
             # Merge with accumulated results
             merged_result = merge_documents(merged_result, result)
-            logger.debug(f"Merged results, current result type: {type(result).__name__}")
+            logger.debug(
+                f"Merged results, current result type: {type(result).__name__}"
+            )
 
             # If we got fewer than 100 time series, we've reached the end
             if (
@@ -132,7 +138,9 @@ def pagination(func):
                 and hasattr(result, "time_series")
                 and len(result.time_series) < 100
             ):
-                logger.debug(f"Received {len(result.time_series)} time series (< 100), pagination complete")
+                logger.debug(
+                    f"Received {len(result.time_series)} time series (< 100), pagination complete"
+                )
                 break
 
         logger.debug("Pagination completed, returning merged result")
