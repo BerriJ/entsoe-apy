@@ -72,7 +72,7 @@ def range_limited(func):
     return range_wrapper
 
 
-def Acknowledgement(func):
+def acknowledgement(func):
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs):
         name, response = func(params, *args, **kwargs)
@@ -86,3 +86,30 @@ def Acknowledgement(func):
         return name, response
 
     return ack_wrapper
+
+
+def pagination(func):
+    @wraps(func)
+    def pagination_wrapper(params, *args, **kwargs):
+        # Check if offset is in params (indicating pagination may be needed)
+        if "offset" not in params:
+            return func(params, *args, **kwargs)
+
+        merged_result = None
+
+        for offset in range(0, 4801, 100):  # 0 to 4800 in increments of 100
+            print(offset)
+            params["offset"] = offset
+
+            response = func(params, *args, **kwargs)
+
+            # If response is None, we've reached the end
+            if response is None:
+                break
+
+            # Merge with accumulated results
+            merged_result = merge_documents(merged_result, response)
+
+        return merged_result
+
+    return pagination_wrapper

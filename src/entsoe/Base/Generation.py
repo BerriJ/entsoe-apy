@@ -21,8 +21,8 @@ class Generation(Base):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize generation data parameters for ENTSO-E Transparency Platform.

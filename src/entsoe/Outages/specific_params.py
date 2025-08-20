@@ -42,8 +42,8 @@ class PlannedProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize planned production unit unavailability parameters.
@@ -111,8 +111,8 @@ class ForcedProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize forced production unit unavailability parameters.
@@ -180,8 +180,8 @@ class PlannedTransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize planned transmission unavailability parameters.
@@ -249,8 +249,8 @@ class ForcedTransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize forced transmission unavailability parameters.
@@ -318,8 +318,8 @@ class ProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize production unit unavailability parameters (all types).
@@ -387,8 +387,8 @@ class TransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize transmission unavailability parameters (all types).

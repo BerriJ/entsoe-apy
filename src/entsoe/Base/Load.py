@@ -19,8 +19,8 @@ class Load(Base):
         psr_type: Optional[str] = None,
         type_marketplace_agreement_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize load data parameters for ENTSO-E Transparency Platform.

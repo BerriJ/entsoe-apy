@@ -21,8 +21,8 @@ class OMI(Base):
         doc_status: Optional[Literal["A05", "A09", "A13"]] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize Other Market Information parameters for ENTSO-E Transparency

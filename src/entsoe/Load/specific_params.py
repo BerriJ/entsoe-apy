@@ -33,8 +33,8 @@ class ActualTotalLoad(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize actual total load parameters.
@@ -84,8 +84,8 @@ class DayAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize day-ahead total load forecast parameters.
@@ -135,8 +135,8 @@ class WeekAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize week-ahead total load forecast parameters.
@@ -186,8 +186,8 @@ class MonthAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize month-ahead total load forecast parameters.
@@ -237,8 +237,8 @@ class YearAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize year-ahead total load forecast parameters.
@@ -288,8 +288,8 @@ class YearAheadForecastMargin(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize year-ahead forecast margin parameters.
