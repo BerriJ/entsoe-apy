@@ -479,7 +479,8 @@ class UnavailabilityTransmissionInfrastructure(Outages):
                                optional if period_start and period_end are defined)
             period_end_update: End of update period (YYYYMMDDHHMM format,
                              optional if period_start and period_end are defined)
-            business_type: Business type (A53=Planned maintenance, A54=Forced unavailability)
+            business_type: Business type (A53=Planned maintenance,
+                         A54=Forced unavailability)
             doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
             registered_resource: EIC Code of Transmission Element
             m_rid: Message ID for specific outage versions
