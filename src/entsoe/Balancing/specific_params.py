@@ -34,8 +34,8 @@ class CrossBorderBalancing(Balancing):
         acquiring_domain: str,
         connecting_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize cross border balancing parameters.
@@ -88,8 +88,8 @@ class AcceptedAggregatedOffers(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize accepted aggregated offers parameters.
@@ -142,8 +142,8 @@ class ActivatedBalancingEnergy(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize activated balancing energy parameters.
@@ -199,8 +199,8 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize prices of activated balancing energy parameters.
@@ -256,8 +256,8 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize volumes and prices of contracted reserves parameters.
@@ -308,8 +308,8 @@ class ImbalancePrices(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize imbalance prices parameters.
@@ -358,8 +358,8 @@ class TotalImbalanceVolumes(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize total imbalance volumes parameters.
@@ -409,8 +409,8 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize financial expenses and income for balancing parameters.
@@ -460,8 +460,8 @@ class BalancingEnergyBids(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize balancing energy bids parameters.
@@ -514,8 +514,8 @@ class AggregatedBalancingEnergyBids(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize aggregated balancing energy bids parameters.
@@ -568,8 +568,8 @@ class ProcuredBalancingCapacity(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize procured balancing capacity parameters.
@@ -621,8 +621,8 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize allocation and use of cross-zonal balancing capacity parameters.
@@ -673,8 +673,8 @@ class CurrentBalancingState(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize current balancing state parameters.
@@ -724,8 +724,8 @@ class FCRTotalCapacity(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize FCR total capacity parameters.
@@ -775,8 +775,8 @@ class SharesOfFCRCapacity(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity parameters.
@@ -827,8 +827,8 @@ class SharingOfFCRBetweenSAs(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize sharing of FCR between SAs parameters.
@@ -879,8 +879,8 @@ class FRRAndRRCapacityOutlook(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize FRR and RR capacity outlook parameters.
@@ -933,8 +933,8 @@ class FRRAndRRActualCapacity(Balancing):
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize FRR and RR actual capacity parameters.
@@ -988,8 +988,8 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize outlook of reserve capacities on RR parameters.
@@ -1041,8 +1041,8 @@ class RRActualCapacity(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize RR actual capacity parameters.
@@ -1093,8 +1093,8 @@ class SharingOfRRAndFRR(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR parameters.
@@ -1144,8 +1144,8 @@ class ExchangedReserveCapacity(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize exchanged reserve capacity parameters.
@@ -1197,8 +1197,8 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize cross border marginal prices for aFRR parameters.
@@ -1249,8 +1249,8 @@ class NettedAndExchangedVolumes(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes parameters.
@@ -1303,8 +1303,8 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes per border parameters.
@@ -1359,8 +1359,8 @@ class ElasticDemands(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize elastic demands parameters.
@@ -1416,8 +1416,8 @@ class ChangesToBidAvailability(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize changes to bid availability parameters.
@@ -1472,8 +1472,8 @@ class BalancingBorderCapacityLimitations(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize balancing border capacity limitations parameters.
@@ -1528,8 +1528,8 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize permanent allocation limitations to HVDC lines parameters.
@@ -1583,8 +1583,8 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize results of criteria application process parameters.
@@ -1641,8 +1641,8 @@ class BalancingEnergyBidsArchives(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize balancing energy bids archives parameters.
@@ -1697,8 +1697,8 @@ class FRRActualCapacityLegacy(Balancing):
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize FRR actual capacity legacy parameters.
@@ -1752,8 +1752,8 @@ class RRActualCapacityLegacy(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize RR actual capacity legacy parameters.
@@ -1804,8 +1804,8 @@ class SharingOfRRAndFRRLegacy(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR legacy parameters.
@@ -1856,8 +1856,8 @@ class SharesOfFCRCapacityLegacy(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity legacy parameters.

@@ -26,8 +26,8 @@ class Market(Base):
             int
         ] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize market data parameters for ENTSO-E Transparency Platform.

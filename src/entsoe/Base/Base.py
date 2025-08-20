@@ -21,8 +21,8 @@ class Base:
         security_token: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.

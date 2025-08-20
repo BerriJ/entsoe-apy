@@ -23,8 +23,8 @@ class Outages(Base):
         registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize outage data parameters for ENTSO-E Transparency Platform.

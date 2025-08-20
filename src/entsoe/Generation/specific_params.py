@@ -39,8 +39,8 @@ class InstalledCapacityPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize installed capacity per production type parameters.
@@ -92,8 +92,8 @@ class WaterReservoirsAndHydroStorage(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
@@ -148,8 +148,8 @@ class ActualGenerationPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize actual generation per production type parameters.
@@ -205,8 +205,8 @@ class ActualGenerationPerGenerationUnit(Generation):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize actual generation per generation unit parameters.
@@ -261,8 +261,8 @@ class GenerationForecastDayAhead(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize generation forecast day ahead parameters.
@@ -316,8 +316,8 @@ class GenerationForecastWindAndSolar(Generation):
         process_type: str = "A01",  # Default to Day ahead
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize generation forecast wind and solar parameters.
@@ -374,8 +374,8 @@ class InstalledCapacityPerProductionUnit(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
-        offset: Optional[int] = None,
+        timeout: int = 5,
+        offset: int = 0,
     ):
         """
         Initialize installed capacity per production unit parameters.
