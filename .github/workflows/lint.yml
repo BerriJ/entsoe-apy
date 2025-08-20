@@ -27,8 +27,6 @@ jobs:
           src: "./src"
     - run: ruff check --fix
     - run: ruff format
-    - name: Pull latest changes
-      run: git pull origin ${{ github.head_ref }} --rebase
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v6
       with:
