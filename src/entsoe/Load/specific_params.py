@@ -4,8 +4,6 @@ This module contains specialized parameter classes for different Load data endpo
 each inheriting from LoadParams and providing preset values for fixed parameters.
 """
 
-from typing import Optional
-
 from ..Base.Load import Load
 
 

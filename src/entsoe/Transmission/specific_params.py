@@ -5,8 +5,6 @@ endpoints, each inheriting from TransmissionParams and providing preset values f
 fixed parameters.
 """
 
-from typing import Optional
-
 from ..Base.Transmission import Transmission
 
 
