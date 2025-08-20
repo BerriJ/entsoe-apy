@@ -2,18 +2,18 @@ from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
 from .utils import extract_namespace_and_find_classes
+from .decorators import range_limited
 
 
-def query_api(params):
-    # TODO: Add some logic to handle retries and rate limits
+def query_core(params):
     URL = "https://web-api.tp.entsoe.eu/api"
     response = get(URL, params=params, timeout=60)
+    return response
 
-    try:
-        response.raise_for_status()
-    except Exception as e:
-        raise RuntimeError(f"Failed to query ENTSO-E API: {e}")
 
+@range_limited
+def query_api(params):
+    response = query_core(params)
     _, matching_class = extract_namespace_and_find_classes(response)
-    result: matching_class = XmlParser().from_string(response.text, matching_class)
+    result = XmlParser().from_string(response.text, matching_class)
     return result
