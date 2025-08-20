@@ -26,7 +26,7 @@ class Market(Base):
             int
         ] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

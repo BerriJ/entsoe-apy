@@ -35,7 +35,7 @@ class TotalNominatedCapacity(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -90,7 +90,7 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -148,7 +148,7 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -206,7 +206,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -262,7 +262,7 @@ class CrossBorderPhysicalFlows(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -315,7 +315,7 @@ class CommercialSchedules(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -371,7 +371,7 @@ class ForecastedTransferCapacities(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -426,7 +426,7 @@ class FlowBasedAllocations(Transmission):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -476,7 +476,7 @@ class UnavailabilityTransmissionInfrastructure(Transmission):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -525,7 +525,7 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

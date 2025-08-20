@@ -32,7 +32,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -84,7 +84,7 @@ class TotalNominatedCapacity(Market):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -138,7 +138,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
         update_date_and_or_time: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -204,7 +204,7 @@ class EnergyPrices(Market):
         contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -261,7 +261,7 @@ class TotalCapacityAllocated(Market):
         out_domain: str,
         contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -316,7 +316,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -377,7 +377,7 @@ class FlowBasedAllocations(Market):
         # Only Day ahead for Flow Based
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -434,7 +434,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
         business_type: Optional[str] = None,
         update_date_and_or_time: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -499,7 +499,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -565,7 +565,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ] = "A01",
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -626,7 +626,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -691,7 +691,7 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -748,7 +748,7 @@ class ImplicitAuctionNetPositions(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -805,7 +805,7 @@ class FlowBasedAllocationsLegacy(Market):
         # Only Day ahead for Flow Based
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

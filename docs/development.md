@@ -76,7 +76,7 @@ class NewParameterClass(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         # Add specific parameters here
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """Initialize parameters."""

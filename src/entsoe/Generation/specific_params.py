@@ -39,7 +39,7 @@ class InstalledCapacityPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -92,7 +92,7 @@ class WaterReservoirsAndHydroStorage(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -148,7 +148,7 @@ class ActualGenerationPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -205,7 +205,7 @@ class ActualGenerationPerGenerationUnit(Generation):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -261,7 +261,7 @@ class GenerationForecastDayAhead(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -316,7 +316,7 @@ class GenerationForecastWindAndSolar(Generation):
         process_type: str = "A01",  # Default to Day ahead
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -374,7 +374,7 @@ class InstalledCapacityPerProductionUnit(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

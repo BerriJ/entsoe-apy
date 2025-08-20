@@ -21,7 +21,7 @@ class OMI(Base):
         doc_status: Optional[Literal["A05", "A09", "A13"]] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

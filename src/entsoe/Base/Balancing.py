@@ -23,7 +23,7 @@ class Balancing(Base):
         psr_type: Optional[str] = None,
         type_marketplace_agreement_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

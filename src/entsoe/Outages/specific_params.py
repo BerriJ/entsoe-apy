@@ -42,7 +42,7 @@ class PlannedProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -111,7 +111,7 @@ class ForcedProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -180,7 +180,7 @@ class PlannedTransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -249,7 +249,7 @@ class ForcedTransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -318,7 +318,7 @@ class ProductionUnitUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -387,7 +387,7 @@ class TransmissionUnavailability(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

@@ -20,7 +20,7 @@ class Transmission(Base):
         business_type: Optional[str] = None,
         process_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """

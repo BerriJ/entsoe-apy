@@ -99,7 +99,7 @@ class NewParameterClass(Balancing):
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         super().__init__(

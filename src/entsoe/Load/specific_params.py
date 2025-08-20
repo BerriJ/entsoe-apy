@@ -33,7 +33,7 @@ class ActualTotalLoad(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -84,7 +84,7 @@ class DayAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -135,7 +135,7 @@ class WeekAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -186,7 +186,7 @@ class MonthAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -237,7 +237,7 @@ class YearAheadTotalLoadForecast(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -288,7 +288,7 @@ class YearAheadForecastMargin(Load):
         period_end: int,
         out_bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 60,
+        timeout: int = 5,
         offset: int = 0,
     ):
         """
