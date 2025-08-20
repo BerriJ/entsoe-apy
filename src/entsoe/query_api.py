@@ -2,30 +2,11 @@ from httpx import get
 from loguru import logger
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from .decorators import acknowledgement, pagination, range_limited
-from .utils import extract_namespace_and_find_classes
+from .decorators import acknowledgement, pagination, range_limited, retry
+from .utils import _sanitize_params_for_logging, extract_namespace_and_find_classes
 
 
-def _sanitize_params_for_logging(params: dict) -> dict:
-    """
-    Create a sanitized copy of params for logging by masking security tokens.
-
-    Args:
-        params: Original parameters dictionary
-
-    Returns:
-        Sanitized parameters dictionary with tokens masked
-    """
-    sanitized = params.copy()
-
-    # Mask both possible token parameter names
-    for token_key in ["securityToken", "security_token"]:
-        if token_key in sanitized:
-            sanitized[token_key] = "***MASKED***"
-
-    return sanitized
-
-
+@retry
 def query_core(params: dict, timeout: int = 5):
     URL = "https://web-api.tp.entsoe.eu/api"
 
