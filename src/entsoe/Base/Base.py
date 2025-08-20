@@ -18,8 +18,8 @@ class Base:
         self,
         document_type: str,
         security_token: str,
-        period_start: int,
-        period_end: int,
+        period_start: Optional[int] = None,
+        period_end: Optional[int] = None,
         timeout: int = 60,
         offset: Optional[int] = None,
     ):
@@ -29,8 +29,8 @@ class Base:
         Args:
             document_type: Document type identifier
             security_token: API security token
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
+            period_start: Start period (YYYYMMDDHHMM format, optional)
+            period_end: End period (YYYYMMDDHHMM format, optional)
             timeout: Request timeout in seconds
             offset: Offset for pagination
 
@@ -41,13 +41,13 @@ class Base:
         self.params: Dict[str, Any] = {
             "documentType": document_type,
             "securityToken": security_token,
-            "periodStart": period_start,
-            "periodEnd": period_end,
         }
 
+        # Add period parameters using the proper method
+        self.add_period_params(period_start=period_start, period_end=period_end)
+
         # Add optional parameters if provided
-        if offset is not None:
-            self.params["offset"] = offset
+        self.add_optional_param("offset", offset)
 
         # Store timeout for potential use in derived classes
         self.timeout = timeout
@@ -191,6 +191,21 @@ class Base:
         self.add_optional_param(
             "subject_Party.marketRole.type", subject_party_market_role
         )
+
+    def add_period_params(
+        self,
+        period_start: Optional[int] = None,
+        period_end: Optional[int] = None,
+    ) -> None:
+        """
+        Add period parameters to the params dictionary.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+        """
+        self.add_optional_param("periodStart", period_start)
+        self.add_optional_param("periodEnd", period_end)
 
     def add_update_params(
         self,
