@@ -1,6 +1,8 @@
 """Base parameter classes for ENTSO-E Transparency Platform API."""
 
+from datetime import datetime
 from typing import Any, Dict, Optional
+import warnings
 
 from ..mappings_dict import mappings
 from ..query_api import query_api
@@ -193,20 +195,102 @@ class Base:
             "subject_Party.marketRole.type", subject_party_market_role
         )
 
+    def validate_datetime_param(
+        self, datetime_value: Optional[int], param_name: str
+    ) -> Optional[int]:
+        """
+        Validate a datetime parameter in YYYYMMDDHHMM format.
+
+        Args:
+            datetime_value: Datetime in YYYYMMDDHHMM format (integer)
+            param_name: Name of the parameter for warning/error messages
+
+        Returns:
+            Validated datetime value, potentially modified
+
+        Raises:
+            ValidationError: If datetime format is invalid
+        """
+        if datetime_value is None:
+            return None
+
+        # Convert integer to datetime object for validation
+        try:
+            # Parse YYYYMMDDHHMM format
+            str_value = str(datetime_value)
+            if len(str_value) != 12:
+                raise ValidationError(
+                    f"Invalid datetime format for '{param_name}': {datetime_value}. "
+                    f"Expected YYYYMMDDHHMM format (12 digits)."
+                )
+            
+            year = int(str_value[:4])
+            month = int(str_value[4:6])
+            day = int(str_value[6:8])
+            hour = int(str_value[8:10])
+            minute = int(str_value[10:12])
+            
+            dt = datetime(year, month, day, hour, minute)
+        except (ValueError, TypeError) as e:
+            raise ValidationError(
+                f"Invalid datetime format for '{param_name}': {datetime_value}. "
+                f"Error: {str(e)}"
+            )
+
+        # Check if date is before 2014-01-01
+        min_date = datetime(2014, 1, 1)
+        if dt < min_date:
+            warnings.warn(
+                f"Date for '{param_name}' ({datetime_value}) is before 2014-01-01. "
+                f"Setting to 2024-01-01 00:00.",
+                UserWarning
+            )
+            # Set to 2024-01-01 00:00
+            return 202401010000
+
+        # Check if date is after current time
+        current_time = datetime.now()
+        if dt > current_time:
+            warnings.warn(
+                f"Date for '{param_name}' ({datetime_value}) is after current time. "
+                f"Setting to current time.",
+                UserWarning
+            )
+            # Convert current time to YYYYMMDDHHMM format
+            return int(current_time.strftime("%Y%m%d%H%M"))
+
+        return datetime_value
+
     def add_period_params(
         self,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
     ) -> None:
         """
-        Add period parameters to the params dictionary.
+        Add period parameters to the params dictionary with validation.
 
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+
+        Raises:
+            ValidationError: If period_start is after period_end or if 
+                datetime format is invalid
         """
-        self.add_optional_param("periodStart", period_start)
-        self.add_optional_param("periodEnd", period_end)
+        # First check if period_start is after period_end (before any corrections)
+        if period_start is not None and period_end is not None:
+            if period_start > period_end:
+                raise ValidationError(
+                    f"period_start ({period_start}) cannot be after "
+                    f"period_end ({period_end})"
+                )
+
+        # Then validate and potentially correct individual datetime parameters
+        validated_start = self.validate_datetime_param(period_start, "period_start")
+        validated_end = self.validate_datetime_param(period_end, "period_end")
+
+        self.add_optional_param("periodStart", validated_start)
+        self.add_optional_param("periodEnd", validated_end)
 
     def add_update_params(
         self,
@@ -221,15 +305,36 @@ class Base:
         Args:
             updated_date_and_or_time: Updated date and/or time
             implementation_date_and_or_time: Implementation date and/or time
-            period_start_update: Period start update (for outages)
-            period_end_update: Period end update (for outages)
+            period_start_update: Period start update (for outages, YYYYMMDDHHMM format)
+            period_end_update: Period end update (for outages, YYYYMMDDHHMM format)
+
+        Raises:
+            ValidationError: If period_start_update is after period_end_update or if 
+                datetime format is invalid
         """
         self.add_optional_param("updatedDateAndOrTime", updated_date_and_or_time)
         self.add_optional_param(
             "implementation_DateAndOrTime", implementation_date_and_or_time
         )
-        self.add_optional_param("periodStartUpdate", period_start_update)
-        self.add_optional_param("periodEndUpdate", period_end_update)
+
+        # Validate period update parameters similar to regular period parameters
+        if period_start_update is not None and period_end_update is not None:
+            if period_start_update > period_end_update:
+                raise ValidationError(
+                    f"period_start_update ({period_start_update}) cannot be after "
+                    f"period_end_update ({period_end_update})"
+                )
+
+        # Validate and potentially correct datetime parameters
+        validated_start_update = self.validate_datetime_param(
+            period_start_update, "period_start_update"
+        )
+        validated_end_update = self.validate_datetime_param(
+            period_end_update, "period_end_update"
+        )
+
+        self.add_optional_param("periodStartUpdate", validated_start_update)
+        self.add_optional_param("periodEndUpdate", validated_end_update)
 
     def query_api(self) -> dict:
         """
