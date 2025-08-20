@@ -2,7 +2,13 @@
 
 from typing import Any, Dict, Optional
 
+from ..mappings_dict import mappings
 from ..query_api import query_api
+
+
+class ValidationError(ValueError):
+    """Custom exception for parameter validation errors."""
+    pass
 
 
 class Base:
@@ -46,6 +52,26 @@ class Base:
         # Store timeout for potential use in derived classes
         self.timeout = timeout
 
+    def validate_eic_code(self, eic_code: str, parameter_name: str) -> None:
+        """
+        Validate EIC code against the mappings dictionary.
+
+        Args:
+            eic_code: The EIC code to validate
+            parameter_name: Name of the parameter for error messages
+
+        Raises:
+            ValidationError: If the EIC code is not found in mappings
+        """
+        if eic_code is None:
+            return
+        
+        if eic_code not in mappings:
+            raise ValidationError(
+                f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
+                f"EIC code not found in mappings."
+            )
+
     def add_optional_param(self, key: str, value: Any) -> None:
         """
         Add an optional parameter to the params dictionary if value is not None.
@@ -72,15 +98,25 @@ class Base:
         Add domain-related parameters to the params dictionary.
 
         Args:
-            in_domain: Input domain/bidding zone
-            out_domain: Output domain/bidding zone
-            domain_mrid: Domain mRID for specific queries
-            bidding_zone_domain: Bidding zone domain
-            out_bidding_zone_domain: Output bidding zone domain
-            acquiring_domain: Acquiring domain
-            connecting_domain: Connecting domain
-            control_area_domain: Control area domain
+            in_domain: Input domain/bidding zone (EIC code)
+            out_domain: Output domain/bidding zone (EIC code)
+            domain_mrid: Domain mRID for specific queries (EIC code)
+            bidding_zone_domain: Bidding zone domain (EIC code)
+            out_bidding_zone_domain: Output bidding zone domain (EIC code)
+            acquiring_domain: Acquiring domain (EIC code)
+            connecting_domain: Connecting domain (EIC code)
+            control_area_domain: Control area domain (EIC code)
         """
+        # Validate EIC codes before adding them
+        self.validate_eic_code(in_domain, "in_domain")
+        self.validate_eic_code(out_domain, "out_domain")
+        self.validate_eic_code(domain_mrid, "domain_mrid")
+        self.validate_eic_code(bidding_zone_domain, "bidding_zone_domain")
+        self.validate_eic_code(out_bidding_zone_domain, "out_bidding_zone_domain")
+        self.validate_eic_code(acquiring_domain, "acquiring_domain")
+        self.validate_eic_code(connecting_domain, "connecting_domain")
+        self.validate_eic_code(control_area_domain, "control_area_domain")
+        
         self.add_optional_param("in_Domain", in_domain)
         self.add_optional_param("out_Domain", out_domain)
         self.add_optional_param("domain.mRID", domain_mrid)
@@ -143,10 +179,13 @@ class Base:
         Add resource-related parameters to the params dictionary.
 
         Args:
-            registered_resource: Registered resource identifier
+            registered_resource: Registered resource identifier (EIC code)
             subject_party_name: Subject party name
             subject_party_market_role: Subject party market role
         """
+        # Validate EIC code for registered_resource
+        self.validate_eic_code(registered_resource, "registered_resource")
+        
         self.add_optional_param("registeredResource", registered_resource)
         self.add_optional_param("subject_Party.name", subject_party_name)
         self.add_optional_param(
