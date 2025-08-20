@@ -2,6 +2,7 @@ from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
 from .decorators import range_limited
+from .decorators import Acknowledgement
 from .utils import extract_namespace_and_find_classes
 
 
@@ -11,9 +12,15 @@ def query_core(params):
     return response
 
 
+@Acknowledgement
+def parse_response(response):
+    name, matching_class = extract_namespace_and_find_classes(response)
+    result = XmlParser().from_string(response.text, matching_class)
+    return name, result
+
+
 @range_limited
 def query_api(params):
     response = query_core(params)
-    _, matching_class = extract_namespace_and_find_classes(response)
-    result = XmlParser().from_string(response.text, matching_class)
+    _, result = parse_response(response)
     return result
