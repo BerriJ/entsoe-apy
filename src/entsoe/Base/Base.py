@@ -8,6 +8,7 @@ from ..query_api import query_api
 
 class ValidationError(ValueError):
     """Custom exception for parameter validation errors."""
+
     pass
 
 
@@ -65,7 +66,7 @@ class Base:
         """
         if eic_code is None:
             return
-        
+
         if eic_code not in mappings:
             raise ValidationError(
                 f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
@@ -116,7 +117,7 @@ class Base:
         self.validate_eic_code(acquiring_domain, "acquiring_domain")
         self.validate_eic_code(connecting_domain, "connecting_domain")
         self.validate_eic_code(control_area_domain, "control_area_domain")
-        
+
         self.add_optional_param("in_Domain", in_domain)
         self.add_optional_param("out_Domain", out_domain)
         self.add_optional_param("domain.mRID", domain_mrid)
@@ -185,7 +186,7 @@ class Base:
         """
         # Validate EIC code for registered_resource
         self.validate_eic_code(registered_resource, "registered_resource")
-        
+
         self.add_optional_param("registeredResource", registered_resource)
         self.add_optional_param("subject_Party.name", subject_party_name)
         self.add_optional_param(

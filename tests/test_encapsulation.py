@@ -1,8 +1,9 @@
 """Tests for encapsulation improvements in OMI and Outages classes."""
 
 import pytest
-from entsoe.OMI.OMI import OMI
+
 from entsoe.Base.Outages import Outages
+from entsoe.OMI.OMI import OMI
 
 
 class TestEncapsulation:
