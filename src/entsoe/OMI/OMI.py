@@ -22,7 +22,7 @@ class OMI(Base):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize Other Market Information parameters for ENTSO-E Transparency

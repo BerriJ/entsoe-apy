@@ -36,7 +36,7 @@ class TotalNominatedCapacity(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize total nominated capacity parameters.
@@ -91,7 +91,7 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize implicit allocations offered capacity parameters.
@@ -149,7 +149,7 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize explicit allocations offered capacity parameters.
@@ -207,7 +207,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize total capacity already allocated parameters.
@@ -263,7 +263,7 @@ class CrossBorderPhysicalFlows(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize cross-border physical flows parameters.
@@ -316,7 +316,7 @@ class CommercialSchedules(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize commercial schedules parameters.
@@ -372,7 +372,7 @@ class ForecastedTransferCapacities(Transmission):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize forecasted transfer capacities parameters.
@@ -427,7 +427,7 @@ class FlowBasedAllocations(Transmission):
         bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
@@ -477,7 +477,7 @@ class UnavailabilityTransmissionInfrastructure(Transmission):
         bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize unavailability of transmission infrastructure parameters.
@@ -526,7 +526,7 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
         bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize unavailability of offshore grid infrastructure parameters.

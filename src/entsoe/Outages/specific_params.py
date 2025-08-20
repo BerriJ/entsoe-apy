@@ -43,7 +43,7 @@ class PlannedProductionUnitUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize planned production unit unavailability parameters.
@@ -112,7 +112,7 @@ class ForcedProductionUnitUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize forced production unit unavailability parameters.
@@ -181,7 +181,7 @@ class PlannedTransmissionUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize planned transmission unavailability parameters.
@@ -250,7 +250,7 @@ class ForcedTransmissionUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize forced transmission unavailability parameters.
@@ -319,7 +319,7 @@ class ProductionUnitUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize production unit unavailability parameters (all types).
@@ -388,7 +388,7 @@ class TransmissionUnavailability(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize transmission unavailability parameters (all types).

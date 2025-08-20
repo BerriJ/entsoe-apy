@@ -22,7 +22,7 @@ class Base:
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.

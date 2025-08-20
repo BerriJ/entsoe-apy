@@ -100,7 +100,7 @@ class NewParameterClass(Balancing):
         period_end: int,
         bidding_zone_domain: str,
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         super().__init__(
             document_type="AXX",

@@ -21,7 +21,7 @@ class Transmission(Base):
         process_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize transmission data parameters for ENTSO-E Transparency Platform.

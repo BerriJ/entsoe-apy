@@ -86,3 +86,15 @@ def Acknowledgement(func):
         return name, response
 
     return ack_wrapper
+
+
+def pagination(func):
+    @wraps(func)
+    def pagination_wrapper(params, *args, **kwargs):
+        name, response = func(params, *args, **kwargs)
+        if "offset" in params:
+            # Handle pagination logic here
+            pass
+        return name, response
+
+    return pagination_wrapper

@@ -77,7 +77,7 @@ class NewParameterClass(Balancing):
         bidding_zone_domain: str,
         # Add specific parameters here
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """Initialize parameters."""
         super().__init__(

@@ -22,7 +22,7 @@ class Generation(Base):
         registered_resource: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize generation data parameters for ENTSO-E Transparency Platform.

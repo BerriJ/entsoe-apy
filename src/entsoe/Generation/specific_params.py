@@ -40,7 +40,7 @@ class InstalledCapacityPerProductionType(Generation):
         psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize installed capacity per production type parameters.
@@ -93,7 +93,7 @@ class WaterReservoirsAndHydroStorage(Generation):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
@@ -149,7 +149,7 @@ class ActualGenerationPerProductionType(Generation):
         psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize actual generation per production type parameters.
@@ -206,7 +206,7 @@ class ActualGenerationPerGenerationUnit(Generation):
         registered_resource: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize actual generation per generation unit parameters.
@@ -262,7 +262,7 @@ class GenerationForecastDayAhead(Generation):
         in_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize generation forecast day ahead parameters.
@@ -317,7 +317,7 @@ class GenerationForecastWindAndSolar(Generation):
         psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize generation forecast wind and solar parameters.
@@ -375,7 +375,7 @@ class InstalledCapacityPerProductionUnit(Generation):
         psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize installed capacity per production unit parameters.

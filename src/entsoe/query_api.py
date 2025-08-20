@@ -1,7 +1,7 @@
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from .decorators import Acknowledgement, range_limited
+from .decorators import Acknowledgement, pagination, range_limited
 from .utils import extract_namespace_and_find_classes
 
 
@@ -19,6 +19,7 @@ def parse_response(response):
 
 
 @range_limited
+@pagination
 def query_api(params):
     response = query_core(params)
     _, result = parse_response(response)

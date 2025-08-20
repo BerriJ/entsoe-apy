@@ -34,7 +34,7 @@ class ActualTotalLoad(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize actual total load parameters.
@@ -85,7 +85,7 @@ class DayAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize day-ahead total load forecast parameters.
@@ -136,7 +136,7 @@ class WeekAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize week-ahead total load forecast parameters.
@@ -187,7 +187,7 @@ class MonthAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize month-ahead total load forecast parameters.
@@ -238,7 +238,7 @@ class YearAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize year-ahead total load forecast parameters.
@@ -289,7 +289,7 @@ class YearAheadForecastMargin(Load):
         out_bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize year-ahead forecast margin parameters.

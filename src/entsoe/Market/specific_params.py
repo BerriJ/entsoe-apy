@@ -33,7 +33,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize congestion income parameters.
@@ -85,7 +85,7 @@ class TotalNominatedCapacity(Market):
         out_domain: str,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize total nominated capacity parameters.
@@ -139,7 +139,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize implicit allocations offered transfer capacity parameters.
@@ -205,7 +205,7 @@ class EnergyPrices(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize energy prices parameters.
@@ -262,7 +262,7 @@ class TotalCapacityAllocated(Market):
         contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize total capacity already allocated parameters.
@@ -317,7 +317,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize explicit allocations offered transfer capacity parameters.
@@ -378,7 +378,7 @@ class FlowBasedAllocations(Market):
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
@@ -435,7 +435,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
         update_date_and_or_time: Optional[str] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize continuous allocations offered transfer capacity parameters.
@@ -500,7 +500,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize explicit allocations use of transfer capacity parameters.
@@ -566,7 +566,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
         ] = "A01",
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize explicit allocations auction revenue parameters.
@@ -627,7 +627,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -692,7 +692,7 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -749,7 +749,7 @@ class ImplicitAuctionNetPositions(Market):
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize implicit auction net positions parameters.
@@ -806,7 +806,7 @@ class FlowBasedAllocationsLegacy(Market):
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 60,
-        offset: Optional[int] = None,
+        offset: int = 0,
     ):
         """
         Initialize flow based allocations (legacy) parameters.
