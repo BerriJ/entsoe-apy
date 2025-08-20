@@ -62,9 +62,8 @@ def range_limited(func):
             # print("[RANGE_WRAPPER] Making recursive call for second half...")
             result2 = range_wrapper(params2, *args, **kwargs)
 
-            # Merge the results
-            # print("[RANGE_WRAPPER] Merging results from both halves")
             return merge_documents(result1, result2)
+
         else:
             # Range is within limit, make the API call
             # print("[RANGE_WRAPPER] Range within 365 days, making API call")
@@ -77,8 +76,13 @@ def Acknowledgement(func):
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs):
         name, response = func(params, *args, **kwargs)
+        reason_text = [reason.text for reason in response.reason]
         if "acknowledgementdocument" in name.lower():
-            raise AcknowledgementDocumentError(response.reason)
+            if any("No matching data found" in r for r in reason_text):
+                print("Foo")
+                return None, None
+            else:
+                raise AcknowledgementDocumentError(response.reason)
         return name, response
 
     return ack_wrapper

@@ -123,6 +123,13 @@ def merge_documents(base, other):
 
     Returns the modified base document.
     """
+    if base is None and other is None:
+        return None
+    if base is None:
+        return other
+    if other is None:
+        return base
+
     for field in fields(base):
         field_name = field.name
         base_value = getattr(base, field_name)
