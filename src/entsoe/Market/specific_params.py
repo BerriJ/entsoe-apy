@@ -355,14 +355,14 @@ class ExplicitAllocationsOfferedCapacity(Market):
 
 
 class FlowBasedAllocations(Market):
-    """Parameters for 11.1.B Flow Based Allocations.
+    """Parameters for 11.1.B Flow Based Allocations (legacy).
 
     Data view:
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
 
     Fixed parameters:
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
+    - documentType: B11 (Flow-based allocations)
+    - processType: A01 (Day ahead)
     """
 
     code = "11.1.B"
@@ -374,8 +374,6 @@ class FlowBasedAllocations(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 5,
     ):
@@ -386,22 +384,22 @@ class FlowBasedAllocations(Market):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
+            in_domain: EIC code of a Region
+            out_domain: EIC code of a Region
             timeout: Request timeout in seconds
         """
         # Initialize with preset and user parameters
+        # (offset=0 and not used for flow based allocations)
         super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
+            document_type="B11",  # Fixed: Flow-based allocations
+            process_type="A01",  # Fixed: Day ahead
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
             timeout=timeout,
+            offset=0,  # Flow based allocations don't use offset for pagination
         )
 
 
@@ -784,10 +782,10 @@ class FlowBasedAllocationsLegacy(Market):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
 
     Fixed parameters:
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
+    - documentType: B11 (Flow-based allocations)
+    - processType: A01 (Day ahead)
 
-    Note: This is the legacy version of Flow Based Allocations.
+    Note: This is the same as FlowBasedAllocations - both use the legacy endpoint.
     """
 
     code = "11.1.B"
@@ -799,8 +797,6 @@ class FlowBasedAllocationsLegacy(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 5,
     ):
@@ -811,20 +807,20 @@ class FlowBasedAllocationsLegacy(Market):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
+            in_domain: EIC code of a Region
+            out_domain: EIC code of a Region
             timeout: Request timeout in seconds
         """
         # Initialize with preset and user parameters
+        # (offset=0 and not used for flow based allocations)
         super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
+            document_type="B11",  # Fixed: Flow-based allocations
+            process_type="A01",  # Fixed: Day ahead
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
             timeout=timeout,
+            offset=0,  # Flow based allocations don't use offset for pagination
         )

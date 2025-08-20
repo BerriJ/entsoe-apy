@@ -422,7 +422,7 @@ class FlowBasedAllocations(Transmission):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        domain_mrid: str,
         # Additional common parameters
         timeout: int = 5,
     ):
@@ -433,19 +433,23 @@ class FlowBasedAllocations(Transmission):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of bidding zone domain
+            domain_mrid: EIC code of a Region
             timeout: Request timeout in seconds
         """
         # Initialize with preset and user parameters
+        # (offset=0 and not passed to avoid pagination)
         super().__init__(
             document_type="B09",
             process_type="A44",
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
             timeout=timeout,
+            offset=0,  # Flow based allocations don't use offset for pagination
         )
+        
+        # Add the domain parameter using the correct parameter name
+        self.add_domain_params(domain_mrid=domain_mrid)
 
 
 class UnavailabilityTransmissionInfrastructure(Transmission):
