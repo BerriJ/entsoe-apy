@@ -91,10 +91,42 @@ def Acknowledgement(func):
 def pagination(func):
     @wraps(func)
     def pagination_wrapper(params, *args, **kwargs):
-        name, response = func(params, *args, **kwargs)
-        if "offset" in params:
-            # Handle pagination logic here
-            pass
-        return name, response
+        # Check if offset is in params (indicating pagination is needed)
+        if "offset" not in params:
+            return func(params, *args, **kwargs)
+
+        results = []
+        for offset in range(0, 4801, 100):  # 0 to 4800 in increments of 100
+            # Create new params with current offset
+            paginated_params = params.copy()
+            paginated_params["offset"] = offset
+
+            try:
+                name, response = func(paginated_params, *args, **kwargs)
+
+                # If response is None, we've reached the end
+                if response is None:
+                    break
+
+                results.append(response)
+
+            except Exception:
+                # If we get an error (like no matching data), break the loop
+                break
+
+        # If no results were collected, return None
+        if not results:
+            return None, None
+
+        # If only one result, return it directly
+        if len(results) == 1:
+            return name, results[0]
+
+        # Merge all results using merge_documents
+        merged_result = results[0]
+        for result in results[1:]:
+            merged_result = merge_documents(merged_result, result)
+
+        return name, merged_result
 
     return pagination_wrapper
