@@ -16,6 +16,14 @@ dependencies = [
 [dependency-groups]
 dev = ["pytest~=8.3.3", "pytest-xdist~=3.6.1"]
 
+[tool.ruff]
+exclude = [
+    "src/entsoe/xml_models",
+    "__pycache__",
+    "build",
+    "*.egg-info",
+]
+
 [tool.ruff.lint]
 preview = true
 extend-select = ["E501", "E302", "E301", "I"]

@@ -10,7 +10,8 @@ class TestEncapsulation:
     """Test that OMI and Outages classes properly use Base class encapsulation."""
 
     def test_omi_parameter_initialization(self):
-        """Test that OMI class properly initializes parameters using base class methods."""
+        """Test that OMI class properly initializes parameters using base
+        class methods."""
         omi = OMI(
             security_token="test_token",
             period_start=202301010000,
@@ -45,7 +46,8 @@ class TestEncapsulation:
         assert omi.params["securityToken"] == "test_token"
 
     def test_outages_parameter_initialization(self):
-        """Test that Outages class properly initializes parameters using base class methods."""
+        """Test that Outages class properly initializes parameters using base
+        class methods."""
         outages = Outages(
             document_type="A77",
             security_token="test_token",
@@ -101,7 +103,8 @@ class TestEncapsulation:
             control_area_domain="10YBE----------2",
         )
 
-        # The params dictionary should be properly initialized through Base class methods
+        # The params dictionary should be properly initialized through Base
+        # class methods
         # This verifies that we're not manually setting self.params = {...}
         assert hasattr(omi, "params")
         assert isinstance(omi.params, dict)
@@ -114,7 +117,8 @@ class TestEncapsulation:
             bidding_zone_domain="10YBE----------2",
         )
 
-        # The params dictionary should be properly initialized through Base class methods
+        # The params dictionary should be properly initialized through Base
+        # class methods
         assert hasattr(outages, "params")
         assert isinstance(outages.params, dict)
         assert "securityToken" in outages.params

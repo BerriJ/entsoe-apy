@@ -1172,7 +1172,8 @@ class ExchangedReserveCapacity(Balancing):
 
 
 class CrossBorderMarginalPricesForAFRR(Balancing):
-    """Parameters for IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS).
+    """Parameters for IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for
+    aFRR Central Selection (CS).
 
     Data view:
     https://transparency.entsoe.eu/balancing/r2/crossBorderMarginalPricesForAFRR/show
@@ -1259,7 +1260,8 @@ class NettedAndExchangedVolumes(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR, A63=Imbalance Netting
+            process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
+                         A63=Imbalance Netting
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -1313,7 +1315,8 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
-            process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR, A63=Imbalance Netting
+            process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
+                         A63=Imbalance Netting
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -1397,7 +1400,8 @@ class ChangesToBidAvailability(Balancing):
 
     Optional parameters:
     - businessType: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
-                   C43=Voltage limit, C44=Current limit, C45=Short-circuit current limits,
+                   C43=Voltage limit, C44=Current limit,
+                   C45=Short-circuit current limits,
                    C46=Dynamic stability limit
     """
 
@@ -1499,7 +1503,8 @@ class BalancingBorderCapacityLimitations(Balancing):
 
 
 class PermanentAllocationLimitationsToHVDCLines(Balancing):
-    """Parameters for IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines.
+    """Parameters for IFs 4.5 Permanent Allocation Limitations to Cross-border
+    Capacity on HVDC Lines.
 
     Data view:
     https://transparency.entsoe.eu/balancing/r2/permanentAllocationLimitationsToHVDCLines/show
@@ -1554,7 +1559,8 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
 
 
 class ResultsOfCriteriaApplicationProcess(Balancing):
-    """Parameters for 185.4 Results of the Criteria Application Process - Measurements (SO GL).
+    """Parameters for 185.4 Results of the Criteria Application Process -
+    Measurements (SO GL).
 
     Data view:
     https://transparency.entsoe.eu/balancing/r2/resultsOfCriteriaApplicationProcess/show
@@ -1588,7 +1594,8 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            process_type: A64=Instantaneous frequency criteria, A65=Frequency restoration criteria
+            process_type: A64=Instantaneous frequency criteria,
+                         A65=Frequency restoration criteria
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
