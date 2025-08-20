@@ -11,6 +11,12 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+    - name: Configure git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
     - uses: actions/setup-python@v5
       with:
         python-version: '3.13' 
@@ -21,10 +27,14 @@ jobs:
           src: "./src"
     - run: ruff check --fix
     - run: ruff format
+    - name: Pull latest changes
+      run: git pull origin ${{ github.head_ref }} --rebase
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: 'style fixes by ruff'
         file_pattern: '*.py'
+        skip_fetch: false
+        skip_checkout: false
 
 
