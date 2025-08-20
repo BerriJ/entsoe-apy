@@ -1,3 +1,4 @@
+from dataclasses import fields, is_dataclass
 import inspect
 from xml.etree import ElementTree as ET
 
@@ -34,3 +35,21 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
             f"Multiple classes found matching namespace '{namespace}': {class_names}"
         )
     return namespace, matching_classes[0][1]
+
+
+def merge_documents(base, other):
+    """Merge `other` into `base`: scalars kept from base, lists extended."""
+    for f in fields(base):
+        base_val = getattr(base, f.name)
+        other_val = getattr(other, f.name)
+
+        if isinstance(base_val, list) and isinstance(other_val, list):
+            base_val.extend(other_val)
+        # If it's another dataclass, merge recursively
+        elif is_dataclass(base_val) and is_dataclass(other_val):
+            merge_documents(base_val, other_val)
+        # Otherwise: scalar -> keep the first non-None
+        elif base_val is None and other_val is not None:
+            setattr(base, f.name, other_val)
+
+    return base
