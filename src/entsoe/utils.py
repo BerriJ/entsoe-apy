@@ -38,18 +38,33 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
 
 
 def merge_documents(base, other):
-    """Merge `other` into `base`: scalars kept from base, lists extended."""
-    for f in fields(base):
-        base_val = getattr(base, f.name)
-        other_val = getattr(other, f.name)
+    """
+    Merge `other` document into `base` document.
 
-        if isinstance(base_val, list) and isinstance(other_val, list):
-            base_val.extend(other_val)
-        # If it's another dataclass, merge recursively
-        elif is_dataclass(base_val) and is_dataclass(other_val):
-            merge_documents(base_val, other_val)
-        # Otherwise: scalar -> keep the first non-None
-        elif base_val is None and other_val is not None:
-            setattr(base, f.name, other_val)
+    Rules:
+    - Lists: extend base list with other's items
+    - Nested dataclasses: merge recursively
+    - Scalars: keep base value, use other only if base is None
+
+    Returns the modified base document.
+    """
+    for field in fields(base):
+        field_name = field.name
+        base_value = getattr(base, field_name)
+        other_value = getattr(other, field_name)
+
+        # Handle lists: extend base with other's items
+        if isinstance(base_value, list) and isinstance(other_value, list):
+            base_value.extend(other_value)
+            continue
+
+        # Handle nested dataclasses: merge recursively
+        if is_dataclass(base_value) and is_dataclass(other_value):
+            merge_documents(base_value, other_value)
+            continue
+
+        # Handle scalars: use other value only if base is None
+        if base_value is None and other_value is not None:
+            setattr(base, field_name, other_value)
 
     return base
