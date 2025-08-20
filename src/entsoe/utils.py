@@ -116,37 +116,34 @@ def merge_documents(base, other):
     """
     Merge `other` document into `base` document.
 
+    Args:
+        base: Base document to merge into (modified in-place)
+        other: Other document to merge from
+
     Rules:
+    - If base is None, returns other
+    - If other is None, returns base
     - Lists: extend base list with other's items
     - Nested dataclasses: merge recursively
     - Scalars: keep base value, use other only if base is None
 
-    Returns the modified base document.
+    Returns:
+        The modified base document, or other/base if one is None
     """
-    if base is None and other is None:
-        return None
-    if base is None:
+    if not base:
         return other
-    if other is None:
+    if not other:
         return base
 
     for field in fields(base):
-        field_name = field.name
-        base_value = getattr(base, field_name)
-        other_value = getattr(other, field_name)
+        base_value = getattr(base, field.name)
+        other_value = getattr(other, field.name)
 
-        # Handle lists: extend base with other's items
         if isinstance(base_value, list) and isinstance(other_value, list):
             base_value.extend(other_value)
-            continue
-
-        # Handle nested dataclasses: merge recursively
-        if is_dataclass(base_value) and is_dataclass(other_value):
+        elif is_dataclass(base_value) and is_dataclass(other_value):
             merge_documents(base_value, other_value)
-            continue
-
-        # Handle scalars: use other value only if base is None
-        if base_value is None and other_value is not None:
-            setattr(base, field_name, other_value)
+        elif base_value is None and other_value is not None:
+            setattr(base, field.name, other_value)
 
     return base

@@ -76,10 +76,10 @@ def Acknowledgement(func):
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs):
         name, response = func(params, *args, **kwargs)
-        reason_text = [reason.text for reason in response.reason]
         if "acknowledgementdocument" in name.lower():
-            if any("No matching data found" in r for r in reason_text):
-                print("Foo")
+            reason = response.reason[0].text
+            if "No matching data found" in reason:
+                print(reason)
                 return None, None
             else:
                 raise AcknowledgementDocumentError(response.reason)
