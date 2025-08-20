@@ -64,18 +64,15 @@ class Outages(Base):
             - TimeIntervalUpdate corresponds to 'Updated(UTC)' timestamp in
               platform value details
         """
-        # Initialize base parameters - handle period parameters separately for outages
-        self.params = {
-            "documentType": document_type,
-            "securityToken": security_token,
-        }
-        self.timeout = timeout
-
-        # Add time period parameters (optional for outages)
-        if period_start is not None:
-            self.params["periodStart"] = period_start
-        if period_end is not None:
-            self.params["periodEnd"] = period_end
+        # Initialize base parameters using proper encapsulation
+        super().__init__(
+            document_type=document_type,
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
         # Add update period parameters
         self.add_update_params(
@@ -95,4 +92,3 @@ class Outages(Base):
         # Add outage-specific parameters
         self.add_optional_param("docStatus", doc_status)
         self.add_optional_param("mRID", m_rid)
-        self.add_optional_param("offset", offset)

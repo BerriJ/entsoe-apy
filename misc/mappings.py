@@ -37,7 +37,8 @@ def convert_csv_list_to_dict(csv_rows, key_column=0, value_column=1):
         value_column (int): Index of column to use as values (default: 1)
 
     Returns:
-        dict: Dictionary with keys from first column and values as dictionaries split by "|"
+        dict: Dictionary with keys from first column and values as dictionaries
+              split by "|"
     """
     if not csv_rows:
         return {}
