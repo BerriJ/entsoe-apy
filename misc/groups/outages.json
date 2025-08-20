@@ -1,0 +1,423 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Outages",
+        "description": "Outages endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Outages",
+            "item": [
+                {
+                    "name": "15.1.C-D Unavailability of Production Units",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A77&BiddingZone_Domain=10YBE----------2&periodStart=202212312300&periodEnd=202301312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A77",
+                                    "description": "[M] A77 = Production unit unavailability"
+                                },
+                                {
+                                    "key": "BiddingZone_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202301312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "A53",
+                                    "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A05",
+                                    "description": "[O] A05 = Active; A09 = Cancelled; A13 = Withdrawn; (when not defined only Active and Cancelled outages are returned)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodStartUpdate",
+                                    "value": "202301152300",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodEndUpdate",
+                                    "value": "202301312300",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "RegisteredResource",
+                                    "value": "22W20200608A---8",
+                                    "description": "[O] EIC Code of Production Unit",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "-WmcUg9Da9u8AF3A_gx8UQ",
+                                    "description": "[O] Older versions of an outage is returned only when mRID parameter is used",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "1",
+                                    "description": "[O] Integer (allows downloading more than 200 documents. The offset \u2208 [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                },
+                {
+                    "name": "15.1.A&B Unavailability of Generation Units",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A80&BiddingZone_Domain=10YBE----------2&periodStart=202301022200&periodEnd=202301032200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A80",
+                                    "description": "[M] A80 = Generation unavailability"
+                                },
+                                {
+                                    "key": "BiddingZone_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301022200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202301032200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "A53",
+                                    "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A05",
+                                    "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned): A05 = Active; A09 = Cancelled; A13 = Withdrawn",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodStartUpdate",
+                                    "value": "202301031000",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodEndUpdate",
+                                    "value": "202301032200",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "RegisteredResource",
+                                    "value": "22WCOOX6X000064W",
+                                    "description": "[O] EIC Code of Generation Unit",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "nCYGn4HPvOBiVrWtRFL35g",
+                                    "description": "[O] Used to retrieve older versions of an outage",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (Enables downloading more than 200 documents. The offset \u2208 [0,4800] so that paging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                },
+                {
+                    "name": "7.1.A-B Aggregated Unavailability of Consumption Units",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A76&BiddingZone_Domain=10Y1001A1001A82H&periodStart=202310312300&periodEnd=202311302300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A76",
+                                    "description": "[M] A76 = Load unavailability"
+                                },
+                                {
+                                    "key": "BiddingZone_Domain",
+                                    "value": "10Y1001A1001A82H",
+                                    "description": "[M] EIC code of a Control Area or a Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202310312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodStartUpdate is defined)"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202311302300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodEndUpdate is defined)"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "A53",
+                                    "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                },
+                {
+                    "name": "10.1.A&B Unavailability of Transmission Infrastructure",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A78&Out_Domain=10YFR-RTE------C&In_Domain=10YBE----------2&periodStart=202312012300&periodEnd=202312022300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A78",
+                                    "description": "[M] A78 = Transmission unavailability"
+                                },
+                                {
+                                    "key": "Out_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "In_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312022300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "A53",
+                                    "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A05",
+                                    "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned)\nA05\t= Active\nA09\t= Cancelled\nA13\t= Withdrawn",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodStartUpdate",
+                                    "value": "202111090000",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodEndUpdate",
+                                    "value": "202112212300",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "A47mJe5e9jml9FeSL6jfKg",
+                                    "description": "[O] Used to retrieve previous outage versions",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 200 documents. The offset \u2208 [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "TimeIntervalUpdate",
+                                    "value": "2021-11-09T00:00Z/2021-12-22T00:00Z",
+                                    "description": "[O] Can be used instead of PeriodStartUpdate & PeriodEndUpdate",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                },
+                {
+                    "name": "10.1.C Unavailability of Offshore Grid Infrastructure",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A79&BiddingZone_Domain=10Y1001A1001A82H&periodStart=202301142300&periodEnd=202301152300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A79",
+                                    "description": "[M] A79 = Offshore grid infrastructure unavailability"
+                                },
+                                {
+                                    "key": "BiddingZone_Domain",
+                                    "value": "10Y1001A1001A82H",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone (optional if mRID is present)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301142300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodStartUpdate is defined)"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202301152300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodEndUpdate is defined)"
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A05",
+                                    "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned) - A05\t= Active; A09\t= Cancelled; A13\t= Withdrawn",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodStartUpdate",
+                                    "value": "202312010000",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000 (mandatory if PeriodStart and PeriodEnd are not defined)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodEndUpdate",
+                                    "value": "202312020000",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000 (mandatory if PeriodStart and PeriodEnd are not defined)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "",
+                                    "description": "[O] Used to retrieve previous outage versions",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 200 documents. The offset \u2208 [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                },
+                {
+                    "name": "Fall-backs [IFs IN 7.2, mFRR 3.11, aFRR 3.10]",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A53&ProcessType=A51&BusinessType=C47&BiddingZone_Domain=10YBE----------2&periodStart=202301010000&periodEnd=202401020000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A53",
+                                    "description": "[M] A53 = Outage publication document"
+                                },
+                                {
+                                    "key": "ProcessType",
+                                    "value": "A51",
+                                    "description": "[M] A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve; A63 = Imbalance Netting"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "C47",
+                                    "description": "[M] C47 = Disconnection; A53 = Planned maintenance; A54: Unplanned outage; A83 = Auction cancellation (used in case no solution found or algorithm failure)"
+                                },
+                                {
+                                    "key": "BiddingZone_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a CTA/LFA/REG"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodStartUpdate is defined)"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202401020000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodEndUpdate is defined)"
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A13",
+                                    "description": "[O] A13: Withdrawn (used to return withdrawn documents). By default withdrawn publications are not returned.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "",
+                                    "description": "[O] Used to retrieve previous publication versions",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show](https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show)"
+                    }
+                }
+            ],
+            "description": "If you would like to learn more about the data items under this domain please go to [this link](https://transparencyplatform.zendesk.com/hc/en-us/articles/12784099471764).\n\nThe usage of the new optional attributes **TimeIntervalUpdate** or a combination of **PeriodStartUpdate & PeriodEndUpdate** in the query will fetch only the latest updated version of outages within the specified Outage's Timeinterval and specified TimeIntervalUpdate.\n\nTimeIntervalUpdate corresponds to the 'Updated(UTC)' timestamp in value details of the outage published in the platform. For example, UK outages where query results in getting more than 200 documents even when queried for 2 hrs. If this extra optional parameter is added, the API call will limit the results to fetch the latest updated documents. This will help in not fetching already downloaded outages, which you have queried previously.  \nIt is important to take area\u2019s timezone into consideration, as well as winter/summer time. For example, consider the day of February 2 2016 in CET. This is during winter time and hence using UTC this day is considered to start on 2016-01-01 at 23:00 and end on 2016-01-02 at 23:00. As another example, the day of July 5 2016 in CET is during summer time and using UTC this day is considered to start at 2016-07-04 at 22:00 and end at 2016-07-05 at 22:00.\n\nIn case only periodStart & periodEnd are used (without periodStartUpdate & periodEndUpdate), the **time range is limited to 1 year for periodStart & periodEnd**.  \nIn case a combination of periodStart & periodEnd and a combination of periodStartUpdate & periodEndUpdate are used, **the time range is limited to 1 year only for the combination of periodStartUpdate & periodEndUpdate** (not for periodStart & periodEnd)."
+        }
+    ]
+}

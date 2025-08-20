@@ -422,3 +422,86 @@ class TransmissionUnavailability(Outages):
             timeout=timeout,
             offset=offset,
         )
+
+
+class UnavailabilityTransmissionInfrastructure(Outages):
+    """Parameters for 10.1.A&B Unavailability of Transmission Infrastructure.
+
+    Data view:
+    https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
+
+    Fixed parameters:
+    - documentType: A78 (Transmission unavailability)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one MTU period
+
+    Notes:
+    - Returns information about transmission infrastructure outages
+    - Supports both planned maintenance (A53) and forced unavailability (A54)
+    - Uses Out_Domain and In_Domain parameters for directional specification
+    """
+
+    code = "10.1.A&B"
+
+    def __init__(
+        self,
+        security_token: str,
+        out_domain: str,
+        in_domain: str,
+        # Time period parameters (at least one set required)
+        period_start: Optional[int] = None,
+        period_end: Optional[int] = None,
+        period_start_update: Optional[int] = None,
+        period_end_update: Optional[int] = None,
+        # Optional filtering parameters
+        business_type: Optional[str] = None,
+        doc_status: Optional[str] = None,
+        registered_resource: Optional[str] = None,
+        m_rid: Optional[str] = None,
+        # Additional common parameters
+        timeout: int = 5,
+        offset: int = 0,
+    ):
+        """
+        Initialize unavailability of transmission infrastructure parameters.
+
+        Args:
+            security_token: API security token
+            out_domain: EIC code of Control Area or Bidding Zone (output domain)
+            in_domain: EIC code of Control Area or Bidding Zone (input domain)
+            period_start: Start period (YYYYMMDDHHMM format, optional if
+                         period_start_update is defined)
+            period_end: End period (YYYYMMDDHHMM format, optional if
+                       period_end_update is defined)
+            period_start_update: Start of update period (YYYYMMDDHHMM format,
+                               optional if period_start and period_end are defined)
+            period_end_update: End of update period (YYYYMMDDHHMM format,
+                             optional if period_start and period_end are defined)
+            business_type: Business type (A53=Planned maintenance, A54=Forced unavailability)
+            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
+            registered_resource: EIC Code of Transmission Element
+            m_rid: Message ID for specific outage versions
+            timeout: Request timeout in seconds
+            offset: Offset for pagination
+        """
+        # Initialize base outages parameters
+        super().__init__(
+            document_type="A78",
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            period_start_update=period_start_update,
+            period_end_update=period_end_update,
+            business_type=business_type,
+            doc_status=doc_status,
+            registered_resource=registered_resource,
+            m_rid=m_rid,
+            timeout=timeout,
+            offset=offset,
+        )
+
+        # Add the domain parameters with correct capitalization for this endpoint
+        self.add_optional_param("Out_Domain", out_domain)
+        self.add_optional_param("In_Domain", in_domain)

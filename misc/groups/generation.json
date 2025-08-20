@@ -1,0 +1,341 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Generation",
+        "description": "Generation endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Generation",
+            "item": [
+                {
+                    "name": "14.1.A Installed Capacity per Production Type",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A68&processType=A33&in_Domain=10YBE----------2&periodStart=202212312300&periodEnd=202312312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A68",
+                                    "description": "[M] A68 = Installed generation per type"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A33",
+                                    "description": "[M] A33 = Year ahead"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "B01",
+                                    "description": "[O] B01 = Biomass; B02 = Fossil Brown coal/Lignite; B03 = Fossil Coal-derived gas; B04 = Fossil Gas; B05 = Fossil Hard coal; B06 = Fossil Oil; B07 = Fossil Oil shale; B08 = Fossil Peat; B09 = Geothermal; B10 = Hydro Pumped Storage; B11 = Hydro Run-of-river and poundage; B12 = Hydro Water Reservoir; B13 = Marine; B14 = Nuclear; B15 = Other renewable; B16 = Solar; B17 = Waste; B18 = Wind Offshore; B19 = Wind Onshore; B20 = Other; B25 = Energy storage",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)"
+                    }
+                },
+                {
+                    "name": "16.1.D Water Reservoirs and Hydro Storage Plants",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A72&processType=A16&in_Domain=10YCA-BULGARIA-R&periodStart=202307092100&periodEnd=202307162100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A72",
+                                    "description": "[M] A72 = Reservoir filling information"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A16",
+                                    "description": "[M] A16 = Realised"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YCA-BULGARIA-R",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202307092100",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202307162100",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/waterReservoirsAndHydroStoragePlants/show](https://transparency.entsoe.eu/generation/r2/waterReservoirsAndHydroStoragePlants/show)"
+                    }
+                },
+                {
+                    "name": "16.1.B&C Actual Generation per Production Type",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A75&processType=A16&in_Domain=10Y1001A1001A83F&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A75",
+                                    "description": "[M] A75 = Actual generation per type (all production types); A74 = Wind and solar generation only"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A16",
+                                    "description": "[M] A16 = Realised"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10Y1001A1001A83F",
+                                    "description": "[M] Control Area, Bidding Zone, Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "psrType",
+                                    "value": "B01",
+                                    "description": "[O] B01 = Biomass; B02 = Fossil Brown coal/Lignite; B03 = Fossil Coal-derived gas; B04 = Fossil Gas; B05 = Fossil Hard coal; B06 = Fossil Oil; B07 = Fossil Oil shale; B08 = Fossil Peat; B09 = Geothermal; B10 = Hydro Pumped Storage; B11 = Hydro Run-of-river and poundage; B12 = Hydro Water Reservoir; B13 = Marine; B14 = Nuclear; B15 = Other renewable; B16 = Solar; B17 = Waste; B18 = Wind Offshore; B19 = Wind Onshore; B20 = Other; B25 = Energy storage",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/actualGenerationPerProductionType/show](https://transparency.entsoe.eu/generation/r2/actualGenerationPerProductionType/show)\n\n> **Response from API is same irrespective of querying for Document Types A74 - Wind & Solar & A75 - Actual Generation Per Type** \n  \n> **Time series with inBiddingZone_Domain attribute reflects Generation values while outBiddingZone_Domain reflects Consumption values.**"
+                    }
+                },
+                {
+                    "name": "16.1.A Actual Generation per Generation Unit",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A73&processType=A16&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A73",
+                                    "description": "[M] A73 = Actual generation"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A16",
+                                    "description": "[M] A16 = Realised"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "B14",
+                                    "description": "[O] B01 = Biomass; B02 = Fossil Brown coal/Lignite; B03 = Fossil Coal-derived gas; B04 = Fossil Gas; B05 = Fossil Hard coal; B06 = Fossil Oil; B07 = Fossil Oil shale; B08 = Fossil Peat; B09 = Geothermal; B10 = Hydro Pumped Storage; B11 = Hydro Run-of-river and poundage; B12 = Hydro Water Reservoir; B13 = Marine; B14 = Nuclear; B15 = Other renewable; B16 = Solar; B17 = Waste; B18 = Wind Offshore; B19 = Wind Onshore; B20 = Other; B25 = Energy storage",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "RegisteredResource",
+                                    "value": "22WAMERCO000008L",
+                                    "description": "[O] EIC Code of a Generation Unit",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "**Request limits:**\n\n- Maximum time interval: 1 day\n    \n- Minimum time interval: 1 Market Time Unit\n    \n\n**Important notes:**\n\n- Response from API is same irrespective of querying for Document Types A74 - Wind & Solar & A75 - Actual Generation Per Type\n    \n- Time series with inBiddingZone_Domain attribute reflects **generation** values while outBiddingZone_Domain reflects **consumption** values."
+                    }
+                },
+                {
+                    "name": "14.1.C Generation Forecast - Day ahead",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A71&processType=A01&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A71",
+                                    "description": "[M] A71 = Generation forecast"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] Control Area, Bidding Zone, Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/dayAheadAggregatedGeneration/show](https://transparency.entsoe.eu/generation/r2/dayAheadAggregatedGeneration/show)"
+                    }
+                },
+                {
+                    "name": "14.1.D Generation Forecasts for Wind and Solar",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A69&processType=A01&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A69",
+                                    "description": "[M] A69 = Wind and solar forecast"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead; A18 = Current; A40 = Intraday"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "B16",
+                                    "description": "[O] B16 = Solar; B18 = Wind Offshore; B19 = Wind Onshore;",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/dayAheadGenerationForecastWindAndSolar/show](https://transparency.entsoe.eu/generation/r2/dayAheadGenerationForecastWindAndSolar/show)"
+                    }
+                },
+                {
+                    "name": "14.1.B Installed Capacity Per Production Unit",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A71&processType=A33&in_Domain=10YBE----------2&periodStart=202308010000&periodEnd=202308020000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A71",
+                                    "description": "[M] A71 = Generation forecast"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A33",
+                                    "description": "[M] A33 = Year ahead"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area or Bidding Zone"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308020000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "B02",
+                                    "description": "[O] B01 = Biomass; B02 = Fossil Brown coal/Lignite; B03 = Fossil Coal-derived gas; B04 = Fossil Gas; B05 = Fossil Hard coal; B06 = Fossil Oil; B07 = Fossil Oil shale; B08 = Fossil Peat; B09 = Geothermal; B10 = Hydro Pumped Storage; B11 = Hydro Run-of-river and poundage; B12 = Hydro Water Reservoir; B13 = Marine; B14 = Nuclear; B15 = Other renewable; B16 = Solar; B17 = Waste; B18 = Wind Offshore; B19 = Wind Onshore; B20 = Other; B25 = Energy storage",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)"
+                    }
+                }
+            ],
+            "description": "If you would like to learn more about the data items under this domain please go to [this link](https://transparencyplatform.zendesk.com/hc/en-us/articles/12784099471764).\n\n> **For most of the data items in the generation domain, the** [**PsrType**](https://transparencyplatform.zendesk.com/hc/en-us/articles/15856995130004) **parameter is optional. When this parameter is not used, API returns all available data for each production type for the queried interval and area. If the parameter is used, data will be returned only for the specific production type requested.**"
+        }
+    ]
+}

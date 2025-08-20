@@ -422,7 +422,7 @@ class FlowBasedAllocations(Transmission):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        domain_mrid: str,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -434,7 +434,7 @@ class FlowBasedAllocations(Transmission):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of bidding zone domain
+            domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -445,59 +445,12 @@ class FlowBasedAllocations(Transmission):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
             timeout=timeout,
             offset=offset,
         )
 
-
-class UnavailabilityTransmissionInfrastructure(Transmission):
-    """Parameters for 10.1.A&B Unavailability of Transmission Infrastructure.
-
-    Data view:
-    https://transparency.entsoe.eu/outages/r2/unavailabilityOfTransmissionInfrastructure/show
-
-    Fixed parameters:
-    - documentType: A78 (Unavailability of transmission)
-
-    Request Limits:
-    - One year range limit applies
-    - Minimum time interval in query response is one MTU period
-    """
-
-    code = "10.1.A&B"
-
-    def __init__(
-        self,
-        security_token: str,
-        period_start: int,
-        period_end: int,
-        bidding_zone_domain: str,
-        # Additional common parameters
-        timeout: int = 5,
-        offset: int = 0,
-    ):
-        """
-        Initialize unavailability of transmission infrastructure parameters.
-
-        Args:
-            security_token: API security token
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of bidding zone domain
-            timeout: Request timeout in seconds
-            offset: Offset for pagination
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A78",
-            security_token=security_token,
-            period_start=period_start,
-            period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
-            timeout=timeout,
-            offset=offset,
-        )
+        # Add the domain mRID parameter manually
+        self.add_optional_param("domain.mRID", domain_mrid)
 
 
 class UnavailabilityOffshoreGridInfrastructure(Transmission):

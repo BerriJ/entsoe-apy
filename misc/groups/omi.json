@@ -1,0 +1,82 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - OMI",
+        "description": "OMI endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "OMI",
+            "item": [
+                {
+                    "name": "Other Market Information",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=B47&ControlArea_Domain=10YDE-EON------1&periodStart=202409232200&periodEnd=202409242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "B47",
+                                    "description": "[M] Other market information"
+                                },
+                                {
+                                    "key": "ControlArea_Domain",
+                                    "value": "10YDE-EON------1",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202409232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202409242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A05",
+                                    "description": "[O] A05: Active; A09: Cancelled; A13: Withdrawn",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodStartUpdate",
+                                    "value": "202402221000",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000 (mandatory if PeriodStart and PeriodEnd are not defined)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PeriodEndUpdate",
+                                    "value": "202402231200",
+                                    "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000 (mandatory if PeriodStart and PeriodEnd are not defined)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Offset",
+                                    "value": "12",
+                                    "description": "[O] Offset allows downloading more than 200 documents. The offset \u2208 [0,4800] so that paging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "mRID",
+                                    "value": "NDE5ODBiYjFkM2ExMTljYTM5Mzk2ODcxNDFkZDE4MzU=",
+                                    "description": "[O] If mRID is included, individual versions of the particular event are queried using the rest of the parameters",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

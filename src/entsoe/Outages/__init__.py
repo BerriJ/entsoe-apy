@@ -11,6 +11,7 @@ from .specific_params import (
     PlannedTransmissionUnavailability,
     ProductionUnitUnavailability,
     TransmissionUnavailability,
+    UnavailabilityTransmissionInfrastructure,
 )
 
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     "ForcedTransmissionUnavailability",
     "ProductionUnitUnavailability",
     "TransmissionUnavailability",
+    "UnavailabilityTransmissionInfrastructure",
 ]
