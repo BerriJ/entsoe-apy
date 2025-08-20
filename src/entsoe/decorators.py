@@ -101,14 +101,22 @@ def pagination(func):
             print(offset)
             params["offset"] = offset
 
-            response = func(params, *args, **kwargs)
+            result = func(params, *args, **kwargs)
 
-            # If response is None, we've reached the end
-            if response is None:
+            # If result is None, we've reached the end
+            if result is None:
                 break
 
             # Merge with accumulated results
-            merged_result = merge_documents(merged_result, response)
+            merged_result = merge_documents(merged_result, result)
+
+            # If we got fewer than 100 time series, we've reached the end
+            if (
+                result
+                and hasattr(result, "time_series")
+                and len(result.time_series) < 100
+            ):
+                break
 
         return merged_result
 
