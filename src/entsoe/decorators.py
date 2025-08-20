@@ -139,7 +139,8 @@ def pagination(func):
                 and len(result.time_series) < 100
             ):
                 logger.debug(
-                    f"Received {len(result.time_series)} time series (< 100), pagination complete"
+                    f"Received {len(result.time_series)} time series (< 100), "
+                    "pagination complete"
                 )
                 break
 
