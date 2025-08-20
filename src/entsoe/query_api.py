@@ -2,21 +2,18 @@ from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
 from .utils import extract_namespace_and_find_classes
+from .decorators import range_limited
 
 
 def query_core(params):
     URL = "https://web-api.tp.entsoe.eu/api"
     response = get(URL, params=params, timeout=60)
-    namespace, matching_class = extract_namespace_and_find_classes(response)
-    return namespace, matching_class, response
+    return response
 
 
-def parse_response(namespace, matching_class, response):
-    result = XmlParser().from_string(response.text, matching_class)
-    return result
-
-
+@range_limited
 def query_api(params):
-    namespace, matching_class, response = query_core(params)
-    result = parse_response(namespace, matching_class, response)
+    response = query_core(params)
+    _, matching_class = extract_namespace_and_find_classes(response)
+    result = XmlParser().from_string(response.text, matching_class)
     return result
