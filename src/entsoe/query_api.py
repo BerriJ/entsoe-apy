@@ -1,8 +1,8 @@
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from .utils import extract_namespace_and_find_classes
 from .decorators import range_limited
+from .utils import extract_namespace_and_find_classes
 
 
 def query_core(params):

@@ -1,6 +1,6 @@
-import inspect
 from dataclasses import fields, is_dataclass
 from datetime import datetime
+import inspect
 from xml.etree import ElementTree as ET
 
 import entsoe.xml_models as xml_models
@@ -8,16 +8,17 @@ import entsoe.xml_models as xml_models
 
 class RangeLimitError(Exception):
     """Raised when the requested date range exceeds API limits."""
+
     pass
 
 
 def parse_entsoe_datetime(date_int: int) -> datetime:
     """
     Parse ENTSOE datetime format (YYYYMMDDHHMM) to datetime object.
-    
+
     Args:
         date_int: Date in YYYYMMDDHHMM format
-        
+
     Returns:
         datetime object
     """
@@ -28,10 +29,10 @@ def parse_entsoe_datetime(date_int: int) -> datetime:
 def format_entsoe_datetime(dt: datetime) -> int:
     """
     Format datetime object to ENTSOE datetime format (YYYYMMDDHHMM).
-    
+
     Args:
         dt: datetime object
-        
+
     Returns:
         Date in YYYYMMDDHHMM format as integer
     """
@@ -43,12 +44,12 @@ def check_date_range_limit(
 ) -> bool:
     """
     Check if date range exceeds the specified limit.
-    
+
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
         max_days: Maximum allowed days (default: 365 for 1 year)
-        
+
     Returns:
         True if range exceeds limit, False otherwise
     """
@@ -61,21 +62,21 @@ def check_date_range_limit(
 def split_date_range(period_start: int, period_end: int) -> tuple[int, int]:
     """
     Split a date range into two equal parts.
-    
+
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
-        
+
     Returns:
         Tuple of (pivot_date, end_date) where pivot_date is the midpoint
     """
     start_dt = parse_entsoe_datetime(period_start)
     end_dt = parse_entsoe_datetime(period_end)
-    
+
     # Calculate the midpoint
     diff = end_dt - start_dt
     pivot_dt = start_dt + (diff / 2)
-    
+
     return format_entsoe_datetime(pivot_dt), period_end
 
 
