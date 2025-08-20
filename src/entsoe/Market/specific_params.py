@@ -378,7 +378,6 @@ class FlowBasedAllocations(Market):
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 5,
-        offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
@@ -391,7 +390,6 @@ class FlowBasedAllocations(Market):
             out_domain: EIC code of Control Area, Bidding Zone or Aggregation
             contract_market_agreement_type: A01=Day ahead (Flow Based only)
             timeout: Request timeout in seconds
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -404,7 +402,6 @@ class FlowBasedAllocations(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
             timeout=timeout,
-            offset=offset,
         )
 
 
@@ -806,7 +803,6 @@ class FlowBasedAllocationsLegacy(Market):
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
         timeout: int = 5,
-        offset: int = 0,
     ):
         """
         Initialize flow based allocations (legacy) parameters.
@@ -819,7 +815,6 @@ class FlowBasedAllocationsLegacy(Market):
             out_domain: EIC code of Control Area, Bidding Zone or Aggregation
             contract_market_agreement_type: A01=Day ahead (Flow Based only)
             timeout: Request timeout in seconds
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -832,5 +827,4 @@ class FlowBasedAllocationsLegacy(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
             timeout=timeout,
-            offset=offset,
         )

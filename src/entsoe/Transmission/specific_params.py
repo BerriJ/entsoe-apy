@@ -425,7 +425,6 @@ class FlowBasedAllocations(Transmission):
         bidding_zone_domain: str,
         # Additional common parameters
         timeout: int = 5,
-        offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
@@ -436,7 +435,6 @@ class FlowBasedAllocations(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of bidding zone domain
             timeout: Request timeout in seconds
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -447,7 +445,6 @@ class FlowBasedAllocations(Transmission):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             timeout=timeout,
-            offset=offset,
         )
 
 
