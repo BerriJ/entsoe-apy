@@ -407,7 +407,7 @@ class FlowBasedAllocations(Transmission):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocations/show
 
     Fixed parameters:
-    - documentType: B09 (Flow based allocations)
+    - documentType: B11 (Flow-based allocations)
     - processType: A44 (Flow based)
 
     Request Limits:
@@ -439,7 +439,7 @@ class FlowBasedAllocations(Transmission):
         # Initialize with preset and user parameters
         # (offset=0 and not passed to avoid pagination)
         super().__init__(
-            document_type="B09",
+            document_type="B11",
             process_type="A44",
             security_token=security_token,
             period_start=period_start,

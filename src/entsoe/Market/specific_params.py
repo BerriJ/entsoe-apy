@@ -354,53 +354,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class FlowBasedAllocations(Market):
-    """Parameters for 11.1.B Flow Based Allocations (legacy).
 
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
-
-    Fixed parameters:
-    - documentType: B11 (Flow-based allocations)
-    - processType: A01 (Day ahead)
-    """
-
-    code = "11.1.B"
-
-    def __init__(
-        self,
-        security_token: str,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        # Additional common parameters
-        timeout: int = 5,
-    ):
-        """
-        Initialize flow based allocations parameters.
-
-        Args:
-            security_token: API security token
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of a Region
-            out_domain: EIC code of a Region
-            timeout: Request timeout in seconds
-        """
-        # Initialize with preset and user parameters
-        # (offset=0 and not used for flow based allocations)
-        super().__init__(
-            document_type="B11",  # Fixed: Flow-based allocations
-            process_type="A01",  # Fixed: Day ahead
-            security_token=security_token,
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            timeout=timeout,
-            offset=0,  # Flow based allocations don't use offset for pagination
-        )
 
 
 class ContinuousAllocationsOfferedCapacity(Market):
