@@ -17,11 +17,19 @@ class Balancing(Base):
         connecting_domain: Optional[str] = None,
         control_area_domain: Optional[str] = None,
         bidding_zone_domain: Optional[str] = None,
+        in_domain: Optional[str] = None,
+        out_domain: Optional[str] = None,
+        area_domain: Optional[str] = None,
+        domain: Optional[str] = None,
         # Optional parameters for balancing queries
         business_type: Optional[str] = None,
         process_type: Optional[str] = None,
         psr_type: Optional[str] = None,
         type_marketplace_agreement_type: Optional[str] = None,
+        standard_market_product: Optional[str] = None,
+        original_market_product: Optional[str] = None,
+        direction: Optional[str] = None,
+        registered_resource: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -41,12 +49,20 @@ class Balancing(Base):
                              - required for cross-border balancing queries
             control_area_domain: EIC code of Control Area or Market Balancing Area
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            in_domain: EIC code for input domain
+            out_domain: EIC code for output domain
+            area_domain: EIC code for area domain
+            domain: EIC code for domain (used in some endpoints)
             business_type: Business type (e.g., A06, A25, A29, A46, A53, A95,
                           B05, B07, B08, B09, B10, B11, B33, B95)
             process_type: Process type (e.g., A01, A02, A16, A18, A31, A32, A33,
                          A39, A40, A44, A46, A47, A51, A52)
             psr_type: Power system resource type (A03, A04, A05, B01-B24)
             type_marketplace_agreement_type: Type marketplace agreement (A01-A07)
+            standard_market_product: Standard market product (A01-A07)
+            original_market_product: Original market product (A02-A04)
+            direction: Direction (A01=Up, A02=Down)
+            registered_resource: EIC code of registered resource/transmission asset
             timeout: Request timeout in seconds
             offset: Offset for pagination
 
@@ -78,6 +94,10 @@ class Balancing(Base):
             connecting_domain=connecting_domain,
             control_area_domain=control_area_domain,
             bidding_zone_domain=bidding_zone_domain,
+            in_domain=in_domain,
+            out_domain=out_domain,
+            area_domain=area_domain,
+            domain=domain,
         )
 
         # Add business parameters
@@ -91,3 +111,14 @@ class Balancing(Base):
         self.add_market_params(
             type_marketplace_agreement_type=type_marketplace_agreement_type
         )
+
+        # Add balancing-specific parameters
+        self.add_balancing_params(
+            standard_market_product=standard_market_product,
+            original_market_product=original_market_product,
+            direction=direction,
+        )
+
+        # Add resource parameters if needed
+        if registered_resource is not None:
+            self.add_resource_params(registered_resource=registered_resource)

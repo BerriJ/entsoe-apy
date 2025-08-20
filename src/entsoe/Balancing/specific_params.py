@@ -84,9 +84,10 @@ class AcceptedAggregatedOffers(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
+        psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -98,8 +99,9 @@ class AcceptedAggregatedOffers(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
+            psr_type: A04=Generation, A05=Load, A03=Mixed
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -109,8 +111,9 @@ class AcceptedAggregatedOffers(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             business_type=business_type,
+            psr_type=psr_type,
             timeout=timeout,
             offset=offset,
         )
@@ -138,9 +141,10 @@ class ActivatedBalancingEnergy(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
+        psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -152,8 +156,9 @@ class ActivatedBalancingEnergy(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
+            psr_type: A04=Generation, A05=Load, A03=Mixed
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -163,8 +168,9 @@ class ActivatedBalancingEnergy(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             business_type=business_type,
+            psr_type=psr_type,
             timeout=timeout,
             offset=offset,
         )
@@ -194,10 +200,14 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         process_type: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
+        psr_type: Optional[str] = None,
+        standard_market_product: Optional[str] = None,
+        original_market_product: Optional[str] = None,
+        export_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -209,10 +219,14 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of LFA, IPA, or SCA
             process_type: A16=Realised, A60=Scheduled activation mFRR,
                          A61=Direct activation mFRR, A68=Local Selection aFRR
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
+            psr_type: A04=Generation, A05=Load
+            standard_market_product: A01=Standard
+            original_market_product: A02=Specific, A04=Local
+            export_type: zip (planned to be discontinued)
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -222,9 +236,12 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             process_type=process_type,
             business_type=business_type,
+            psr_type=psr_type,
+            standard_market_product=standard_market_product,
+            original_market_product=original_market_product,
             timeout=timeout,
             offset=offset,
         )
@@ -306,7 +323,9 @@ class ImbalancePrices(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
+        # Optional parameters
+        psr_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -318,7 +337,8 @@ class ImbalancePrices(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of Scheduling Area or Market Balancing Area
+            psr_type: A04=Generation, A05=Load
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -328,7 +348,8 @@ class ImbalancePrices(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
+            psr_type=psr_type,
             timeout=timeout,
             offset=offset,
         )
@@ -354,7 +375,7 @@ class TotalImbalanceVolumes(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
@@ -368,7 +389,7 @@ class TotalImbalanceVolumes(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of Scheduling Area or Market Balance Area
             business_type: A19=Balance Energy Deviation (default)
             timeout: Request timeout in seconds
             offset: Offset for pagination
@@ -379,7 +400,7 @@ class TotalImbalanceVolumes(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             business_type=business_type,
             timeout=timeout,
             offset=offset,
@@ -457,8 +478,12 @@ class BalancingEnergyBids(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        connecting_domain: str,
         process_type: str,
+        # Optional parameters
+        standard_market_product: Optional[str] = None,
+        original_market_product: Optional[str] = None,
+        direction: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -470,8 +495,12 @@ class BalancingEnergyBids(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            connecting_domain: EIC code of Scheduling Area
             process_type: A46=RR, A47=mFRR, A51=aFRR
+            standard_market_product: A01=Standard, A05=Standard mFRR scheduled,
+                                     A07=Standard mFRR direct activation
+            original_market_product: A02=Specific, A03=Integrated Process, A04=Local
+            direction: A01=Up, A02=Down
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -481,9 +510,12 @@ class BalancingEnergyBids(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            connecting_domain=connecting_domain,
             business_type="B74",
             process_type=process_type,
+            standard_market_product=standard_market_product,
+            original_market_product=original_market_product,
+            direction=direction,
             timeout=timeout,
             offset=offset,
         )
@@ -511,7 +543,7 @@ class AggregatedBalancingEnergyBids(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        area_domain: str,
         process_type: str,
         # Additional common parameters
         timeout: int = 5,
@@ -524,7 +556,7 @@ class AggregatedBalancingEnergyBids(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            area_domain: EIC code of Scheduling Area
             process_type: A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled mFRR,
                          A61=Direct mFRR, A67=Central aFRR, A68=Local aFRR
             timeout: Request timeout in seconds
@@ -536,7 +568,7 @@ class AggregatedBalancingEnergyBids(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            area_domain=area_domain,
             process_type=process_type,
             timeout=timeout,
             offset=offset,
@@ -671,7 +703,7 @@ class CurrentBalancingState(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        area_domain: str,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -683,7 +715,7 @@ class CurrentBalancingState(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            area_domain: EIC code of Scheduling Area
             timeout: Request timeout in seconds
             offset: Offset for pagination
         """
@@ -693,7 +725,7 @@ class CurrentBalancingState(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            area_domain=area_domain,
             business_type="B33",
             timeout=timeout,
             offset=offset,
@@ -1246,7 +1278,8 @@ class NettedAndExchangedVolumes(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        acquiring_domain: str,
+        connecting_domain: str,
         process_type: str,
         # Additional common parameters
         timeout: int = 5,
@@ -1259,7 +1292,8 @@ class NettedAndExchangedVolumes(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            acquiring_domain: EIC code of LFA or SCA
+            connecting_domain: EIC code of LFA or SCA
             process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
                          A63=Imbalance Netting
             timeout: Request timeout in seconds
@@ -1271,7 +1305,8 @@ class NettedAndExchangedVolumes(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            acquiring_domain=acquiring_domain,
+            connecting_domain=connecting_domain,
             process_type=process_type,
             timeout=timeout,
             offset=offset,
@@ -1412,7 +1447,7 @@ class ChangesToBidAvailability(Balancing):
         security_token: str,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
@@ -1426,7 +1461,7 @@ class ChangesToBidAvailability(Balancing):
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            domain: EIC code of Scheduling Area or LFA
             business_type: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
@@ -1439,7 +1474,7 @@ class ChangesToBidAvailability(Balancing):
             security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            domain=domain,
             process_type="A47",
             business_type=business_type,
             timeout=timeout,
