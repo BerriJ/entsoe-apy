@@ -86,8 +86,7 @@ class Market(Base):
         )
 
         # Add classification parameter if provided
-        if classification_sequence_attribute_instance_component_position:
-            key = "classificationSequence_AttributeInstanceComponent.position"
-            self.params[key] = (
-                classification_sequence_attribute_instance_component_position
-            )
+        self.add_optional_param(
+            "classificationSequence_AttributeInstanceComponent.position",
+            classification_sequence_attribute_instance_component_position,
+        )
