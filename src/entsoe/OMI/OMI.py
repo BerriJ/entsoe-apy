@@ -64,18 +64,15 @@ class OMI(Base):
                     f"doc_status must be one of {valid_statuses}, got: {doc_status}"
                 )
 
-        # Initialize base parameters - handle period parameters separately for OMI
-        self.params = {
-            "documentType": "B47",  # Fixed to B47 for Other Market Information
-            "securityToken": security_token,
-        }
-        self.timeout = timeout
-
-        # Add time period parameters (optional for OMI)
-        if period_start is not None:
-            self.params["periodStart"] = period_start
-        if period_end is not None:
-            self.params["periodEnd"] = period_end
+        # Initialize base parameters using proper encapsulation
+        super().__init__(
+            document_type="B47",  # Fixed to B47 for Other Market Information
+            security_token=security_token,
+            period_start=period_start,
+            period_end=period_end,
+            timeout=timeout,
+            offset=offset,
+        )
 
         # Add update period parameters
         self.add_update_params(
@@ -89,4 +86,3 @@ class OMI(Base):
         # Add OMI-specific parameters
         self.add_optional_param("docStatus", doc_status)
         self.add_optional_param("mRID", m_rid)
-        self.add_optional_param("offset", offset)
