@@ -1,8 +1,7 @@
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
 
-from .decorators import range_limited
-from .decorators import Acknowledgement
+from .decorators import Acknowledgement, range_limited
 from .utils import extract_namespace_and_find_classes
 
 
