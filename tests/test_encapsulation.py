@@ -20,7 +20,7 @@ class TestEncapsulation:
             m_rid="test_mrid",
             offset=100,
         )
-        
+
         # Verify that parameters are set correctly
         assert omi.params["documentType"] == "B47"
         assert omi.params["securityToken"] == "test_token"
@@ -37,7 +37,7 @@ class TestEncapsulation:
             security_token="test_token",
             control_area_domain="10YBE----------2",
         )
-        
+
         # Verify that optional period parameters are not included
         assert "periodStart" not in omi.params
         assert "periodEnd" not in omi.params
@@ -58,7 +58,7 @@ class TestEncapsulation:
             m_rid="test_mrid",
             offset=100,
         )
-        
+
         # Verify that parameters are set correctly
         assert outages.params["documentType"] == "A77"
         assert outages.params["securityToken"] == "test_token"
@@ -78,7 +78,7 @@ class TestEncapsulation:
             security_token="test_token",
             bidding_zone_domain="10YBE----------2",
         )
-        
+
         # Verify that optional period parameters are not included
         assert "periodStart" not in outages.params
         assert "periodEnd" not in outages.params
@@ -100,20 +100,20 @@ class TestEncapsulation:
             security_token="test_token",
             control_area_domain="10YBE----------2",
         )
-        
+
         # The params dictionary should be properly initialized through Base class methods
         # This verifies that we're not manually setting self.params = {...}
         assert hasattr(omi, "params")
         assert isinstance(omi.params, dict)
         assert "securityToken" in omi.params
-        
+
         # Test Outages
         outages = Outages(
             document_type="A77",
             security_token="test_token",
             bidding_zone_domain="10YBE----------2",
         )
-        
+
         # The params dictionary should be properly initialized through Base class methods
         assert hasattr(outages, "params")
         assert isinstance(outages.params, dict)

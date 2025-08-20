@@ -18,7 +18,7 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should not raise exception for valid EIC code
         base.validate_eic_code("10Y1001A1001A82H", "test_parameter")
 
@@ -30,11 +30,11 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should raise ValidationError for invalid EIC code
         with pytest.raises(ValidationError) as exc_info:
             base.validate_eic_code("INVALID_EIC_CODE", "test_parameter")
-        
+
         assert "Invalid EIC code 'INVALID_EIC_CODE'" in str(exc_info.value)
         assert "test_parameter" in str(exc_info.value)
 
@@ -46,7 +46,7 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should not raise exception for None
         base.validate_eic_code(None, "test_parameter")
 
@@ -58,14 +58,14 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should not raise exception for valid EIC codes
         base.add_domain_params(
             in_domain="10Y1001A1001A82H",
             out_domain="10YGB----------A",
             bidding_zone_domain="10YBE----------2",
         )
-        
+
         assert base.params["in_Domain"] == "10Y1001A1001A82H"
         assert base.params["out_Domain"] == "10YGB----------A"
         assert base.params["biddingZone_Domain"] == "10YBE----------2"
@@ -78,11 +78,11 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should raise ValidationError for invalid EIC code
         with pytest.raises(ValidationError) as exc_info:
             base.add_domain_params(in_domain="INVALID_EIC")
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "in_domain" in str(exc_info.value)
 
@@ -96,7 +96,7 @@ class TestEICValidation:
                 period_end=202101022300,
                 bidding_zone_domain="INVALID_EIC",
             )
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "bidding_zone_domain" in str(exc_info.value)
 
@@ -111,7 +111,7 @@ class TestEICValidation:
                 acquiring_domain="INVALID_EIC",
                 connecting_domain="10YBE----------2",
             )
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "acquiring_domain" in str(exc_info.value)
 
@@ -126,7 +126,7 @@ class TestEICValidation:
                 in_domain="INVALID_EIC",
                 out_domain="10YGB----------A",
             )
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "in_domain" in str(exc_info.value)
 
@@ -140,7 +140,7 @@ class TestEICValidation:
             in_domain="10Y1001A1001A82H",
             out_domain="10YGB----------A",
         )
-        
+
         assert energy_prices.params["in_Domain"] == "10Y1001A1001A82H"
         assert energy_prices.params["out_Domain"] == "10YGB----------A"
 
@@ -154,7 +154,7 @@ class TestEICValidation:
             acquiring_domain="10Y1001A1001A82H",
             connecting_domain="10YGB----------A",
         )
-        
+
         assert cross_border.params["acquiring_Domain"] == "10Y1001A1001A82H"
         assert cross_border.params["connecting_Domain"] == "10YGB----------A"
 
@@ -166,15 +166,15 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should fail on the first invalid EIC code
         with pytest.raises(ValidationError) as exc_info:
             base.add_domain_params(
                 in_domain="10Y1001A1001A82H",  # valid
-                out_domain="INVALID_EIC",      # invalid
+                out_domain="INVALID_EIC",  # invalid
                 bidding_zone_domain="10YBE----------2",  # valid
             )
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "out_domain" in str(exc_info.value)
 
@@ -186,14 +186,14 @@ class TestEICValidation:
             period_start=202012312300,
             period_end=202101022300,
         )
-        
+
         # Should raise ValidationError for invalid registered_resource
         with pytest.raises(ValidationError) as exc_info:
             base.add_resource_params(registered_resource="INVALID_EIC")
-        
+
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "registered_resource" in str(exc_info.value)
-        
+
         # Should succeed with valid EIC code
         base.add_resource_params(registered_resource="10Y1001A1001A82H")
         assert base.params["registeredResource"] == "10Y1001A1001A82H"
