@@ -1,31 +1,38 @@
-name: Lint
+name: Lint and Commit
 
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest 
+    permissions:
+      contents: write
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - uses: actions/checkout@v5
       with:
-        python-version: '3.13'
-    
-    - name: Install dependencies
+        fetch-depth: 0
+    - name: Configure git
       run: |
-        python -m pip install --upgrade pip
-        pip install ruff==0.12.4
-    
-    - name: Run ruff check
-      run: ruff check .
-    
-    - name: Run ruff format check
-      run: ruff format --check .
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13' 
+    - name: Install ruff without running check or format
+      uses: astral-sh/ruff-action@v3
+      with:
+          args: "--version"
+          src: "./src"
+    - run: ruff check --fix
+    - run: ruff format
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v6
+      with:
+        commit_message: 'style fixes by ruff'
+        file_pattern: '*.py'
+        skip_fetch: false
+        skip_checkout: false
+
+
