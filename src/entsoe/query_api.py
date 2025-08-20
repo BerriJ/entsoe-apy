@@ -1,5 +1,6 @@
 from httpx import get
 from xsdata.formats.dataclass.parsers import XmlParser
+
 from .utils import extract_namespace_and_find_classes
 
 
