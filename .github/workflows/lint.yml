@@ -14,8 +14,10 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.13' 
-    - uses: astral-sh/ruff-action@v3
+    - name: Install ruff without running check or format
+      uses: astral-sh/ruff-action@v3
       with:
+          args: "--version"
           src: "./src"
     - run: ruff check --fix
     - run: ruff format
