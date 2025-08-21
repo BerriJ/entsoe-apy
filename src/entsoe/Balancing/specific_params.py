@@ -17,6 +17,7 @@ class CrossBorderBalancing(Balancing):
     https://transparency.entsoe.eu/balancing/r2/crossBorderBalancing/show
 
     Fixed parameters:
+
     - documentType: A88 (Cross border balancing)
 
     Notes:
@@ -28,36 +29,30 @@ class CrossBorderBalancing(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross border balancing parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A88",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -69,6 +64,7 @@ class AcceptedAggregatedOffers(Balancing):
     https://transparency.entsoe.eu/balancing/r2/acceptedAggregatedOffers/show
 
     Fixed parameters:
+
     - documentType: A82 (Accepted offers)
 
     Optional parameters:
@@ -81,7 +77,6 @@ class AcceptedAggregatedOffers(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -89,32 +84,27 @@ class AcceptedAggregatedOffers(Balancing):
         business_type: Optional[str] = None,
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize accepted aggregated offers parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
             psr_type: A04=Generation, A05=Load, A03=Mixed
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A82",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -126,6 +116,7 @@ class ActivatedBalancingEnergy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show
 
     Fixed parameters:
+
     - documentType: A83 (Activated balancing quantities)
 
     Optional parameters:
@@ -138,7 +129,6 @@ class ActivatedBalancingEnergy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -146,32 +136,27 @@ class ActivatedBalancingEnergy(Balancing):
         business_type: Optional[str] = None,
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize activated balancing energy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
             psr_type: A04=Generation, A05=Load, A03=Mixed
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A83",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -183,6 +168,7 @@ class PricesOfActivatedBalancingEnergy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show
 
     Fixed parameters:
+
     - documentType: A84 (Activated balancing prices)
 
     Required parameters:
@@ -197,7 +183,6 @@ class PricesOfActivatedBalancingEnergy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -209,14 +194,12 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         original_market_product: Optional[str] = None,
         export_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize prices of activated balancing energy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of LFA, IPA, or SCA
@@ -227,13 +210,11 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             standard_market_product: A01=Standard
             original_market_product: A02=Specific, A04=Local
             export_type: zip (planned to be discontinued)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A84",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
@@ -242,7 +223,6 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             psr_type=psr_type,
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -254,6 +234,7 @@ class VolumesAndPricesOfContractedReserves(Balancing):
     https://transparency.entsoe.eu/balancing/r2/contractedReserves/show
 
     Fixed parameters:
+
     - documentType: A81 (Contracted reserves)
     - businessType: B95 (Procured capacity)
 
@@ -267,37 +248,31 @@ class VolumesAndPricesOfContractedReserves(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize volumes and prices of contracted reserves parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A51=aFRR, A52=FCR, A47=mFRR, A46=RR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A81",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B95",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -309,6 +284,7 @@ class ImbalancePrices(Balancing):
     https://transparency.entsoe.eu/balancing/r2/imbalancePricing/show
 
     Fixed parameters:
+
     - documentType: A85 (Imbalance prices)
 
     Notes:
@@ -320,37 +296,31 @@ class ImbalancePrices(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
         # Optional parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize imbalance prices parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balancing Area
             psr_type: A04=Generation, A05=Load
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A85",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -362,6 +332,7 @@ class TotalImbalanceVolumes(Balancing):
     https://transparency.entsoe.eu/balancing/r2/imbalanceVolume/show
 
     Fixed parameters:
+
     - documentType: A86 (Imbalance volume)
 
     Optional parameters:
@@ -372,37 +343,31 @@ class TotalImbalanceVolumes(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total imbalance volumes parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balance Area
             business_type: A19=Balance Energy Deviation (default)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A86",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -414,6 +379,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
     https://transparency.entsoe.eu/balancing/r2/financialExpensesAndIncomeForBalancing/show
 
     Fixed parameters:
+
     - documentType: A87 (Financial situation)
 
     Notes:
@@ -425,33 +391,27 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize financial expenses and income for balancing parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A87",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -463,6 +423,7 @@ class BalancingEnergyBids(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingEnergyBids/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B74 (Offer)
 
@@ -475,7 +436,6 @@ class BalancingEnergyBids(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         connecting_domain: str,
@@ -485,14 +445,12 @@ class BalancingEnergyBids(Balancing):
         original_market_product: Optional[str] = None,
         direction: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing energy bids parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             connecting_domain: EIC code of Scheduling Area
@@ -501,13 +459,11 @@ class BalancingEnergyBids(Balancing):
                                      A07=Standard mFRR direct activation
             original_market_product: A02=Specific, A03=Integrated Process, A04=Local
             direction: A01=Up, A02=Down
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             connecting_domain=connecting_domain,
@@ -516,7 +472,6 @@ class BalancingEnergyBids(Balancing):
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
             direction=direction,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -528,6 +483,7 @@ class AggregatedBalancingEnergyBids(Balancing):
     https://transparency.entsoe.eu/balancing/r2/aggregatedBalancingEnergyBids/show
 
     Fixed parameters:
+
     - documentType: A24 (Bid document)
 
     Required parameters:
@@ -540,37 +496,31 @@ class AggregatedBalancingEnergyBids(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         area_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize aggregated balancing energy bids parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
             process_type: A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled mFRR,
                          A61=Direct mFRR, A67=Central aFRR, A68=Local aFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A24",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             area_domain=area_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -582,6 +532,7 @@ class ProcuredBalancingCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/procuredBalancingCapacity/show
 
     Fixed parameters:
+
     - documentType: A15 (Acquiring system operator reserve schedule)
 
     Required parameters:
@@ -594,36 +545,30 @@ class ProcuredBalancingCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize procured balancing capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A15",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -635,6 +580,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/allocationAndUseOfCrossZonalBalancingCapacity/show
 
     Fixed parameters:
+
     - documentType: A38 (Reserve allocation result document)
 
     Required parameters:
@@ -647,36 +593,30 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize allocation and use of cross-zonal balancing capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A38",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -688,6 +628,7 @@ class CurrentBalancingState(Balancing):
     https://transparency.entsoe.eu/balancing/r2/currentBalancingState/show
 
     Fixed parameters:
+
     - documentType: A86 (Imbalance volume)
     - businessType: B33 (Area Control Error)
 
@@ -700,34 +641,28 @@ class CurrentBalancingState(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize current balancing state parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A86",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             area_domain=area_domain,
             business_type="B33",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -739,6 +674,7 @@ class FCRTotalCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/fcrTotalCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: A25 (General Capacity Information)
 
@@ -751,34 +687,28 @@ class FCRTotalCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FCR total capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="A25",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -790,6 +720,7 @@ class SharesOfFCRCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C23 (Share of reserve capacity)
 
@@ -802,34 +733,28 @@ class SharesOfFCRCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="C23",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -841,6 +766,7 @@ class SharingOfFCRBetweenSAs(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfFCRBetweenSAs/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A52 (Frequency containment reserve)
     - businessType: C22 (Shared Balancing Reserve Capacity)
@@ -854,35 +780,29 @@ class SharingOfFCRBetweenSAs(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of FCR between SAs parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C22",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -894,6 +814,7 @@ class FRRAndRRCapacityOutlook(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrAndRRCapacityOutlook/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C76 (Forecasted capacity)
 
@@ -905,37 +826,31 @@ class FRRAndRRCapacityOutlook(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR and RR capacity outlook parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement Reserve, A56=Frequency Restoration Reserve
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type="C76",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -947,6 +862,7 @@ class FRRAndRRActualCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrAndRRActualCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
 
     Required parameters:
@@ -958,39 +874,33 @@ class FRRAndRRActualCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR and RR actual capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement reserve, A56=Frequency restoration reserve
             business_type: C77=Min, C78=Avg, C79=Max
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1002,6 +912,7 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/outlookOfReserveCapacitiesOnRR/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C76 (Forecasted capacity)
@@ -1015,35 +926,29 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize outlook of reserve capacities on RR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C76",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1055,6 +960,7 @@ class RRActualCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/rrActualCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C77 (Min)
@@ -1068,35 +974,29 @@ class RRActualCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize RR actual capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C77",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1108,6 +1008,7 @@ class SharingOfRRAndFRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRR/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A56 (Frequency restoration reserve)
 
@@ -1120,34 +1021,28 @@ class SharingOfRRAndFRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A56",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1159,6 +1054,7 @@ class ExchangedReserveCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/exchangedReserveCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
 
@@ -1171,34 +1067,28 @@ class ExchangedReserveCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize exchanged reserve capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1211,6 +1101,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/crossBorderMarginalPricesForAFRR/show
 
     Fixed parameters:
+
     - documentType: A84 (Activated balancing prices)
     - processType: A67 (Central Selection aFRR)
     - businessType: A96 (Automatic frequency restoration reserve)
@@ -1224,35 +1115,29 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross border marginal prices for aFRR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A84",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A67",
             business_type="A96",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1264,6 +1149,7 @@ class NettedAndExchangedVolumes(Balancing):
     https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumes/show
 
     Fixed parameters:
+
     - documentType: B17 (Aggregated netted external TSO schedule document)
 
     Required parameters:
@@ -1275,40 +1161,34 @@ class NettedAndExchangedVolumes(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of LFA or SCA
             connecting_domain: EIC code of LFA or SCA
             process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
                          A63=Imbalance Netting
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B17",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1320,6 +1200,7 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
     https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumesPerBorder/show
 
     Fixed parameters:
+
     - documentType: A30 (Cross border schedule)
 
     Required parameters:
@@ -1331,40 +1212,34 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes per border parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
                          A63=Imbalance Netting
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A30",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1376,6 +1251,7 @@ class ElasticDemands(Balancing):
     https://transparency.entsoe.eu/balancing/r2/elasticDemands/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B75 (Need)
 
@@ -1388,37 +1264,31 @@ class ElasticDemands(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize elastic demands parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A51=aFRR, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B75",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1430,6 +1300,7 @@ class ChangesToBidAvailability(Balancing):
     https://transparency.entsoe.eu/balancing/r2/changesToBidAvailability/show
 
     Fixed parameters:
+
     - documentType: B45 (Bid Availability Document)
     - processType: A47 (Manual frequency restoration reserve)
 
@@ -1444,40 +1315,34 @@ class ChangesToBidAvailability(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize changes to bid availability parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             domain: EIC code of Scheduling Area or LFA
             business_type: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B45",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             domain=domain,
             process_type="A47",
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1489,6 +1354,7 @@ class BalancingBorderCapacityLimitations(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingBorderCapacityLimitations/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
 
     Required parameters:
@@ -1500,39 +1366,33 @@ class BalancingBorderCapacityLimitations(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing border capacity limitations parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1545,6 +1405,7 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
     https://transparency.entsoe.eu/balancing/r2/permanentAllocationLimitationsToHVDCLines/show
 
     Fixed parameters:
+
     - documentType: A99 (HVDC Link constraints)
 
     Required parameters:
@@ -1556,39 +1417,33 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize permanent allocation limitations to HVDC lines parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A99",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1601,6 +1456,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
     https://transparency.entsoe.eu/balancing/r2/resultsOfCriteriaApplicationProcess/show
 
     Fixed parameters:
+
     - documentType: A45 (Measurement Value Document)
 
     Required parameters:
@@ -1612,37 +1468,31 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize results of criteria application process parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A64=Instantaneous frequency criteria,
                          A65=Frequency restoration criteria
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A45",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1654,6 +1504,7 @@ class BalancingEnergyBidsArchives(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingEnergyBidsArchives/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B74 (Offer)
 
@@ -1670,37 +1521,31 @@ class BalancingEnergyBidsArchives(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing energy bids archives parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B74",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1712,6 +1557,7 @@ class FRRActualCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrActualCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46=Replacement reserve, A56=Frequency restoration reserve
     - businessType: C77=Min, C78=Avg, C79=Max
@@ -1725,39 +1571,33 @@ class FRRActualCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR actual capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement reserve, A56=Frequency restoration reserve
             business_type: C77=Min, C78=Avg, C79=Max
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1769,6 +1609,7 @@ class RRActualCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/rrActualCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C24 (Actual reserve capacity)
@@ -1782,35 +1623,29 @@ class RRActualCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize RR actual capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C24",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1822,6 +1657,7 @@ class SharingOfRRAndFRRLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRRLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A47 (Manual frequency restoration reserve)
 
@@ -1834,34 +1670,28 @@ class SharingOfRRAndFRRLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A47",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1873,6 +1703,7 @@ class SharesOfFCRCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C23 (Share of reserve capacity)
     - processType: A52 (Frequency containment reserve)
@@ -1886,34 +1717,28 @@ class SharesOfFCRCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C23",
-            timeout=timeout,
             offset=offset,
         )

@@ -2,10 +2,16 @@ site_name: "ENTSO-E API Python"
 
 nav:
   - Home: index.md
-  - Getting Started: getting_started.md
-  - API Reference: 
-    - Balancing: balancing.md
-    - Base Classes: base.md
+  - Configuration: configuration.md
+  - ENTSOE:
+    - ENTSOE Overview: ENTSOE/index.md
+    - Market: ENTSOE/market.md
+    - Load: ENTSOE/load.md
+    - Generation: ENTSOE/generation.md
+    - Transmission: ENTSOE/transmission.md
+    - Outages: ENTSOE/outages.md
+    - Balancing: ENTSOE/balancing.md
+    - OMI: ENTSOE/omi.md
   - Examples: examples.md
   - Mappings: mappings.md
   - Development: development.md
@@ -19,7 +25,7 @@ theme:
     - search.share
     - search.highlight
     - search.suggest
-    - toc.follow
+    - navigation.indexes
   palette: 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -54,6 +60,7 @@ plugins:
           show_signature_annotations: true
           members_order: source
           docstring_section_style: list
+          merge_init_into_class: true
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -68,6 +75,8 @@ markdown_extensions:
   - admonition
   - toc:
       permalink: true
-
-
+  - pymdownx.pathconverter:
+      base_path: .
+      relative_path: true
+      absolute: false
 

@@ -9,7 +9,6 @@ class Generation(Base):
     def __init__(
         self,
         document_type: str,
-        security_token: str,
         period_start: int,
         period_end: int,
         # Domain parameters - typically required
@@ -21,7 +20,6 @@ class Generation(Base):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -30,7 +28,6 @@ class Generation(Base):
         Args:
             document_type: Document type (e.g., A68, A73, A74, A75, A76, A77,
                           A78, A85, A87, A91, A92, A93, A95, A96, A97, A98)
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Input domain/bidding zone (e.g., 10YBE----------2)
@@ -42,11 +39,12 @@ class Generation(Base):
             psr_type: Power system resource type (B01-B25: different generation
                      types like Biomass, Nuclear, Wind, Solar, etc.)
             registered_resource: EIC Code of specific production unit or resource
-            timeout: Request timeout in seconds
             offset: Offset for pagination
 
         Raises:
             ValidationError: If any input parameter is invalid
+
+
 
         Notes:
             - For installed capacity queries: Use A68 with processType A33 (Year ahead)
@@ -62,10 +60,8 @@ class Generation(Base):
         # Initialize base parameters
         super().__init__(
             document_type=document_type,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 

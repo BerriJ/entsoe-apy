@@ -17,6 +17,7 @@ class InstalledCapacityPerProductionType(Generation):
     https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show
 
     Fixed parameters:
+
     - documentType: A68 (Installed generation per type)
     - processType: A33 (Year ahead)
 
@@ -32,38 +33,32 @@ class InstalledCapacityPerProductionType(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize installed capacity per production type parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             psr_type: Power system resource type (B01-B25)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A68",
             process_type="A33",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -75,6 +70,7 @@ class WaterReservoirsAndHydroStorage(Generation):
     https://transparency.entsoe.eu/generation/r2/waterReservoirsAndHydroStoragePlants/show
 
     Fixed parameters:
+
     - documentType: A72 (Reservoir filling information)
     - processType: A16 (Realised)
 
@@ -87,34 +83,28 @@ class WaterReservoirsAndHydroStorage(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A72",
             process_type="A16",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -126,6 +116,7 @@ class ActualGenerationPerProductionType(Generation):
     https://transparency.entsoe.eu/generation/r2/actualGenerationPerProductionType/show
 
     Fixed parameters:
+
     - documentType: A75 (Actual generation per type - all production types)
                    Alternative: A74 (Wind and solar generation only)
     - processType: A16 (Realised)
@@ -141,38 +132,32 @@ class ActualGenerationPerProductionType(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize actual generation per production type parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
             psr_type: Power system resource type (B01-B25)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A75",
             process_type="A16",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -184,6 +169,7 @@ class ActualGenerationPerGenerationUnit(Generation):
     https://transparency.entsoe.eu/generation/r2/actualGenerationPerGenerationUnit/show
 
     Fixed parameters:
+
     - documentType: A73 (Actual generation)
     - processType: A16 (Realised)
 
@@ -197,7 +183,6 @@ class ActualGenerationPerGenerationUnit(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
@@ -205,33 +190,28 @@ class ActualGenerationPerGenerationUnit(Generation):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize actual generation per generation unit parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area
             psr_type: Power system resource type (B01-B25)
             registered_resource: EIC Code of a specific Generation Unit
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A73",
             process_type="A16",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
             registered_resource=registered_resource,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -243,6 +223,7 @@ class GenerationForecastDayAhead(Generation):
     https://transparency.entsoe.eu/generation/r2/dayAheadAggregatedGeneration/show
 
     Fixed parameters:
+
     - documentType: A71 (Generation forecast)
     - processType: A01 (Day ahead)
 
@@ -256,34 +237,28 @@ class GenerationForecastDayAhead(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize generation forecast day ahead parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A71",
             process_type="A01",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -295,6 +270,7 @@ class GenerationForecastWindAndSolar(Generation):
     https://transparency.entsoe.eu/generation/r2/dayAheadGenerationForecastWindAndSolar/show
 
     Fixed parameters:
+
     - documentType: A69 (Wind and solar forecast)
     - processType: A01 (Day ahead), A18 (Current), A40 (Intraday)
 
@@ -308,7 +284,6 @@ class GenerationForecastWindAndSolar(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
@@ -316,32 +291,27 @@ class GenerationForecastWindAndSolar(Generation):
         process_type: str = "A01",  # Default to Day ahead
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize generation forecast wind and solar parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             process_type: A01=Day ahead, A18=Current, A40=Intraday
             psr_type: B16=Solar, B18=Wind Offshore, B19=Wind Onshore
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A69",
             process_type=process_type,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -353,6 +323,7 @@ class InstalledCapacityPerProductionUnit(Generation):
     https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show
 
     Fixed parameters:
+
     - documentType: A71 (Generation forecast)
     - processType: A33 (Year ahead)
 
@@ -367,37 +338,31 @@ class InstalledCapacityPerProductionUnit(Generation):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize installed capacity per production unit parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area or Bidding Zone
             psr_type: Power system resource type (B01-B25)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A71",
             process_type="A33",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )

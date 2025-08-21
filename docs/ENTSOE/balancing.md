@@ -1,7 +1,6 @@
-# Balancing Parameters
+# Balancing
 
 This page provides detailed information about balancing-related parameter classes.
 
-## Balancing
 
 ::: entsoe.Balancing
