@@ -9,7 +9,6 @@ class Transmission(Base):
     def __init__(
         self,
         document_type: str,
-        security_token: str,
         period_start: int,
         period_end: int,
         # Domain parameters - typically required
@@ -20,7 +19,6 @@ class Transmission(Base):
         business_type: Optional[str] = None,
         process_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -30,7 +28,6 @@ class Transmission(Base):
             document_type: Document type (e.g., A11, A59, A60, A61, A63, A64,
                           A65, A67, A70, A75, A85, A86, A87, A89, A90, A91,
                           A92, A93)
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Input domain/bidding zone (e.g., 10YBE----------2)
@@ -40,11 +37,12 @@ class Transmission(Base):
                           B07, B08, B10, B11)
             process_type: Process type (e.g., A01, A02, A16, A18, A31, A32, A33,
                          A39, A40, A44, A46)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
 
         Raises:
             ValidationError: If any input parameter is invalid
+
+
 
         Notes:
             - For cross-border physical flows: Use A11 document type
@@ -58,10 +56,8 @@ class Transmission(Base):
         # Initialize base parameters
         super().__init__(
             document_type=document_type,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 

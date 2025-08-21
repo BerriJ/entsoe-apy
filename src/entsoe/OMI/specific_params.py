@@ -29,7 +29,6 @@ class OtherMarketInformation(OMI):
 
     def __init__(
         self,
-        security_token: str,
         control_area_domain: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
@@ -39,14 +38,12 @@ class OtherMarketInformation(OMI):
         period_end_update: Optional[int] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize other market information parameters.
 
         Args:
-            security_token: API security token
             control_area_domain: EIC code of Scheduling Area
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update and period_end_update are defined)
@@ -58,7 +55,6 @@ class OtherMarketInformation(OMI):
             period_end_update: End of update period (YYYYMMDDHHMM format,
                              mandatory if period_start and period_end not defined)
             m_rid: Message ID for specific information versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
 
         Note:
@@ -67,7 +63,6 @@ class OtherMarketInformation(OMI):
             must be provided. The parent OMI class validates this requirement.
         """
         super().__init__(
-            security_token=security_token,
             control_area_domain=control_area_domain,
             period_start=period_start,
             period_end=period_end,
@@ -75,7 +70,6 @@ class OtherMarketInformation(OMI):
             period_end_update=period_end_update,
             doc_status=doc_status,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 
