@@ -14,6 +14,7 @@ class ActualTotalLoad(Load):
     https://transparency.entsoe.eu/load-domain/r2/totalLoadR2/show
 
     Fixed parameters:
+
     - documentType: A65 (System total load)
     - processType: A16 (Realised)
 
@@ -59,6 +60,7 @@ class DayAheadTotalLoadForecast(Load):
     https://transparency.entsoe.eu/load-domain/r2/totalLoadR2/show
 
     Fixed parameters:
+
     - documentType: A65 (System total load)
     - processType: A01 (Day ahead)
 
@@ -104,6 +106,7 @@ class WeekAheadTotalLoadForecast(Load):
     https://transparency.entsoe.eu/load-domain/r2/weekLoad/show
 
     Fixed parameters:
+
     - documentType: A65 (System total load)
     - processType: A31 (Week ahead)
 
@@ -149,6 +152,7 @@ class MonthAheadTotalLoadForecast(Load):
     https://transparency.entsoe.eu/load-domain/r2/monthLoad/show
 
     Fixed parameters:
+
     - documentType: A65 (System total load)
     - processType: A32 (Month ahead)
 
@@ -194,6 +198,7 @@ class YearAheadTotalLoadForecast(Load):
     https://transparency.entsoe.eu/load-domain/r2/yearLoad/show
 
     Fixed parameters:
+
     - documentType: A65 (System total load)
     - processType: A33 (Year ahead)
 
@@ -239,6 +244,7 @@ class YearAheadForecastMargin(Load):
     https://transparency.entsoe.eu/load-domain/r2/marginLoad/show
 
     Fixed parameters:
+
     - documentType: A70 (Load forecast margin)
     - processType: A33 (Year ahead)
 

@@ -17,6 +17,7 @@ class UnavailabilityOfProductionUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A77 (Production unit unavailability)
 
     Notes:
@@ -83,6 +84,7 @@ class UnavailabilityOfGenerationUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A80 (Generation unavailability)
 
     Notes:
@@ -149,6 +151,7 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A76 (Load unavailability)
 
     Notes:
@@ -208,6 +211,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A78 (Transmission unavailability)
 
     Notes:
@@ -281,6 +285,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A79 (Offshore grid infrastructure unavailability)
 
     Notes:
@@ -344,6 +349,7 @@ class Fallbacks(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A53 (Outage publication document)
 
     Required parameters:

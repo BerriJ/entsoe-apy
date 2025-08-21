@@ -17,6 +17,7 @@ class InstalledCapacityPerProductionType(Generation):
     https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show
 
     Fixed parameters:
+
     - documentType: A68 (Installed generation per type)
     - processType: A33 (Year ahead)
 
@@ -69,6 +70,7 @@ class WaterReservoirsAndHydroStorage(Generation):
     https://transparency.entsoe.eu/generation/r2/waterReservoirsAndHydroStoragePlants/show
 
     Fixed parameters:
+
     - documentType: A72 (Reservoir filling information)
     - processType: A16 (Realised)
 
@@ -114,6 +116,7 @@ class ActualGenerationPerProductionType(Generation):
     https://transparency.entsoe.eu/generation/r2/actualGenerationPerProductionType/show
 
     Fixed parameters:
+
     - documentType: A75 (Actual generation per type - all production types)
                    Alternative: A74 (Wind and solar generation only)
     - processType: A16 (Realised)
@@ -166,6 +169,7 @@ class ActualGenerationPerGenerationUnit(Generation):
     https://transparency.entsoe.eu/generation/r2/actualGenerationPerGenerationUnit/show
 
     Fixed parameters:
+
     - documentType: A73 (Actual generation)
     - processType: A16 (Realised)
 
@@ -219,6 +223,7 @@ class GenerationForecastDayAhead(Generation):
     https://transparency.entsoe.eu/generation/r2/dayAheadAggregatedGeneration/show
 
     Fixed parameters:
+
     - documentType: A71 (Generation forecast)
     - processType: A01 (Day ahead)
 
@@ -265,6 +270,7 @@ class GenerationForecastWindAndSolar(Generation):
     https://transparency.entsoe.eu/generation/r2/dayAheadGenerationForecastWindAndSolar/show
 
     Fixed parameters:
+
     - documentType: A69 (Wind and solar forecast)
     - processType: A01 (Day ahead), A18 (Current), A40 (Intraday)
 
@@ -317,6 +323,7 @@ class InstalledCapacityPerProductionUnit(Generation):
     https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show
 
     Fixed parameters:
+
     - documentType: A71 (Generation forecast)
     - processType: A33 (Year ahead)
 

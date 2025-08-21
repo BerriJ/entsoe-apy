@@ -61,6 +61,7 @@ class NewParameterClass(Balancing):
     https://transparency.entsoe.eu/path/to/data/view
 
     Fixed parameters:
+ 
     - documentType: AXX (Description)
 
     Optional parameters:

@@ -1,6 +1,5 @@
 """Transmission data parameter classes for ENTSO-E Transparency Platform."""
 
-from ..Base.Transmission import Transmission as TransmissionParams
 from .specific_params import (
     CommercialSchedules,
     CrossBorderPhysicalFlows,
@@ -14,7 +13,6 @@ from .specific_params import (
 )
 
 __all__ = [
-    "TransmissionParams",
     "TotalNominatedCapacity",
     "ImplicitAllocationsOfferedCapacity",
     "ExplicitAllocationsOfferedCapacity",

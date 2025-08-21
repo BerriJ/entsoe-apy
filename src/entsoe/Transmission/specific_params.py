@@ -15,6 +15,7 @@ class TotalNominatedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/scheduledCommercialExchangesDayAhead/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: B08 (Total nominated capacity)
 
@@ -63,6 +64,7 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction.Type: A01 (Implicit)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -115,6 +117,7 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/explicitCapacityAllocations/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction.Type: A02 (Explicit)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -167,6 +170,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
     https://transparency.entsoe.eu/transmission/r2/capacityAllocations/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: A29 (Already allocated capacity)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -219,6 +223,7 @@ class CrossBorderPhysicalFlows(Transmission):
     https://transparency.entsoe.eu/transmission/r2/physicalFlows/show
 
     Fixed parameters:
+
     - documentType: A11 (Flow document)
 
     Request Limits:
@@ -265,6 +270,7 @@ class CommercialSchedules(Transmission):
     https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
 
     Fixed parameters:
+
     - documentType: A09 (Finalised schedule)
     - contract_MarketAgreement.Type: A01 (Daily)
 
@@ -315,6 +321,7 @@ class ForecastedTransferCapacities(Transmission):
     https://transparency.entsoe.eu/transmission/r2/forecastedCapacity/show
 
     Fixed parameters:
+
     - documentType: A61 (Estimated Net Transfer Capacity)
     - contract_MarketAgreement.Type: A01 (Daily)
 
@@ -365,6 +372,7 @@ class FlowBasedAllocations(Transmission):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocations/show
 
     Fixed parameters:
+
     - documentType: B09 (Flow based allocations)
     - processType: A44 (Flow based)
 
@@ -412,6 +420,7 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
     https://transparency.entsoe.eu/outages/r2/unavailabilityOfOffshoreGridInfrastructure/show
 
     Fixed parameters:
+
     - documentType: A79 (Unavailability of offshore grid)
 
     Request Limits:

@@ -17,6 +17,7 @@ class OtherMarketInformation(OMI):
     https://transparency.entsoe.eu/omi-domain/r2/otherMarketInformation/show
 
     Fixed parameters:
+
     - documentType: B47 (Other market information)
 
     Notes:

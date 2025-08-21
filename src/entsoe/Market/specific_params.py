@@ -17,6 +17,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
     https://transparency.entsoe.eu/transmission/r2/dailyFlowBasedImplicitAllocationsCongestionIncome/show
 
     Fixed parameters:
+
     - documentType: A25 (Allocation results)
     - businessType: B10 (Congestion income)
     """
@@ -66,6 +67,7 @@ class TotalNominatedCapacity(Market):
     https://transparency.entsoe.eu/transmission-domain/r2/totalCapacityNominated/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: B08 (Total nominated capacity)
     """
@@ -111,6 +113,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
     https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction_Type: A01 (Implicit)
     """
@@ -166,6 +169,7 @@ class EnergyPrices(Market):
     Data view: https://transparency.entsoe.eu/market/prices/show
 
     Fixed parameters:
+
     - documentType: A44 (Price Document)
 
     Request Limits:
@@ -224,6 +228,7 @@ class TotalCapacityAllocated(Market):
     https://transparency.entsoe.eu/transmission/r2/totalCapacityAllocated/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: B07 (Total allocated capacity)
     """
@@ -271,6 +276,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
     https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction_Type: A02 (Explicit)
     """
@@ -327,6 +333,7 @@ class FlowBasedAllocations(Market):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
 
     Fixed parameters:
+
     - documentType: A94 (Flow-based allocations)
     - auction_Type: A01 (Implicit)
     """
@@ -376,6 +383,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
     https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show
 
     Fixed parameters:
+
     - documentType: B33 (Continuous capacity document)
     - auction_Type: A08 (Continuous)
     """
@@ -434,6 +442,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
     https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show
 
     Fixed parameters:
+
     - documentType: A25 (Allocation result document)
     - businessType: B05 (Capacity allocated including price)
     """
@@ -496,6 +505,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
     https://transparency.entsoe.eu/transmission-domain/r2/explicitAllocationsRevenue/show
 
     Fixed parameters:
+
     - documentType: A25 (Allocation result document)
     - businessType: B07 (Auction Revenue)
     """
@@ -549,6 +559,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
     https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show
 
     Fixed parameters:
+
     - documentType: A94 (Non EU allocations)
     - auction_Type: A02 (Explicit)
     """
@@ -611,6 +622,7 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
     https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show
 
     Fixed parameters:
+
     - documentType: A94 (Non EU allocations)
     - auction_Type: A01 (Implicit)
     """
@@ -663,6 +675,7 @@ class ImplicitAuctionNetPositions(Market):
     """Parameters for 12.1.E Implicit Auction — Net Positions.
 
     Fixed parameters:
+
     - documentType: A25 (Allocation results)
     - businessType: B09 (Net position)
     """
@@ -711,6 +724,7 @@ class FlowBasedAllocationsLegacy(Market):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
 
     Fixed parameters:
+
     - documentType: A94 (Flow-based allocations)
     - auction_Type: A01 (Implicit)
 

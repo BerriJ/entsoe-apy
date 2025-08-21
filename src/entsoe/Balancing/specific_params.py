@@ -17,6 +17,7 @@ class CrossBorderBalancing(Balancing):
     https://transparency.entsoe.eu/balancing/r2/crossBorderBalancing/show
 
     Fixed parameters:
+
     - documentType: A88 (Cross border balancing)
 
     Notes:
@@ -63,6 +64,7 @@ class AcceptedAggregatedOffers(Balancing):
     https://transparency.entsoe.eu/balancing/r2/acceptedAggregatedOffers/show
 
     Fixed parameters:
+
     - documentType: A82 (Accepted offers)
 
     Optional parameters:
@@ -114,6 +116,7 @@ class ActivatedBalancingEnergy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show
 
     Fixed parameters:
+
     - documentType: A83 (Activated balancing quantities)
 
     Optional parameters:
@@ -165,6 +168,7 @@ class PricesOfActivatedBalancingEnergy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show
 
     Fixed parameters:
+
     - documentType: A84 (Activated balancing prices)
 
     Required parameters:
@@ -230,6 +234,7 @@ class VolumesAndPricesOfContractedReserves(Balancing):
     https://transparency.entsoe.eu/balancing/r2/contractedReserves/show
 
     Fixed parameters:
+
     - documentType: A81 (Contracted reserves)
     - businessType: B95 (Procured capacity)
 
@@ -279,6 +284,7 @@ class ImbalancePrices(Balancing):
     https://transparency.entsoe.eu/balancing/r2/imbalancePricing/show
 
     Fixed parameters:
+
     - documentType: A85 (Imbalance prices)
 
     Notes:
@@ -326,6 +332,7 @@ class TotalImbalanceVolumes(Balancing):
     https://transparency.entsoe.eu/balancing/r2/imbalanceVolume/show
 
     Fixed parameters:
+
     - documentType: A86 (Imbalance volume)
 
     Optional parameters:
@@ -372,6 +379,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
     https://transparency.entsoe.eu/balancing/r2/financialExpensesAndIncomeForBalancing/show
 
     Fixed parameters:
+
     - documentType: A87 (Financial situation)
 
     Notes:
@@ -415,6 +423,7 @@ class BalancingEnergyBids(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingEnergyBids/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B74 (Offer)
 
@@ -474,6 +483,7 @@ class AggregatedBalancingEnergyBids(Balancing):
     https://transparency.entsoe.eu/balancing/r2/aggregatedBalancingEnergyBids/show
 
     Fixed parameters:
+
     - documentType: A24 (Bid document)
 
     Required parameters:
@@ -522,6 +532,7 @@ class ProcuredBalancingCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/procuredBalancingCapacity/show
 
     Fixed parameters:
+
     - documentType: A15 (Acquiring system operator reserve schedule)
 
     Required parameters:
@@ -569,6 +580,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/allocationAndUseOfCrossZonalBalancingCapacity/show
 
     Fixed parameters:
+
     - documentType: A38 (Reserve allocation result document)
 
     Required parameters:
@@ -616,6 +628,7 @@ class CurrentBalancingState(Balancing):
     https://transparency.entsoe.eu/balancing/r2/currentBalancingState/show
 
     Fixed parameters:
+
     - documentType: A86 (Imbalance volume)
     - businessType: B33 (Area Control Error)
 
@@ -661,6 +674,7 @@ class FCRTotalCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/fcrTotalCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: A25 (General Capacity Information)
 
@@ -706,6 +720,7 @@ class SharesOfFCRCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C23 (Share of reserve capacity)
 
@@ -751,6 +766,7 @@ class SharingOfFCRBetweenSAs(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfFCRBetweenSAs/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A52 (Frequency containment reserve)
     - businessType: C22 (Shared Balancing Reserve Capacity)
@@ -798,6 +814,7 @@ class FRRAndRRCapacityOutlook(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrAndRRCapacityOutlook/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C76 (Forecasted capacity)
 
@@ -845,6 +862,7 @@ class FRRAndRRActualCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrAndRRActualCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
 
     Required parameters:
@@ -894,6 +912,7 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/outlookOfReserveCapacitiesOnRR/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C76 (Forecasted capacity)
@@ -941,6 +960,7 @@ class RRActualCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/rrActualCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C77 (Min)
@@ -988,6 +1008,7 @@ class SharingOfRRAndFRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRR/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A56 (Frequency restoration reserve)
 
@@ -1033,6 +1054,7 @@ class ExchangedReserveCapacity(Balancing):
     https://transparency.entsoe.eu/balancing/r2/exchangedReserveCapacity/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
 
@@ -1079,6 +1101,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
     https://transparency.entsoe.eu/balancing/r2/crossBorderMarginalPricesForAFRR/show
 
     Fixed parameters:
+
     - documentType: A84 (Activated balancing prices)
     - processType: A67 (Central Selection aFRR)
     - businessType: A96 (Automatic frequency restoration reserve)
@@ -1126,6 +1149,7 @@ class NettedAndExchangedVolumes(Balancing):
     https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumes/show
 
     Fixed parameters:
+
     - documentType: B17 (Aggregated netted external TSO schedule document)
 
     Required parameters:
@@ -1176,6 +1200,7 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
     https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumesPerBorder/show
 
     Fixed parameters:
+
     - documentType: A30 (Cross border schedule)
 
     Required parameters:
@@ -1226,6 +1251,7 @@ class ElasticDemands(Balancing):
     https://transparency.entsoe.eu/balancing/r2/elasticDemands/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B75 (Need)
 
@@ -1274,6 +1300,7 @@ class ChangesToBidAvailability(Balancing):
     https://transparency.entsoe.eu/balancing/r2/changesToBidAvailability/show
 
     Fixed parameters:
+
     - documentType: B45 (Bid Availability Document)
     - processType: A47 (Manual frequency restoration reserve)
 
@@ -1327,6 +1354,7 @@ class BalancingBorderCapacityLimitations(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingBorderCapacityLimitations/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
 
     Required parameters:
@@ -1377,6 +1405,7 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
     https://transparency.entsoe.eu/balancing/r2/permanentAllocationLimitationsToHVDCLines/show
 
     Fixed parameters:
+
     - documentType: A99 (HVDC Link constraints)
 
     Required parameters:
@@ -1427,6 +1456,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
     https://transparency.entsoe.eu/balancing/r2/resultsOfCriteriaApplicationProcess/show
 
     Fixed parameters:
+
     - documentType: A45 (Measurement Value Document)
 
     Required parameters:
@@ -1474,6 +1504,7 @@ class BalancingEnergyBidsArchives(Balancing):
     https://transparency.entsoe.eu/balancing/r2/balancingEnergyBidsArchives/show
 
     Fixed parameters:
+
     - documentType: A37 (Reserve bid document)
     - businessType: B74 (Offer)
 
@@ -1526,6 +1557,7 @@ class FRRActualCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/frrActualCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46=Replacement reserve, A56=Frequency restoration reserve
     - businessType: C77=Min, C78=Avg, C79=Max
@@ -1577,6 +1609,7 @@ class RRActualCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/rrActualCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A46 (Replacement reserve)
     - businessType: C24 (Actual reserve capacity)
@@ -1624,6 +1657,7 @@ class SharingOfRRAndFRRLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRRLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - processType: A47 (Manual frequency restoration reserve)
 
@@ -1669,6 +1703,7 @@ class SharesOfFCRCapacityLegacy(Balancing):
     https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacityLegacy/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: C23 (Share of reserve capacity)
     - processType: A52 (Frequency containment reserve)
