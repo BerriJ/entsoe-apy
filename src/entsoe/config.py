@@ -1,6 +1,7 @@
 """Configuration management for ENTSO-E API Python client."""
 
 import os
+import sys
 from typing import Optional
 
 from loguru import logger
@@ -60,9 +61,7 @@ class EntsoEConfig:
 
         # Configure loguru logger level
         logger.remove()
-        logger.add(
-            sink=sys.stdout, level=log_level.upper(), colorize=True
-        )
+        logger.add(sink=sys.stdout, level=log_level.upper(), colorize=True)
         # Handle security token
         if security_token is None:
             security_token = os.getenv("ENTSOE_API")
