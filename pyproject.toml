@@ -5,14 +5,34 @@ authors = [
   {name="Jie Xu", email="jie.xu@uni-due.de"}
 ]
 version = "0.1.0"
-description = ""
+description = "A Python library for accessing ENTSO-E Transparency Platform API endpoints"
 readme = "README.md"
+license = "GPL-3.0-or-later"
 requires-python = ">=3.11.0"
+keywords = ["entsoe", "energy", "electricity", "api", "transparency", "platform"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
 dependencies = [
   "xsdata[cli,lxml,soap]~=25.7",
   "httpx~=0.28.1",
   "loguru~=0.7.2",
 ]
+
+[project.urls]
+"Homepage" = "https://entsoe-apy.berrisch.biz/"
+"Documentation" = "https://entsoe-apy.berrisch.biz/"
+"Repository" = "https://github.com/BerriJ/entsoe-api-py"
+"Bug Tracker" = "https://github.com/BerriJ/entsoe-api-py/issues"
 
 [dependency-groups]
 dev = ["pytest~=8.3.3", "pytest-xdist~=3.6.1", "ruff==0.12.4"]
@@ -51,7 +71,7 @@ addopts = [
 ]
 
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
