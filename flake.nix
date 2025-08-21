@@ -19,7 +19,6 @@
         name = "Python";
         venvDir = "./.venv";
         buildInputs = [
-          # Keep these for some CUDA magic
           # Stuff needed for technical reasons
           pypkgs.ipykernel
           pypkgs.jupyterlab
