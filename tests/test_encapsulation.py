@@ -2,6 +2,7 @@
 
 import pytest
 
+from entsoe import set_config, reset_config
 from entsoe.Base.Outages import Outages
 from entsoe.OMI.OMI import OMI
 
@@ -9,11 +10,18 @@ from entsoe.OMI.OMI import OMI
 class TestEncapsulation:
     """Test that OMI and Outages classes properly use Base class encapsulation."""
 
+    def setup_method(self):
+        """Set up test configuration before each test."""
+        set_config(security_token="test_token")
+
+    def teardown_method(self):
+        """Clean up configuration after each test."""
+        reset_config()
+
     def test_omi_parameter_initialization(self):
         """Test that OMI class properly initializes parameters using base
         class methods."""
         omi = OMI(
-            security_token="test_token",
             control_area_domain="10YBE----------2",
             period_start=202301010000,
             period_end=202301020000,
@@ -24,7 +32,6 @@ class TestEncapsulation:
 
         # Verify that parameters are set correctly
         assert omi.params["documentType"] == "B47"
-        assert omi.params["securityToken"] == "test_token"
         assert omi.params["periodStart"] == 202301010000
         assert omi.params["periodEnd"] == 202301020000
         assert omi.params["ControlArea_Domain"] == "10YBE----------2"
@@ -37,7 +44,6 @@ class TestEncapsulation:
         standard or update periods must be provided."""
         # Test with update periods instead of standard periods
         omi = OMI(
-            security_token="test_token",
             control_area_domain="10YBE----------2",
             period_start_update=202301010000,
             period_end_update=202301020000,
@@ -50,14 +56,12 @@ class TestEncapsulation:
         assert omi.params["PeriodStartUpdate"] == 202301010000
         assert omi.params["PeriodEndUpdate"] == 202301020000
         assert omi.params["documentType"] == "B47"
-        assert omi.params["securityToken"] == "test_token"
 
     def test_outages_parameter_initialization(self):
         """Test that Outages class properly initializes parameters using base
         class methods."""
         outages = Outages(
             document_type="A77",
-            security_token="test_token",
             period_start=202301010000,
             period_end=202301020000,
             bidding_zone_domain="10YBE----------2",
@@ -70,7 +74,6 @@ class TestEncapsulation:
 
         # Verify that parameters are set correctly
         assert outages.params["documentType"] == "A77"
-        assert outages.params["securityToken"] == "test_token"
         assert outages.params["periodStart"] == 202301010000
         assert outages.params["periodEnd"] == 202301020000
         assert outages.params["biddingZone_Domain"] == "10YBE----------2"
@@ -84,7 +87,6 @@ class TestEncapsulation:
         """Test that Outages class handles optional period parameters correctly."""
         outages = Outages(
             document_type="A77",
-            security_token="test_token",
             bidding_zone_domain="10YBE----------2",
         )
 
@@ -92,13 +94,11 @@ class TestEncapsulation:
         assert "periodStart" not in outages.params
         assert "periodEnd" not in outages.params
         assert outages.params["documentType"] == "A77"
-        assert outages.params["securityToken"] == "test_token"
 
     def test_omi_validation_error(self):
         """Test that OMI class validation still works properly."""
         with pytest.raises(ValueError, match="doc_status must be one of"):
             OMI(
-                security_token="test_token",
                 control_area_domain="10YBE----------2",
                 period_start=202301010000,
                 period_end=202301020000,
@@ -111,7 +111,6 @@ class TestEncapsulation:
             ValueError, match="Either \\(period_start, period_end\\) or"
         ):
             OMI(
-                security_token="test_token",
                 control_area_domain="10YBE----------2",
             )
 
@@ -119,7 +118,6 @@ class TestEncapsulation:
         """Test that both classes use proper encapsulation methods."""
         # Test OMI
         omi = OMI(
-            security_token="test_token",
             control_area_domain="10YBE----------2",
             period_start=202301010000,
             period_end=202301020000,
@@ -130,12 +128,10 @@ class TestEncapsulation:
         # This verifies that we're not manually setting self.params = {...}
         assert hasattr(omi, "params")
         assert isinstance(omi.params, dict)
-        assert "securityToken" in omi.params
 
         # Test Outages
         outages = Outages(
             document_type="A77",
-            security_token="test_token",
             bidding_zone_domain="10YBE----------2",
         )
 
@@ -143,4 +139,3 @@ class TestEncapsulation:
         # class methods
         assert hasattr(outages, "params")
         assert isinstance(outages.params, dict)
-        assert "securityToken" in outages.params

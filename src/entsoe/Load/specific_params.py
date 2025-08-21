@@ -26,23 +26,19 @@ class ActualTotalLoad(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize actual total load parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -50,10 +46,8 @@ class ActualTotalLoad(Load):
             document_type="A65",
             process_type="A16",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -77,23 +71,19 @@ class DayAheadTotalLoadForecast(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize day-ahead total load forecast parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -101,10 +91,8 @@ class DayAheadTotalLoadForecast(Load):
             document_type="A65",
             process_type="A01",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -128,23 +116,19 @@ class WeekAheadTotalLoadForecast(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize week-ahead total load forecast parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -152,10 +136,8 @@ class WeekAheadTotalLoadForecast(Load):
             document_type="A65",
             process_type="A31",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -179,23 +161,19 @@ class MonthAheadTotalLoadForecast(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize month-ahead total load forecast parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -203,10 +181,8 @@ class MonthAheadTotalLoadForecast(Load):
             document_type="A65",
             process_type="A32",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -230,23 +206,19 @@ class YearAheadTotalLoadForecast(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize year-ahead total load forecast parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -254,10 +226,8 @@ class YearAheadTotalLoadForecast(Load):
             document_type="A65",
             process_type="A33",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -281,23 +251,19 @@ class YearAheadForecastMargin(Load):
 
     def __init__(
         self,
-        security_token: str,
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize year-ahead forecast margin parameters.
 
         Args:
-            security_token: API security token
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -305,9 +271,7 @@ class YearAheadForecastMargin(Load):
             document_type="A70",
             process_type="A33",
             out_bidding_zone_domain=out_bidding_zone_domain,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )

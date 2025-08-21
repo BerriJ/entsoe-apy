@@ -5,11 +5,20 @@ from unittest.mock import patch
 import httpx
 import pytest
 
+from entsoe import set_config, reset_config
 from entsoe.decorators import retry
 
 
 class TestRetryDecorator:
     """Test class for retry decorator functionality."""
+
+    def setup_method(self):
+        """Set up test configuration before each test."""
+        set_config(security_token="test_token", retries=3, retry_delay=1)
+
+    def teardown_method(self):
+        """Clean up configuration after each test."""
+        reset_config()
 
     def test_retry_decorator_success_on_first_attempt(self):
         """Test that retry decorator works correctly when function succeeds
@@ -41,7 +50,7 @@ class TestRetryDecorator:
         assert call_count == 3
         # Verify sleep was called twice (for the first two failed attempts)
         assert mock_sleep.call_count == 2
-        mock_sleep.assert_called_with(10)  # Default retry_delay is 10 seconds
+        mock_sleep.assert_called_with(1)  # Using retry_delay from test setup
 
     def test_retry_decorator_exhausts_all_attempts(self):
         """Test that retry decorator raises exception after all attempts
@@ -137,7 +146,7 @@ class TestRetryDecorator:
         warning_call = mock_logger.warning.call_args[0][0]
         assert "Connection Error on attempt 1/3" in warning_call
         assert "First failure" in warning_call
-        assert "Retrying in 10 seconds" in warning_call
+        assert "Retrying in 1 seconds" in warning_call
 
     def test_retry_decorator_logs_final_error(self):
         """Test that retry decorator logs error when all attempts fail."""

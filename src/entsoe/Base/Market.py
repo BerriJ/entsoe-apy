@@ -9,7 +9,6 @@ class Market(Base):
     def __init__(
         self,
         document_type: str,
-        security_token: str,
         period_start: int,
         period_end: int,
         # Domain parameters - at least one required
@@ -26,7 +25,6 @@ class Market(Base):
             int
         ] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -34,7 +32,6 @@ class Market(Base):
 
         Args:
             document_type: Document type (e.g., A25, A26, A31, A44, A94, A09, B09, B33)
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Input domain/bidding zone (e.g., 10YBE----------2)
@@ -49,19 +46,18 @@ class Market(Base):
             auction_category: Auction category (A04)
             classification_sequence_attribute_instance_component_position: Position
                 for classification
-            timeout: Request timeout in seconds
             offset: Offset for pagination
 
         Raises:
             ValidationError: If any input parameter is invalid
+
+
         """
         # Initialize base parameters
         super().__init__(
             document_type=document_type,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 

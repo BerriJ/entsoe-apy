@@ -3,72 +3,21 @@
 from typing import Optional
 from unittest.mock import Mock, patch
 
-from entsoe.query_api import _sanitize_params_for_logging, query_core
+from entsoe import set_config, reset_config
+from entsoe.query_api import query_core
 from entsoe.utils import check_date_range_limit, merge_documents, split_date_range
 
 
 class TestLogging:
     """Test class for logging functionality."""
 
-    def test_sanitize_params_for_logging_security_token(self):
-        """Test that securityToken is properly masked in logs."""
-        params = {
-            "securityToken": "sensitive-token-123",
-            "periodStart": "202301010000",
-            "periodEnd": "202301020000",
-            "documentType": "A44",
-        }
+    def setup_method(self):
+        """Set up test configuration before each test."""
+        set_config(security_token="test_token")
 
-        sanitized = _sanitize_params_for_logging(params)
-
-        assert sanitized["securityToken"] == "***MASKED***"
-        assert sanitized["periodStart"] == "202301010000"
-        assert sanitized["periodEnd"] == "202301020000"
-        assert sanitized["documentType"] == "A44"
-
-    def test_sanitize_params_for_logging_security_token_underscore(self):
-        """Test that security_token is properly masked in logs."""
-        params = {
-            "security_token": "sensitive-token-456",
-            "periodStart": "202301010000",
-            "periodEnd": "202301020000",
-            "documentType": "A44",
-        }
-
-        sanitized = _sanitize_params_for_logging(params)
-
-        assert sanitized["security_token"] == "***MASKED***"
-        assert sanitized["periodStart"] == "202301010000"
-        assert sanitized["periodEnd"] == "202301020000"
-        assert sanitized["documentType"] == "A44"
-
-    def test_sanitize_params_for_logging_both_tokens(self):
-        """Test that both token formats are properly masked in logs."""
-        params = {
-            "securityToken": "sensitive-token-123",
-            "security_token": "sensitive-token-456",
-            "periodStart": "202301010000",
-            "periodEnd": "202301020000",
-        }
-
-        sanitized = _sanitize_params_for_logging(params)
-
-        assert sanitized["securityToken"] == "***MASKED***"
-        assert sanitized["security_token"] == "***MASKED***"
-        assert sanitized["periodStart"] == "202301010000"
-        assert sanitized["periodEnd"] == "202301020000"
-
-    def test_sanitize_params_for_logging_no_tokens(self):
-        """Test that params without tokens are unchanged."""
-        params = {
-            "periodStart": "202301010000",
-            "periodEnd": "202301020000",
-            "documentType": "A44",
-        }
-
-        sanitized = _sanitize_params_for_logging(params)
-
-        assert sanitized == params
+    def teardown_method(self):
+        """Clean up configuration after each test."""
+        reset_config()
 
     def test_utility_functions_have_logging(self):
         """Test that utility functions can be called and log debug messages."""
@@ -122,13 +71,12 @@ class TestLogging:
         mock_get.return_value = mock_response
 
         params = {
-            "securityToken": "sensitive-token-123",
             "periodStart": "202301010000",
             "periodEnd": "202301020000",
         }
 
         with patch("entsoe.query_api.logger") as mock_logger:
-            query_core(params, timeout=10)
+            query_core(params)
 
             assert mock_logger.debug.called
 
@@ -140,11 +88,3 @@ class TestLogging:
 
             # Should log the response status
             assert any("API response status" in arg for arg in call_args)
-
-            # Verify that the token was masked in the logged params
-            request_log = next(
-                (arg for arg in call_args if "Making API request" in arg), None
-            )
-            assert request_log is not None
-            assert "***MASKED***" in request_log
-            assert "sensitive-token-123" not in request_log

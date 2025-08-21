@@ -18,10 +18,8 @@ class Base:
     def __init__(
         self,
         document_type: str,
-        security_token: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -29,19 +27,19 @@ class Base:
 
         Args:
             document_type: Document type identifier
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format, optional)
             period_end: End period (YYYYMMDDHHMM format, optional)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
 
         Raises:
             ValidationError: If any input parameter is invalid
+
+
         """
+
         # Initialize the base parameters dictionary
         self.params: Dict[str, Any] = {
             "documentType": document_type,
-            "securityToken": security_token,
         }
 
         # Add period parameters using the proper method
@@ -49,9 +47,6 @@ class Base:
 
         # Add optional parameters if provided
         self.add_optional_param("offset", offset)
-
-        # Store timeout for potential use in derived classes
-        self.timeout = timeout
 
     def validate_eic_code(self, eic_code: Optional[str], parameter_name: str) -> None:
         """

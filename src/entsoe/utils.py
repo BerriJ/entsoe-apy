@@ -190,23 +190,3 @@ def merge_documents(base, other):
 
     logger.debug(f"Document merge completed, {merge_count} fields/items merged")
     return base
-
-
-def _sanitize_params_for_logging(params: dict) -> dict:
-    """
-    Create a sanitized copy of params for logging by masking security tokens.
-
-    Args:
-        params: Original parameters dictionary
-
-    Returns:
-        Sanitized parameters dictionary with tokens masked
-    """
-    sanitized = params.copy()
-
-    # Mask both possible token parameter names
-    for token_key in ["securityToken", "security_token"]:
-        if token_key in sanitized:
-            sanitized[token_key] = "***MASKED***"
-
-    return sanitized

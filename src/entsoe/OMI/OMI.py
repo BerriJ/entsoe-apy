@@ -9,7 +9,6 @@ class OMI(Base):
 
     def __init__(
         self,
-        security_token: str,
         control_area_domain: str,  # Required - EIC code of Scheduling Area
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
@@ -20,7 +19,6 @@ class OMI(Base):
         doc_status: Optional[Literal["A05", "A09", "A13"]] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -28,7 +26,6 @@ class OMI(Base):
         Platform.
 
         Args:
-            security_token: API security token
             control_area_domain: EIC code of Scheduling Area (required)
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update and period_end_update are defined)
@@ -41,7 +38,6 @@ class OMI(Base):
             doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
             m_rid: Message ID - if included, individual versions of particular
                   event are queried using rest of parameters
-            timeout: Request timeout in seconds
             offset: Offset for pagination (allows downloading more than 200 docs,
                    offset ∈ [0,4800] so paging restricted to 5000 docs max)
 
@@ -49,6 +45,8 @@ class OMI(Base):
             ValueError: If doc_status is not one of A05, A09, A13
             ValueError: If neither (period_start, period_end) nor
                        (period_start_update, period_end_update) are provided
+
+
 
         Notes:
             - Document type is fixed to B47 (Other Market Information)
@@ -83,10 +81,8 @@ class OMI(Base):
         # Initialize base parameters using proper encapsulation
         super().__init__(
             document_type="B47",  # Fixed to B47 for Other Market Information
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=0,  # Don't pass offset to base, we'll handle it with correct name
         )
 
