@@ -10,6 +10,7 @@ The library uses a global configuration system that allows you to set common par
 - **Timeout**: HTTP request timeout duration
 - **Retries**: Number of retry attempts for failed requests
 - **Retry Delay**: Wait time between retry attempts
+- **Log Level**: Configurable logging level for controlling output verbosity
 
 ## API Key Management
 
@@ -116,17 +117,62 @@ entsoe.set_config(
 - Increase to be more respectful to the ENTSO-E API servers
 - Decrease for faster retry cycles (but be mindful of API rate limits)
 
+### Log Level
+
+The **log_level** parameter controls the verbosity of logging output using the loguru library.
+
+**Default**: SUCCESS
+
+**Available levels** (from least to most verbose):
+- **CRITICAL**: Only critical errors
+- **ERROR**: Error messages and above
+- **WARNING**: Warning messages and above  
+- **SUCCESS**: Success messages and above (default - shows successful operations and issues)
+- **INFO**: Informational messages and above
+- **DEBUG**: Debug messages and above (most verbose)
+- **TRACE**: All messages including trace information
+
+```python
+import entsoe
+
+# Set to DEBUG for detailed troubleshooting
+entsoe.set_config(
+    security_token="your-token",
+    log_level="DEBUG"
+)
+
+# Set to ERROR for minimal output (only errors)
+entsoe.set_config(
+    security_token="your-token", 
+    log_level="ERROR"
+)
+
+# Default SUCCESS level shows successful operations and any issues
+entsoe.set_config(
+    security_token="your-token",
+    log_level="SUCCESS"  # This is the default
+)
+```
+
+**What it does**: Controls which log messages are displayed. Lower levels show fewer messages, higher levels show more details.
+
+**When to adjust**:
+- Use **DEBUG** or **INFO** when troubleshooting API issues
+- Use **ERROR** or **WARNING** for production environments where you only want to see problems
+- Use **SUCCESS** (default) for a good balance of useful information without excessive detail
+
 ## Complete Configuration Example
 
 ```python
 import entsoe
 
-# Production configuration with increased reliability
+# Production configuration with increased reliability and minimal logging
 entsoe.set_config(
     security_token="your-security-token-here",
     timeout=15,      # 15 second timeout
     retries=5,       # Retry up to 5 times
-    retry_delay=15   # Wait 15 seconds between retries
+    retry_delay=15,  # Wait 15 seconds between retries
+    log_level="WARNING"  # Only show warnings and errors
 )
 ```
 
