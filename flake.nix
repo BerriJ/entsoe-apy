@@ -1,5 +1,5 @@
 {
-  description = "Rolch Development Shell";
+  description = "entsoe-apy Development Shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -13,19 +13,6 @@
         inherit system;
       };
       pypkgs = pkgs.python313Packages;
-      r_httpgd = pkgs.rPackages.buildRPackage {
-        name = "httpgd";
-        src = pkgs.fetchFromGitHub {
-          owner = "nx10";
-          repo = "httpgd";
-          rev = "v2.0.4";
-          sha256 = "vs6MTdVJXhTdzPXKqQR+qu1KbhF+vfyzZXIrFsuKMtU=";
-        };
-        propagatedBuildInputs = with pkgs.rPackages; [
-          unigd
-          AsioHeaders
-        ];
-      };
     in
     {
       devShells.${system}.default = pkgs.mkShell rec {
@@ -52,22 +39,6 @@
           pypkgs.mkdocstrings
           pypkgs.mkdocstrings-python
           pypkgs.pytest
-
-          # Must have
-          pkgs.R
-          pkgs.radian
-          pkgs.rPackages.languageserver
-          pkgs.rPackages.lintr
-          pkgs.rPackages.styler
-          r_httpgd
-          pkgs.rPackages.crayon
-          pkgs.rPackages.cli
-
-          # Project specific
-          pkgs.rPackages.tidyverse
-          pkgs.rPackages.tictoc
-          pkgs.rPackages.dbx
-          pkgs.rPackages.RMySQL
 
         ];
 
@@ -97,10 +68,6 @@
             source .env
             set +a
           fi
-          mkdir -p .bin
-          ln -sf ${pkgs.radian}/bin/radian .bin/
-          # allow pip to install wheels
-          unset SOURCE_DATE_EPOCH
         '';
       };
     };
