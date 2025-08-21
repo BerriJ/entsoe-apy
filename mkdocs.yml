@@ -3,6 +3,7 @@ site_name: "ENTSO-E API Python"
 nav:
   - Home: index.md
   - Getting Started: getting_started.md
+  - Configuration: configuration.md
   - ENTSOE:
     - Market: ENTSOE/market.md
     - Load: ENTSOE/load.md
