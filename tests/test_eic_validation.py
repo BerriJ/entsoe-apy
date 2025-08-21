@@ -4,8 +4,7 @@ import pytest
 
 from entsoe import reset_config, set_config
 from entsoe.Balancing import AcceptedAggregatedOffers, CrossBorderBalancing
-from entsoe.Base.Base import ValidationError
-from entsoe.Base.Base import Base
+from entsoe.Base.Base import Base, ValidationError
 from entsoe.Market import EnergyPrices
 
 
