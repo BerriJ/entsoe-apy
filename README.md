@@ -1,50 +1,65 @@
-# ENTSO-E API Python
+# entsoe-apy: ENTSO-E API Python Python Package
 
 A Python library for accessing ENTSO-E Transparency Platform API endpoints.
 
-## Overview
+-> [Documentation](https://entsoe-apy.berrisch.biz/)
 
-This library provides a convenient Python interface to the ENTSO-E (European Network of Transmission System Operators for Electricity) Transparency Platform API. It allows you to easily fetch the data using a simple and intuitive interface. The retrieved data is automatically validated against the data-models published by ENTSO-E.
+## Highlights
 
-## Key Features
+- Easy access to ENTSO-E Transparency Platform API endpoints
+- Supports all major API functionalities
+- Well-documented, easy to use and highly consistent with the API
+- Automatically splits up large requests into multiple smaller calls to the API
+- Retries on connection errors
+- Returns meaningful error messages if something goes wrong
 
-- **Intuitive Design**: Highly consistent with the API documentation
-- **Comprehensive Coverage**: Support for all ENTSO-E data categories (except MasterData)
-- **Easy to Use**: Simple and intuitive design
+## Install
+
+Install the package from pypi using pip:
+
+```sh
+pip install entsoe-apy
+```
 
 ## Quick Start
 
-The package structure mirrors the [official ENTSO-E API documentation](https://documenter.getpostman.com/view/7009892/2s93JtP3F6).
+### API Key
+
+You need an ENTSOE API Key (also called token) refer to the [official documentation](https://transparencyplatform.zendesk.com/hc/en-us/articles/12845911031188-How-to-get-security-token) on how to obtain it. The package expects an environment variable called `ENTSOE_API` to be set with your API key. See [Configuration](docs/configuration.md) for more details and options.
+
+### Query Day-Ahead Prices
+
+The package structure mirrors the [official ENTSO-E API docs](https://documenter.getpostman.com/view/7009892/2s93JtP3F6). So for querying "12.1.D Energy Prices" we need the `entsoe.Market` module and use the `EnergyPrices` class.
+
+After initializing the class, we can query the data using the query_data method.
 
 ```python
 # Import item from the Market Group
 from entsoe.Market import EnergyPrices
 
-EIC = "10Y1001A1001A82H"
+EIC = "10Y1001A1001A82H" # DE-AT Biddingzone
 
-# Initialize
-object = EnergyPrices(
-    security_token=_ENTSOE_API,
+period_start = 201512312300
+period_end = 202107022300
+
+ep = EnergyPrices(
     in_domain=EIC,
     out_domain=EIC,
-    period_start=202012312300,
-    period_end=202101022300,
+    period_start=period_start,
+    period_end=period_end,
+    contract_market_agreement_type="A01",
 )
-
-# Query
-result = object.query_api()
+result = ep.query_api()
 ```
 
-The structure of the `result` object depends on the `xsd` schmema provided by ENTSO-E.
-The Docs will be extended with examples on how to extract the actual data from `result`.
-
-## Installation
-
-```bash
-pip install entsoe-apy
-```
+The structure of the `result` object depends on the queried data. See the [examples](docs/examples.md) for more details.
 
 ## Next Steps
 
-- [Getting Started](getting_started.md) - Learn how to set up and use the library
-- [Examples](examples.md) - Practical examples and use cases
+- [ENTSOE](docs/ENTSOE/index.md) - Class documentation
+- [Examples](docs/examples.md) - Practical examples and use cases
+
+
+## Contributions
+
+Contributions are welcome! Please open an issue or submit a pull request.

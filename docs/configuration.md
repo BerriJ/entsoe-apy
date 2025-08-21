@@ -132,5 +132,5 @@ entsoe.set_config(
 
 ## Related Documentation
 
-- [Getting Started](getting_started.md) - Basic library usage
 - [Examples](examples.md) - Practical usage examples
+- [ENTSOE](./ENTSOE/index.md) - Class documentation
