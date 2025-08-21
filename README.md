@@ -1,4 +1,4 @@
-# entsoe-apy: ENTSO-E API Python Python Package
+# ENTSO-E API Python Package
 
 A Python library for accessing ENTSO-E Transparency Platform API endpoints.
 
