@@ -17,6 +17,7 @@ class UnavailabilityOfProductionUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A77 (Production unit unavailability)
 
     Notes:
@@ -30,7 +31,6 @@ class UnavailabilityOfProductionUnits(Outages):
 
     def __init__(
         self,
-        security_token: str,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
         period_start: Optional[int] = None,
@@ -43,14 +43,12 @@ class UnavailabilityOfProductionUnits(Outages):
         registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of production units parameters.
 
         Args:
-            security_token: API security token
             bidding_zone_domain: EIC code of Control Area, Bidding Zone
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
@@ -62,12 +60,10 @@ class UnavailabilityOfProductionUnits(Outages):
                        A13=Withdrawn)
             registered_resource: EIC Code of Production Unit
             m_rid: Message ID for specific outage versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A77",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
@@ -77,7 +73,6 @@ class UnavailabilityOfProductionUnits(Outages):
             doc_status=doc_status,
             registered_resource=registered_resource,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -89,6 +84,7 @@ class UnavailabilityOfGenerationUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A80 (Generation unavailability)
 
     Notes:
@@ -102,7 +98,6 @@ class UnavailabilityOfGenerationUnits(Outages):
 
     def __init__(
         self,
-        security_token: str,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
         period_start: Optional[int] = None,
@@ -115,14 +110,12 @@ class UnavailabilityOfGenerationUnits(Outages):
         registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of generation units parameters.
 
         Args:
-            security_token: API security token
             bidding_zone_domain: EIC code of Control Area, Bidding Zone
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
@@ -134,12 +127,10 @@ class UnavailabilityOfGenerationUnits(Outages):
                        A13=Withdrawn)
             registered_resource: EIC Code of Generation Unit
             m_rid: Message ID for specific outage versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A80",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
@@ -149,7 +140,6 @@ class UnavailabilityOfGenerationUnits(Outages):
             doc_status=doc_status,
             registered_resource=registered_resource,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -161,6 +151,7 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A76 (Load unavailability)
 
     Notes:
@@ -175,7 +166,6 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
 
     def __init__(
         self,
-        security_token: str,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
         period_start: Optional[int] = None,
@@ -185,14 +175,12 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
         # Optional filtering parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize aggregated unavailability of consumption units parameters.
 
         Args:
-            security_token: API security token
             bidding_zone_domain: EIC code of Control Area or Bidding Zone
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update defined)
@@ -202,19 +190,16 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
             period_end_update: End of update period (YYYYMMDDHHMM format)
             business_type: Business type (A53=Planned maintenance,
                          A54=Forced unavailability)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A76",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             period_start_update=period_start_update,
             period_end_update=period_end_update,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -226,6 +211,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A78 (Transmission unavailability)
 
     Notes:
@@ -241,7 +227,6 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
 
     def __init__(
         self,
-        security_token: str,
         out_domain: str,
         in_domain: str,
         # Time period parameters (at least one set required)
@@ -255,14 +240,12 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of transmission infrastructure parameters.
 
         Args:
-            security_token: API security token
             out_domain: EIC code of Control Area or Bidding Zone (output domain)
             in_domain: EIC code of Control Area or Bidding Zone (input domain)
             period_start: Start period (YYYYMMDDHHMM format)
@@ -276,12 +259,10 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             m_rid: Message ID for specific outage versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A78",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             period_start_update=period_start_update,
@@ -290,7 +271,6 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
             business_type=business_type,
             doc_status=doc_status,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -305,6 +285,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A79 (Offshore grid infrastructure unavailability)
 
     Notes:
@@ -318,7 +299,6 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
 
     def __init__(
         self,
-        security_token: str,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
         period_start: Optional[int] = None,
@@ -329,14 +309,12 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of offshore grid infrastructure parameters.
 
         Args:
-            security_token: API security token
             bidding_zone_domain: EIC code of Control Area, Bidding Zone
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update defined)
@@ -349,12 +327,10 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             m_rid: Message ID for specific outage versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A79",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
@@ -362,7 +338,6 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
             period_end_update=period_end_update,
             doc_status=doc_status,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -374,6 +349,7 @@ class Fallbacks(Outages):
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
     Fixed parameters:
+
     - documentType: A53 (Outage publication document)
 
     Required parameters:
@@ -394,7 +370,6 @@ class Fallbacks(Outages):
 
     def __init__(
         self,
-        security_token: str,
         process_type: str,
         business_type: str,
         bidding_zone_domain: str,
@@ -407,14 +382,12 @@ class Fallbacks(Outages):
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize fall-backs parameters.
 
         Args:
-            security_token: API security token
             process_type: Process type (A47=Manual frequency restoration
                         reserve, A51=Automatic frequency restoration reserve,
                         A63=Imbalance Netting)
@@ -431,12 +404,10 @@ class Fallbacks(Outages):
             doc_status: Document status (A13=Withdrawn, by default withdrawn
                        publications not returned)
             m_rid: Message ID for specific publication versions
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         super().__init__(
             document_type="A53",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
@@ -445,7 +416,6 @@ class Fallbacks(Outages):
             business_type=business_type,
             doc_status=doc_status,
             m_rid=m_rid,
-            timeout=timeout,
             offset=offset,
         )
 

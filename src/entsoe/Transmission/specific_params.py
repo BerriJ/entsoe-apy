@@ -15,6 +15,7 @@ class TotalNominatedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/scheduledCommercialExchangesDayAhead/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: B08 (Total nominated capacity)
 
@@ -27,37 +28,31 @@ class TotalNominatedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total nominated capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
             business_type="B08",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -69,6 +64,7 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction.Type: A01 (Implicit)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -82,36 +78,30 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize implicit allocations offered capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -127,6 +117,7 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
     https://transparency.entsoe.eu/transmission/r2/explicitCapacityAllocations/show
 
     Fixed parameters:
+
     - documentType: A31 (Agreed capacity)
     - auction.Type: A02 (Explicit)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -140,36 +131,30 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize explicit allocations offered capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -185,6 +170,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
     https://transparency.entsoe.eu/transmission/r2/capacityAllocations/show
 
     Fixed parameters:
+
     - documentType: A26 (Capacity document)
     - businessType: A29 (Already allocated capacity)
     - contract_MarketAgreement.Type: A01 (Daily)
@@ -198,37 +184,31 @@ class TotalCapacityAlreadyAllocated(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total capacity already allocated parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
             business_type="A29",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -243,6 +223,7 @@ class CrossBorderPhysicalFlows(Transmission):
     https://transparency.entsoe.eu/transmission/r2/physicalFlows/show
 
     Fixed parameters:
+
     - documentType: A11 (Flow document)
 
     Request Limits:
@@ -254,36 +235,30 @@ class CrossBorderPhysicalFlows(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross-border physical flows parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A11",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -295,6 +270,7 @@ class CommercialSchedules(Transmission):
     https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
 
     Fixed parameters:
+
     - documentType: A09 (Finalised schedule)
     - contract_MarketAgreement.Type: A01 (Daily)
 
@@ -307,36 +283,30 @@ class CommercialSchedules(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize commercial schedules parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A09",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -351,6 +321,7 @@ class ForecastedTransferCapacities(Transmission):
     https://transparency.entsoe.eu/transmission/r2/forecastedCapacity/show
 
     Fixed parameters:
+
     - documentType: A61 (Estimated Net Transfer Capacity)
     - contract_MarketAgreement.Type: A01 (Daily)
 
@@ -363,36 +334,30 @@ class ForecastedTransferCapacities(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize forecasted transfer capacities parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A61",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -407,6 +372,7 @@ class FlowBasedAllocations(Transmission):
     https://transparency.entsoe.eu/transmission/r2/flowBasedAllocations/show
 
     Fixed parameters:
+
     - documentType: B09 (Flow based allocations)
     - processType: A44 (Flow based)
 
@@ -419,33 +385,27 @@ class FlowBasedAllocations(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         domain_mrid: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B09",
             process_type="A44",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -460,6 +420,7 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
     https://transparency.entsoe.eu/outages/r2/unavailabilityOfOffshoreGridInfrastructure/show
 
     Fixed parameters:
+
     - documentType: A79 (Unavailability of offshore grid)
 
     Request Limits:
@@ -471,32 +432,26 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of offshore grid infrastructure parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of bidding zone domain
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A79",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
-            timeout=timeout,
             offset=offset,
         )

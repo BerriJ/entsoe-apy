@@ -2,19 +2,28 @@
 
 import pytest
 
+from entsoe import reset_config, set_config
 from entsoe.Balancing import AcceptedAggregatedOffers, CrossBorderBalancing
-from entsoe.Base import Base, ValidationError
+from entsoe.Base.Base import ValidationError
+from entsoe.Base.Base import Base
 from entsoe.Market import EnergyPrices
 
 
 class TestEICValidation:
     """Test cases for EIC code validation."""
 
+    def setup_method(self):
+        """Set up test configuration before each test."""
+        set_config(security_token="test_token")
+
+    def teardown_method(self):
+        """Clean up configuration after each test."""
+        reset_config()
+
     def test_validate_eic_code_valid(self):
         """Test validation passes for valid EIC codes."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -26,7 +35,6 @@ class TestEICValidation:
         """Test validation fails for invalid EIC codes."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -42,7 +50,6 @@ class TestEICValidation:
         """Test validation passes for None values."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -54,7 +61,6 @@ class TestEICValidation:
         """Test add_domain_params with valid EIC codes."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -74,7 +80,6 @@ class TestEICValidation:
         """Test add_domain_params with invalid EIC codes."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -91,7 +96,6 @@ class TestEICValidation:
         # Should raise ValidationError for invalid control_area_domain
         with pytest.raises(ValidationError) as exc_info:
             AcceptedAggregatedOffers(
-                security_token="test_token",
                 period_start=202012312300,
                 period_end=202101022300,
                 control_area_domain="INVALID_EIC",
@@ -105,7 +109,6 @@ class TestEICValidation:
         # Should raise ValidationError for invalid acquiring_domain
         with pytest.raises(ValidationError) as exc_info:
             CrossBorderBalancing(
-                security_token="test_token",
                 period_start=202012312300,
                 period_end=202101022300,
                 acquiring_domain="INVALID_EIC",
@@ -120,7 +123,6 @@ class TestEICValidation:
         # Should raise ValidationError for invalid in_domain
         with pytest.raises(ValidationError) as exc_info:
             EnergyPrices(
-                security_token="test_token",
                 period_start=202012312300,
                 period_end=202101022300,
                 in_domain="INVALID_EIC",
@@ -134,7 +136,6 @@ class TestEICValidation:
         """Test that construction with valid EIC codes succeeds."""
         # Should succeed with valid EIC codes
         energy_prices = EnergyPrices(
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
             in_domain="10Y1001A1001A82H",
@@ -148,7 +149,6 @@ class TestEICValidation:
         """Test that construction with valid EIC codes succeeds for specific classes."""
         # Should succeed with valid EIC codes
         cross_border = CrossBorderBalancing(
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
             acquiring_domain="10Y1001A1001A82H",
@@ -162,7 +162,6 @@ class TestEICValidation:
         """Test validation with mixed valid and invalid EIC codes."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )
@@ -182,7 +181,6 @@ class TestEICValidation:
         """Test EIC validation for registered_resource parameter."""
         base = Base(
             document_type="A44",
-            security_token="test_token",
             period_start=202012312300,
             period_end=202101022300,
         )

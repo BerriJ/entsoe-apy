@@ -9,7 +9,6 @@ class Outages(Base):
     def __init__(
         self,
         document_type: str,
-        security_token: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
         # Domain parameters - typically required
@@ -24,7 +23,6 @@ class Outages(Base):
         registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
@@ -32,7 +30,6 @@ class Outages(Base):
 
         Args:
             document_type: Document type (e.g., A77, A78, A79, A80, A81, A82, A83)
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update is defined)
             period_end: End period (YYYYMMDDHHMM format, optional if
@@ -51,12 +48,13 @@ class Outages(Base):
                        when not defined only Active and Cancelled outages returned)
             registered_resource: EIC Code of Production Unit or Transmission Element
             m_rid: Message ID - older versions of outage returned only when used
-            timeout: Request timeout in seconds
             offset: Offset for pagination (allows downloading more than 200 docs,
                    offset ∈ [0,4800] so paging restricted to 5000 docs max)
 
         Raises:
             ValidationError: If any input parameter is invalid
+
+
 
         Notes:
             - For production unit unavailability: Use A77 document type
@@ -70,10 +68,8 @@ class Outages(Base):
         # Initialize base parameters using proper encapsulation
         super().__init__(
             document_type=document_type,
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 

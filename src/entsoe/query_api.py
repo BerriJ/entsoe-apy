@@ -2,22 +2,25 @@ from httpx import get
 from loguru import logger
 from xsdata.formats.dataclass.parsers import XmlParser
 
+from .config import get_config
 from .decorators import acknowledgement, pagination, range_limited, retry
-from .utils import _sanitize_params_for_logging, extract_namespace_and_find_classes
+from .utils import extract_namespace_and_find_classes
 
 
 @retry
-def query_core(params: dict, timeout: int = 5):
+def query_core(params: dict):
+    config = get_config()
     URL = "https://web-api.tp.entsoe.eu/api"
 
+    # Make a copy of params and extend it with the security_token
+    params_with_token = {**params, "securityToken": config.security_token}
+
     # Log the API call with sanitized parameters
-    sanitized_params = _sanitize_params_for_logging(params)
     logger.debug(
-        f"Making API request to {URL} with params: {sanitized_params}, "
-        f"timeout: {timeout}"
+        f"Making API request to {URL} with params: {params}, timeout: {config.timeout}"
     )
 
-    response = get(URL, params=params, timeout=timeout)
+    response = get(URL, params=params_with_token, timeout=config.timeout)
 
     content_length = len(response.text) if response.text else 0
     logger.debug(
@@ -46,13 +49,10 @@ def parse_response(response):
 # Order matters! First handle range-limits, second handle pagination
 @range_limited
 @pagination
-def query_api(params: dict, timeout: int = 5):
-    sanitized_params = _sanitize_params_for_logging(params)
-    logger.debug(
-        f"Starting query_api with params: {sanitized_params}, timeout: {timeout}"
-    )
+def query_api(params: dict):
+    logger.debug("Starting query_api by calling query_core.")
 
-    response = query_core(params, timeout=timeout)
+    response = query_core(params)
     _, result = parse_response(response)
 
     logger.debug(f"query_api completed successfully, returning {type(result).__name__}")
