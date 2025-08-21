@@ -1,5 +1,5 @@
 {
-  description = "entsoe-apy Development Shell";
+  description = "ENTSO-E-apy Development Shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
