@@ -1882,7 +1882,7 @@ class SharesOfFCRCapacityLegacy(Balancing):
     - Maintained for backward compatibility with older implementations
     """
 
-    code = "187.2_Legacy"
+    code = "187.2_Shares_Legacy"
 
     def __init__(
         self,
