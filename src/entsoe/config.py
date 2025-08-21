@@ -15,6 +15,7 @@ class EntsoEConfig:
     - Request timeout settings
     - Number of retries for failed requests
     - Delay between retry attempts
+    - Log level for loguru logger
     """
 
     def __init__(
@@ -23,6 +24,7 @@ class EntsoEConfig:
         timeout: int = 5,
         retries: int = 3,
         retry_delay: int = 10,
+        log_level: str = "SUCCESS",
     ):
         """
         Initialize configuration with global options.
@@ -33,15 +35,30 @@ class EntsoEConfig:
                           raises ValueError.
             timeout: Request timeout in seconds (default: 5)
             retries: Number of retry attempts for failed requests (default: 3)
+            retry_delay: Delay between retry attempts in seconds (default: 10)
+            log_level: Log level for loguru logger. Available levels: TRACE, DEBUG, 
+                      INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
 
         Raises:
             ValueError: If security_token is not provided and ENTSOE_API environment
                        variable is not set.
         """
+        # Validate log level
+        valid_levels = ["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
+        if log_level.upper() not in valid_levels:
+            raise ValueError(f"Invalid log_level '{log_level}'. Must be one of: {valid_levels}")
+        
+        # Configure loguru logger level
+        logger.remove()  # Remove default handler
+        logger.add(
+            sink=lambda msg: print(msg, end=""),
+            level=log_level.upper(),
+            format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
+        )
         # Handle security token
         if security_token is None:
             security_token = os.getenv("ENTSOE_API")
-            logger.info("Security token found in environment.")
+            logger.success("Security token found in environment.")
 
         if security_token is None:
             logger.warning(
@@ -54,6 +71,7 @@ class EntsoEConfig:
         self.timeout = timeout
         self.retries = retries
         self.retry_delay = retry_delay
+        self.log_level = log_level.upper()
 
 
 # Global configuration instance
@@ -84,6 +102,7 @@ def set_config(
     timeout: int = 5,
     retries: int = 3,
     retry_delay: int = 10,
+    log_level: str = "SUCCESS",
 ) -> None:
     """
     Set the global configuration.
@@ -93,6 +112,9 @@ def set_config(
                       ENTSOE_API environment variable.
         timeout: Request timeout in seconds (default: 5)
         retries: Number of retry attempts for failed requests (default: 3)
+        retry_delay: Delay between retry attempts in seconds (default: 10)
+        log_level: Log level for loguru logger. Available levels: TRACE, DEBUG, 
+                  INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
     """
     global _global_config
     _global_config = EntsoEConfig(
@@ -100,6 +122,7 @@ def set_config(
         timeout=timeout,
         retries=retries,
         retry_delay=retry_delay,
+        log_level=log_level,
     )
 
 

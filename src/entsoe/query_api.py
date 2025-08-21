@@ -16,14 +16,14 @@ def query_core(params: dict):
     params_with_token = {**params, "securityToken": config.security_token}
 
     # Log the API call with sanitized parameters
-    logger.debug(
+    logger.info(
         f"Making API request to {URL} with params: {params}, timeout: {config.timeout}"
     )
 
     response = get(URL, params=params_with_token, timeout=config.timeout)
 
     content_length = len(response.text) if response.text else 0
-    logger.debug(
+    logger.info(
         f"API response status: {response.status_code}, content length: {content_length}"
     )
 
