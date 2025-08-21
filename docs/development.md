@@ -1,3 +1,7 @@
+!!! Warning
+    This section is not up-to-date and will be updated soon.
+
+
 # Development
 
 This page provides information for developers who want to contribute to or extend the ENTSO-E API Python library.
