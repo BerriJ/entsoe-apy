@@ -28,36 +28,30 @@ class CrossBorderBalancing(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross border balancing parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A88",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -81,7 +75,6 @@ class AcceptedAggregatedOffers(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -89,32 +82,27 @@ class AcceptedAggregatedOffers(Balancing):
         business_type: Optional[str] = None,
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize accepted aggregated offers parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
             psr_type: A04=Generation, A05=Load, A03=Mixed
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A82",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -138,7 +126,6 @@ class ActivatedBalancingEnergy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -146,32 +133,27 @@ class ActivatedBalancingEnergy(Balancing):
         business_type: Optional[str] = None,
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize activated balancing energy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Market Balance Area
             business_type: A95=FCR, A96=aFRR, A97=mFRR, A98=RR
             psr_type: A04=Generation, A05=Load, A03=Mixed
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A83",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -197,7 +179,6 @@ class PricesOfActivatedBalancingEnergy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
@@ -209,14 +190,12 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         original_market_product: Optional[str] = None,
         export_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize prices of activated balancing energy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of LFA, IPA, or SCA
@@ -227,13 +206,11 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             standard_market_product: A01=Standard
             original_market_product: A02=Specific, A04=Local
             export_type: zip (planned to be discontinued)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A84",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
@@ -242,7 +219,6 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             psr_type=psr_type,
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -267,37 +243,31 @@ class VolumesAndPricesOfContractedReserves(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize volumes and prices of contracted reserves parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A51=aFRR, A52=FCR, A47=mFRR, A46=RR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A81",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B95",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -320,37 +290,31 @@ class ImbalancePrices(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
         # Optional parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize imbalance prices parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balancing Area
             psr_type: A04=Generation, A05=Load
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A85",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             psr_type=psr_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -372,37 +336,31 @@ class TotalImbalanceVolumes(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         control_area_domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total imbalance volumes parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balance Area
             business_type: A19=Balance Energy Deviation (default)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A86",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -425,33 +383,27 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize financial expenses and income for balancing parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A87",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -475,7 +427,6 @@ class BalancingEnergyBids(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         connecting_domain: str,
@@ -485,14 +436,12 @@ class BalancingEnergyBids(Balancing):
         original_market_product: Optional[str] = None,
         direction: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing energy bids parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             connecting_domain: EIC code of Scheduling Area
@@ -501,13 +450,11 @@ class BalancingEnergyBids(Balancing):
                                      A07=Standard mFRR direct activation
             original_market_product: A02=Specific, A03=Integrated Process, A04=Local
             direction: A01=Up, A02=Down
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             connecting_domain=connecting_domain,
@@ -516,7 +463,6 @@ class BalancingEnergyBids(Balancing):
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
             direction=direction,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -540,37 +486,31 @@ class AggregatedBalancingEnergyBids(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         area_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize aggregated balancing energy bids parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
             process_type: A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled mFRR,
                          A61=Direct mFRR, A67=Central aFRR, A68=Local aFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A24",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             area_domain=area_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -594,36 +534,30 @@ class ProcuredBalancingCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize procured balancing capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A15",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -647,36 +581,30 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize allocation and use of cross-zonal balancing capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A38",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -700,34 +628,28 @@ class CurrentBalancingState(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize current balancing state parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A86",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             area_domain=area_domain,
             business_type="B33",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -751,34 +673,28 @@ class FCRTotalCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FCR total capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="A25",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -802,34 +718,28 @@ class SharesOfFCRCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="C23",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -854,35 +764,29 @@ class SharingOfFCRBetweenSAs(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of FCR between SAs parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C22",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -905,37 +809,31 @@ class FRRAndRRCapacityOutlook(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR and RR capacity outlook parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement Reserve, A56=Frequency Restoration Reserve
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type="C76",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -958,39 +856,33 @@ class FRRAndRRActualCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR and RR actual capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement reserve, A56=Frequency restoration reserve
             business_type: C77=Min, C78=Avg, C79=Max
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1015,35 +907,29 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize outlook of reserve capacities on RR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C76",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1068,35 +954,29 @@ class RRActualCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize RR actual capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C77",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1120,34 +1000,28 @@ class SharingOfRRAndFRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A56",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1171,34 +1045,28 @@ class ExchangedReserveCapacity(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize exchanged reserve capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1224,35 +1092,29 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross border marginal prices for aFRR parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A84",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A67",
             business_type="A96",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1275,40 +1137,34 @@ class NettedAndExchangedVolumes(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of LFA or SCA
             connecting_domain: EIC code of LFA or SCA
             process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
                          A63=Imbalance Netting
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B17",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1331,40 +1187,34 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize netted and exchanged volumes per border parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
                          A63=Imbalance Netting
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A30",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1388,37 +1238,31 @@ class ElasticDemands(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize elastic demands parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A51=aFRR, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B75",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1444,40 +1288,34 @@ class ChangesToBidAvailability(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         domain: str,
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize changes to bid availability parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             domain: EIC code of Scheduling Area or LFA
             business_type: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B45",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             domain=domain,
             process_type="A47",
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1500,39 +1338,33 @@ class BalancingBorderCapacityLimitations(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing border capacity limitations parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1556,39 +1388,33 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize permanent allocation limitations to HVDC lines parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A99",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1612,37 +1438,31 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize results of criteria application process parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A64=Instantaneous frequency criteria,
                          A65=Frequency restoration criteria
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A45",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1670,37 +1490,31 @@ class BalancingEnergyBidsArchives(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize balancing energy bids archives parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=RR, A47=mFRR, A51=aFRR
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A37",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="B74",
             process_type=process_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1725,39 +1539,33 @@ class FRRActualCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         process_type: str,
         business_type: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize FRR actual capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A46=Replacement reserve, A56=Frequency restoration reserve
             business_type: C77=Min, C78=Avg, C79=Max
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type=business_type,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1782,35 +1590,29 @@ class RRActualCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize RR actual capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A46",
             business_type="C24",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1834,34 +1636,28 @@ class SharingOfRRAndFRRLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize sharing of RR and FRR legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A47",
-            timeout=timeout,
             offset=offset,
         )
 
@@ -1886,34 +1682,28 @@ class SharesOfFCRCapacityLegacy(Balancing):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize shares of FCR capacity legacy parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C23",
-            timeout=timeout,
             offset=offset,
         )

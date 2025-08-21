@@ -27,37 +27,31 @@ class TotalNominatedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total nominated capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
             business_type="B08",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -82,36 +76,30 @@ class ImplicitAllocationsOfferedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize implicit allocations offered capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -140,36 +128,30 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize explicit allocations offered capacity parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -198,37 +180,31 @@ class TotalCapacityAlreadyAllocated(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize total capacity already allocated parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
             business_type="A29",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -254,36 +230,30 @@ class CrossBorderPhysicalFlows(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize cross-border physical flows parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A11",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -307,36 +277,30 @@ class CommercialSchedules(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize commercial schedules parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A09",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -363,36 +327,30 @@ class ForecastedTransferCapacities(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize forecasted transfer capacities parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A61",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -419,33 +377,27 @@ class FlowBasedAllocations(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         domain_mrid: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B09",
             process_type="A44",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
-            timeout=timeout,
             offset=offset,
         )
 
@@ -471,32 +423,26 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
 
     def __init__(
         self,
-        security_token: str,
         period_start: int,
         period_end: int,
         bidding_zone_domain: str,
         # Additional common parameters
-        timeout: int = 5,
         offset: int = 0,
     ):
         """
         Initialize unavailability of offshore grid infrastructure parameters.
 
         Args:
-            security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             bidding_zone_domain: EIC code of bidding zone domain
-            timeout: Request timeout in seconds
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A79",
-            security_token=security_token,
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
-            timeout=timeout,
             offset=offset,
         )
