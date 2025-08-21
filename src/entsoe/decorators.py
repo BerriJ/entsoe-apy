@@ -4,6 +4,7 @@ from time import sleep
 import httpx
 from loguru import logger
 
+from .config import get_config
 from .utils import check_date_range_limit, merge_documents, split_date_range
 
 
@@ -152,7 +153,7 @@ def pagination(func):
     return pagination_wrapper
 
 
-def retry(func, retry_count: int = 3, retry_delay: int = 10):
+def retry(func):
     """
     Decorator that catches connection errors, waits and retries.
 
@@ -163,9 +164,10 @@ def retry(func, retry_count: int = 3, retry_delay: int = 10):
 
     @wraps(func)
     def retry_wrapper(*args, **kwargs):
+        config = get_config()
         last_exception = None
 
-        for attempt in range(retry_count):
+        for attempt in range(config.retries):
             try:
                 result = func(*args, **kwargs)
                 return result
@@ -173,15 +175,15 @@ def retry(func, retry_count: int = 3, retry_delay: int = 10):
             except (httpx.RequestError,) as e:
                 last_exception = e
                 logger.warning(
-                    f"Connection Error on attempt {attempt + 1}/{retry_count}: "
-                    f"{e}. Retrying in {retry_delay} seconds..."
+                    f"Connection Error on attempt {attempt + 1}/{config.retries}: "
+                    f"{e}. Retrying in {config.retry_delay} seconds..."
                 )
-                if attempt < retry_count - 1:  # Don't sleep on the last attempt
-                    sleep(retry_delay)
+                if attempt < config.retries - 1:  # Don't sleep on the last attempt
+                    sleep(config.retry_delay)
                 continue
 
         # If we've exhausted all retries, raise the last exception
-        logger.error(f"All {retry_count} retry attempts failed")
+        logger.error(f"All {config.retries} retry attempts failed")
         if last_exception:
             raise last_exception
         else:
