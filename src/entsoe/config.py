@@ -61,7 +61,7 @@ class EntsoEConfig:
         # Configure loguru logger level
         logger.remove()
         logger.add(
-            sink=lambda msg: print(msg, end=""), level=log_level.upper(), colorize=True
+            sink=sys.stdout, level=log_level.upper(), colorize=True
         )
         # Handle security token
         if security_token is None:
