@@ -1,0 +1,335 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Load",
+        "description": "Load endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Load",
+            "item": [
+                {
+                    "name": "6.1.A Actual Total Load",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "// Check if the response is in XML format\r",
+                                    "pm.test(\"Response is XML\", function () {\r",
+                                    "    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/xml');\r",
+                                    "});\r",
+                                    "\r",
+                                    "// Parse the XML response body\r",
+                                    "var responseXml = pm.response.text();\r",
+                                    "\r",
+                                    "// Convert the XML string to a JSON object for easier validation\r",
+                                    "var xml2Json = xml2Json(responseXml);\r",
+                                    "\r",
+                                    "// Check if the response contains specific content (adjust as needed)\r",
+                                    "pm.test(\"Response contains specific content\", function () {\r",
+                                    "    pm.expect(xml2Json).to.have.property('GL_MarketDocument');\r",
+                                    "    pm.expect(xml2Json.rootElement).to.have.property('type', 'A65');\r",
+                                    "});\r",
+                                    "\r",
+                                    "// Utility function to convert XML string to JSON object\r",
+                                    "function xml2Json(xml) {\r",
+                                    "    var parseString = require('xml2js').parseString;\r",
+                                    "    var resultJson;\r",
+                                    "    parseString(xml, { explicitArray: false }, function (err, result) {\r",
+                                    "        if (err) {\r",
+                                    "            throw new Error('Failed to parse XML');\r",
+                                    "        } else {\r",
+                                    "            resultJson = result;\r",
+                                    "        }\r",
+                                    "    });\r",
+                                    "    return resultJson;\r",
+                                    "}\r",
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A65&processType=A16&outBiddingZone_Domain=10YCZ-CEPS-----N&periodStart=202303030000&periodEnd=202303060000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A65",
+                                    "description": "[M] A65 = System total load"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A16",
+                                    "description": "[M] A16 = Realised"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202303030000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202303060000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/totalLoadR2/show)\n\n<u><b>Limits</b></u>:\n\n- One year range limit applies\n    \n- Minimum time interval in query response is one MTU period"
+                    }
+                },
+                {
+                    "name": "6.1.A Actual Total Load (Post)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/xml",
+                                "type": "text"
+                            },
+                            {
+                                "key": "SECURITY_TOKEN",
+                                "value": "{{apiKey}}",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "<StatusRequest_MarketDocument xmlns=\"urn:iec62325.351:tc57wg16:451-5:statusrequestdocument:4:0\">\r\n    <mRID>SampleCallToRestfulApi</mRID>\r\n    <type>A59</type>\r\n    <sender_MarketParticipant.mRID codingScheme=\"A01\">10X1001A1001A450</sender_MarketParticipant.mRID>\r\n    <sender_MarketParticipant.marketRole.type>A07</sender_MarketParticipant.marketRole.type>\r\n    <receiver_MarketParticipant.mRID codingScheme=\"A01\">10X1001A1001A450</receiver_MarketParticipant.mRID>\r\n    <receiver_MarketParticipant.marketRole.type>A32</receiver_MarketParticipant.marketRole.type>\r\n    <createdDateTime>2016-01-10T13:00:00Z</createdDateTime>\r\n    <AttributeInstanceComponent>\r\n        <attribute>DocumentType</attribute>\r\n        <attributeValue>A65</attributeValue>\r\n    </AttributeInstanceComponent>\r\n    <AttributeInstanceComponent>\r\n        <attribute>ProcessType</attribute>\r\n        <attributeValue>A16</attributeValue>\r\n    </AttributeInstanceComponent>\r\n    <AttributeInstanceComponent>\r\n        <attribute>OutBiddingZone_Domain</attribute>\r\n        <attributeValue>10YCZ-CEPS-----N</attributeValue>\r\n    </AttributeInstanceComponent>\r\n    <AttributeInstanceComponent>\r\n        <attribute>TimeInterval</attribute>\r\n        <attributeValue>2015-12-31T23:00Z/2016-12-31T23:00Z</attributeValue>\r\n    </AttributeInstanceComponent>\r\n</StatusRequest_MarketDocument>"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ]
+                        },
+                        "description": "[Link to data view in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/totalLoadR2/show)\n\n**Limits**:\n\n- One year range limit applies\n    \n- Minimum time interval in query response is one MTU period"
+                    }
+                },
+                {
+                    "name": "6.1.B Day-ahead Total Load Forecast",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A65&processType=A01&outBiddingZone_Domain=10YCZ-CEPS-----N&periodStart=202308140000&periodEnd=202308170000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A65",
+                                    "description": "[M] A65 = System total load"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308140000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308170000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view page in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/totalLoadR2/show)\n\n**Limits**:\n\n- One year range limit applies\n- Minimum time interval in query response is one day"
+                    }
+                },
+                {
+                    "name": "6.1.C Week-ahead Total Load Forecast",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A65&processType=A31&outBiddingZone_Domain=10YCZ-CEPS-----N&periodStart=202308132200&periodEnd=202308202200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A65",
+                                    "description": "[M] A65 = System total load"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A31",
+                                    "description": "[M] A31 = Week ahead"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308132200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308202200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view page in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/weekLoad/show)\n\n**Limits**:\n\n- One year range limit applies\n- Minimum time interval in query response is one week"
+                    }
+                },
+                {
+                    "name": "6.1.D Month-ahead Total Load Forecast",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A65&processType=A32&outBiddingZone_Domain={{outBiddingZone_Domain}}&periodStart=202307022200&periodEnd=202308062200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A65",
+                                    "description": "[M] A65 = System total load"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A32",
+                                    "description": "[M] A32 = Month ahead"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "{{outBiddingZone_Domain}}",
+                                    "description": "[M] EIC of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202307022200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308062200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view page in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/monthLoad/show)\n\n**Limits**:\n\n- One year range limit applies\n- Minimum time interval in query response is one month"
+                    }
+                },
+                {
+                    "name": "6.1.E Year-ahead Total Load Forecast",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A65&processType=A33&outBiddingZone_Domain=10YCZ-CEPS-----N&periodStart=202301012300&periodEnd=202312312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A65",
+                                    "description": "[M] A65 = System total load"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A33",
+                                    "description": "[M] A33 = Year ahead"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view page in Transparency Platform](https://transparency.entsoe.eu/load-domain/r2/yearLoad/show)\n\n**Limits**:\n\n- One year range limit applies\n- Minimum time interval in query response is one year"
+                    }
+                },
+                {
+                    "name": "8.1 Year-ahead Forecast Margin",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A70&processType=A33&outBiddingZone_Domain=10YCZ-CEPS-----N&periodStart=202212312300&periodEnd=202312312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A70",
+                                    "description": "[M] A70 = Load forecast margin"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A33",
+                                    "description": "[M] A33 = Year ahead"
+                                },
+                                {
+                                    "key": "outBiddingZone_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "[Link to data view page in Transparency Platform (old GUI)](https://transparency.entsoe.eu/load-domain/r2/marginLoad/show)\n\n**Limits**:\n\n- One year range limit applies\n    \n- Minimum time interval in query response is one year"
+                    }
+                }
+            ],
+            "description": "If you would like to learn more about the data items under this domain please go to [this link](https://transparencyplatform.zendesk.com/hc/en-us/articles/12784099471764)."
+        }
+    ]
+}

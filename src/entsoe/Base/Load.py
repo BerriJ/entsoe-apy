@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -9,15 +7,11 @@ class Load(Base):
     def __init__(
         self,
         document_type: str,
+        process_type: str,
         out_bidding_zone_domain: str,
         security_token: str,
         period_start: int,
         period_end: int,
-        # Optional parameters for load queries
-        process_type: Optional[str] = None,
-        business_type: Optional[str] = None,
-        psr_type: Optional[str] = None,
-        type_marketplace_agreement_type: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
         offset: int = 0,
@@ -26,18 +20,14 @@ class Load(Base):
         Initialize load data parameters for ENTSO-E Transparency Platform.
 
         Args:
-            document_type: Document type (e.g., A65, A68, A69, A74, A75, A76, A77, A78)
-            out_bidding_zone_domain: Bidding zone domain (e.g., 10YCZ-CEPS-----N)
-                                    or area domain
+            document_type: Document type (A65 for System total load,
+                          A70 for Load forecast margin)
+            process_type: Process type (A01=Day ahead, A16=Realised, A31=Week ahead,
+                         A32=Month ahead, A33=Year ahead)
+            out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             security_token: API security token
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            process_type: Process type (e.g., A01, A02, A16, A18, A31, A32, A33,
-                         A39, A40, A44, A46)
-            business_type: Business type (e.g., A29, A43, A46, B07, B08, B09,
-                          B10, B11, B17, B18, B19)
-            psr_type: Power system resource type (A03, A04, A05, B01-B24)
-            type_marketplace_agreement_type: Type marketplace agreement (A01-A07)
             timeout: Request timeout in seconds
             offset: Offset for pagination
 
@@ -55,17 +45,8 @@ class Load(Base):
             offset=offset,
         )
 
-        # Add domain parameters
+        # Add domain parameters with EIC code validation
         self.add_domain_params(out_bidding_zone_domain=out_bidding_zone_domain)
 
-        # Add business parameters
-        self.add_business_params(
-            business_type=business_type,
-            process_type=process_type,
-            psr_type=psr_type,
-        )
-
-        # Add market parameters
-        self.add_market_params(
-            type_marketplace_agreement_type=type_marketplace_agreement_type
-        )
+        # Add business parameters (process_type is mandatory for load endpoints)
+        self.add_business_params(process_type=process_type)

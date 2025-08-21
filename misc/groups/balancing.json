@@ -1,0 +1,1733 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Balancing",
+        "description": "Balancing endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Balancing",
+            "item": [
+                {
+                    "name": "17.1.J Cross Border Balancing",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A88&acquiring_Domain=10YAT-APG------L&connecting_Domain=10Y1001A1001A82H&periodStart=202303032300&periodEnd=202303042300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A88",
+                                    "description": "[M] A88 = Cross border balancing"
+                                },
+                                {
+                                    "key": "acquiring_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Market Balancing Area (acquiring area)"
+                                },
+                                {
+                                    "key": "connecting_Domain",
+                                    "value": "10Y1001A1001A82H",
+                                    "description": "[M] EIC code of a Market Balancing Area (connecting area)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202303032300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202303042300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/crossBorderBalancing/show](https://transparency.entsoe.eu/balancing/r2/crossBorderBalancing/show)"
+                    }
+                },
+                {
+                    "name": "17.1.D Accepted Aggregated Offers",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A82&controlArea_Domain=10YAT-APG------L&periodStart=202309022200&periodEnd=202309032200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A82",
+                                    "description": "[M] A82 = Accepted offers"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Market Balance Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309022200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309032200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A96",
+                                    "description": "[O] A95 = Frequency containment reserve; A96 = Automatic frequency restoration reserve; A97 = Manual frequency restoration reserve; A98 = Replacement reserve",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "psrType",
+                                    "value": "A04",
+                                    "description": "[O] A04 = Generation; A05 = Load; A03 = Mixed",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show](https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show)"
+                    }
+                },
+                {
+                    "name": "17.1.E Activated Balancing Energy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A83&controlArea_Domain=10YAT-APG------L&periodStart=202309022200&periodEnd=202309032200&businessType=A96",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A83",
+                                    "description": "[M] A83 = Activated balancing quantities"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Market Balance Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309022200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309032200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A96",
+                                    "description": "[O] A95 = Frequency containment reserve; A96 = Automatic frequency restoration reserve; A97 = Manual frequency restoration reserve; A98 = Replacement reserve"
+                                },
+                                {
+                                    "key": "psrType",
+                                    "value": "A04",
+                                    "description": "[O] A04 = Generation; A05 = Load; A03 = Mixed",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show](https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show)"
+                    }
+                },
+                {
+                    "name": "17.1.F Prices of Activated Balancing Energy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A84&processType=A16&controlArea_Domain=10YBE----------2&periodStart=202309032200&periodEnd=202309042200&businessType=A96",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A84",
+                                    "description": "[M] A84 = Activated balancing prices"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A16",
+                                    "description": "[M] A16\t= Realised; A60 = Scheduled activation mFRR; A61 = Direct activation mFRR; A68 = Local Selection aFRR"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC Code of a LFA, IPA, or a SCA"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309032200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309042200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A96",
+                                    "description": "[O] A95 = Frequency containment reserve; A96 = Automatic frequency restoration reserve; A97 = Manual frequency restoration reserve; A98 = Replacement reserve"
+                                },
+                                {
+                                    "key": "ExportType",
+                                    "value": "zip",
+                                    "description": "[O] Note: This parameter is planned to be discontinued in R3.09 (October 2023)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "A04",
+                                    "description": "[O] A04 = Generation; A05 = Load",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Standard_MarketProduct",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Standard",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Original_MarketProduct",
+                                    "value": "A02",
+                                    "description": "[O] A02 = Specific; A04 = Local",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/pricesOfActivatedBalancingEnergy/show](https://transparency.entsoe.eu/balancing/r3/pricesOfActivatedBalancingEnergy/show)"
+                    }
+                },
+                {
+                    "name": "IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A84&processType=A67&businessType=A96&Standard_MarketProduct=A01&controlArea_Domain=10YDE-VE-------2&periodStart=202311082300&periodEnd=202311092300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A84",
+                                    "description": "[M] A84 = Activated balancing prices"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A67",
+                                    "description": "[M] A67 = Central Selection aFRR"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A96",
+                                    "description": "[M] A96 = automatic frequency restoration reserve"
+                                },
+                                {
+                                    "key": "Standard_MarketProduct",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Standard"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YDE-VE-------2",
+                                    "description": "[M] EIC code of a LFA, SCA, IPA"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202311082300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202311092300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/cbmpsForAfrrStandardProduct/show](https://transparency.entsoe.eu/balancing/r3/cbmpsForAfrrStandardProduct/show)"
+                    }
+                },
+                {
+                    "name": "12.3.B&C Balancing energy bids",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A37&businessType=B74&processType=A47&connecting_Domain=10YBE----------2&periodStart=202310072200&periodEnd=202310082200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A37",
+                                    "description": "[M] A37 = Reserve bid document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B74",
+                                    "description": "[M] B74 = Offer"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve"
+                                },
+                                {
+                                    "key": "connecting_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202310072200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested date should be within the retention period."
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202310082200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested date should be within the retention period."
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "1000",
+                                    "description": "[O] Integer (allows downloading more than 100 documents. The offset \u2208 [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Standard_MarketProduct",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Standard; A05 = Standard mFRR scheduled activation; A07 = Standard mFRR direct activation",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Original_MarketProduct",
+                                    "value": "A02",
+                                    "description": "[O] A02 = Specific; A03 = Integrated Process; A04 = Local",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Direction",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Up; A02 = Down",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/bids/show](https://transparency.entsoe.eu/balancing/r3/bids/show)"
+                    }
+                },
+                {
+                    "name": "12.3.B&C Balancing energy bids archives",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A37&businessType=B74&processType=A47&connecting_Domain=10YBE----------2&periodStart=202310072200&periodEnd=202310082200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A37",
+                                    "description": "[M] A37 = Reserve bid document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B74",
+                                    "description": "[M] B74 = Offer"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve."
+                                },
+                                {
+                                    "key": "connecting_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202310072200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested period should not be within the retention period."
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202310082200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested period should not be within the retention period."
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/bids/show](https://transparency.entsoe.eu/balancing/r3/bids/show)"
+                    }
+                },
+                {
+                    "name": "IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=B45&processType=A47&Domain=10YDE-VE-------2&periodStart=202309232200&periodEnd=202309242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "B45",
+                                    "description": "[M] B45 = Bid Availability Document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "[M] A47"
+                                },
+                                {
+                                    "key": "Domain",
+                                    "value": "10YDE-VE-------2",
+                                    "description": "[M] EIC code of a Scheduling Area or LFA"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C46",
+                                    "description": "[O] C40 = Conditional bid; C41 = Thermal limit; C42 = Frequency limit; C43 = Voltage limit; C44 = Current limit; C45 = Short-circuit current limits; C46 = Dynamic stability limit",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "100",
+                                    "description": "[O] Integer (0-4800)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/changesToBidAvailability/show](https://transparency.entsoe.eu/balancing/r3/changesToBidAvailability/show)"
+                    }
+                },
+                {
+                    "name": "12.3.E Aggregated Balancing Energy Bids (GL EB)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A24&processType=A51&area_Domain=10YAT-APG------L&periodStart=202309022200&periodEnd=202309032200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A24",
+                                    "description": "[M] A24 = Bid document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A51",
+                                    "description": "[M] A51 = Automatic frequency restoration reserve; A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A60 = Scheduled activation mFRR;  A61 = Direct activation mFRR; A67 = Central Selection aFRR; A68 = Local Selection aFRR"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309022200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309032200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=B17&processType=A63&Acquiring_Domain=10YDE-VE-------2&Connecting_Domain=10YDE-VE-------2&periodStart=202301012300&periodEnd=202301022300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "B17",
+                                    "description": "[M] B17 = Aggregated netted external TSO schedule document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A63",
+                                    "description": "[M] A60 = mFRR with Scheduled Activation; A61 = mFRR with Direct Activation; A51 = Automatic Frequency Restoration Reserve; A63= Imbalance Netting"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YDE-VE-------2",
+                                    "description": "[M] EIC code of a LFA or SCA"
+                                },
+                                {
+                                    "key": "Connecting_Domain",
+                                    "value": "10YDE-VE-------2",
+                                    "description": "[M] EIC code of a LFA or SCA"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202301022300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/nettedVolumesAndNetPositions/show](https://transparency.entsoe.eu/balancing/r3/nettedVolumesAndNetPositions/show)"
+                    }
+                },
+                {
+                    "name": "IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes per Border",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A30&processType=A60&Acquiring_Domain=10YBE----------2&Connecting_Domain=10YFR-RTE------C&periodStart=202503010000&periodEnd=202503020000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A30",
+                                    "description": "[M] A30 =  Cross border schedule"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A60",
+                                    "description": "[M] A60 = mFRR with Scheduled Activation; A61 = mFRR with Direct Activation; A51 = Automatic Frequency Restoration Reserve; A63= Imbalance Netting"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a LFA or SCA"
+                                },
+                                {
+                                    "key": "Connecting_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] EIC code of a LFA or SCA"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202503010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202503020000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/nettedVolumesAndNetPositions/show](https://transparency.entsoe.eu/balancing/r3/nettedVolumesAndNetPositions/show)"
+                    }
+                },
+                {
+                    "name": "IFs aFRR 3.4 & mFRR 3.4 Elastic Demands",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A37&businessType=B75&processType=A47&Acquiring_Domain=10YCZ-CEPS-----N&periodStart=202311302300&periodEnd=202312012300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A37",
+                                    "description": "[M] A37 = Reserve bid document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B75",
+                                    "description": "[M] B75 = Need"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "[M] A51 = Automatic Frequency Restoration Reserve; A47 = Manual Frequency Restoration Reserve"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202311302300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (0 - 4800) ",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "17.1.B&C Volumes and Prices of Contracted Reserves",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A81&businessType=B95&processType=A52&Type_MarketAgreement.Type=A01&controlArea_Domain=10YCZ-CEPS-----N&periodStart=202309242200&periodEnd=202309252200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A81",
+                                    "description": "[M] A81 = Contracted reserves"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B95",
+                                    "description": "[M] B95 = Procured capacity "
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A52",
+                                    "description": "[M*] A51 = Automatic frequency restoration reserve; A52 =  Frequency containment reserve; A47 = Manual frequency restoration reserve; A46 = Replacement reserve"
+                                },
+                                {
+                                    "key": "Type_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Daily; A02 = Weekly; A03 = Monthly; A04 = Yearly; A06 = Long term; A13 = Hourly"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309252200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "psrType",
+                                    "value": "A04",
+                                    "description": "[O] A03 = Mixed; A04 = Generation; A05 = Load",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 100 documents. The offset must belong to the range [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/amountAndPricesPaidOfBalancingReservesUnderContract/show](https://transparency.entsoe.eu/balancing/r2/amountAndPricesPaidOfBalancingReservesUnderContract/show)\n\n> \\*Note: You can exclude the parameter processType from the request to retrieve data for all Reserve Types in 1 ZIP response."
+                    }
+                },
+                {
+                    "name": "12.3.F Procured balancing capacity (GL EB)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A15&processType=A51&area_Domain=10YDE-VE-------2&periodStart=202306150000&periodEnd=202306150100&offset=0&Type_MarketAgreement.Type=A01",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A15",
+                                    "description": "[M] A15 = Acquiring system operator reserve schedule"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A51",
+                                    "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve; A52 = Frequency containment reserve"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YDE-VE-------2",
+                                    "description": "[M] Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202306150000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202306150100",
+                                    "description": "[M ]Pattern yyyyMMddHHmm e.g. 201601010000 (IMPOTANT NOTE: Minimum time interval in query response ranges from part of day to year, depending on selected Type_MarketAgreement.Type. Minimum is 1 hour for this data item.)"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 100 documents. The offset must belong to the range [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)"
+                                },
+                                {
+                                    "key": "Type_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Daily; A02 = Weekly; A03 = Monthly; A04 = Yearly; A05 = Total; A06 = Long term; A07 = Intraday; A13 = Hourly"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/procuredCapacity/show](https://transparency.entsoe.eu/balancing/r2/procuredCapacity/show)"
+                    }
+                },
+                {
+                    "name": "187.2 FCR Total capacity (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&businessType=A25&area_Domain=10YEU-CONT-SYNC0&periodStart=202312312300&periodEnd=202412312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A25",
+                                    "description": "A25 = General Capacity Information"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YEU-CONT-SYNC0",
+                                    "description": "Synchronous Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202412312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/fcrAmountAndShares/show](https://transparency.entsoe.eu/balancing-domain/r3/fcrAmountAndShares/show)"
+                    }
+                },
+                {
+                    "name": "187.2 Shares of FCR capacity (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&businessType=C23&area_Domain=10YFR-RTE------C&periodStart=202312312300&periodEnd=202412312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C23",
+                                    "description": "C23 = Share of reserve capacity"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "Synchronous Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202412312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/fcrAmountAndShares/show](https://transparency.entsoe.eu/balancing-domain/r3/fcrAmountAndShares/show)"
+                    }
+                },
+                {
+                    "name": "187.2 Shares of FCR capacity - share of capacity (SO GL) Legacy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&businessType=C23&area_Domain=10YAT-APG------L&periodStart=202312312300&periodEnd=202412312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C23",
+                                    "description": "C23 = Share of reserve capacity"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A52",
+                                    "description": "A52 = Frequency containment reserve",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "Load Frequency Control Area, Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202412312300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r2/fcrSharesOfCapacity/show](https://transparency.entsoe.eu/balancing-domain/r2/fcrSharesOfCapacity/show)"
+                    }
+                },
+                {
+                    "name": "190.2 Sharing of FCR between SAs (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A52&businessType=C22&area_Domain=10Y1001A1001A59C&periodStart=201510302300&periodEnd=201512152300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A52",
+                                    "description": "A52 = Frequency containment reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C22",
+                                    "description": "C22 = Shared Balancing Reserve Capacity"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10Y1001A1001A59C",
+                                    "description": "Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "201510302300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "201512152300",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/sharingOfFcrBetweenSAs/show](https://transparency.entsoe.eu/balancing-domain/r3/sharingOfFcrBetweenSAs/show)"
+                    }
+                },
+                {
+                    "name": "188.3 & 189.2 FRR & RR Capacity Outlook (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A56&businessType=C76&area_Domain=10YAT-APG------L&periodStart=202312312300&periodEnd=202412312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "[M] A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A56",
+                                    "description": "[M] A46 = Replacement Reserve; A56 = Frequency Restoration Reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C76",
+                                    "description": "[M] C76 = Forecasted capacity"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of LFB Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202412312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show](https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show)"
+                    }
+                },
+                {
+                    "name": "188.4 & 189.3 FRR and RR Actual Capacity (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A56&businessType=C77&area_Domain=10YAT-APG------L&periodStart=202312312300&periodEnd=202403312200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "[M] A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A56",
+                                    "description": "[M] A46 = Replacement reserve; A56 = Frequency restoration reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C77",
+                                    "description": "[M] C77 = Min; C78 = Avg; C79 = Max"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC Code of LFB Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202403312200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show](https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show)"
+                    }
+                },
+                {
+                    "name": "188.4 FRR Actual Capacity (SO GL) - Legacy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A46&businessType=C77&area_Domain=10YCZ-CEPS-----N&periodStart=202212310000&periodEnd=202305010000&offset=100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A46",
+                                    "description": "A46 = Replacement reserve\nA56 = Frequency restoration reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C77",
+                                    "description": "[M] C77 = Min; C78 = Avg; C79 = Max"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202305010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "100",
+                                    "description": "Optional parameter"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show](https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show)"
+                    }
+                },
+                {
+                    "name": "189.2 Outlook of Reserve Capacities on RR (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A46&businessType=C76&area_Domain=10YCZ-CEPS-----N&periodStart=202212310000&periodEnd=202305010000&offset=100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A46",
+                                    "description": "A46 = Replacement reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C76",
+                                    "description": "C76 = Forecasted capacity"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202305010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "100",
+                                    "description": "Optional parameter"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r3/bids/show](https://transparency.entsoe.eu/balancing/r3/bids/show)"
+                    }
+                },
+                {
+                    "name": "189.3 RR Actual Capacity(SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A46&businessType=C77&area_Domain=10YCZ-CEPS-----N&periodStart=202212310000&periodEnd=202305010000&offset=100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A46",
+                                    "description": "A46 = Replacement reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C77",
+                                    "description": "C77 = Min"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202305010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "100",
+                                    "description": "Optional parameter"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show](https://transparency.entsoe.eu/balancing-domain/r3/frrAndRrCapacityOutlook/show)"
+                    }
+                },
+                {
+                    "name": "189.3 RR Actual Capacity(SO GL) Legacy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A46&businessType=C24&area_Domain=10YCZ-CEPS-----N&periodStart=202212310000&periodEnd=202305010000&offset=100",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A46",
+                                    "description": "A46 = Replacement reserve"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "C24",
+                                    "description": "C24 = Actual reserve capacity"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202305010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "100",
+                                    "description": "Optional parameter"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r2/rrActualCapacity/show](https://transparency.entsoe.eu/balancing-domain/r2/rrActualCapacity/show)"
+                    }
+                },
+                {
+                    "name": "17.1.I Financial Expenses and Income for Balancing",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A87&controlArea_Domain=10YHU-MAVIR----U&periodStart=202301312300&periodEnd=202302282300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A87",
+                                    "description": "[M] A87 = Financial situation"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YHU-MAVIR----U",
+                                    "description": "[M] EIC code of a Control Area or a Market Balance Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202302282300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/financialExpensesAndIncome/show](https://transparency.entsoe.eu/balancing/r2/financialExpensesAndIncome/show)"
+                    }
+                },
+                {
+                    "name": "12.3.H&I Allocation and use of cross-zonal balancing capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A38&processType=A51&Connecting_Domain=10Y1001A1001A47J&Acquiring_Domain=10YDK-2--------M&periodStart=202306150000&periodEnd=202306152200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A38",
+                                    "description": "[M] A38 = Reserve allocation result document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A51",
+                                    "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve; A52 = Frequency containment reserve"
+                                },
+                                {
+                                    "key": "Connecting_Domain",
+                                    "value": "10Y1001A1001A47J",
+                                    "description": "[M] EIC code of a Bidding Zone"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YDK-2--------M",
+                                    "description": "[M] EIC code of a Bidding Zone"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202306150000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202306152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "Type_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Daily; A02 = Weekly; A06 = Long term",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/allocationAndUseOfCrossZonalCapacity/show](https://transparency.entsoe.eu/balancing/r2/allocationAndUseOfCrossZonalCapacity/show)"
+                    }
+                },
+                {
+                    "name": "IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A99&processType=A63&BusinessType=B06&Out_Domain=10YNL----------L&In_Domain=10YDK-1--------W&periodStart=202101010000&periodEnd=202112310000&registeredResource=10T-DK-NL-000012",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A99",
+                                    "description": "[M] A99 = HVDC Link constraints"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A63",
+                                    "description": "[M] A51 = Automatic Frequency Restoration Reserve; A63= Imbalance Netting; A47 = Manual frequency restoration reserve"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "B06",
+                                    "description": "[M] B06 = DC Link constraint"
+                                },
+                                {
+                                    "key": "Out_Domain",
+                                    "value": "10YNL----------L",
+                                    "description": "[M] EIC code of a Scheduling Area or LFC area"
+                                },
+                                {
+                                    "key": "In_Domain",
+                                    "value": "10YDK-1--------W",
+                                    "description": "[M] EIC code of a Scheduling Area or LFC area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202101010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202112310000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "registeredResource",
+                                    "value": "10T-DK-NL-000012",
+                                    "description": "[O] EIC of interconnector (If used, data for the given Transmission Asset is returned, otherwise, data for IC not specified is returned.)"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r2/fcrSharesOfCapacity/show](https://transparency.entsoe.eu/balancing-domain/r2/fcrSharesOfCapacity/show)"
+                    }
+                },
+                {
+                    "name": "IFs 4.3 & 4.4 Balancing Border Capacity Limitations",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A31&BusinessType=A26&processType=A47&Out_Domain=10YCZ-CEPS-----N&In_Domain=10YAT-APG------L&periodStart=202401312300&periodEnd=202402012300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A31",
+                                    "description": "[M] A31 = Agreed capacity"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "A26",
+                                    "description": "[M] A26 = Available Transfer Capacity"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "[M] A51 = Automatic Frequency Restoration Reserve; A63= Imbalance Netting; A47 = Manual frequency restoration reserve"
+                                },
+                                {
+                                    "key": "Out_Domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC code of an LFC Area (LFA) or Scheduling area (SCA)"
+                                },
+                                {
+                                    "key": "In_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of an LFC Area (LFA) or Scheduling area (SCA)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202401312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202402012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "registeredResource",
+                                    "value": "22T201903146---W",
+                                    "description": "[O] EIC code of a Transmission Asset: If used, data for the given Transmission Asset is returned, otherwise, data for IC not specified is returned.",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/crossBorderCapacityLimits/show](https://transparency.entsoe.eu/balancing/r2/crossBorderCapacityLimits/show)"
+                    }
+                },
+                {
+                    "name": "190.1 Sharing of RR and FRR (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A56&BusinessType=C22&Acquiring_Domain=10YAT-APG------L&Connecting_Domain=10YCB-GERMANY--8&periodStart=202101010000&periodEnd=202112310000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A56",
+                                    "description": "A56 = Frequency restoration reserve"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "C22",
+                                    "description": "C22 = Shared balancing reserve capacity"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "Connecting_Domain",
+                                    "value": "10YCB-GERMANY--8",
+                                    "description": "Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202101010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202112310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/sharingOfRRAndFRR/show](https://transparency.entsoe.eu/balancing-domain/r3/sharingOfRRAndFRR/show)"
+                    }
+                },
+                {
+                    "name": "190.1 Sharing of RR and FRR (SO GL) Legacy",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A47&BusinessType=C22&area_domain=10YAT-APG------L&periodStart=202101010000&periodEnd=202112310000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A47",
+                                    "description": "A47 =  Manual frequency restoration reserve"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "C22",
+                                    "description": "C22 = Shared balancing reserve capacity"
+                                },
+                                {
+                                    "key": "area_domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202101010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202112310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/sharingOfReserveCapacity/show](https://transparency.entsoe.eu/balancing/r2/sharingOfReserveCapacity/show)"
+                    }
+                },
+                {
+                    "name": "190.3 Exchanged Reserve Capacity (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&processType=A46&BusinessType=C21&Acquiring_Domain=10YAT-APG------L&Connecting_Domain=10YCB-GERMANY--8&periodStart=202101010000&periodEnd=202112310000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "A26 = Capacity document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A46",
+                                    "description": "A46 =  Replacement reserve"
+                                },
+                                {
+                                    "key": "BusinessType",
+                                    "value": "C21",
+                                    "description": "C21 =  Exchanged balancing reserve capacity"
+                                },
+                                {
+                                    "key": "Acquiring_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "Connecting_Domain",
+                                    "value": "10YCB-GERMANY--8",
+                                    "description": "Load Frequency Control Block"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202101010000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202112310000",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "Offset",
+                                    "value": "1",
+                                    "description": "Offset (allows downloading more than 100 documents. The offset \u2208 [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing-domain/r3/exchangedReserveCapacity/show](https://transparency.entsoe.eu/balancing-domain/r3/exchangedReserveCapacity/show)"
+                    }
+                },
+                {
+                    "name": "17.1.G Imbalance prices",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A85&controlArea_Domain=10YAT-APG------L&periodStart=202401010000&periodEnd=202401050000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A85",
+                                    "description": "[M] A85 = Imbalance prices"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Scheduling Area or Market Balancing Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202401010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202401050000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PsrType",
+                                    "value": "A04",
+                                    "description": "[O] A04 = Generation; A05 = Load",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/system-operations-domain/resultsOfCriteriaApplicationProcess/show](https://transparency.entsoe.eu/system-operations-domain/resultsOfCriteriaApplicationProcess/show)"
+                    }
+                },
+                {
+                    "name": "17.1.H Total Imbalance Volumes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A86&controlArea_Domain=10YAT-APG------L&periodStart=202311032300&periodEnd=202311042300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A86",
+                                    "description": "[M] A86 = Imbalance volume"
+                                },
+                                {
+                                    "key": "controlArea_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Scheduling Area or Market Balance Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202311032300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202311042300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A19",
+                                    "description": "[O] A19: Balance Energy Deviation (default value when not specified)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/imbalance/show](https://transparency.entsoe.eu/balancing/r2/imbalance/show)"
+                    }
+                },
+                {
+                    "name": "12.3.A Current balancing state [GL EB]",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A86&businessType=B33&area_Domain=10YHU-MAVIR----U&periodStart=202405292200&periodEnd=202405302200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A86",
+                                    "description": "[M] A86 = Imbalance volume"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B33",
+                                    "description": "[M] B33 = Area Control Error"
+                                },
+                                {
+                                    "key": "area_Domain",
+                                    "value": "10YHU-MAVIR----U",
+                                    "description": "[M] EIC code of a Scheduling Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202405292200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202405302200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/currentBalancingState/show](https://transparency.entsoe.eu/balancing/r2/currentBalancingState/show)"
+                    }
+                },
+                {
+                    "name": "185.4 Results of the Criteria Application Process - Measurements (SO GL)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A45&processType=A65&area_domain=10YCZ-CEPS-----N&periodStart=202209302200&periodEnd=202212312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A45",
+                                    "description": "[M] A45 =  Measurement Value Document"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A65",
+                                    "description": "[M] A64 = Criteria application for instantaneous frequency (For SNA); A65: Criteria application for frequency restoration (for LFC Block)"
+                                },
+                                {
+                                    "key": "area_domain",
+                                    "value": "10YCZ-CEPS-----N",
+                                    "description": "[M] EIC Code of a SNA (for processType A64) or LFC Block (for processType A65)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202209302200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/balancing/r2/imbalance/show](https://transparency.entsoe.eu/balancing/r2/imbalance/show)"
+                    }
+                }
+            ],
+            "description": "If you would like to learn more about the data items under this domain please go to [this link](https://transparencyplatform.zendesk.com/hc/en-us/articles/12784099471764)."
+        }
+    ]
+}

@@ -17,6 +17,7 @@ class Outages(Base):
         # Alternative period parameters for update-based queries
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
+        time_interval_update: Optional[str] = None,
         # Optional parameters for outage queries
         business_type: Optional[str] = None,
         doc_status: Optional[str] = None,
@@ -42,6 +43,8 @@ class Outages(Base):
                                mandatory if period_start and period_end not defined)
             period_end_update: End of update period (YYYYMMDDHHMM format,
                              mandatory if period_start and period_end not defined)
+            time_interval_update: Time interval update (can be used instead of
+                                period_start_update & period_end_update)
             business_type: Business type (e.g., A53=Planned maintenance,
                           A54=Forced unavailability/unplanned outage)
             doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn;
@@ -78,6 +81,7 @@ class Outages(Base):
         self.add_update_params(
             period_start_update=period_start_update,
             period_end_update=period_end_update,
+            time_interval_update=time_interval_update,
         )
 
         # Add domain parameters

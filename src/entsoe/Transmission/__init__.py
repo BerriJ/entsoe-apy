@@ -11,7 +11,6 @@ from .specific_params import (
     TotalCapacityAlreadyAllocated,
     TotalNominatedCapacity,
     UnavailabilityOffshoreGridInfrastructure,
-    UnavailabilityTransmissionInfrastructure,
 )
 
 __all__ = [
@@ -24,6 +23,5 @@ __all__ = [
     "CommercialSchedules",
     "ForecastedTransferCapacities",
     "FlowBasedAllocations",
-    "UnavailabilityTransmissionInfrastructure",
     "UnavailabilityOffshoreGridInfrastructure",
 ]

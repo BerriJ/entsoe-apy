@@ -53,7 +53,7 @@ class Base:
         # Store timeout for potential use in derived classes
         self.timeout = timeout
 
-    def validate_eic_code(self, eic_code: str, parameter_name: str) -> None:
+    def validate_eic_code(self, eic_code: Optional[str], parameter_name: str) -> None:
         """
         Validate EIC code against the mappings dictionary.
 
@@ -94,6 +94,8 @@ class Base:
         acquiring_domain: Optional[str] = None,
         connecting_domain: Optional[str] = None,
         control_area_domain: Optional[str] = None,
+        area_domain: Optional[str] = None,
+        domain: Optional[str] = None,
     ) -> None:
         """
         Add domain-related parameters to the params dictionary.
@@ -107,6 +109,8 @@ class Base:
             acquiring_domain: Acquiring domain (EIC code)
             connecting_domain: Connecting domain (EIC code)
             control_area_domain: Control area domain (EIC code)
+            area_domain: Area domain (EIC code)
+            domain: Domain (EIC code)
         """
         # Validate EIC codes before adding them
         self.validate_eic_code(in_domain, "in_domain")
@@ -117,6 +121,8 @@ class Base:
         self.validate_eic_code(acquiring_domain, "acquiring_domain")
         self.validate_eic_code(connecting_domain, "connecting_domain")
         self.validate_eic_code(control_area_domain, "control_area_domain")
+        self.validate_eic_code(area_domain, "area_domain")
+        self.validate_eic_code(domain, "domain")
 
         self.add_optional_param("in_Domain", in_domain)
         self.add_optional_param("out_Domain", out_domain)
@@ -126,6 +132,8 @@ class Base:
         self.add_optional_param("acquiring_Domain", acquiring_domain)
         self.add_optional_param("connecting_Domain", connecting_domain)
         self.add_optional_param("controlArea_Domain", control_area_domain)
+        self.add_optional_param("area_Domain", area_domain)
+        self.add_optional_param("Domain", domain)
 
     def add_business_params(
         self,
@@ -169,6 +177,27 @@ class Base:
         self.add_optional_param(
             "type_MarketAgreement.Type", type_marketplace_agreement_type
         )
+
+    def add_balancing_params(
+        self,
+        standard_market_product: Optional[str] = None,
+        original_market_product: Optional[str] = None,
+        direction: Optional[str] = None,
+        export_type: Optional[str] = None,
+    ) -> None:
+        """
+        Add balancing-specific parameters to the params dictionary.
+
+        Args:
+            standard_market_product: Standard market product
+            original_market_product: Original market product
+            direction: Direction (A01=Up, A02=Down)
+            export_type: Export type (zip)
+        """
+        self.add_optional_param("Standard_MarketProduct", standard_market_product)
+        self.add_optional_param("Original_MarketProduct", original_market_product)
+        self.add_optional_param("Direction", direction)
+        self.add_optional_param("ExportType", export_type)
 
     def add_resource_params(
         self,
@@ -214,6 +243,7 @@ class Base:
         implementation_date_and_or_time: Optional[str] = None,
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
+        time_interval_update: Optional[str] = None,
     ) -> None:
         """
         Add update-related parameters to the params dictionary.
@@ -223,6 +253,8 @@ class Base:
             implementation_date_and_or_time: Implementation date and/or time
             period_start_update: Period start update (for outages)
             period_end_update: Period end update (for outages)
+            time_interval_update: Time interval update (can be used instead of
+                                period_start_update & period_end_update)
         """
         self.add_optional_param("updatedDateAndOrTime", updated_date_and_or_time)
         self.add_optional_param(
@@ -230,6 +262,7 @@ class Base:
         )
         self.add_optional_param("periodStartUpdate", period_start_update)
         self.add_optional_param("periodEndUpdate", period_end_update)
+        self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
     def query_api(self) -> dict:
         """

@@ -1,0 +1,426 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Transmission",
+        "description": "Transmission endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Transmission",
+            "item": [
+                {
+                    "name": "12.1.G Cross-Border Physical Flows",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A11&out_Domain=10YDE-RWENET---I&in_Domain=10YBE----------2&periodStart=202308232200&periodEnd=202308242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A11",
+                                    "description": "[M] A11 = Aggregated energy data report"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YDE-RWENET---I",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone, Country"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone, Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/physicalFlow/show](https://transparency.entsoe.eu/transmission-domain/physicalFlow/show)\n\n\n> **Unlike Web GUI, API responds not netted values as data is requested per direction.**"
+                    }
+                },
+                {
+                    "name": "11.1.A Forecasted Transfer Capacities",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A61&contract_MarketAgreement.Type=A01&out_Domain=10YGB----------A&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A61",
+                                    "description": "[M] A61 = Estimated Net Transfer Capacity"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead; A02 = Week ahead; A03 = Month ahead; A04 = Year ahead"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YGB----------A",
+                                    "description": "[M] EIC code of a Control Area or Bidding Zone"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area or Bidding Zone"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/ntcDay/show](https://transparency.entsoe.eu/transmission-domain/ntcDay/show)"
+                    }
+                },
+                {
+                    "name": "12.1.F Commercial Schedules",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A09&out_Domain=10Y1001A1001A82H&in_Domain=10YFR-RTE------C&periodStart=202308232200&periodEnd=202308242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A09",
+                                    "description": "[M] A09 = Finalised schedule"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10Y1001A1001A82H",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or a Country"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or a Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Day Ahead Commercial Schedules; A05 = Total Commercial Schedules",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "**Important Note:** Unlike web GUI, API response is not netted, but per direction"
+                    }
+                },
+                {
+                    "name": "11.3 Cross Border Capacity of DC Links - Intraday Transfer Limits",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A93&out_Domain=11Y0-0000-0265-K&in_Domain=10YFR-RTE------C&periodStart=202308160000&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A93",
+                                    "description": "[M] A93 = DC link capacity"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "11Y0-0000-0265-K",
+                                    "description": "[M] EIC code of a Bidding Zone, Control Area or Country"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] EIC code of a Bidding Zone, Control Area or Country"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308160000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/r2/capacityDcLinkRamping/show](https://transparency.entsoe.eu/transmission-domain/r2/capacityDcLinkRamping/show)"
+                    }
+                },
+                {
+                    "name": "13.1.C Costs of Congestion Management",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A92&out_Domain=10YBE----------2&in_Domain=10YBE----------2&periodStart=202112312300&periodEnd=202212312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A92",
+                                    "description": "[M] A92 = Congestion costs"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area (same as out_Domain)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202112312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B03",
+                                    "description": "[O] A46 = Redispatching costs; B03 = Countertrading costs; B04 = Congestion costs",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/congestion-management/r2/costs/show](https://transparency.entsoe.eu/congestion-management/r2/costs/show)"
+                    }
+                },
+                {
+                    "name": "13.1.A Redispatching Internal",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A63&businessType=A85&out_Domain=10YNL----------L&in_Domain=10YNL----------L&periodStart=202310312300&periodEnd=202311302300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A63",
+                                    "description": "[M] A63 = Redispatch notice"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A85",
+                                    "description": "[M] A85 = Internal requirements"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YNL----------L",
+                                    "description": "[M] EIC code of a Control Area"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YNL----------L",
+                                    "description": "[M] EIC code of a Control Area (must be same as out_Domain)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202310312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202311302300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/congestion-management/r2/redispatching-internal/show](https://transparency.entsoe.eu/congestion-management/r2/redispatching-internal/show)"
+                    }
+                },
+                {
+                    "name": "13.1.A Redispatching Cross Border",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A63&businessType=A46&out_Domain=10YAT-APG------L&in_Domain=10YFR-RTE------C&periodStart=202311010000&periodEnd=202312010000",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A63",
+                                    "description": "[M] A63 = Redispatch notice"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A46",
+                                    "description": "[M] A46 = System Operator re-dispatching"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Control Area"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] EIC code of a Control Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202311010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/congestion-management/r2/redispatching-cross-border/show](https://transparency.entsoe.eu/congestion-management/r2/redispatching-cross-border/show)"
+                    }
+                },
+                {
+                    "name": "9.1 Expansion and Dismantling Project",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A90&out_Domain=10YHU-MAVIR----U&in_Domain=10YSK-SEPS-----K&periodStart=202301010000&periodEnd=202312312300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A90",
+                                    "description": "[M] A90 = Interconnector network expension"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YHU-MAVIR----U",
+                                    "description": "[M] EIC code of a Bidding Zone or a Control Area"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YSK-SEPS-----K",
+                                    "description": "[M] EIC code of a Bidding Zone or a Control Area"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202301010000",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202312312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B01",
+                                    "description": "[O] B01 = interconnector network evolution; B02 = interconnector network dismantling",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "DocStatus",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Intermediate; A02 = Final; A05 = Active; A09 = Cancelled; A13 = Withdrawn; X01 = Estimated",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/expansionAndDismantlingProjects/show](https://transparency.entsoe.eu/transmission/r2/expansionAndDismantlingProjects/show)"
+                    }
+                },
+                {
+                    "name": "13.1.B Countertrading",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A91&out_Domain=10YES-REE------0&in_Domain=10YFR-RTE------C&periodStart=202309122200&periodEnd=202309132200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A91",
+                                    "description": "[M] A91 = Counter trade notice"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YES-REE------0",
+                                    "description": "[M] EIC code of a Control Area, or Bidding Zone"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YFR-RTE------C",
+                                    "description": "[M] EIC code of a Control Area, or Bidding Zone"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202309122200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202309132200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/congestion-management/r2/countertrading/show](https://transparency.entsoe.eu/congestion-management/r2/countertrading/show)"
+                    }
+                }
+            ],
+            "description": "If you would like to learn more about the data items under this domain please go to [this link](https://transparencyplatform.zendesk.com/hc/en-us/articles/12784099471764)."
+        }
+    ]
+}

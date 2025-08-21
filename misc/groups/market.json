@@ -1,0 +1,858 @@
+{
+    "info": {
+        "_postman_id": "30073b22-ca43-4ef9-9386-b47fdc5ab2c9",
+        "name": "Transparency Platform Restful API - Market",
+        "description": "Market endpoints from the Entso-e Transparency Platform Restful API.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "47704774",
+        "_collection_link": "https://www.postman.com/aviation-administrator-32077560/workspace/open/collection/42109836-30073b22-ca43-4ef9-9386-b47fdc5ab2c9?action=share&source=collection_link&creator=47704774"
+    },
+    "item": [
+        {
+            "name": "Market",
+            "item": [
+                {
+                    "name": "12.1.E Implicit and Flow-based Allocations -\u2009Congestion Income",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A25&businessType=B10&contract_MarketAgreement.Type=A01&out_Domain=10YAT-APG------L&in_Domain=10YAT-APG------L&periodStart=202308232200&periodEnd=202308242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A25",
+                                    "description": "[M] A25 = Allocation results"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B10",
+                                    "description": "[M] B10 = Congestion income"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Daily; A07 = Intraday"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Border (or Bidding Zone for Flow Based Allocations)"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Border (or Bidding Zone for Flow Based Allocations) - same as out_Domain"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/intradayImplicitAllocationsCongestionIncome/show](https://transparency.entsoe.eu/transmission/r2/intradayImplicitAllocationsCongestionIncome/show)\n\n[https://transparency.entsoe.eu/transmission/r2/dailyFlowBasedImplicitAllocationsCongestionIncome/show](https://transparency.entsoe.eu/transmission/r2/dailyFlowBasedImplicitAllocationsCongestionIncome/show)"
+                    }
+                },
+                {
+                    "name": "12.1.B Total Nominated Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&businessType=B08&out_Domain=10YGB----------A&in_Domain=10YBE----------2&periodStart=202308202200&periodEnd=202308212200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "[M] A26 = Capacity document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B08",
+                                    "description": "[M] B08 = Total nominated capacity"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YGB----------A",
+                                    "description": "[M] EIC code of a Control Area or Bidding Zone"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area or Bidding Zone"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308202200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308212200",
+                                    "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/r2/totalCapacityNominated/show](https://transparency.entsoe.eu/transmission-domain/r2/totalCapacityNominated/show)"
+                    }
+                },
+                {
+                    "name": "11.1 Implicit Allocations - Offered Transfer Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A31&auction.Type=A01&contract_MarketAgreement.Type=A01&out_Domain=10YDK-1--------W&in_Domain=10Y1001A1001A82H&periodStart=202212312300&periodEnd=202301012300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A31",
+                                    "description": "[M] A31 = Agreed capacity"
+                                },
+                                {
+                                    "key": "auction.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Implicit"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead; A07 = Intraday"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YDK-1--------W",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10Y1001A1001A82H",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202212312300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202301012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "Update_DateAndOrTime",
+                                    "value": "20230313123900",
+                                    "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "ClassificationSequence_AttributeInstanceComponent.Position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsIntraday/show](https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsIntraday/show)\n\n[https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show](https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show)"
+                    }
+                },
+                {
+                    "name": "12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (explicit)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A94&auction.Type=A02&contract_MarketAgreement.Type=A07&out_Domain=10YFI-1--------U&in_Domain=10Y1001A1001A49F&periodStart=202308232200&periodEnd=202308242200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A94",
+                                    "description": "[M] A94 = Non EU allocations"
+                                },
+                                {
+                                    "key": "auction.Type",
+                                    "value": "A02",
+                                    "description": "[M] A02 = Explicit"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A07",
+                                    "description": "[M] A07 = Intraday; A01 = Daily; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YFI-1--------U",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone, Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10Y1001A1001A49F",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone, Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "auction.Category",
+                                    "value": "A04",
+                                    "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "classificationSequence_AttributeInstanceComponent.Position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show](https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show)"
+                    }
+                },
+                {
+                    "name": "12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (implicit)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A94&auction.Type=A01&contract_MarketAgreement.Type=A01&out_Domain=10YLV-1001A00074&in_Domain=10Y1001A1001A49F&periodStart=201512012300&periodEnd=201512022300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A94",
+                                    "description": "[M] A94 = Non EU allocations"
+                                },
+                                {
+                                    "key": "auction.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Implicit"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Daily; A07 = Intraday"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YLV-1001A00074",
+                                    "description": "[M] EIC of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10Y1001A1001A49F",
+                                    "description": "[M] EIC of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "201512012300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "201512022300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "classificationSequence_AttributeInstanceComponent.Position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show](https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show)"
+                    }
+                },
+                {
+                    "name": "12.1.C Total Capacity Already Allocated",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A26&businessType=A29&contract_MarketAgreement.Type=A01&out_Domain=10YHR-HEP------M&in_Domain=10YBA-JPCC-----D&periodStart=202308242200&periodEnd=202308252200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A26",
+                                    "description": "[M] A26 = Capacity Document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "A29",
+                                    "description": "[M] A29 = Already Allocated Capacity"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A07 = Intraday; A01 = Daily; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YHR-HEP------M",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBA-JPCC-----D",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308252200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "auction.Category",
+                                    "value": "A02",
+                                    "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/totalCapacityAllocated/show](https://transparency.entsoe.eu/transmission/r2/totalCapacityAllocated/show)"
+                    }
+                },
+                {
+                    "name": "11.1.A Explicit Allocations - Offered Transfer Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A31&auction.Type=A02&contract_MarketAgreement.Type=A01&out_Domain=10YGB----------A&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A31",
+                                    "description": "[M] A31 = Agreed capacity"
+                                },
+                                {
+                                    "key": "auction.Type",
+                                    "value": "A02",
+                                    "description": "[M] A02 = Explicit"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A07 = Intraday; A01 = Day ahead; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YGB----------A",
+                                    "description": "[M] EIC code of Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "auction.Category",
+                                    "value": "A04",
+                                    "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Update_DateAndOrTime",
+                                    "value": "20230313123900",
+                                    "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "ClassificationSequence_AttributeInstanceComponent.Position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show](https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show)\n\nExample data view [link](https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show?name=&defaultValue=false&viewType=TABLE&areaType=BORDER_BZN&atch=false&dateTime.dateTime=02.01.2018+00:00|UTC|DAY&dateTime.endDateTime=02.01.2018+00:00|UTC|DAY&border.values=CTY|10Y1001A1001A83F!BZN_BZN|10Y1001A1001A63L_BZN_BZN|10YNL----------L&direction.values=Import&category.values=A04&sequence.values=1&dv-datatable-detail_Import5a4a96ffe4b03bda888f759a_length=10&dv-datatable-detail_Export5a4a96ffe4b03bda888f759a_length=10&dv-datatable_length=10)"
+                    }
+                },
+                {
+                    "name": "12.1.A Explicit Allocations - Use of the Transfer Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A25&businessType=B05&contract_MarketAgreement.Type=A07&out_Domain=10YGB----------A&in_Domain=10YBE----------2&periodStart=202308152200&periodEnd=202308162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A25",
+                                    "description": "[M] A25 = Allocation result document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B05",
+                                    "description": "[M] A43 = Requested capacity (without price); B05 = Capacity allocated (including price)"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A07",
+                                    "description": "[M] A07 = Intraday; A01 = Day ahead; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YGB----------A",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "Auction.Category",
+                                    "value": "A04",
+                                    "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "ClassificationSequence_AttributeInstanceComponent.Position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show](https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show)\n\nExample data view [link](https://transparency.entsoe.eu/transmission/r2/explicitAllocationsIntraday/show?name=&defaultValue=false&viewType=TABLE&areaType=BORDER_BZN&atch=false&dateTime.dateTime=02.01.2018+00:00|UTC|DAY&dateTime.endDateTime=02.01.2018+00:00|UTC|DAY&border.values=CTY|10Y1001A1001A83F!BZN_BZN|10Y1001A1001A63L_BZN_BZN|10YNL----------L&direction.values=Import&category.values=A04&sequence.values=1&dv-datatable_length=10)"
+                    }
+                },
+                {
+                    "name": "12.1.A Explicit Allocations - Auction Revenue",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A25&businessType=B07&contract_MarketAgreement.Type=A01&out_Domain=10YHR-HEP------M&in_Domain=10YBA-JPCC-----D&periodStart=202308242200&periodEnd=202308252200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A25",
+                                    "description": "[M] A25 = Allocation result document"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B07",
+                                    "description": "[M] B07 = Auction Revenue"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A01",
+                                    "description": "[M] A07 = Intraday; A01 = Daily; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YHR-HEP------M",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or a Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBA-JPCC-----D",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or a Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308242200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308252200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/r2/explicitAllocationsRevenue/show](https://transparency.entsoe.eu/transmission-domain/r2/explicitAllocationsRevenue/show)"
+                    }
+                },
+                {
+                    "name": "11.1.B Flow Based Allocations",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=B09&processType=A44&domain.mRID=10YDOM-REGION-1V&periodStart=202409222200&periodEnd=202409222300",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "B09",
+                                    "description": "[M] B09 = Flow Based Domain Publication"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A44",
+                                    "description": "[M] A43 = Day ahead; A44 = Intraday"
+                                },
+                                {
+                                    "key": "domain.mRID",
+                                    "value": "10YDOM-REGION-1V",
+                                    "description": "[M] EIC code of a Region"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202409222200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202409222300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show](https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show)"
+                    }
+                },
+                {
+                    "name": "11.1.B Flow Based Allocations (legacy)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=B11&processType=A01&out_Domain=10YDOM-REGION-1V&in_Domain=10YDOM-REGION-1V&periodStart=201812302300&periodEnd=201812312200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "B11",
+                                    "description": "[M] B11 = Flow-based allocations"
+                                },
+                                {
+                                    "key": "processType",
+                                    "value": "A01",
+                                    "description": "[M] A01 = Day ahead; A02 = Intraday"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YDOM-REGION-1V",
+                                    "description": "[M] EIC code of a Region"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YDOM-REGION-1V",
+                                    "description": "[M] EIC code of a Region"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "201812302300",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "201812312200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show](https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show)"
+                    }
+                },
+                {
+                    "name": "12.1.E Implicit Auction\u2009\u2014\u2009Net Positions",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A25&businessType=B09&contract_MarketAgreement.Type=A07&out_Domain=10YBE----------2&in_Domain=10YBE----------2&periodStart=202308222200&periodEnd=202308232200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A25",
+                                    "description": "[M] A25 = Allocation results"
+                                },
+                                {
+                                    "key": "businessType",
+                                    "value": "B09",
+                                    "description": "[M] B09 = Net position"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.Type",
+                                    "value": "A07",
+                                    "description": "[M] A01 = Daily; A05 = Total; A07 = Intraday"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Bidding Zone or a Control Area"
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Bidding Zone or a Control Area (must be same as out_Domain)"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202308222200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202308232200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "11.1 Continuous Allocations - Offered Transfer Capacity",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?DocumentType=A31&Auction.Type=A08&Out_Domain=10YBE----------2&In_Domain=10YNL----------L&PeriodStart=202405152200&PeriodEnd=202504162200",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "DocumentType",
+                                    "value": "A31",
+                                    "description": "[M] A31 = Agreed capacity; B33 = Published offered capacity"
+                                },
+                                {
+                                    "key": "Auction.Type",
+                                    "value": "A08",
+                                    "description": "[M] A08 = Continuous"
+                                },
+                                {
+                                    "key": "Out_Domain",
+                                    "value": "10YBE----------2",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "In_Domain",
+                                    "value": "10YNL----------L",
+                                    "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+                                },
+                                {
+                                    "key": "PeriodStart",
+                                    "value": "202405152200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "PeriodEnd",
+                                    "value": "202504162200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "Contract_MarketAgreement.Type",
+                                    "value": "A07",
+                                    "description": "[O] A07 = Intraday",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "Update_DateAndOrTime",
+                                    "value": "20240515123900",
+                                    "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000.\n\nIf there is no OC evolution version with requested update_DateAndOrTime the system selects OC version valid in the given time (e.g., closest previous update_DateAndOrTime). The most recent publish OC version is provided in case the update_DateAndOrTime parameter is omitted. The most recent published OC version and intermediate OC versions is distinguished by document type:\n\u2212\tIntermediate OC values: A31\n\u2212\tMost recent published OC values: B33\n",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 100 documents. The offset \u2208 [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Data view page in Transparency Platform:\n\n[https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsIntraday/show](https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsIntraday/show)\n\n[https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show](https://transparency.entsoe.eu/transmission-domain/r2/implicitAllocationsDayAhead/show)"
+                    }
+                },
+                {
+                    "name": "12.1.D Energy Prices",
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "key",
+                                    "value": "securityToken",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "in",
+                                    "value": "query",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "value",
+                                    "value": "{{vault:authorization-secret}}",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}?documentType=A44&periodStart=202407272200&periodEnd=202407282200&out_Domain=10YAT-APG------L&in_Domain=10YAT-APG------L&contract_MarketAgreement.type=A01",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "documentType",
+                                    "value": "A44",
+                                    "description": "[M] Price Document"
+                                },
+                                {
+                                    "key": "periodStart",
+                                    "value": "202407272200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "periodEnd",
+                                    "value": "202407282200",
+                                    "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+                                },
+                                {
+                                    "key": "out_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Bidding Zone "
+                                },
+                                {
+                                    "key": "in_Domain",
+                                    "value": "10YAT-APG------L",
+                                    "description": "[M] EIC code of a Bidding Zone (must be same as out_Domain)"
+                                },
+                                {
+                                    "key": "contract_MarketAgreement.type",
+                                    "value": "A01",
+                                    "description": "[O] A01 = Day-ahead ; A07 = Intraday"
+                                },
+                                {
+                                    "key": "classificationSequence_AttributeInstanceComponent.position",
+                                    "value": "1",
+                                    "description": "[O] Integer",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "offset",
+                                    "value": "0",
+                                    "description": "[O] Integer (allows downloading more than 100 documents. The offset \u2208 [0,4800] so that pagging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)\n",
+                                    "disabled": true
+                                }
+                            ]
+                        },
+                        "description": "Request Limits:\n\n- One year range limit applies\n    \n\nResponse Limits:\n\n- 100 documents (TimeSeries) - Offset parameter can be used in case the request matches more than 100 publications.\n    \n- Minimum time interval in query response ranges from part of day to 29 hours, depending on selected Contract_MarketAgreement.Type"
+                    }
+                }
+            ],
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{vault:authorization-secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "securityToken",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "exec": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "packages": {},
+                        "exec": [
+                            ""
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

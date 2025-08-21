@@ -14,9 +14,9 @@ class TestEncapsulation:
         class methods."""
         omi = OMI(
             security_token="test_token",
+            control_area_domain="10YBE----------2",
             period_start=202301010000,
             period_end=202301020000,
-            control_area_domain="10YBE----------2",
             doc_status="A05",
             m_rid="test_mrid",
             offset=100,
@@ -27,21 +27,28 @@ class TestEncapsulation:
         assert omi.params["securityToken"] == "test_token"
         assert omi.params["periodStart"] == 202301010000
         assert omi.params["periodEnd"] == 202301020000
-        assert omi.params["controlArea_Domain"] == "10YBE----------2"
-        assert omi.params["docStatus"] == "A05"
+        assert omi.params["ControlArea_Domain"] == "10YBE----------2"
+        assert omi.params["DocStatus"] == "A05"
         assert omi.params["mRID"] == "test_mrid"
-        assert omi.params["offset"] == 100
+        assert omi.params["Offset"] == 100
 
     def test_omi_optional_periods(self):
-        """Test that OMI class handles optional period parameters correctly."""
+        """Test that OMI class handles period parameters correctly - either
+        standard or update periods must be provided."""
+        # Test with update periods instead of standard periods
         omi = OMI(
             security_token="test_token",
             control_area_domain="10YBE----------2",
+            period_start_update=202301010000,
+            period_end_update=202301020000,
         )
 
-        # Verify that optional period parameters are not included
+        # Verify that standard period parameters are not included
         assert "periodStart" not in omi.params
         assert "periodEnd" not in omi.params
+        # But update period parameters should be included
+        assert omi.params["PeriodStartUpdate"] == 202301010000
+        assert omi.params["PeriodEndUpdate"] == 202301020000
         assert omi.params["documentType"] == "B47"
         assert omi.params["securityToken"] == "test_token"
 
@@ -92,7 +99,20 @@ class TestEncapsulation:
         with pytest.raises(ValueError, match="doc_status must be one of"):
             OMI(
                 security_token="test_token",
-                doc_status="INVALID",
+                control_area_domain="10YBE----------2",
+                period_start=202301010000,
+                period_end=202301020000,
+                doc_status="INVALID",  # type: ignore
+            )
+
+    def test_omi_period_validation_error(self):
+        """Test that OMI class requires either standard or update periods."""
+        with pytest.raises(
+            ValueError, match="Either \\(period_start, period_end\\) or"
+        ):
+            OMI(
+                security_token="test_token",
+                control_area_domain="10YBE----------2",
             )
 
     def test_encapsulation_no_direct_params_access(self):
@@ -101,6 +121,8 @@ class TestEncapsulation:
         omi = OMI(
             security_token="test_token",
             control_area_domain="10YBE----------2",
+            period_start=202301010000,
+            period_end=202301020000,
         )
 
         # The params dictionary should be properly initialized through Base

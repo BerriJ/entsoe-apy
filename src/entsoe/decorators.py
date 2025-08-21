@@ -1,4 +1,8 @@
 from functools import wraps
+from time import sleep
+
+import httpx
+from loguru import logger
 
 from .utils import check_date_range_limit, merge_documents, split_date_range
 
@@ -24,49 +28,48 @@ def range_limited(func):
         period_start = params.get("periodStart")
         period_end = params.get("periodEnd")
 
-        # print(f"[RANGE_WRAPPER] Function: {func.__name__}")
-        # print(f"[RANGE_WRAPPER] Initial range: {period_start} to {period_end}")
-
         # If no period parameters, just call the function normally
         if period_start is None or period_end is None:
-            # print("[RANGE_WRAPPER] No period parameters found, calling directly")
+            logger.debug("No period parameters found, calling function directly")
             return func(params, *args, **kwargs)
+
+        logger.debug(f"range_limited decorator called for function: {func.__name__}")
+        logger.debug(f"Period range: {period_start} to {period_end}")
 
         # Check if the range exceeds the limit (1 year = 365 days)
         if check_date_range_limit(period_start, period_end, max_days=365):
-            # print("[RANGE_WRAPPER] Range exceeds 365 days, splitting...")
+            logger.debug("Range exceeds 365 days, splitting range")
 
             # Split the range and make recursive calls
             pivot_date, _ = split_date_range(period_start, period_end)
-            # print(f"[RANGE_WRAPPER] Split at pivot: {pivot_date}")
+            logger.debug(f"Split at pivot date: {pivot_date}")
 
             # Create new params for the first half
             params1 = params.copy()
             params1["periodEnd"] = pivot_date
-            # print(
-            #     f"[RANGE_WRAPPER] First half: {params1['periodStart']} to "
-            #     f"{params1['periodEnd']}"
-            # )
+            logger.debug(
+                f"First half: {params1['periodStart']} to {params1['periodEnd']}"
+            )
 
             # Create new params for the second half
             params2 = params.copy()
             params2["periodStart"] = pivot_date
-            # print(
-            #     f"[RANGE_WRAPPER] Second half: {params2['periodStart']} to "
-            #     f"{params2['periodEnd']}"
-            # )
+            logger.debug(
+                f"Second half: {params2['periodStart']} to {params2['periodEnd']}"
+            )
 
             # Recursively call for both halves
-            # print("[RANGE_WRAPPER] Making recursive call for first half...")
+            logger.debug("Making recursive call for first half")
             result1 = range_wrapper(params1, *args, **kwargs)
-            # print("[RANGE_WRAPPER] Making recursive call for second half...")
+            logger.debug("Making recursive call for second half")
             result2 = range_wrapper(params2, *args, **kwargs)
 
+            logger.debug("Merging results from both halves")
             return merge_documents(result1, result2)
 
         else:
             # Range is within limit, make the API call
-            # print("[RANGE_WRAPPER] Range within 365 days, making API call")
+            logger.debug("Range within 365 days, making API call")
             return func(params, *args, **kwargs)
 
     return range_wrapper
@@ -75,14 +78,27 @@ def range_limited(func):
 def acknowledgement(func):
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs):
+        logger.debug(f"acknowledgement decorator called for function: {func.__name__}")
+
         name, response = func(params, *args, **kwargs)
+
+        logger.debug(f"Received response with name: {name}")
+
         if "acknowledgementdocument" in name.lower():
+            logger.debug("Response contains acknowledgement document")
             reason = response.reason[0].text
+            logger.debug(f"Acknowledgement reason: {reason}")
+
             if "No matching data found" in reason:
-                print(reason)
+                logger.debug(f"{reason}\nReturning None")
                 return None, None
             else:
+                logger.debug(
+                    "Acknowledgement document indicates error, raising exception"
+                )
                 raise AcknowledgementDocumentError(response.reason)
+
+        logger.debug("Acknowledgement check passed, returning response")
         return name, response
 
     return ack_wrapper
@@ -91,24 +107,32 @@ def acknowledgement(func):
 def pagination(func):
     @wraps(func)
     def pagination_wrapper(params, *args, **kwargs):
+        logger.debug(f"pagination decorator called for function: {func.__name__}")
+
         # Check if offset is in params (indicating pagination may be needed)
         if "offset" not in params:
+            logger.debug("No offset parameter found, calling function directly")
             return func(params, *args, **kwargs)
 
+        logger.debug("Offset parameter found, starting pagination")
         merged_result = None
 
         for offset in range(0, 4801, 100):  # 0 to 4800 in increments of 100
-            print(offset)
+            logger.debug(f"Processing pagination offset: {offset}")
             params["offset"] = offset
 
             result = func(params, *args, **kwargs)
 
             # If result is None, we've reached the end
             if result is None:
+                logger.debug("Received None result, pagination complete")
                 break
 
             # Merge with accumulated results
             merged_result = merge_documents(merged_result, result)
+            logger.debug(
+                f"Merged results, current result type: {type(result).__name__}"
+            )
 
             # If we got fewer than 100 time series, we've reached the end
             if (
@@ -116,8 +140,51 @@ def pagination(func):
                 and hasattr(result, "time_series")
                 and len(result.time_series) < 100
             ):
+                logger.debug(
+                    f"Received {len(result.time_series)} time series (< 100), "
+                    "pagination complete"
+                )
                 break
 
+        logger.debug("Pagination completed, returning merged result")
         return merged_result
 
     return pagination_wrapper
+
+
+def retry(func, retry_count: int = 3, retry_delay: int = 10):
+    """
+    Decorator that catches connection errors, waits and retries.
+
+    Args:
+        retry_count: Number of retry attempts (default: 3)
+        retry_delay: Wait time between retries in seconds (default: 10)
+    """
+
+    @wraps(func)
+    def retry_wrapper(*args, **kwargs):
+        last_exception = None
+
+        for attempt in range(retry_count):
+            try:
+                result = func(*args, **kwargs)
+                return result
+            # Catch httpx connection errors and socket errors
+            except (httpx.RequestError,) as e:
+                last_exception = e
+                logger.warning(
+                    f"Connection Error on attempt {attempt + 1}/{retry_count}: "
+                    f"{e}. Retrying in {retry_delay} seconds..."
+                )
+                if attempt < retry_count - 1:  # Don't sleep on the last attempt
+                    sleep(retry_delay)
+                continue
+
+        # If we've exhausted all retries, raise the last exception
+        logger.error(f"All {retry_count} retry attempts failed")
+        if last_exception:
+            raise last_exception
+        else:
+            raise RuntimeError("All retry attempts failed with unknown error")
+
+    return retry_wrapper
