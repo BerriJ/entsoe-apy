@@ -48,7 +48,7 @@ class OtherMarketInformation(OMI):
         Args:
             security_token: API security token
             control_area_domain: EIC code of Scheduling Area
-            period_start: Start period (YYYYMMDDHHMM format, optional if 
+            period_start: Start period (YYYYMMDDHHMM format, optional if
                          period_start_update and period_end_update are defined)
             period_end: End period (YYYYMMDDHHMM format, optional if
                        period_start_update and period_end_update are defined)
@@ -62,7 +62,7 @@ class OtherMarketInformation(OMI):
             offset: Offset for pagination
 
         Note:
-            Either (period_start, period_end) or 
+            Either (period_start, period_end) or
             (period_start_update, period_end_update)
             must be provided. The parent OMI class validates this requirement.
         """
