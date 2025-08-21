@@ -5,7 +5,7 @@ from unittest.mock import patch
 import httpx
 import pytest
 
-from entsoe import set_config, reset_config
+from entsoe import reset_config, set_config
 from entsoe.decorators import retry
 
 

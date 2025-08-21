@@ -3,7 +3,7 @@ from os import getenv
 
 import pytest
 
-from entsoe import set_config, reset_config
+from entsoe import reset_config, set_config
 from entsoe.Market import EnergyPrices
 
 _ENTSOE_API = getenv("ENTSOE_API")
