@@ -1,9 +1,10 @@
 """Test module for logging configuration functionality."""
 
-import pytest
 from unittest.mock import patch
 
-from entsoe import reset_config, set_config, get_config
+import pytest
+
+from entsoe import get_config, reset_config, set_config
 from entsoe.config import EntsoEConfig
 
 
@@ -16,10 +17,7 @@ class TestLoggingConfig:
 
     def test_config_accepts_log_level_parameter(self):
         """Test that EntsoEConfig accepts log_level parameter."""
-        config = EntsoEConfig(
-            security_token="test_token",
-            log_level="DEBUG"
-        )
+        config = EntsoEConfig(security_token="test_token", log_level="DEBUG")
         assert config.log_level == "DEBUG"
 
     def test_config_defaults_to_success_log_level(self):
@@ -34,8 +32,16 @@ class TestLoggingConfig:
 
     def test_config_accepts_valid_log_levels(self):
         """Test that EntsoEConfig accepts all valid log levels."""
-        valid_levels = ["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
-        
+        valid_levels = [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "SUCCESS",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+        ]
+
         for level in valid_levels:
             config = EntsoEConfig(security_token="test_token", log_level=level)
             assert config.log_level == level
@@ -64,25 +70,25 @@ class TestLoggingConfig:
     def test_loguru_configuration_is_updated(self, mock_logger):
         """Test that loguru logger is configured when EntsoEConfig is created."""
         EntsoEConfig(security_token="test_token", log_level="DEBUG")
-        
+
         # Verify that logger.remove() was called to remove default handler
         mock_logger.remove.assert_called_once()
-        
+
         # Verify that logger.add() was called to add new handler with correct level
         mock_logger.add.assert_called_once()
         call_args = mock_logger.add.call_args
-        assert call_args[1]['level'] == 'DEBUG'
+        assert call_args[1]["level"] == "DEBUG"
 
     def test_existing_functionality_preserved(self):
-        """Test that existing functionality is preserved with new log_level parameter."""
+        """Test that existing functionality is preserved with log_level parameter."""
         config = EntsoEConfig(
             security_token="test_token",
             timeout=30,
             retries=5,
             retry_delay=15,
-            log_level="INFO"
+            log_level="INFO",
         )
-        
+
         assert config.security_token == "test_token"
         assert config.timeout == 30
         assert config.retries == 5

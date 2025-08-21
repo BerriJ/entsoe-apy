@@ -36,7 +36,7 @@ class EntsoEConfig:
             timeout: Request timeout in seconds (default: 5)
             retries: Number of retry attempts for failed requests (default: 3)
             retry_delay: Delay between retry attempts in seconds (default: 10)
-            log_level: Log level for loguru logger. Available levels: TRACE, DEBUG, 
+            log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                       INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
 
         Raises:
@@ -44,16 +44,24 @@ class EntsoEConfig:
                        variable is not set.
         """
         # Validate log level
-        valid_levels = ["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
+        valid_levels = [
+            "TRACE",
+            "DEBUG",
+            "INFO",
+            "SUCCESS",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+        ]
         if log_level.upper() not in valid_levels:
-            raise ValueError(f"Invalid log_level '{log_level}'. Must be one of: {valid_levels}")
-        
+            raise ValueError(
+                f"Invalid log_level '{log_level}'. Must be one of: {valid_levels}"
+            )
+
         # Configure loguru logger level
-        logger.remove()  # Remove default handler
+        logger.remove()
         logger.add(
-            sink=lambda msg: print(msg, end=""),
-            level=log_level.upper(),
-            format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}"
+            sink=lambda msg: print(msg, end=""), level=log_level.upper(), colorize=True
         )
         # Handle security token
         if security_token is None:
@@ -113,7 +121,7 @@ def set_config(
         timeout: Request timeout in seconds (default: 5)
         retries: Number of retry attempts for failed requests (default: 3)
         retry_delay: Delay between retry attempts in seconds (default: 10)
-        log_level: Log level for loguru logger. Available levels: TRACE, DEBUG, 
+        log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                   INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
     """
     global _global_config
