@@ -63,7 +63,7 @@ class TestLogging:
 
     @patch("entsoe.query_api.get")
     def test_query_core_logging(self, mock_get):
-        """Test that query_core logs debug messages without exposing tokens."""
+        """Test that query_core logs info messages without exposing tokens."""
         # Mock the response
         mock_response = Mock()
         mock_response.status_code = 200
@@ -78,10 +78,10 @@ class TestLogging:
         with patch("entsoe.query_api.logger") as mock_logger:
             query_core(params)
 
-            assert mock_logger.debug.called
+            assert mock_logger.info.called
 
             # Check that the API call was logged with sanitized parameters
-            call_args = [call[0][0] for call in mock_logger.debug.call_args_list]
+            call_args = [call[0][0] for call in mock_logger.info.call_args_list]
 
             # Should log the API request
             assert any("Making API request" in arg for arg in call_args)
