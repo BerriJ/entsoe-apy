@@ -243,6 +243,7 @@ class Base:
         implementation_date_and_or_time: Optional[str] = None,
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
+        time_interval_update: Optional[str] = None,
     ) -> None:
         """
         Add update-related parameters to the params dictionary.
@@ -252,6 +253,8 @@ class Base:
             implementation_date_and_or_time: Implementation date and/or time
             period_start_update: Period start update (for outages)
             period_end_update: Period end update (for outages)
+            time_interval_update: Time interval update (can be used instead of
+                                period_start_update & period_end_update)
         """
         self.add_optional_param("updatedDateAndOrTime", updated_date_and_or_time)
         self.add_optional_param(
@@ -259,6 +262,7 @@ class Base:
         )
         self.add_optional_param("periodStartUpdate", period_start_update)
         self.add_optional_param("periodEndUpdate", period_end_update)
+        self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
     def query_api(self) -> dict:
         """
