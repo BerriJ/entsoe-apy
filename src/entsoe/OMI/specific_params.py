@@ -31,13 +31,12 @@ class OtherMarketInformation(OMI):
         self,
         security_token: str,
         control_area_domain: str,
-        # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int,
+        period_end: int,
         # Optional filtering parameters
         doc_status: Optional[str] = None,
+        period_start_update: Optional[int] = None,
+        period_end_update: Optional[int] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
         timeout: int = 5,
@@ -51,12 +50,16 @@ class OtherMarketInformation(OMI):
             control_area_domain: EIC code of Scheduling Area
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
             period_start_update: Start of update period (YYYYMMDDHHMM format)
             period_end_update: End of update period (YYYYMMDDHHMM format)
-            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
             m_rid: Message ID for specific information versions
             timeout: Request timeout in seconds
             offset: Offset for pagination
+
+        Note:
+            Either (period_start, period_end) or (period_start_update, period_end_update)
+            must be provided, with the former being the primary method.
         """
         super().__init__(
             security_token=security_token,
