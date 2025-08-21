@@ -62,7 +62,8 @@ class OtherMarketInformation(OMI):
             offset: Offset for pagination
 
         Note:
-            Either (period_start, period_end) or (period_start_update, period_end_update)
+            Either (period_start, period_end) or 
+            (period_start_update, period_end_update)
             must be provided. The parent OMI class validates this requirement.
         """
         super().__init__(
