@@ -3,7 +3,8 @@
 from typing import Optional
 from unittest.mock import Mock, patch
 
-from entsoe import reset_config, set_config
+from entsoe import set_config
+from entsoe.config.config import reset_config
 from entsoe.query.query_api import query_core
 from entsoe.utils.utils import check_date_range_limit, merge_documents, split_date_range
 
@@ -22,7 +23,7 @@ class TestLogging:
     def test_utility_functions_have_logging(self):
         """Test that utility functions can be called and log debug messages."""
         # Test check_date_range_limit
-        with patch("entsoe.utils.logger") as mock_logger:
+        with patch("entsoe.utils.utils.logger") as mock_logger:
             check_date_range_limit(202301010000, 202301020000, 365)
             assert mock_logger.debug.called
             # Verify that logging calls mention the function purpose
@@ -31,7 +32,7 @@ class TestLogging:
 
     def test_split_date_range_logging(self):
         """Test that split_date_range logs debug messages."""
-        with patch("entsoe.utils.logger") as mock_logger:
+        with patch("entsoe.utils.utils.logger") as mock_logger:
             pivot, end = split_date_range(202301010000, 202301050000)
             assert mock_logger.debug.called
             # Verify that logging calls mention the function purpose
@@ -54,14 +55,14 @@ class TestLogging:
         doc1 = TestDoc(items=[1, 2], name="doc1")
         doc2 = TestDoc(items=[3, 4], name=None)
 
-        with patch("entsoe.utils.logger") as mock_logger:
+        with patch("entsoe.utils.utils.logger") as mock_logger:
             merge_documents(doc1, doc2)
             assert mock_logger.debug.called
             # Verify that logging calls mention the function purpose
             call_args = [call[0][0] for call in mock_logger.debug.call_args_list]
             assert any("Merging documents" in arg for arg in call_args)
 
-    @patch("entsoe.query_api.get")
+    @patch("entsoe.query.query_api.get")
     def test_query_core_logging(self, mock_get):
         """Test that query_core logs info messages without exposing tokens."""
         # Mock the response
@@ -75,7 +76,7 @@ class TestLogging:
             "periodEnd": "202301020000",
         }
 
-        with patch("entsoe.query_api.logger") as mock_logger:
+        with patch("entsoe.query.query_api.logger") as mock_logger:
             query_core(params)
 
             assert mock_logger.info.called

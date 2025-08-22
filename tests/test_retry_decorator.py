@@ -5,7 +5,8 @@ from unittest.mock import patch
 import httpx
 import pytest
 
-from entsoe import reset_config, set_config
+from entsoe import set_config
+from entsoe.config.config import reset_config
 from entsoe.query.decorators import retry
 
 
@@ -43,7 +44,7 @@ class TestRetryDecorator:
                 raise httpx.RequestError("Connection failed")
             return f"success after {call_count} attempts"
 
-        with patch("entsoe.decorators.sleep") as mock_sleep:
+        with patch("entsoe.query.decorators.sleep") as mock_sleep:
             result = function_that_fails_twice("arg1", kwarg="value")
 
         assert result == "success after 3 attempts"
@@ -63,7 +64,7 @@ class TestRetryDecorator:
             call_count += 1
             raise httpx.RequestError("Connection always fails")
 
-        with patch("entsoe.decorators.sleep") as mock_sleep:
+        with patch("entsoe.query.decorators.sleep") as mock_sleep:
             with pytest.raises(httpx.RequestError, match="Connection always fails"):
                 always_failing_function("arg1", kwarg="value")
 
@@ -134,8 +135,8 @@ class TestRetryDecorator:
                 raise httpx.RequestError("First failure")
             return "success"
 
-        with patch("entsoe.decorators.sleep"):
-            with patch("entsoe.decorators.logger") as mock_logger:
+        with patch("entsoe.query.decorators.sleep"):
+            with patch("entsoe.query.decorators.logger") as mock_logger:
                 result = function_that_fails_once()
 
         assert result == "success"
@@ -155,8 +156,8 @@ class TestRetryDecorator:
         def always_failing_function():
             raise httpx.RequestError("Always fails")
 
-        with patch("entsoe.decorators.sleep"):
-            with patch("entsoe.decorators.logger") as mock_logger:
+        with patch("entsoe.query.decorators.sleep"):
+            with patch("entsoe.query.decorators.logger") as mock_logger:
                 with pytest.raises(httpx.RequestError):
                     always_failing_function()
 
@@ -182,7 +183,7 @@ class TestRetryDecorator:
                     raise error
                 return "success"
 
-            with patch("entsoe.decorators.sleep"):
+            with patch("entsoe.query.decorators.sleep"):
                 result = function_with_specific_error()
 
             assert result == "success"
