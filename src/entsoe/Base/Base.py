@@ -2,8 +2,8 @@
 
 from typing import Any, Dict, Optional
 
-from ..mappings_dict import mappings
-from ..query_api import query_api
+from ..query.query_api import query_api
+from ..utils.mappings_dict import mappings
 
 
 class ValidationError(ValueError):

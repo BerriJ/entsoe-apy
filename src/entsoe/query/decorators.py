@@ -4,8 +4,8 @@ from time import sleep
 import httpx
 from loguru import logger
 
-from .config import get_config
-from .utils import check_date_range_limit, merge_documents, split_date_range
+from ..config.config import get_config
+from ..utils.utils import check_date_range_limit, merge_documents, split_date_range
 
 
 class AcknowledgementDocumentError(Exception):

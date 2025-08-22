@@ -6,7 +6,7 @@ import httpx
 import pytest
 
 from entsoe import reset_config, set_config
-from entsoe.decorators import retry
+from entsoe.query.decorators import retry
 
 
 class TestRetryDecorator:
