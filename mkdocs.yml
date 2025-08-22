@@ -12,6 +12,7 @@ nav:
     - Outages: ENTSOE/outages.md
     - Balancing: ENTSOE/balancing.md
     - OMI: ENTSOE/omi.md
+  - Package Structure: entsoe_export_tree.md
   - Examples: examples.md
   - Mappings: mappings.md
   - Development: development.md
