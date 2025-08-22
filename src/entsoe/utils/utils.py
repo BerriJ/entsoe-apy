@@ -1,5 +1,5 @@
 from dataclasses import fields, is_dataclass
-from datetime import datetime, timedelta
+from datetime import datetime
 import inspect
 from xml.etree import ElementTree as ET
 

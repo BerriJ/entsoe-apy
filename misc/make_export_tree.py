@@ -23,7 +23,8 @@ def get_module_exports(module_name, max_depth=3, current_depth=0):
             try:
                 obj = getattr(module, name)
                 obj_type = type(obj).__name__
-                # Include functions, classes, and constants, but not modules unless explicitly needed
+                # Include functions, classes, and constants, but not modules
+                # unless explicitly needed
                 if obj_type in [
                     "function",
                     "type",
@@ -40,7 +41,7 @@ def get_module_exports(module_name, max_depth=3, current_depth=0):
                     and obj.__module__.startswith("entsoe")
                 ):
                     actual_exports.append((name, obj_type))
-            except:
+            except Exception:
                 pass
 
         exports["_direct"] = actual_exports
@@ -61,7 +62,7 @@ def get_module_exports(module_name, max_depth=3, current_depth=0):
                                 exports[submodule_name] = subexports
                         except Exception as e:
                             exports[submodule_name] = f"Error: {str(e)[:50]}"
-        except:
+        except Exception:
             pass
 
         return exports
@@ -95,7 +96,8 @@ def print_tree(exports, indent=0, max_items_per_level=20, file=None):
                     print(f"{prefix}│   {marker} {name} ({obj_type})", file=file)
                 if len(direct) > max_items_per_level:
                     print(
-                        f"{prefix}│   └── ... and {len(direct) - max_items_per_level} more",
+                        f"{prefix}│   └── ... and "
+                        f"{len(direct) - max_items_per_level} more",
                         file=file,
                     )
                 print(f"{prefix}│", file=file)
@@ -126,11 +128,13 @@ with open("./docs/entsoe_export_tree.md", "w") as f:
     print("# ENTSOE Module Export Tree", file=f)
     print("", file=f)
     print(
-        "A comprehensive overview of all exported classes, functions, and modules in the entsoe-api-py package.",
+        "A comprehensive overview of all exported classes, functions, "
+        "and modules in the entsoe-api-py package.",
         file=f,
     )
     print(
-        "This tree shows the hierarchical structure of the package with direct exports and submodules.",
+        "This tree shows the hierarchical structure of the package "
+        "with direct exports and submodules.",
         file=f,
     )
     print("", file=f)
