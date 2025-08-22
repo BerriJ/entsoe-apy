@@ -252,7 +252,9 @@ def ts_to_dict(time_series):
                     "resolution": resolution_str,
                     "resolution_minutes": parse_duration_to_minutes(resolution_str),
                     "business_type": ts.business_type.name,
-                    "contract_market_agreement_type": ts.contract_market_agreement_type.name,
+                    "contract_market_agreement_type": (
+                        ts.contract_market_agreement_type.name
+                    ),
                 }
                 data_rows.append(row)
 
