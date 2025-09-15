@@ -1,11 +1,6 @@
-from collections.abc import Iterable
 from dataclasses import dataclass, field
 from itertools import product
 from typing import Any, Callable
-
-
-def is_iterable(obj) -> bool:
-    return isinstance(obj, Iterable) and not isinstance(obj, (str, bytes))
 
 
 @dataclass
@@ -19,20 +14,21 @@ class Flatter:
             attr_items = list(vars(obj).items())
             values = []
             for key, value in attr_items:
-                if is_iterable(value):
+                if isinstance(value, list):
                     nested = self.do(value)
                     values.append(nested)
                 elif isinstance(value, tuple(self.custom_encoders.keys())):
+                    first = next(
+                        (
+                            encoder
+                            for type_, encoder in self.custom_encoders.items()
+                            if isinstance(value, type_)
+                        ),
+                        None,
+                    )
+
                     values.append([
-                        {key_: value_}
-                        for key_, value_ in next(
-                            (
-                                encoder
-                                for type_, encoder in self.custom_encoders.items()
-                                if isinstance(value, type_)
-                            ),
-                            None,
-                        )(key, value).items()
+                        {key_: value_} for key_, value_ in first(key, value).items()
                     ])
                 else:
                     values.append([{key: value}])
@@ -45,12 +41,12 @@ class Flatter:
                     merged.update(d)
                 result.append(merged)
             return result
-        elif is_iterable(obj):
+        elif isinstance(obj, list):
             rows = []
             for item in obj:
                 rows.extend(self.do(item))
             return rows
         else:
             raise ValueError(
-                "Object must be a dataclass instance or an iterable of such instances."
+                f"Object must be a dataclass instance or an iterable of such instances: {type(obj)}."
             )
