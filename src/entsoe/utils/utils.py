@@ -2,6 +2,8 @@ from dataclasses import fields, is_dataclass
 from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
+from entsoe.xml_models.iec62325_451_3_publication_v7_3 import TimeSeries
+
 
 from loguru import logger
 
@@ -224,7 +226,7 @@ def calculate_timestamp(period_start_str, position, resolution_str):
     return timestamp
 
 
-def ts_to_dict(time_series):
+def ts_to_dict(time_series: list[TimeSeries]) -> list[dict]:
     data_rows = []
     for i, ts in enumerate(time_series):
         periods = ts.period
