@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from entsoe.flatter import flatten_to_rows
+from entsoe.flatter import Flatter
 
 
 @dataclass
@@ -31,14 +31,14 @@ _MAIN = Item(
 
 
 def test_():
-    result = flatten_to_rows(_MAIN)
+    result = Flatter().do(_MAIN)
     assert result[0] == {"a": 1, "x": 10, "x2": 1, "y2": 2}
     assert result[1] == {"a": 1, "x": 10, "x2": 5, "y2": 6}
     assert result[2] == {"a": 1, "x": 30, "x2": 3, "y2": 4}
 
 
 def test_list():
-    result = flatten_to_rows([_MAIN, _MAIN])
+    result = Flatter().do([_MAIN, _MAIN])
 
     assert result[0] == {"a": 1, "x": 10, "x2": 1, "y2": 2}
     assert result[1] == {"a": 1, "x": 10, "x2": 5, "y2": 6}
