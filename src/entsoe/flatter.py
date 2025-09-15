@@ -1,5 +1,5 @@
 from collections.abc import Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from itertools import product
 
 
@@ -9,7 +9,7 @@ def is_iterable(obj) -> bool:
 
 @dataclass
 class Flatter:
-    custom_encoders: dict[type, callable] = {}
+    custom_encoders: dict[type, callable] = field(default_factory=dict)
 
     def do(self, obj) -> list[dict]:
         if hasattr(obj, "__dict__"):
