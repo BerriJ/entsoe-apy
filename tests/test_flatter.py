@@ -5,8 +5,8 @@ from entsoe.flatter import flatten_to_rows
 
 @dataclass
 class SubSubItem:
-    x: int
-    y: int
+    x2: int
+    y2: int
 
 
 @dataclass
@@ -31,6 +31,6 @@ def test_():
     )
 
     result = flatten_to_rows(obj)
-    assert result[0] == [1, 10, 1, 2]
-    assert result[1] == [1, 10, 5, 6]
-    assert result[2] == [1, 30, 3, 4]
+    assert result[0] == {"a": 1, "x": 10, "x2": 1, "y2": 2}
+    assert result[1] == {"a": 1, "x": 10, "x2": 5, "y2": 6}
+    assert result[2] == {"a": 1, "x": 30, "x2": 3, "y2": 4}
