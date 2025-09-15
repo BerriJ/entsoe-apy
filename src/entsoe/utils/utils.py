@@ -5,6 +5,7 @@ from xml.etree import ElementTree as ET
 
 from loguru import logger
 
+from entsoe.xml_interface import TimeSeries
 import entsoe.xml_models as xml_models
 
 
@@ -224,7 +225,7 @@ def calculate_timestamp(period_start_str, position, resolution_str):
     return timestamp
 
 
-def ts_to_dict(time_series: list) -> list[dict]:
+def ts_to_dict(time_series: list[TimeSeries]) -> list[dict]:
     """
     Convert arbitrary TimeSeries objects to a list of dictionaries.
 
