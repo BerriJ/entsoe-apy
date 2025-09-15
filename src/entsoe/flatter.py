@@ -3,27 +3,45 @@ from itertools import product
 from typing import Any, Callable
 
 
+def _is_instance(obj, typ: type) -> bool:
+    """Check if obj is an instance of typ, handling generics like list[int]."""
+    origin = getattr(typ, "__origin__", None)
+    if origin is not None:
+        if not isinstance(obj, origin):
+            return False
+
+        args = getattr(typ, "__args__", ())
+        if origin is list and len(args) == 1:
+            return all(isinstance(item, args[0]) for item in obj)
+
+        return False
+    else:
+        return isinstance(obj, typ)
+
+
 @dataclass
 class Flatter:
     custom_encoders: dict[type, Callable[[str, Any], dict[str, Any]]] = field(
         default_factory=dict
     )
 
+    def first_custom_decoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
+        return next(
+            (
+                encoder
+                for typ, encoder in self.custom_encoders.items()
+                if _is_instance(value, typ)
+            ),
+            None,
+        )
+
     def do(self, obj) -> list[dict]:
         if hasattr(obj, "__dict__"):
             attr_items = list(vars(obj).items())
             values = []
             for key, value in attr_items:
-                if isinstance(value, tuple(self.custom_encoders.keys())):
-                    first = next(
-                        (
-                            encoder
-                            for type_, encoder in self.custom_encoders.items()
-                            if isinstance(value, type_)
-                        ),
-                        None,
-                    )
-
+                first = self.first_custom_decoder(value)
+                if first is not None:
                     values.append([
                         {key_: value_} for key_, value_ in first(key, value).items()
                     ])
