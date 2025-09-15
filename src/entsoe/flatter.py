@@ -2,11 +2,11 @@ from collections.abc import Iterable
 from itertools import product
 
 
-def is_iterable(obj):
+def is_iterable(obj) -> bool:
     return isinstance(obj, Iterable) and not isinstance(obj, (str, bytes))
 
 
-def flatten_to_rows(obj):
+def flatten_to_rows(obj) -> list[list]:
     if hasattr(obj, "__dict__"):
         values = []
         for value in vars(obj).values():
@@ -17,6 +17,7 @@ def flatten_to_rows(obj):
                 values.append(nested)
             else:
                 values.append([[value]])
+
         # Cartesian product of all attribute rows
         return [sum(row, []) for row in product(*values)]
     elif is_iterable(obj):
