@@ -9,6 +9,8 @@ def is_iterable(obj) -> bool:
 
 @dataclass
 class Flatter:
+    custom_encoders: dict[type, callable] = {}
+
     def do(self, obj) -> list[dict]:
         if hasattr(obj, "__dict__"):
             attr_items = list(vars(obj).items())
@@ -17,6 +19,9 @@ class Flatter:
                 if is_iterable(value):
                     nested = self.do(value)
                     values.append(nested)
+                elif isinstance(value, tuple(self.custom_encoders.keys())):
+                    encoded_value = self.custom_encoders[type(value)](value)
+                    values.append([{key: encoded_value}])
                 else:
                     values.append([{key: value}])
 
