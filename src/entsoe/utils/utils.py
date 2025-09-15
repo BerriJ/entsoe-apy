@@ -227,22 +227,22 @@ def calculate_timestamp(period_start_str, position, resolution_str):
 def ts_to_dict(time_series: list) -> list[dict]:
     """
     Convert arbitrary TimeSeries objects to a list of dictionaries.
-    
+
     This function works with any TimeSeries class from the xml_models package,
     dynamically extracting available fields using dataclass introspection.
     This makes it compatible with all the various TimeSeries classes defined
     in the entsoe/xml_models folder, regardless of their specific field structures.
-    
+
     The function extracts:
     - All fields from Point objects (e.g., position, price_amount, quantity, etc.)
     - All fields from TimeSeries objects with 'ts_' prefix to avoid conflicts
     - Calculated timestamps when period and position data is available
     - Period-level information (resolution, resolution_minutes)
-    
+
     Args:
         time_series: List of TimeSeries objects from any xml_models schema.
                     Can contain mixed types of TimeSeries objects.
-        
+
     Returns:
         List of dictionaries where each dictionary represents one data point.
         Each dictionary contains:
@@ -252,14 +252,14 @@ def ts_to_dict(time_series: list) -> list[dict]:
         - resolution_minutes: Period resolution in minutes
         - All Point fields (varies by schema)
         - All TimeSeries fields with 'ts_' prefix (varies by schema)
-        
+
     Examples:
         >>> from entsoe.xml_models.iec62325_451_3_publication_v7_3 import TimeSeries
         >>> result = ts_to_dict([publication_time_series])
         >>> # Returns dicts with fields like:
         >>> # position, timestamp, price_amount, ts_currency_unit_name, etc.
-        
-        >>> from entsoe.xml_models.iec62325_451_6_generationload_v3_0 import TimeSeries  
+
+        >>> from entsoe.xml_models.iec62325_451_6_generationload_v3_0 import TimeSeries
         >>> result = ts_to_dict([generation_time_series])
         >>> # Returns dicts with fields like:
         >>> # position, timestamp, quantity, secondary_quantity, ts_curve_type, etc.
@@ -267,44 +267,48 @@ def ts_to_dict(time_series: list) -> list[dict]:
     data_rows = []
     for i, ts in enumerate(time_series):
         # Handle case where ts might not have period attribute
-        if not hasattr(ts, 'period'):
+        if not hasattr(ts, "period"):
             logger.debug(
                 f"TimeSeries object at index {i} has no 'period' attribute, skipping"
             )
             continue
-            
+
         periods = ts.period
 
         for period in periods:
             # Handle case where period might not have point attribute
-            if not hasattr(period, 'point'):
+            if not hasattr(period, "point"):
                 logger.debug("Period object has no 'point' attribute, skipping")
                 continue
-                
+
             points = period.point
 
             # Extract period-level information
             period_start_str = (
-                str(period.time_interval.start) 
-                if hasattr(period, 'time_interval') and period.time_interval 
+                str(period.time_interval.start)
+                if hasattr(period, "time_interval") and period.time_interval
                 else None
             )
             resolution_str = (
-                str(period.resolution) 
-                if hasattr(period, 'resolution') and period.resolution 
+                str(period.resolution)
+                if hasattr(period, "resolution") and period.resolution
                 else None
             )
 
             # Extract each data point
             for point in points:
                 row = {
-                    "position": point.position if hasattr(point, 'position') else None,
+                    "position": point.position if hasattr(point, "position") else None,
                     "timestamp": None,  # Always include timestamp field
                 }
-                
+
                 # Add timestamp calculation if we have the necessary data
-                if (period_start_str and resolution_str and 
-                    hasattr(point, 'position') and point.position):
+                if (
+                    period_start_str
+                    and resolution_str
+                    and hasattr(point, "position")
+                    and point.position
+                ):
                     try:
                         timestamp = calculate_timestamp(
                             period_start_str, point.position, resolution_str
@@ -313,64 +317,64 @@ def ts_to_dict(time_series: list) -> list[dict]:
                     except Exception as e:
                         logger.debug(f"Could not calculate timestamp: {e}")
                         # row["timestamp"] remains None
-                
+
                 # Add period-level data
                 if resolution_str:
                     row["resolution"] = resolution_str
                     row["resolution_minutes"] = parse_duration_to_minutes(
                         resolution_str
                     )
-                
+
                 # Dynamically extract all fields from the point object
                 if is_dataclass(point):
                     for field_info in fields(point):
                         field_name = field_info.name
-                        if field_name == 'position':  # Already handled above
+                        if field_name == "position":  # Already handled above
                             continue
-                            
+
                         field_value = getattr(point, field_name, None)
                         if field_value is not None:
                             # Handle different types of field values
-                            if hasattr(field_value, 'value'):  
+                            if hasattr(field_value, "value"):
                                 # e.g., AreaIdString.value
                                 row[field_name] = str(field_value.value)
-                            elif hasattr(field_value, 'name'):  # e.g., enum.name
+                            elif hasattr(field_value, "name"):  # e.g., enum.name
                                 row[field_name] = str(field_value.name)
                             elif isinstance(field_value, (int, float, str)):
                                 row[field_name] = field_value
-                            elif hasattr(field_value, '__float__'):  # Decimal, etc.
+                            elif hasattr(field_value, "__float__"):  # Decimal, etc.
                                 row[field_name] = float(field_value)
                             else:
                                 row[field_name] = str(field_value)
-                
+
                 # Dynamically extract all fields from the TimeSeries object
                 if is_dataclass(ts):
                     for field_info in fields(ts):
                         field_name = field_info.name
-                        if field_name == 'period':  # Already handled above
+                        if field_name == "period":  # Already handled above
                             continue
-                            
+
                         field_value = getattr(ts, field_name, None)
                         if field_value is not None:
                             # Create a prefixed field name to avoid conflicts
                             ts_field_name = f"ts_{field_name}"
-                            
+
                             # Handle different types of field values
-                            if hasattr(field_value, 'value'):  
+                            if hasattr(field_value, "value"):
                                 # e.g., AreaIdString.value
                                 row[ts_field_name] = str(field_value.value)
-                            elif hasattr(field_value, 'name'):  # e.g., enum.name
+                            elif hasattr(field_value, "name"):  # e.g., enum.name
                                 row[ts_field_name] = str(field_value.name)
                             elif isinstance(field_value, (int, float, str)):
                                 row[ts_field_name] = field_value
-                            elif hasattr(field_value, '__float__'):  # Decimal, etc.
+                            elif hasattr(field_value, "__float__"):  # Decimal, etc.
                                 row[ts_field_name] = float(field_value)
                             elif isinstance(field_value, list):
                                 # Skip list fields to avoid complexity
                                 continue
                             else:
                                 row[ts_field_name] = str(field_value)
-                
+
                 data_rows.append(row)
 
         # Print progress for every 100 time series
