@@ -3,14 +3,17 @@
 from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal
+from enum import Enum
 
 import pytest
 from xsdata.models.datatype import XmlDuration
 
+from entsoe.flatter import Flatter
 from entsoe.utils.utils import ts_to_dict
 from entsoe.xml_models.iec62325_451_3_publication_v7_3 import (
     EsmpDateTimeInterval,
     Point as PublicationPoint,
+    Reason as PublicationReason,
     SeriesPeriod as PublicationSeriesPeriod,
     TimeSeries as PublicationTimeSeries,
 )
@@ -101,7 +104,15 @@ class TestTsToDict:
     def test_publication_time_series(self):
         """Test ts_to_dict with publication TimeSeries."""
         ts = create_mock_publication_time_series()
-        result = ts_to_dict([ts])
+        result = Flatter({
+            Enum: lambda key, value: {key: value},
+            list[PublicationReason]: lambda key, value: {key: ""},
+            XmlDuration: lambda key, value: {key: value.minutes},
+            EsmpDateTimeInterval: lambda key, value: {
+                "interval-start": value.start,
+                "interval-end": value.end,
+            },
+        }).do(ts)
 
         assert len(result) == 1
         row = result[0]
