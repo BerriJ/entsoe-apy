@@ -47,7 +47,7 @@ exclude = [
 
 [tool.ruff.lint]
 preview = true
-extend-select = ["E501", "E302", "E301", "I"]
+extend-select = ["E302", "E301", "I"]
 
 [tool.ruff.format]
 preview = true
