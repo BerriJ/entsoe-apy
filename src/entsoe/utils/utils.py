@@ -1,7 +1,9 @@
 from dataclasses import fields, is_dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
+from entsoe.xml_models.iec62325_451_3_publication_v7_3 import TimeSeries
+
 
 from loguru import logger
 
@@ -190,3 +192,76 @@ def merge_documents(base, other):
 
     logger.debug(f"Document merge completed, {merge_count} fields/items merged")
     return base
+
+
+def parse_duration_to_minutes(duration_str):
+    """Parse ISO 8601 duration string to minutes."""
+    # Examples: "PT15M" -> 15, "PT60M" -> 60, "PT1H" -> 60
+    if "PT" in duration_str:
+        duration_str = duration_str.replace("PT", "")
+
+    if "H" in duration_str:
+        hours = int(duration_str.replace("H", ""))
+        return hours * 60
+    elif "M" in duration_str:
+        return int(duration_str.replace("M", ""))
+    else:
+        return 60  # Default to 60 minutes if unclear
+
+
+def calculate_timestamp(period_start_str, position, resolution_str):
+    """Calculate the actual timestamp for a data point."""
+    # Parse the period start timestamp
+    # Format: '2025-08-21T22:00Z'
+    period_start_str = period_start_str.replace("Z", "+00:00")
+    period_start = datetime.fromisoformat(period_start_str)
+
+    # Get resolution in minutes
+    resolution_minutes = parse_duration_to_minutes(resolution_str)
+
+    # Calculate timestamp for this position (position starts at 1)
+    minutes_offset = (position - 1) * resolution_minutes
+    timestamp = period_start + timedelta(minutes=minutes_offset)
+
+    return timestamp
+
+
+def ts_to_dict(time_series: list[TimeSeries]) -> list[dict]:
+    data_rows = []
+    for i, ts in enumerate(time_series):
+        periods = ts.period
+
+        for period in periods:
+            points = period.point
+
+            period_start_str = str(period.time_interval.start)
+            resolution_str = str(period.resolution)
+
+            # Extract each data point
+            for point in points:
+                # Calculate the actual timestamp for this data point
+                timestamp = calculate_timestamp(
+                    period_start_str, point.position, resolution_str
+                )
+
+                row = {
+                    "timestamp": timestamp,
+                    "position": point.position,
+                    "price_amount": float(point.price_amount),
+                    "currency": str(ts.currency_unit_name.name),
+                    "price_measure_unit": str(ts.price_measure_unit_name.name),
+                    "in_domain": str(ts.in_domain_m_rid.value),
+                    "resolution": resolution_str,
+                    "resolution_minutes": parse_duration_to_minutes(resolution_str),
+                    "business_type": ts.business_type.name,
+                    "contract_market_agreement_type": (
+                        ts.contract_market_agreement_type.name
+                    ),
+                }
+                data_rows.append(row)
+
+    # Print progress for every 100 time series
+    if (i + 1) % 100 == 0:
+        print(f"Processed {i + 1}/{len(time_series)} time series...")
+
+    return data_rows
