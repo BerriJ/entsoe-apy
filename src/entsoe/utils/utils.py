@@ -2,12 +2,11 @@ from dataclasses import fields, is_dataclass
 from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
-from entsoe.xml_models.iec62325_451_3_publication_v7_3 import TimeSeries
-
 
 from loguru import logger
 
 import entsoe.xml_models as xml_models
+from entsoe.xml_models.iec62325_451_3_publication_v7_3 import TimeSeries
 
 
 class RangeLimitError(Exception):
