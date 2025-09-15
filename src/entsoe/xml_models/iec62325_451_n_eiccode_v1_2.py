@@ -1,7 +1,8 @@
-from dataclasses import dataclass, field
 from typing import Optional
 
+from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate
+from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
     CodingSchemeTypeList,
@@ -13,37 +14,35 @@ from .urn_entsoe_eu_wgedi_codelists import (
 __NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2"
 
 
-@dataclass
-class ElectronicAddress:
-    email1: Optional[str] = field(
-        default=None,
+class ElectronicAddress(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    email1: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 70,
-        },
+        }
     )
 
 
-@dataclass
-class FunctionName:
+class FunctionName(BaseModel):
     class Meta:
         name = "Function_Name"
 
-    name: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    name: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 70,
-        },
+        }
     )
 
 
-@dataclass
-class StreetDetail:
+class StreetDetail(BaseModel):
+    model_config = ConfigDict(defer_build=True)
     address_general: Optional[str] = field(
         default=None,
         metadata={
@@ -81,63 +80,59 @@ class StreetDetail:
     )
 
 
-@dataclass
-class TelephoneNumber:
-    itu_phone: Optional[str] = field(
-        default=None,
+class TelephoneNumber(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    itu_phone: str = field(
         metadata={
             "name": "ituPhone",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 15,
-        },
+        }
     )
 
 
-@dataclass
-class TownDetail:
-    name: Optional[str] = field(
-        default=None,
+class TownDetail(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    name: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 35,
-        },
+        }
     )
-    country: Optional[str] = field(
-        default=None,
+    country: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "length": 2,
             "pattern": r"[A-Z]*",
-        },
+        }
     )
 
 
-@dataclass
-class ActionStatus:
+class ActionStatus(BaseModel):
     class Meta:
         name = "Action_Status"
 
-    value: Optional[StatusTypeList] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    value: StatusTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class PartyIdString:
+class PartyIdString(BaseModel):
     class Meta:
         name = "PartyID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -145,45 +140,41 @@ class PartyIdString:
             "max_length": 16,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class StreetAddress:
-    street_detail: Optional[StreetDetail] = field(
-        default=None,
+class StreetAddress(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    street_detail: StreetDetail = field(
         metadata={
             "name": "streetDetail",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
-        },
+        }
     )
-    postal_code: Optional[str] = field(
-        default=None,
+    postal_code: str = field(
         metadata={
             "name": "postalCode",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 10,
-        },
+        }
     )
-    town_detail: Optional[TownDetail] = field(
-        default=None,
+    town_detail: TownDetail = field(
         metadata={
             "name": "townDetail",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
-        },
+        }
     )
     language: Optional[str] = field(
         default=None,
@@ -194,11 +185,11 @@ class StreetAddress:
     )
 
 
-@dataclass
-class EiccodeMarketDocument:
+class EiccodeMarketDocument(BaseModel):
     class Meta:
         name = "EICCode_MarketDocument"
 
+    model_config = ConfigDict(defer_build=True)
     m_rid: Optional[str] = field(
         default=None,
         metadata={
@@ -232,18 +223,16 @@ class EiccodeMarketDocument:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    long_names_name: Optional[str] = field(
-        default=None,
+    long_names_name: str = field(
         metadata={
             "name": "long_Names.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
             "max_length": 100,
-        },
+        }
     )
-    display_names_name: Optional[str] = field(
-        default=None,
+    display_names_name: str = field(
         metadata={
             "name": "display_Names.name",
             "type": "Element",
@@ -251,16 +240,15 @@ class EiccodeMarketDocument:
             "required": True,
             "max_length": 16,
             "pattern": r"([A-Z\-\+_0-9]+)",
-        },
+        }
     )
-    last_request_date_and_or_time_date: Optional[XmlDate] = field(
-        default=None,
+    last_request_date_and_or_time_date: XmlDate = field(
         metadata={
             "name": "lastRequest_DateAndOrTime.date",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             "required": True,
-        },
+        }
     )
     deactivation_requested_date_and_or_time_date: Optional[XmlDate] = field(
         default=None,
@@ -287,23 +275,25 @@ class EiccodeMarketDocument:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    e_iccontact_market_participant_electronic_address: Optional[ElectronicAddress] = (
+    e_iccontact_market_participant_electronic_address: Optional[
+        ElectronicAddress
+    ] = field(
+        default=None,
+        metadata={
+            "name": "eICContact_MarketParticipant.electronicAddress",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
+        },
+    )
+    e_iccode_market_participant_street_address: Optional[StreetAddress] = (
         field(
             default=None,
             metadata={
-                "name": "eICContact_MarketParticipant.electronicAddress",
+                "name": "eICCode_MarketParticipant.streetAddress",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
             },
         )
-    )
-    e_iccode_market_participant_street_address: Optional[StreetAddress] = field(
-        default=None,
-        metadata={
-            "name": "eICCode_MarketParticipant.streetAddress",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
-        },
     )
     e_iccode_market_participant_a_cercode_names_name: Optional[str] = field(
         default=None,
@@ -364,37 +354,34 @@ class EiccodeMarketDocument:
     )
 
 
-@dataclass
-class EicMarketDocument:
+class EicMarketDocument(BaseModel):
     class Meta:
         name = "EIC_MarketDocument"
         namespace = "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2"
 
-    m_rid: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "required": True,
             "max_length": 60,
-        },
+        }
     )
-    revision_number: Optional[str] = field(
-        default=None,
+    revision_number: str = field(
         metadata={
             "name": "revisionNumber",
             "type": "Element",
             "required": True,
             "pattern": r"[1-9]([0-9]){0,2}",
-        },
+        }
     )
-    type_value: Optional[MessageTypeList] = field(
-        default=None,
+    type_value: MessageTypeList = field(
         metadata={
             "name": "type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
     sender_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
@@ -417,21 +404,22 @@ class EicMarketDocument:
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
-        metadata={
-            "name": "receiver_MarketParticipant.marketRole.type",
-            "type": "Element",
-        },
+    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "receiver_MarketParticipant.marketRole.type",
+                "type": "Element",
+            },
+        )
     )
-    created_date_time: Optional[str] = field(
-        default=None,
+    created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
+        }
     )
     eiccode_market_document: list[EiccodeMarketDocument] = field(
         default_factory=list,

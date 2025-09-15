@@ -1,5 +1,7 @@
-from dataclasses import dataclass, field
 from typing import Optional
+
+from pydantic import BaseModel, ConfigDict
+from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
@@ -14,41 +16,37 @@ from .urn_entsoe_eu_wgedi_codelists import (
     RoleTypeList,
 )
 
-__NAMESPACE__ = (
-    "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0"
-)
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0"
 
 
-@dataclass
-class EsmpDateTimeInterval:
+class EsmpDateTimeInterval(BaseModel):
     class Meta:
         name = "ESMP_DateTimeInterval"
 
-    start: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    start: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
-    end: Optional[str] = field(
-        default=None,
+    end: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
 
 
-@dataclass
-class AreaIdString:
+class AreaIdString(BaseModel):
     class Meta:
         name = "AreaID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -56,21 +54,20 @@ class AreaIdString:
             "max_length": 18,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class PartyIdString:
+class PartyIdString(BaseModel):
     class Meta:
         name = "PartyID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -78,63 +75,57 @@ class PartyIdString:
             "max_length": 16,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class Point:
-    position: Optional[int] = field(
-        default=None,
+class Point(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    position: int = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
-        },
+        }
     )
-    time_series_name: Optional[str] = field(
-        default=None,
+    time_series_name: str = field(
         metadata={
             "name": "timeSeries.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    time_series_in_domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
+    time_series_in_domain_m_rid: AreaIdString = field(
         metadata={
             "name": "timeSeries.in_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    time_series_out_domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
+    time_series_out_domain_m_rid: AreaIdString = field(
         metadata={
             "name": "timeSeries.out_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    time_series_currency_unit_name: Optional[CurrencyTypeList] = field(
-        default=None,
+    time_series_currency_unit_name: CurrencyTypeList = field(
         metadata={
             "name": "timeSeries.currency_Unit.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
     time_series_auction_category: Optional[CategoryTypeList] = field(
         default=None,
@@ -146,19 +137,18 @@ class Point:
     )
 
 
-@dataclass
-class AllocationTimeSeries:
+class AllocationTimeSeries(BaseModel):
     class Meta:
         name = "Allocation_TimeSeries"
 
-    name: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    name: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
             "max_length": 20,
-        },
+        }
     )
     cancelled_ts: Optional[IndicatorTypeList] = field(
         default=None,
@@ -176,14 +166,13 @@ class AllocationTimeSeries:
             "max_length": 100,
         },
     )
-    auction_type: Optional[AuctionTypeList] = field(
-        default=None,
+    auction_type: AuctionTypeList = field(
         metadata={
             "name": "auction.type",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
     sub_type_auction_type: Optional[AuctionTypeList] = field(
         default=None,
@@ -201,41 +190,37 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
-        default=None,
+    market_agreement_type: ContractTypeList = field(
         metadata={
             "name": "marketAgreement.type",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    time_zone_attribute_instance_component_attribute: Optional[str] = field(
-        default=None,
+    time_zone_attribute_instance_component_attribute: str = field(
         metadata={
             "name": "timeZone_AttributeInstanceComponent.attribute",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    delivery_period_time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    delivery_period_time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "delivery_Period.timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
-    allocation_period_time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    allocation_period_time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "allocation_Period.timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
             "required": True,
-        },
+        }
     )
     bidding_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
@@ -245,7 +230,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
         },
     )
-    offered_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    offered_capacity_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "offeredCapacityProvider_MarketParticipant.mRID",
@@ -253,7 +240,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
         },
     )
-    use_of_capacity_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    use_of_capacity_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "useOfCapacityProvider_MarketParticipant.mRID",
@@ -271,7 +260,9 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
         },
     )
-    auction_revenue_provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    auction_revenue_provider_market_participant_m_rid: Optional[
+        PartyIdString
+    ] = field(
         default=None,
         metadata={
             "name": "auctionRevenueProvider_MarketParticipant.mRID",
@@ -289,13 +280,15 @@ class AllocationTimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
         },
     )
-    congestion_income_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "congestionIncome_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-        },
+    congestion_income_market_participant_m_rid: Optional[PartyIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "congestionIncome_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
+            },
+        )
     )
     conducting_party_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
@@ -316,77 +309,69 @@ class AllocationTimeSeries:
     )
 
 
-@dataclass
-class CapacityAllocationConfigurationMarketDocument:
+class CapacityAllocationConfigurationMarketDocument(BaseModel):
     class Meta:
         name = "CapacityAllocationConfiguration_MarketDocument"
         namespace = "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0"
 
-    m_rid: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "required": True,
             "max_length": 35,
-        },
+        }
     )
-    type_value: Optional[MessageTypeList] = field(
-        default=None,
+    type_value: MessageTypeList = field(
         metadata={
             "name": "type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
-        default=None,
+    process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    created_date_time: Optional[str] = field(
-        default=None,
+    created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
+        }
     )
     allocation_time_series: list[AllocationTimeSeries] = field(
         default_factory=list,
