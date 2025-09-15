@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from entsoe.xml_interface import flatten_to_rows
+from entsoe.flatter import flatten_to_rows
 
 
 @dataclass
