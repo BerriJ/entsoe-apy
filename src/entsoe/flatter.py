@@ -14,10 +14,7 @@ class Flatter:
             attr_items = list(vars(obj).items())
             values = []
             for key, value in attr_items:
-                if isinstance(value, list):
-                    nested = self.do(value)
-                    values.append(nested)
-                elif isinstance(value, tuple(self.custom_encoders.keys())):
+                if isinstance(value, tuple(self.custom_encoders.keys())):
                     first = next(
                         (
                             encoder
@@ -30,6 +27,9 @@ class Flatter:
                     values.append([
                         {key_: value_} for key_, value_ in first(key, value).items()
                     ])
+                elif isinstance(value, list):
+                    nested = self.do(value)
+                    values.append(nested)
                 else:
                     values.append([{key: value}])
 
