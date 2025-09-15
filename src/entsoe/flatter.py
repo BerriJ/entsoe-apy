@@ -1,6 +1,7 @@
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from itertools import product
+from typing import Any, Callable
 
 
 def is_iterable(obj) -> bool:
@@ -9,7 +10,9 @@ def is_iterable(obj) -> bool:
 
 @dataclass
 class Flatter:
-    custom_encoders: dict[type, callable] = field(default_factory=dict)
+    custom_encoders: dict[type, Callable[[str, Any], dict[str, Any]]] = field(
+        default_factory=dict
+    )
 
     def do(self, obj) -> list[dict]:
         if hasattr(obj, "__dict__"):
@@ -20,8 +23,17 @@ class Flatter:
                     nested = self.do(value)
                     values.append(nested)
                 elif isinstance(value, tuple(self.custom_encoders.keys())):
-                    encoded_value = self.custom_encoders[type(value)](value)
-                    values.append([{key: encoded_value}])
+                    values.append([
+                        {key_: value_}
+                        for key_, value_ in next(
+                            (
+                                encoder
+                                for type_, encoder in self.custom_encoders.items()
+                                if isinstance(value, type_)
+                            ),
+                            None,
+                        )(key, value).items()
+                    ])
                 else:
                     values.append([{key: value}])
 

@@ -49,7 +49,9 @@ def test_list():
 
 
 def test_custom_encoder():
-    result = Flatter(custom_encoders={int: lambda v: v + 1}).do(_MAIN)
-    assert result[0] == {"a": 2, "x": 11, "x2": "1", "y2": 3}
-    assert result[1] == {"a": 2, "x": 11, "x2": "5", "y2": 7}
-    assert result[2] == {"a": 2, "x": 31, "x2": "3", "y2": 5}
+    result = Flatter(
+        custom_encoders={int: lambda key, value: {key + " + 1": value + 1}}
+    ).do(_MAIN)
+    assert result[0] == {"a + 1": 2, "x + 1": 11, "x2": "1", "y2 + 1": 3}
+    assert result[1] == {"a + 1": 2, "x + 1": 11, "x2": "5", "y2 + 1": 7}
+    assert result[2] == {"a + 1": 2, "x + 1": 31, "x2": "3", "y2 + 1": 5}
