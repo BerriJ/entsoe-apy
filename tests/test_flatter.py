@@ -26,6 +26,7 @@ class SubItem:
 class Item:
     a: int
     b: list[SubItem]
+    c: str = "c"
 
 
 _MAIN = Item(
@@ -39,20 +40,20 @@ _MAIN = Item(
 
 def test_basic():
     result = Flatter().do(_MAIN)
-    assert result[0] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A}
-    assert result[1] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A}
-    assert result[2] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A}
+    assert result[0] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A, "c": "c"}
+    assert result[1] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A, "c": "c"}
+    assert result[2] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A, "c": "c"}
 
 
 def test_list():
     result = Flatter().do([_MAIN, _MAIN])
 
-    assert result[0] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A}
-    assert result[1] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A}
-    assert result[2] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A}
-    assert result[3] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A}
-    assert result[4] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A}
-    assert result[5] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A}
+    assert result[0] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A, "c": "c"}
+    assert result[1] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A, "c": "c"}
+    assert result[2] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A, "c": "c"}
+    assert result[3] == {"a": 1, "x": 10, "x2": "1", "y2": 2, "z3": _Enum.A, "c": "c"}
+    assert result[4] == {"a": 1, "x": 10, "x2": "5", "y2": 6, "z3": _Enum.A, "c": "c"}
+    assert result[5] == {"a": 1, "x": 30, "x2": "3", "y2": 4, "z3": _Enum.A, "c": "c"}
 
 
 def test_custom_encoder():
@@ -62,6 +63,27 @@ def test_custom_encoder():
             _Enum: lambda key, value: {key: _Enum.B},
         }
     ).do(_MAIN)
-    assert result[0] == {"a + 1": 2, "x + 1": 11, "x2": "1", "y2 + 1": 3, "z3": _Enum.B}
-    assert result[1] == {"a + 1": 2, "x + 1": 11, "x2": "5", "y2 + 1": 7, "z3": _Enum.B}
-    assert result[2] == {"a + 1": 2, "x + 1": 31, "x2": "3", "y2 + 1": 5, "z3": _Enum.B}
+    assert result[0] == {
+        "a + 1": 2,
+        "x + 1": 11,
+        "x2": "1",
+        "y2 + 1": 3,
+        "z3": _Enum.B,
+        "c": "c",
+    }
+    assert result[1] == {
+        "a + 1": 2,
+        "x + 1": 11,
+        "x2": "5",
+        "y2 + 1": 7,
+        "z3": _Enum.B,
+        "c": "c",
+    }
+    assert result[2] == {
+        "a + 1": 2,
+        "x + 1": 31,
+        "x2": "3",
+        "y2 + 1": 5,
+        "z3": _Enum.B,
+        "c": "c",
+    }
