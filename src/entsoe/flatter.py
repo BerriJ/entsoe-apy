@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 
 def _is_instance(obj, typ: type) -> bool:
-    """Check if obj is an instance of typ, handling generics like list[int]."""
+    """Check if an object is an instance of a (generic) type."""
     origin = getattr(typ, "__origin__", None)
     if origin is not None:
         if not isinstance(obj, origin):
@@ -17,6 +17,10 @@ def _is_instance(obj, typ: type) -> bool:
         return False
     else:
         return isinstance(obj, typ)
+
+
+LIST_ATTR_PAIR = list[dict[str, Any]]
+"""List of key-value pairs for attributes."""
 
 
 @dataclass
@@ -35,11 +39,10 @@ class Flatter:
             None,
         )
 
-    def do(self, obj) -> list[dict]:
+    def do(self, obj: list | Any) -> LIST_ATTR_PAIR:
         if hasattr(obj, "__dict__"):
-            attr_items = list(vars(obj).items())
             values = []
-            for key, value in attr_items:
+            for key, value in list(vars(obj).items()):
                 first = self.first_custom_decoder(value)
                 if first is not None:
                     for key_, value_ in first(key, value).items():
@@ -50,8 +53,7 @@ class Flatter:
                 else:
                     values.append([{key: value}])
 
-            # Cartesian product of all attribute rows (dict merge)
-            result = []
+            result: LIST_ATTR_PAIR = []
             for row in product(*values):
                 merged = {}
                 for d in row:
@@ -59,10 +61,10 @@ class Flatter:
                 result.append(merged)
             return result
         elif isinstance(obj, list):
-            rows = []
+            result: LIST_ATTR_PAIR = []
             for item in obj:
-                rows.extend(self.do(item))
-            return rows
+                result.extend(self.do(item))
+            return result
         else:
             raise ValueError(
                 f"Object must be a dataclass instance or an iterable of such instances: {type(obj)}."
