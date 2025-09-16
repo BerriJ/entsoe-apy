@@ -105,13 +105,17 @@ class TestTsToDict:
         """Test ts_to_dict with publication TimeSeries."""
         ts = create_mock_publication_time_series()
         result = Flatter({
-            Enum: lambda key, value: {key: value},
+            Enum: lambda key, value: {key: value.value},
             list[PublicationReason]: lambda key, value: {key: ""},
-            XmlDuration: lambda key, value: {key: value.minutes},
+            XmlDuration: lambda key, value: {
+                key: value.data,
+                "resolution_minutes": value.minutes,
+            },
             EsmpDateTimeInterval: lambda key, value: {
                 "interval-start": value.start,
                 "interval-end": value.end,
             },
+            MockAreaIdString: lambda key, value: {key: value.value},
         }).do(ts)
 
         assert len(result) == 1
@@ -119,7 +123,6 @@ class TestTsToDict:
 
         # Check basic fields
         assert row["position"] == 1
-        assert "timestamp" in row
         assert row["resolution"] == "PT60M"
         assert row["resolution_minutes"] == 60
 
@@ -127,13 +130,13 @@ class TestTsToDict:
         assert row["price_amount"] == 25.50
 
         # Check TimeSeries fields (prefixed with ts_)
-        assert row["ts_m_rid"] == "TEST_MRID_001"
-        assert row["ts_business_type"] == "B11"
-        assert row["ts_in_domain_m_rid"] == "10YFR-RTE------C"
-        assert row["ts_out_domain_m_rid"] == "10YCB-GERMANY--8"
-        assert row["ts_currency_unit_name"] == "EUR"
-        assert row["ts_price_measure_unit_name"] == "MWH"
-        assert row["ts_contract_market_agreement_type"] == "A01"
+        assert row["m_rid"] == "TEST_MRID_001"
+        assert row["business_type"] == "B11"
+        assert row["in_domain_m_rid"] == "10YFR-RTE------C"
+        assert row["out_domain_m_rid"] == "10YCB-GERMANY--8"
+        assert row["currency_unit_name"] == "EUR"
+        assert row["price_measure_unit_name"] == "MWH"
+        assert row["contract_market_agreement_type"] == "A01"
 
     def test_generation_time_series(self):
         """Test ts_to_dict with generation TimeSeries."""

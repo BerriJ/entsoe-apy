@@ -4,7 +4,7 @@ from typing import Any, Callable
 
 
 def _is_instance(obj, typ: type) -> bool:
-    """Check if obj is an instance of typ, handling generics like list[int]."""
+    """Check if an object is an instance of a (generic) type."""
     origin = getattr(typ, "__origin__", None)
     if origin is not None:
         if not isinstance(obj, origin):
@@ -19,6 +19,10 @@ def _is_instance(obj, typ: type) -> bool:
         return isinstance(obj, typ)
 
 
+LIST_ATTR_PAIR = list[dict[str, Any]]
+"""List of key-value pairs for attributes. Can construct a Pandas data frame."""
+
+
 @dataclass
 class Flatter:
     custom_encoders: dict[type, Callable[[str, Any], dict[str, Any]]] = field(
@@ -26,6 +30,8 @@ class Flatter:
     )
 
     def first_custom_encoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
+        """Find the first custom decoder for a variable."""
+
         return next(
             (
                 encoder
@@ -35,25 +41,21 @@ class Flatter:
             None,
         )
 
-    def do(self, obj) -> list[dict]:
+    def do(self, obj: list | Any) -> LIST_ATTR_PAIR:
         if hasattr(obj, "__dict__"):
-            attr_items = list(vars(obj).items())
             values = []
-            for key, value in attr_items:
-                first_encoder = self.first_custom_encoder(value)
-                if first_encoder is not None:
-                    values.append([
-                        {key_: value_}
-                        for key_, value_ in first_encoder(key, value).items()
-                    ])
+            for key, value in list(vars(obj).items()):
+                first = self.first_custom_encoder(value)
+                if first is not None:
+                    for key_, value_ in first(key, value).items():
+                        values.append([{key_: value_}])
                 elif isinstance(value, list):
                     nested = self.do(value)
                     values.append(nested)
                 else:
                     values.append([{key: value}])
 
-            # Cartesian product of all attribute rows (dict merge)
-            result = []
+            result: LIST_ATTR_PAIR = []
             for row in product(*values):
                 merged = {}
                 for d in row:
@@ -61,10 +63,10 @@ class Flatter:
                 result.append(merged)
             return result
         elif isinstance(obj, list):
-            rows = []
+            result: LIST_ATTR_PAIR = []
             for item in obj:
-                rows.extend(self.do(item))
-            return rows
+                result.extend(self.do(item))
+            return result
         else:
             raise ValueError(
                 f"Object must be a dataclass instance or an iterable of such instances: {type(obj)}."
