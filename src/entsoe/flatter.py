@@ -45,9 +45,9 @@ class Flatter:
         if hasattr(obj, "__dict__"):
             values = []
             for key, value in list(vars(obj).items()):
-                first = self.first_custom_encoder(value)
-                if first is not None:
-                    for key_, value_ in first(key, value).items():
+                encoder = self.first_custom_encoder(value)
+                if encoder is not None:
+                    for key_, value_ in encoder(key, value).items():
                         values.append([{key_: value_}])
                 elif isinstance(value, list):
                     nested = self.do(value)
