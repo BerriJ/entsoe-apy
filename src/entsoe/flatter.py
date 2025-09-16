@@ -25,7 +25,7 @@ class Flatter:
         default_factory=dict
     )
 
-    def first_custom_decoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
+    def first_custom_encoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
         return next(
             (
                 encoder
@@ -40,10 +40,11 @@ class Flatter:
             attr_items = list(vars(obj).items())
             values = []
             for key, value in attr_items:
-                first = self.first_custom_decoder(value)
-                if first is not None:
+                first_encoder = self.first_custom_encoder(value)
+                if first_encoder is not None:
                     values.append([
-                        {key_: value_} for key_, value_ in first(key, value).items()
+                        {key_: value_}
+                        for key_, value_ in first_encoder(key, value).items()
                     ])
                 elif isinstance(value, list):
                     nested = self.do(value)
