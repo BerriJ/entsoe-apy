@@ -20,7 +20,7 @@ def _is_instance(obj, typ: type) -> bool:
 
 
 LIST_ATTR_PAIR = list[dict[str, Any]]
-"""List of key-value pairs for attributes."""
+"""List of key-value pairs for attributes. Can construct a Pandas data frame."""
 
 
 @dataclass
@@ -30,6 +30,7 @@ class Flatter:
     )
 
     def first_custom_decoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
+        """Find the first custom decoder for a variable."""
         return next(
             (
                 encoder
