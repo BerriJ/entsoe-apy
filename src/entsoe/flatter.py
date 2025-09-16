@@ -42,9 +42,8 @@ class Flatter:
             for key, value in attr_items:
                 first = self.first_custom_decoder(value)
                 if first is not None:
-                    values.append([
-                        {key_: value_} for key_, value_ in first(key, value).items()
-                    ])
+                    for key_, value_ in first(key, value).items():
+                        values.append([{key_: value_}])
                 elif isinstance(value, list):
                     nested = self.do(value)
                     values.append(nested)
