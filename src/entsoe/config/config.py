@@ -3,6 +3,7 @@
 import os
 import sys
 from typing import Optional
+from uuid import UUID
 
 from loguru import logger
 
@@ -63,16 +64,25 @@ class EntsoEConfig:
         logger.remove()
         logger.add(sink=sys.stdout, level=log_level.upper(), colorize=True)
         # Handle security token
-        if security_token is None:
+        if security_token is None and os.getenv("ENTSOE_API") is not None:
             security_token = os.getenv("ENTSOE_API")
             logger.success("Security token found in environment.")
 
         if security_token is None:
             logger.warning(
-                "Security token is required. Please provide it explicitly using"
+                "Security token is required. Please provide it explicitly using "
                 'entsoe.set_config("<security_token>") or set '
                 "the ENTSOE_API environment variable."
             )
+
+        # Validate security token format (UUID)
+        if security_token is not None:
+            try:
+                # Validate UUID format
+                UUID(security_token)
+                logger.debug("Security token is a valid UUID.")
+            except ValueError:
+                logger.error("Invalid security_token format. Must be a valid UUID.")
 
         self.security_token = security_token
         self.timeout = timeout
