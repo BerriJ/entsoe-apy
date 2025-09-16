@@ -30,7 +30,7 @@ class Flatter:
     )
 
     def first_custom_encoder(self, value: Any) -> Callable[[str, Any], dict[str, Any]]:
-        """Find the first custom decoder for a variable."""
+        """Find the first custom encoder for a variable."""
 
         return next(
             (
