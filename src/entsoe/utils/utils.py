@@ -114,11 +114,7 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
 
     # Get all classes from the xml_models module
     for name, obj in inspect.getmembers(xml_models, inspect.isclass):
-        if (
-            hasattr(obj, "__dataclass_fields__")
-            and hasattr(obj, "Meta")
-            and hasattr(obj.Meta, "namespace")
-        ):
+        if hasattr(obj, "Meta") and hasattr(obj.Meta, "namespace"):
             if obj.Meta.namespace == namespace:
                 matching_classes.append((name, obj))
 
