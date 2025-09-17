@@ -6,15 +6,5 @@
     "python.testing.pytestEnabled": true,
     "ruff.exclude": [
         "./src/entsoe/xml_models/*"
-    ],
-	"[python]": {
-		"editor.formatOnSave": true,
-		"editor.codeActionsOnSave": {
-			"source.organizeImports.ruff": "explicit"
-		},
-		"editor.defaultFormatter": "charliermarsh.ruff",
-		"diffEditor.ignoreTrimWhitespace": false,
-		"editor.wordBasedSuggestions": "off",
-		
-	},
+    ]
 }
