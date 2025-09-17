@@ -7,7 +7,7 @@ from decimal import Decimal
 import pytest
 from xsdata.models.datatype import XmlDuration
 
-from entsoe.flatter.time_series import TS_FLATTER
+from entsoe.flatter.const import TS_FLATTER
 from entsoe.utils.utils import ts_to_dict
 from entsoe.xml_models.iec62325_451_3_publication_v7_3 import (
     EsmpDateTimeInterval,
