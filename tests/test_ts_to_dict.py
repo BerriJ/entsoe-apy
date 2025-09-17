@@ -7,7 +7,7 @@ from decimal import Decimal
 import pytest
 from xsdata.models.datatype import XmlDuration
 
-from entsoe.flatter.const import TS_FLATTER
+from entsoe.flatter.xml_interface import TS_FLATTER
 from entsoe.utils.utils import ts_to_dict
 from entsoe.xml_models.iec62325_451_3_publication_v7_3 import (
     EsmpDateTimeInterval,
@@ -102,6 +102,10 @@ class TestTsToDict:
     def test_publication_time_series(self):
         """Test ts_to_dict with publication TimeSeries."""
         ts = create_mock_publication_time_series()
+
+        TS_FLATTER.custom_encoders[MockAreaIdString] = lambda key, value: {
+            key: value.value
+        }
         result = TS_FLATTER.do(ts)
 
         assert len(result) == 1
