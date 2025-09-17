@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from entsoe.flatter import Flatter
+from entsoe.flatter.base import Flatter
 
 
 class _Enum(Enum):
