@@ -30,8 +30,6 @@ class ActualTotalLoad(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize actual total load parameters.
@@ -40,7 +38,6 @@ class ActualTotalLoad(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -49,7 +46,6 @@ class ActualTotalLoad(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
 
 
@@ -76,8 +72,6 @@ class DayAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize day-ahead total load forecast parameters.
@@ -86,7 +80,6 @@ class DayAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -95,7 +88,6 @@ class DayAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
 
 
@@ -122,8 +114,6 @@ class WeekAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize week-ahead total load forecast parameters.
@@ -132,7 +122,6 @@ class WeekAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -141,7 +130,6 @@ class WeekAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
 
 
@@ -168,8 +156,6 @@ class MonthAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize month-ahead total load forecast parameters.
@@ -178,7 +164,6 @@ class MonthAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -187,7 +172,6 @@ class MonthAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
 
 
@@ -214,8 +198,6 @@ class YearAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize year-ahead total load forecast parameters.
@@ -224,7 +206,6 @@ class YearAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -233,7 +214,6 @@ class YearAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
 
 
@@ -260,8 +240,6 @@ class YearAheadForecastMargin(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize year-ahead forecast margin parameters.
@@ -270,7 +248,6 @@ class YearAheadForecastMargin(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -279,5 +256,4 @@ class YearAheadForecastMargin(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
-            offset=offset,
         )
