@@ -19,7 +19,7 @@ class Transmission(Base):
         business_type: Optional[str] = None,
         process_type: Optional[str] = None,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize transmission data parameters for ENTSO-E Transparency Platform.
