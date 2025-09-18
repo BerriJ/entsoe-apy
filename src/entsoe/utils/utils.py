@@ -1,5 +1,5 @@
 from dataclasses import fields, is_dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
 
@@ -70,30 +70,29 @@ def check_date_range_limit(
     return exceeds_limit
 
 
-def split_date_range(period_start: int, period_end: int) -> tuple[int, int]:
+def split_date_range(period_start: int, period_end: int) -> int:
     """
-    Split a date range into two equal parts.
+    Split a date range into the first 365 days and the remaining days.
 
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
 
     Returns:
-        Tuple of (pivot_date, end_date) where pivot_date is the midpoint
+        The pivot date (end of first segment) in YYYYMMDDHHMM format
     """
     logger.debug(f"Splitting date range: {period_start} to {period_end}")
 
     start_dt = parse_entsoe_datetime(period_start)
-    end_dt = parse_entsoe_datetime(period_end)
 
-    # Calculate the midpoint
-    diff = end_dt - start_dt
-    pivot_dt = start_dt + (diff / 2)
+    # Add 365 days to the start date
+    pivot_dt = start_dt + timedelta(days=365)
 
-    pivot_date = format_entsoe_datetime(pivot_dt)
-    logger.debug(f"Split result: pivot={pivot_date}, end={period_end}")
+    period_pivot = format_entsoe_datetime(pivot_dt)
 
-    return pivot_date, period_end
+    logger.debug(f"Split at {period_pivot}:")
+
+    return period_pivot
 
 
 def extract_namespace_and_find_classes(response) -> tuple[str, type]:

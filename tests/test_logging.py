@@ -33,7 +33,7 @@ class TestLogging:
     def test_split_date_range_logging(self):
         """Test that split_date_range logs debug messages."""
         with patch("entsoe.utils.utils.logger") as mock_logger:
-            pivot, end = split_date_range(202301010000, 202301050000)
+            pivot = split_date_range(202301010000, 202301050000)
             assert mock_logger.debug.called
             # Verify that logging calls mention the function purpose
             call_args = [call[0][0] for call in mock_logger.debug.call_args_list]
