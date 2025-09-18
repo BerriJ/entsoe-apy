@@ -90,7 +90,7 @@ def split_date_range(period_start: int, period_end: int) -> int:
 
     period_pivot = format_entsoe_datetime(pivot_dt)
 
-    logger.debug(f"Split at {period_pivot}:")
+    logger.debug(f"Split at {period_pivot}")
 
     return period_pivot
 
