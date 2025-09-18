@@ -54,7 +54,6 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
             out_domain=out_domain,
             business_type="B10",  # Fixed: Congestion income
             contract_market_agreement_type=contract_market_agreement_type,
-            
         )
 
 
@@ -97,7 +96,6 @@ class TotalNominatedCapacity(Market):
             in_domain=in_domain,
             out_domain=out_domain,
             business_type="B08",  # Fixed: Total nominated capacity
-            
         )
 
 
@@ -148,7 +146,6 @@ class ImplicitAllocationsOfferedCapacity(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            
         )
 
         # Add optional parameters
@@ -257,7 +254,6 @@ class TotalCapacityAllocated(Market):
             out_domain=out_domain,
             business_type="B07",  # Fixed: Total allocated capacity
             contract_market_agreement_type=contract_market_agreement_type,
-            
         )
 
 
@@ -308,7 +304,6 @@ class ExplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
-            
         )
 
         # Add optional classification parameter
@@ -359,7 +354,6 @@ class FlowBasedAllocations(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            
         )
 
 
@@ -476,7 +470,6 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             business_type="B05",  # Fixed: Capacity allocated (including price)
             contract_market_agreement_type=contract_market_agreement_type,
             auction_category=auction_category,
-            
         )
 
         # Add optional classification parameter
@@ -532,7 +525,6 @@ class ExplicitAllocationsAuctionRevenue(Market):
             out_domain=out_domain,
             business_type="B07",  # Fixed: Auction Revenue
             contract_market_agreement_type=contract_market_agreement_type,
-            
         )
 
 
@@ -589,7 +581,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
-            
         )
 
         # Add optional classification parameter
@@ -643,7 +634,6 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            
         )
 
         # Add optional classification parameter
@@ -691,7 +681,6 @@ class ImplicitAuctionNetPositions(Market):
             out_domain=out_domain,
             business_type="B09",  # Fixed: Net position
             contract_market_agreement_type=contract_market_agreement_type,
-            
         )
 
 
@@ -740,5 +729,4 @@ class FlowBasedAllocationsLegacy(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            
         )

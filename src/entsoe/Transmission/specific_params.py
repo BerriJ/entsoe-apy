@@ -135,14 +135,14 @@ class ExplicitAllocationsOfferedCapacity(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone        """
+            in_domain: EIC code of input domain/bidding zone"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A31",
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
-            in_domain=in_domain
+            in_domain=in_domain,
         )
 
         # Add specific parameters for explicit allocations
@@ -183,7 +183,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone        """
+            in_domain: EIC code of input domain/bidding zone"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A26",
@@ -191,7 +191,7 @@ class TotalCapacityAlreadyAllocated(Transmission):
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
-            in_domain=in_domain
+            in_domain=in_domain,
         )
 
         # Add specific parameters
@@ -229,14 +229,14 @@ class CrossBorderPhysicalFlows(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone        """
+            in_domain: EIC code of input domain/bidding zone"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A11",
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
-            in_domain=in_domain
+            in_domain=in_domain,
         )
 
 
@@ -272,14 +272,14 @@ class CommercialSchedules(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone        """
+            in_domain: EIC code of input domain/bidding zone"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A09",
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
-            in_domain=in_domain
+            in_domain=in_domain,
         )
 
         # Add specific parameters
@@ -318,14 +318,14 @@ class ForecastedTransferCapacities(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone        """
+            in_domain: EIC code of input domain/bidding zone"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A61",
             period_start=period_start,
             period_end=period_end,
             out_domain=out_domain,
-            in_domain=in_domain
+            in_domain=in_domain,
         )
 
         # Add specific parameters
@@ -362,13 +362,13 @@ class FlowBasedAllocations(Transmission):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)        """
+            domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="B09",
             process_type="A44",
             period_start=period_start,
-            period_end=period_end
+            period_end=period_end,
         )
 
         # Add the domain mRID parameter manually
@@ -404,11 +404,11 @@ class UnavailabilityOffshoreGridInfrastructure(Transmission):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of bidding zone domain        """
+            bidding_zone_domain: EIC code of bidding zone domain"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A79",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain
+            bidding_zone_domain=bidding_zone_domain,
         )

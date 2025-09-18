@@ -59,7 +59,7 @@ class UnavailabilityOfProductionUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Production Unit
-            m_rid: Message ID for specific outage versions        """
+            m_rid: Message ID for specific outage versions"""
         super().__init__(
             document_type="A77",
             period_start=period_start,
@@ -70,7 +70,7 @@ class UnavailabilityOfProductionUnits(Outages):
             business_type=business_type,
             doc_status=doc_status,
             registered_resource=registered_resource,
-            m_rid=m_rid
+            m_rid=m_rid,
         )
 
 
@@ -123,7 +123,7 @@ class UnavailabilityOfGenerationUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Generation Unit
-            m_rid: Message ID for specific outage versions        """
+            m_rid: Message ID for specific outage versions"""
         super().__init__(
             document_type="A80",
             period_start=period_start,
@@ -134,7 +134,7 @@ class UnavailabilityOfGenerationUnits(Outages):
             business_type=business_type,
             doc_status=doc_status,
             registered_resource=registered_resource,
-            m_rid=m_rid
+            m_rid=m_rid,
         )
 
 
@@ -248,7 +248,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
                          A54=Forced unavailability)
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
-            m_rid: Message ID for specific outage versions        """
+            m_rid: Message ID for specific outage versions"""
         super().__init__(
             document_type="A78",
             period_start=period_start,
@@ -258,7 +258,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
             time_interval_update=time_interval_update,
             business_type=business_type,
             doc_status=doc_status,
-            m_rid=m_rid
+            m_rid=m_rid,
         )
 
         # Add domain parameters specific to this endpoint
@@ -313,7 +313,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
                              mandatory if period_start/end not defined)
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
-            m_rid: Message ID for specific outage versions        """
+            m_rid: Message ID for specific outage versions"""
         super().__init__(
             document_type="A79",
             period_start=period_start,
@@ -322,7 +322,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
             period_start_update=period_start_update,
             period_end_update=period_end_update,
             doc_status=doc_status,
-            m_rid=m_rid
+            m_rid=m_rid,
         )
 
 

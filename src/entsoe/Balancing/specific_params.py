@@ -51,7 +51,6 @@ class CrossBorderBalancing(Balancing):
             period_end=period_end,
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
-            
         )
 
 
@@ -101,7 +100,6 @@ class AcceptedAggregatedOffers(Balancing):
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            
         )
 
 
@@ -151,7 +149,6 @@ class ActivatedBalancingEnergy(Balancing):
             control_area_domain=control_area_domain,
             business_type=business_type,
             psr_type=psr_type,
-            
         )
 
 
@@ -215,7 +212,6 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             psr_type=psr_type,
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
-            
         )
 
 
@@ -311,7 +307,6 @@ class ImbalancePrices(Balancing):
             period_end=period_end,
             control_area_domain=control_area_domain,
             psr_type=psr_type,
-            
         )
 
 
@@ -356,7 +351,6 @@ class TotalImbalanceVolumes(Balancing):
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
-            
         )
 
 
@@ -398,7 +392,6 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
             period_start=period_start,
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
-            
         )
 
 
@@ -505,7 +498,6 @@ class AggregatedBalancingEnergyBids(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             process_type=process_type,
-            
         )
 
 
@@ -599,7 +591,6 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            
         )
 
 
@@ -643,7 +634,6 @@ class CurrentBalancingState(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             business_type="B33",
-            
         )
 
 
@@ -687,7 +677,6 @@ class FCRTotalCapacity(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="A25",
-            
         )
 
 
@@ -731,7 +720,6 @@ class SharesOfFCRCapacity(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             business_type="C23",
-            
         )
 
 
@@ -777,7 +765,6 @@ class SharingOfFCRBetweenSAs(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C22",
-            
         )
 
 
@@ -823,7 +810,6 @@ class FRRAndRRCapacityOutlook(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type="C76",
-            
         )
 
 
@@ -871,7 +857,6 @@ class FRRAndRRActualCapacity(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
             business_type=business_type,
-            
         )
 
 
@@ -1011,7 +996,6 @@ class SharingOfRRAndFRR(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A56",
-            
         )
 
 
@@ -1104,7 +1088,6 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             process_type="A67",
             business_type="A96",
-            
         )
 
 
@@ -1153,7 +1136,6 @@ class NettedAndExchangedVolumes(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            
         )
 
 
@@ -1202,7 +1184,6 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            
         )
 
 
@@ -1353,7 +1334,6 @@ class BalancingBorderCapacityLimitations(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            
         )
 
 
@@ -1402,7 +1382,6 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            
         )
 
 
@@ -1449,7 +1428,6 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
-            
         )
 
 
@@ -1500,7 +1478,6 @@ class BalancingEnergyBidsArchives(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             business_type="B74",
             process_type=process_type,
-            
         )
 
 
@@ -1644,7 +1621,6 @@ class SharingOfRRAndFRRLegacy(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type="A47",
-            
         )
 
 
@@ -1690,5 +1666,4 @@ class SharesOfFCRCapacityLegacy(Balancing):
             bidding_zone_domain=bidding_zone_domain,
             process_type="A52",
             business_type="C23",
-            
         )
