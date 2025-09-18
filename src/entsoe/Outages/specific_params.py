@@ -59,9 +59,7 @@ class UnavailabilityOfProductionUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Production Unit
-            m_rid: Message ID for specific outage versions
-            offset: Offset for pagination
-        """
+            m_rid: Message ID for specific outage versions        """
         super().__init__(
             document_type="A77",
             period_start=period_start,
@@ -72,8 +70,7 @@ class UnavailabilityOfProductionUnits(Outages):
             business_type=business_type,
             doc_status=doc_status,
             registered_resource=registered_resource,
-            m_rid=m_rid,
-            offset=offset,
+            m_rid=m_rid
         )
 
 
@@ -126,9 +123,7 @@ class UnavailabilityOfGenerationUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Generation Unit
-            m_rid: Message ID for specific outage versions
-            offset: Offset for pagination
-        """
+            m_rid: Message ID for specific outage versions        """
         super().__init__(
             document_type="A80",
             period_start=period_start,
@@ -139,8 +134,7 @@ class UnavailabilityOfGenerationUnits(Outages):
             business_type=business_type,
             doc_status=doc_status,
             registered_resource=registered_resource,
-            m_rid=m_rid,
-            offset=offset,
+            m_rid=m_rid
         )
 
 
@@ -174,8 +168,6 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
         period_end_update: Optional[int] = None,
         # Optional filtering parameters
         business_type: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize aggregated unavailability of consumption units parameters.
@@ -190,7 +182,6 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
             period_end_update: End of update period (YYYYMMDDHHMM format)
             business_type: Business type (A53=Planned maintenance,
                          A54=Forced unavailability)
-            offset: Offset for pagination
         """
         super().__init__(
             document_type="A76",
@@ -200,7 +191,6 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
             period_start_update=period_start_update,
             period_end_update=period_end_update,
             business_type=business_type,
-            offset=offset,
         )
 
 
@@ -258,9 +248,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
                          A54=Forced unavailability)
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
-            m_rid: Message ID for specific outage versions
-            offset: Offset for pagination
-        """
+            m_rid: Message ID for specific outage versions        """
         super().__init__(
             document_type="A78",
             period_start=period_start,
@@ -270,8 +258,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
             time_interval_update=time_interval_update,
             business_type=business_type,
             doc_status=doc_status,
-            m_rid=m_rid,
-            offset=offset,
+            m_rid=m_rid
         )
 
         # Add domain parameters specific to this endpoint
@@ -326,9 +313,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
                              mandatory if period_start/end not defined)
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
-            m_rid: Message ID for specific outage versions
-            offset: Offset for pagination
-        """
+            m_rid: Message ID for specific outage versions        """
         super().__init__(
             document_type="A79",
             period_start=period_start,
@@ -337,8 +322,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
             period_start_update=period_start_update,
             period_end_update=period_end_update,
             doc_status=doc_status,
-            m_rid=m_rid,
-            offset=offset,
+            m_rid=m_rid
         )
 
 
@@ -381,8 +365,6 @@ class Fallbacks(Outages):
         # Optional filtering parameters
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize fall-backs parameters.
@@ -404,7 +386,6 @@ class Fallbacks(Outages):
             doc_status: Document status (A13=Withdrawn, by default withdrawn
                        publications not returned)
             m_rid: Message ID for specific publication versions
-            offset: Offset for pagination
         """
         super().__init__(
             document_type="A53",
@@ -416,7 +397,6 @@ class Fallbacks(Outages):
             business_type=business_type,
             doc_status=doc_status,
             m_rid=m_rid,
-            offset=offset,
         )
 
         # Add process type parameter specific to this endpoint
