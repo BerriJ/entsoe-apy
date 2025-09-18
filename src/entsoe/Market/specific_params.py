@@ -32,7 +32,6 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize congestion income parameters.
@@ -43,7 +42,6 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
             in_domain: EIC code of a Border or Bidding Zone
             out_domain: EIC code of a Border or Bidding Zone
             contract_market_agreement_type: A01=Daily; A07=Intraday
-            offset: Offset for pagination
 
 
         """
@@ -56,7 +54,6 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
             out_domain=out_domain,
             business_type="B10",  # Fixed: Congestion income
             contract_market_agreement_type=contract_market_agreement_type,
-            offset=offset,
         )
 
 
@@ -81,7 +78,6 @@ class TotalNominatedCapacity(Market):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize total nominated capacity parameters.
@@ -91,7 +87,6 @@ class TotalNominatedCapacity(Market):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area or Bidding Zone
             out_domain: EIC code of a Control Area or Bidding Zone
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -101,7 +96,6 @@ class TotalNominatedCapacity(Market):
             in_domain=in_domain,
             out_domain=out_domain,
             business_type="B08",  # Fixed: Total nominated capacity
-            offset=offset,
         )
 
 
@@ -130,7 +124,6 @@ class ImplicitAllocationsOfferedCapacity(Market):
         update_date_and_or_time: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize implicit allocations offered transfer capacity parameters.
@@ -143,7 +136,6 @@ class ImplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type: A01=Day ahead; A07=Intraday
             update_date_and_or_time: For Offered Capacity Evolution
             classification_sequence_position: Integer for classification
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -154,7 +146,6 @@ class ImplicitAllocationsOfferedCapacity(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            offset=offset,
         )
 
         # Add optional parameters
@@ -243,7 +234,6 @@ class TotalCapacityAllocated(Market):
         out_domain: str,
         contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize total capacity already allocated parameters.
@@ -254,7 +244,6 @@ class TotalCapacityAllocated(Market):
             in_domain: EIC code of a Control Area or Bidding Zone
             out_domain: EIC code of a Control Area or Bidding Zone
             contract_market_agreement_type: A01=Daily; A07=Intraday
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -265,7 +254,6 @@ class TotalCapacityAllocated(Market):
             out_domain=out_domain,
             business_type="B07",  # Fixed: Total allocated capacity
             contract_market_agreement_type=contract_market_agreement_type,
-            offset=offset,
         )
 
 
@@ -293,7 +281,6 @@ class ExplicitAllocationsOfferedCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize explicit allocations offered transfer capacity parameters.
@@ -306,7 +293,6 @@ class ExplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type: A01=Day ahead; A07=Intraday
             auction_category: Auction category (e.g., A04)
             classification_sequence_position: Integer for classification
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -318,7 +304,6 @@ class ExplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
-            offset=offset,
         )
 
         # Add optional classification parameter
@@ -349,7 +334,6 @@ class FlowBasedAllocations(Market):
         # Only Day ahead for Flow Based
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize flow based allocations parameters.
@@ -360,7 +344,6 @@ class FlowBasedAllocations(Market):
             in_domain: EIC code of Control Area, Bidding Zone or Aggregation
             out_domain: EIC code of Control Area, Bidding Zone or Aggregation
             contract_market_agreement_type: A01=Day ahead (Flow Based only)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -371,7 +354,6 @@ class FlowBasedAllocations(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            offset=offset,
         )
 
 
@@ -461,7 +443,6 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize explicit allocations use of transfer capacity parameters.
@@ -478,7 +459,6 @@ class ExplicitAllocationsUseTransferCapacity(Market):
                 A08=Quarterly
             auction_category: Auction category (e.g., A04=Hourly)
             classification_sequence_position: Integer for classification
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -490,7 +470,6 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             business_type="B05",  # Fixed: Capacity allocated (including price)
             contract_market_agreement_type=contract_market_agreement_type,
             auction_category=auction_category,
-            offset=offset,
         )
 
         # Add optional classification parameter
@@ -522,7 +501,6 @@ class ExplicitAllocationsAuctionRevenue(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ] = "A01",
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize explicit allocations auction revenue parameters.
@@ -537,7 +515,6 @@ class ExplicitAllocationsAuctionRevenue(Market):
             contract_market_agreement_type: A01=Daily; A02=Weekly;
                 A03=Monthly; A04=Yearly; A06=Long Term; A07=Intraday;
                 A08=Quarterly
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -548,7 +525,6 @@ class ExplicitAllocationsAuctionRevenue(Market):
             out_domain=out_domain,
             business_type="B07",  # Fixed: Auction Revenue
             contract_market_agreement_type=contract_market_agreement_type,
-            offset=offset,
         )
 
 
@@ -578,7 +554,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -595,7 +570,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
                 A08=Quarterly
             auction_category: Auction category (e.g., A04=Hourly)
             classification_sequence_position: Integer for classification
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -607,7 +581,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
-            offset=offset,
         )
 
         # Add optional classification parameter
@@ -638,7 +611,6 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -652,7 +624,6 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
                 Bidding Zone Aggregation
             contract_market_agreement_type: A01=Daily; A07=Intraday
             classification_sequence_position: Integer for classification
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -663,7 +634,6 @@ class TransferCapacitiesThirdCountriesImplicit(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            offset=offset,
         )
 
         # Add optional classification parameter
@@ -690,7 +660,6 @@ class ImplicitAuctionNetPositions(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize implicit auction net positions parameters.
@@ -702,7 +671,6 @@ class ImplicitAuctionNetPositions(Market):
             out_domain: EIC code of a Bidding Zone or Control Area
                 (must be same as in_domain)
             contract_market_agreement_type: A01=Daily; A05=Total; A07=Intraday
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -713,7 +681,6 @@ class ImplicitAuctionNetPositions(Market):
             out_domain=out_domain,
             business_type="B09",  # Fixed: Net position
             contract_market_agreement_type=contract_market_agreement_type,
-            offset=offset,
         )
 
 
@@ -742,7 +709,6 @@ class FlowBasedAllocationsLegacy(Market):
         # Only Day ahead for Flow Based
         contract_market_agreement_type: Literal["A01"] = "A01",
         # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize flow based allocations (legacy) parameters.
@@ -753,7 +719,6 @@ class FlowBasedAllocationsLegacy(Market):
             in_domain: EIC code of Control Area, Bidding Zone or Aggregation
             out_domain: EIC code of Control Area, Bidding Zone or Aggregation
             contract_market_agreement_type: A01=Day ahead (Flow Based only)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -764,5 +729,4 @@ class FlowBasedAllocationsLegacy(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
-            offset=offset,
         )

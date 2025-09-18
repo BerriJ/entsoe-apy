@@ -20,7 +20,7 @@ class Generation(Base):
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize generation data parameters for ENTSO-E Transparency Platform.
