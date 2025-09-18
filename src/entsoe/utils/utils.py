@@ -378,8 +378,4 @@ def ts_to_dict(time_series: list[TimeSeries]) -> list[dict]:
 
                 data_rows.append(row)
 
-        # Print progress for every 100 time series
-        if (i + 1) % 100 == 0:
-            print(f"Processed {i + 1}/{len(time_series)} time series...")
-
     return data_rows
