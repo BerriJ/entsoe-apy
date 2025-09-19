@@ -30,7 +30,7 @@ class Balancing(Base):
         direction: Optional[str] = None,
         registered_resource: Optional[str] = None,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize balancing data parameters for ENTSO-E Transparency Platform.

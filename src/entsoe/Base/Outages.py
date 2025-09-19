@@ -23,7 +23,7 @@ class Outages(Base):
         registered_resource: Optional[str] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize outage data parameters for ENTSO-E Transparency Platform.

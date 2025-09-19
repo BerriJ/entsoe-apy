@@ -34,7 +34,7 @@ def range_limited(func):
             logger.debug("No period parameters found, calling function directly")
             return func(params, *args, **kwargs)
 
-        logger.debug(f"range_limited decorator called for function: {func.__name__}")
+        logger.debug(f"Range_limited decorator called for function: {func.__name__}")
         logger.debug(f"Period range: {period_start} to {period_end}")
 
         # Check if the range exceeds the limit (1 year = 365 days)
@@ -42,7 +42,7 @@ def range_limited(func):
             logger.debug("Range exceeds 365 days, splitting range")
 
             # Split the range and make recursive calls
-            pivot_date, _ = split_date_range(period_start, period_end)
+            pivot_date = split_date_range(period_start, period_end)
             logger.debug(f"Split at pivot date: {pivot_date}")
 
             # Create new params for the first half
@@ -94,9 +94,8 @@ def acknowledgement(func):
                 logger.debug(f"{reason}\nReturning None")
                 return None, None
             else:
-                logger.debug(
-                    "Acknowledgement document indicates error, raising exception"
-                )
+                for reason in response.reason:
+                    logger.error(reason.text)
                 raise AcknowledgementDocumentError(response.reason)
 
         logger.debug("Acknowledgement check passed, returning response")
