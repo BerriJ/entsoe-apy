@@ -1,6 +1,6 @@
 from httpx import get
 from loguru import logger
-from xsdata.formats.dataclass.parsers import XmlParser
+from xsdata_pydantic.bindings import XmlParser
 
 from ..config.config import get_config
 from ..utils.utils import extract_namespace_and_find_classes
