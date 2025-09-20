@@ -1,9 +1,9 @@
-from dataclasses import fields, is_dataclass
 from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
 
 from loguru import logger
+from pydantic import BaseModel
 
 import entsoe.xml_models as xml_models
 
@@ -145,16 +145,12 @@ def merge_documents(base, other):
     - If base is None, returns other
     - If other is None, returns base
     - Lists: extend base list with other's items
-    - Nested dataclasses: merge recursively
+    - Nested Pydantic models: merge recursively
     - Scalars: keep base value, use other only if base is None
 
     Returns:
         The modified base document, or other/base if one is None
     """
-    base_type = type(base).__name__ if base else None
-    other_type = type(other).__name__ if other else None
-    logger.debug(f"Merging documents: base={base_type}, other={other_type}")
-
     if not base:
         logger.debug("Base is None/empty, returning other")
         return other
@@ -162,25 +158,38 @@ def merge_documents(base, other):
         logger.debug("Other is None/empty, returning base")
         return base
 
+    base_type = type(base).__name__ if base else None
+    other_type = type(other).__name__ if other else None
+    logger.debug(f"Merging documents: base={base_type}, other={other_type}")
+
     merge_count = 0
-    for field in fields(base):
-        base_value = getattr(base, field.name)
-        other_value = getattr(other, field.name)
+
+    # Handle Pydantic models only
+    if not isinstance(base, BaseModel):
+        logger.debug(f"Base is not a Pydantic model: {type(base)}")
+        raise TypeError("Base document must be a Pydantic model")
+
+    # Use Pydantic model fields
+    field_items = type(base).model_fields.items()
+
+    for field_name, field_info in field_items:
+        base_value = getattr(base, field_name)
+        other_value = getattr(other, field_name)
 
         if isinstance(base_value, list) and isinstance(other_value, list):
             if other_value:  # Only log if there are items to merge
                 logger.debug(
-                    f"Merging list field '{field.name}': {len(base_value)} + "
+                    f"Merging list field '{field_name}': {len(base_value)} + "
                     f"{len(other_value)} items"
                 )
                 base_value.extend(other_value)
                 merge_count += len(other_value)
-        elif is_dataclass(base_value) and is_dataclass(other_value):
-            logger.debug(f"Recursively merging dataclass field '{field.name}'")
+        elif isinstance(base_value, BaseModel) and isinstance(other_value, BaseModel):
+            logger.debug(f"Recursively merging nested model field '{field_name}'")
             merge_documents(base_value, other_value)
         elif base_value is None and other_value is not None:
-            logger.debug(f"Setting field '{field.name}' from other (base was None)")
-            setattr(base, field.name, other_value)
+            logger.debug(f"Setting field '{field_name}' from other (base was None)")
+            setattr(base, field_name, other_value)
             merge_count += 1
 
     logger.debug(f"Document merge completed, {merge_count} fields/items merged")
