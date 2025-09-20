@@ -1,12 +1,11 @@
 """Test module for verifying debug logging functionality."""
 
-from typing import Optional
 from unittest.mock import Mock, patch
 
 from entsoe import set_config
 from entsoe.config.config import reset_config
 from entsoe.query.query_api import query_core
-from entsoe.utils.utils import check_date_range_limit, merge_documents, split_date_range
+from entsoe.utils.utils import check_date_range_limit, split_date_range
 
 
 class TestLogging:
