@@ -2,6 +2,8 @@
 
 from typing import Any, Dict, Optional
 
+from pydantic import BaseModel
+
 from ..query.query_api import query_api
 from ..utils.mappings_dict import mappings
 
@@ -259,7 +261,7 @@ class Base:
         self.add_optional_param("periodEndUpdate", period_end_update)
         self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
-    def query_api(self) -> dict:
+    def query_api(self) -> BaseModel | None:
         """
         Query the ENTSO-E API with the specified parameters.
 
