@@ -32,7 +32,7 @@ def query_core(params: dict) -> Response:
 
 
 @acknowledgement
-def parse_response(response) -> tuple[str | None, BaseModel | None]:
+def parse_response(response) -> tuple[str | None, BaseModel]:
     logger.debug(f"Parsing response with status {response.status_code}")
 
     name, matching_class = extract_namespace_and_find_classes(response)
@@ -50,7 +50,7 @@ def parse_response(response) -> tuple[str | None, BaseModel | None]:
 # Order matters! First handle range-limits, second handle pagination
 @range_limited
 @pagination
-def query_api(params: dict) -> BaseModel | None:
+def query_api(params: dict[str, str]) -> BaseModel:
     logger.debug("Starting query_api by calling query_core.")
 
     response = query_core(params)

@@ -83,6 +83,10 @@ def extract_records(
     Raises:
         KeyError: If specified domain is not found in the data
     """
+
+    if not isinstance(data, BaseModel):
+        raise TypeError(f"Expected data to be a Pydantic BaseModel, got {type(data)}")
+
     data_dict = data.model_dump(mode="json")
 
     if domain:
