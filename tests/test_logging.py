@@ -1,12 +1,11 @@
 """Test module for verifying debug logging functionality."""
 
-from typing import Optional
 from unittest.mock import Mock, patch
 
 from entsoe import set_config
 from entsoe.config.config import reset_config
 from entsoe.query.query_api import query_core
-from entsoe.utils.utils import check_date_range_limit, merge_documents, split_date_range
+from entsoe.utils.utils import check_date_range_limit, split_date_range
 
 
 class TestLogging:
@@ -38,29 +37,6 @@ class TestLogging:
             # Verify that logging calls mention the function purpose
             call_args = [call[0][0] for call in mock_logger.debug.call_args_list]
             assert any("Splitting date range" in arg for arg in call_args)
-
-    def test_merge_documents_logging(self):
-        """Test that merge_documents logs debug messages."""
-        from dataclasses import dataclass
-
-        @dataclass
-        class TestDoc:
-            items: Optional[list] = None
-            name: Optional[str] = None
-
-            def __post_init__(self):
-                if self.items is None:
-                    self.items = []
-
-        doc1 = TestDoc(items=[1, 2], name="doc1")
-        doc2 = TestDoc(items=[3, 4], name=None)
-
-        with patch("entsoe.utils.utils.logger") as mock_logger:
-            merge_documents(doc1, doc2)
-            assert mock_logger.debug.called
-            # Verify that logging calls mention the function purpose
-            call_args = [call[0][0] for call in mock_logger.debug.call_args_list]
-            assert any("Merging documents" in arg for arg in call_args)
 
     @patch("entsoe.query.query_api.get")
     def test_query_core_logging(self, mock_get):

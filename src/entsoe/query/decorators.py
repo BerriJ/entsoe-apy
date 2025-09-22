@@ -91,7 +91,8 @@ def acknowledgement(func):
             logger.debug(f"Acknowledgement reason: {reason}")
 
             if "No matching data found" in reason:
-                logger.debug(f"{reason}\nReturning None")
+                logger.debug(reason)
+                logger.debug("Returning None")
                 return None, None
             else:
                 for reason in response.reason:
