@@ -12,7 +12,7 @@ class Load(Base):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize load data parameters for ENTSO-E Transparency Platform.

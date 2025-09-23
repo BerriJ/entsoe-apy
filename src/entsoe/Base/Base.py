@@ -2,8 +2,10 @@
 
 from typing import Any, Dict, Optional
 
-from ..mappings_dict import mappings
-from ..query_api import query_api
+from pydantic import BaseModel
+
+from ..query.query_api import query_api
+from ..utils.mappings_dict import mappings
 
 
 class ValidationError(ValueError):
@@ -20,7 +22,7 @@ class Base:
         document_type: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.
@@ -45,8 +47,8 @@ class Base:
         # Add period parameters using the proper method
         self.add_period_params(period_start=period_start, period_end=period_end)
 
-        # Add optional parameters if provided
-        self.add_optional_param("offset", offset)
+        if offset is not None:
+            self.add_optional_param("offset", offset)
 
     def validate_eic_code(self, eic_code: Optional[str], parameter_name: str) -> None:
         """
@@ -259,7 +261,7 @@ class Base:
         self.add_optional_param("periodEndUpdate", period_end_update)
         self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
-    def query_api(self) -> dict:
+    def query_api(self) -> BaseModel:
         """
         Query the ENTSO-E API with the specified parameters.
 

@@ -4,8 +4,8 @@ from time import sleep
 import httpx
 from loguru import logger
 
-from .config import get_config
-from .utils import check_date_range_limit, merge_documents, split_date_range
+from ..config.config import get_config
+from ..utils.utils import check_date_range_limit, merge_documents, split_date_range
 
 
 class AcknowledgementDocumentError(Exception):
@@ -34,7 +34,7 @@ def range_limited(func):
             logger.debug("No period parameters found, calling function directly")
             return func(params, *args, **kwargs)
 
-        logger.debug(f"range_limited decorator called for function: {func.__name__}")
+        logger.debug(f"Range_limited decorator called for function: {func.__name__}")
         logger.debug(f"Period range: {period_start} to {period_end}")
 
         # Check if the range exceeds the limit (1 year = 365 days)
@@ -42,7 +42,7 @@ def range_limited(func):
             logger.debug("Range exceeds 365 days, splitting range")
 
             # Split the range and make recursive calls
-            pivot_date, _ = split_date_range(period_start, period_end)
+            pivot_date = split_date_range(period_start, period_end)
             logger.debug(f"Split at pivot date: {pivot_date}")
 
             # Create new params for the first half
@@ -91,12 +91,12 @@ def acknowledgement(func):
             logger.debug(f"Acknowledgement reason: {reason}")
 
             if "No matching data found" in reason:
-                logger.debug(f"{reason}\nReturning None")
+                logger.debug(reason)
+                logger.debug("Returning None")
                 return None, None
             else:
-                logger.debug(
-                    "Acknowledgement document indicates error, raising exception"
-                )
+                for reason in response.reason:
+                    logger.error(reason.text)
                 raise AcknowledgementDocumentError(response.reason)
 
         logger.debug("Acknowledgement check passed, returning response")

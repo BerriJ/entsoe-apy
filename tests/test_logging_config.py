@@ -4,8 +4,7 @@ from unittest.mock import patch
 
 import pytest
 
-from entsoe import get_config, reset_config, set_config
-from entsoe.config import EntsoEConfig
+from entsoe.config.config import EntsoEConfig, get_config, reset_config, set_config
 
 
 class TestLoggingConfig:
@@ -66,7 +65,7 @@ class TestLoggingConfig:
         config = get_config()
         assert config.log_level == "SUCCESS"
 
-    @patch("entsoe.config.logger")
+    @patch("entsoe.config.config.logger")
     def test_loguru_configuration_is_updated(self, mock_logger):
         """Test that loguru logger is configured when EntsoEConfig is created."""
         EntsoEConfig(security_token="test_token", log_level="DEBUG")

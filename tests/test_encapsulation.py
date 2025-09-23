@@ -2,8 +2,9 @@
 
 import pytest
 
-from entsoe import reset_config, set_config
+from entsoe import set_config
 from entsoe.Base.Outages import Outages
+from entsoe.config.config import reset_config
 from entsoe.OMI.OMI import OMI
 
 

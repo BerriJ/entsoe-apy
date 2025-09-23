@@ -25,7 +25,7 @@ class Market(Base):
             int
         ] = None,
         # Additional common parameters
-        offset: int = 0,
+        offset: int | None = None,
     ):
         """
         Initialize market data parameters for ENTSO-E Transparency Platform.

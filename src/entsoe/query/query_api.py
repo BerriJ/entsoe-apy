@@ -1,14 +1,15 @@
-from httpx import get
+from httpx import Response, get
 from loguru import logger
-from xsdata.formats.dataclass.parsers import XmlParser
+from pydantic import BaseModel
+from xsdata_pydantic.bindings import XmlParser
 
-from .config import get_config
+from ..config.config import get_config
+from ..utils.utils import extract_namespace_and_find_classes
 from .decorators import acknowledgement, pagination, range_limited, retry
-from .utils import extract_namespace_and_find_classes
 
 
 @retry
-def query_core(params: dict):
+def query_core(params: dict) -> Response:
     config = get_config()
     URL = "https://web-api.tp.entsoe.eu/api"
 
@@ -31,7 +32,7 @@ def query_core(params: dict):
 
 
 @acknowledgement
-def parse_response(response):
+def parse_response(response) -> tuple[str | None, BaseModel]:
     logger.debug(f"Parsing response with status {response.status_code}")
 
     name, matching_class = extract_namespace_and_find_classes(response)
@@ -49,7 +50,7 @@ def parse_response(response):
 # Order matters! First handle range-limits, second handle pagination
 @range_limited
 @pagination
-def query_api(params: dict):
+def query_api(params: dict[str, str]) -> BaseModel:
     logger.debug("Starting query_api by calling query_core.")
 
     response = query_core(params)
