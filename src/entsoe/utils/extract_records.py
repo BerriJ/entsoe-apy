@@ -69,7 +69,7 @@ def normalize_to_records(
 
 def extract_records(
     data: BaseModel, domain: Optional[str] = None
-) -> List[Dict[str, Any]]:
+) -> List[Dict[str, Union[int, float, str, None]]]:
     """
     Convert a Pydantic model to a list of flattened records suitable for pandas DataFrame.
 
