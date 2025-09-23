@@ -1,8 +1,9 @@
-from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Optional
 
+from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
+from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
     AssetTypeList,
@@ -20,36 +21,34 @@ from .urn_entsoe_eu_wgedi_codelists import (
 __NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0"
 
 
-@dataclass
-class EsmpDateTimeInterval:
+class EsmpDateTimeInterval(BaseModel):
     class Meta:
         name = "ESMP_DateTimeInterval"
 
-    start: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    start: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
-    end: Optional[str] = field(
-        default=None,
+    end: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
 
 
-@dataclass
-class AreaIdString:
+class AreaIdString(BaseModel):
     class Meta:
         name = "AreaID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -57,21 +56,20 @@ class AreaIdString:
             "max_length": 18,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class EsmpVoltage:
+class EsmpVoltage(BaseModel):
     class Meta:
         name = "ESMP_Voltage"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -80,7 +78,7 @@ class EsmpVoltage:
         },
     )
     unit: UnitSymbol = field(
-        init=False,
+        const=True,
         default=UnitSymbol.KVT,
         metadata={
             "type": "Attribute",
@@ -89,11 +87,11 @@ class EsmpVoltage:
     )
 
 
-@dataclass
-class PartyIdString:
+class PartyIdString(BaseModel):
     class Meta:
         name = "PartyID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -101,25 +99,23 @@ class PartyIdString:
             "max_length": 16,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class Reason:
-    code: Optional[ReasonCodeTypeList] = field(
-        default=None,
+class Reason(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    code: ReasonCodeTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
     text: Optional[str] = field(
         default=None,
@@ -131,11 +127,11 @@ class Reason:
     )
 
 
-@dataclass
-class ResourceIdString:
+class ResourceIdString(BaseModel):
     class Meta:
         name = "ResourceID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -143,66 +139,61 @@ class ResourceIdString:
             "max_length": 60,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class SwitchedBackTimePeriod:
+class SwitchedBackTimePeriod(BaseModel):
     class Meta:
         name = "SwitchedBack_Time_Period"
 
-    time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class AlternativeRegisteredResource:
+class AlternativeRegisteredResource(BaseModel):
     class Meta:
         name = "Alternative_RegisteredResource"
 
-    m_rid: Optional[ResourceIdString] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class RegisteredResource:
-    m_rid: Optional[ResourceIdString] = field(
-        default=None,
+class RegisteredResource(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
-    name: Optional[str] = field(
-        default=None,
+    name: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
     p_srtype_psr_type: Optional[AssetTypeList] = field(
         default=None,
@@ -212,7 +203,9 @@ class RegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    p_srtype_power_system_resources_high_voltage_limit: Optional[EsmpVoltage] = field(
+    p_srtype_power_system_resources_high_voltage_limit: Optional[
+        EsmpVoltage
+    ] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.highVoltageLimit",
@@ -220,7 +213,9 @@ class RegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    p_srtype_power_system_resources_low_voltage_limit: Optional[EsmpVoltage] = field(
+    p_srtype_power_system_resources_low_voltage_limit: Optional[
+        EsmpVoltage
+    ] = field(
         default=None,
         metadata={
             "name": "pSRType.powerSystemResources.lowVoltageLimit",
@@ -230,17 +225,16 @@ class RegisteredResource:
     )
 
 
-@dataclass
-class TimeSeries:
-    m_rid: Optional[str] = field(
-        default=None,
+class TimeSeries(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
             "max_length": 35,
-        },
+        }
     )
     description: Optional[str] = field(
         default=None,
@@ -249,14 +243,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    business_type: Optional[BusinessTypeList] = field(
-        default=None,
+    business_type: BusinessTypeList = field(
         metadata={
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
     project_names_name: Optional[str] = field(
         default=None,
@@ -274,40 +267,42 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    outage_period_time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    outage_period_time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "outage_Period.timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
-    last_change_market_agreement_created_date_time: Optional[str] = field(
-        default=None,
+    last_change_market_agreement_created_date_time: str = field(
         metadata={
             "name": "lastChange_MarketAgreement.createdDateTime",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
+        }
     )
-    positive_offset_constraint_duration_duration: Optional[XmlDuration] = field(
-        default=None,
-        metadata={
-            "name": "positiveOffset_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
-        },
+    positive_offset_constraint_duration_duration: Optional[XmlDuration] = (
+        field(
+            default=None,
+            metadata={
+                "name": "positiveOffset_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
+            },
+        )
     )
-    negative_offset_constraint_duration_duration: Optional[XmlDuration] = field(
-        default=None,
-        metadata={
-            "name": "negativeOffset_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
-        },
+    negative_offset_constraint_duration_duration: Optional[XmlDuration] = (
+        field(
+            default=None,
+            metadata={
+                "name": "negativeOffset_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
+            },
+        )
     )
     no_restitution_constraint_duration_type: Optional[str] = field(
         default=None,
@@ -317,15 +312,19 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    maximum_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
-        default=None,
-        metadata={
-            "name": "maximumRestitution_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
-        },
+    maximum_restitution_constraint_duration_duration: Optional[XmlDuration] = (
+        field(
+            default=None,
+            metadata={
+                "name": "maximumRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
+            },
+        )
     )
-    day_time_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
+    day_time_restitution_constraint_duration_duration: Optional[
+        XmlDuration
+    ] = field(
         default=None,
         metadata={
             "name": "dayTimeRestitution_ConstraintDuration.duration",
@@ -333,7 +332,9 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    night_time_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
+    night_time_restitution_constraint_duration_duration: Optional[
+        XmlDuration
+    ] = field(
         default=None,
         metadata={
             "name": "nightTimeRestitution_ConstraintDuration.duration",
@@ -341,7 +342,9 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    week_end_restitution_constraint_duration_duration: Optional[XmlDuration] = field(
+    week_end_restitution_constraint_duration_duration: Optional[
+        XmlDuration
+    ] = field(
         default=None,
         metadata={
             "name": "weekEndRestitution_ConstraintDuration.duration",
@@ -349,14 +352,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    market_object_status_status: Optional[StatusTypeList] = field(
-        default=None,
+    market_object_status_status: StatusTypeList = field(
         metadata={
             "name": "marketObjectStatus.status",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
     coordination_market_object_status_status: Optional[StatusTypeList] = field(
         default=None,
@@ -382,14 +384,13 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
         },
     )
-    day_market_object_status_status: Optional[StatusTypeList] = field(
-        default=None,
+    day_market_object_status_status: StatusTypeList = field(
         metadata={
             "name": "day_MarketObjectStatus.status",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
             "required": True,
-        },
+        }
     )
     week_market_object_status_status: Optional[StatusTypeList] = field(
         default=None,
@@ -432,13 +433,15 @@ class TimeSeries:
             "min_occurs": 1,
         },
     )
-    alternative_registered_resource: list[AlternativeRegisteredResource] = field(
-        default_factory=list,
-        metadata={
-            "name": "Alternative_RegisteredResource",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
-        },
+    alternative_registered_resource: list[AlternativeRegisteredResource] = (
+        field(
+            default_factory=list,
+            metadata={
+                "name": "Alternative_RegisteredResource",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0",
+            },
+        )
     )
     switched_back_period: list[SwitchedBackTimePeriod] = field(
         default_factory=list,
@@ -450,86 +453,77 @@ class TimeSeries:
     )
 
 
-@dataclass
-class OutageScheduleMarketDocument:
+class OutageScheduleMarketDocument(BaseModel):
     class Meta:
         name = "OutageSchedule_MarketDocument"
         namespace = "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:0"
 
-    m_rid: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "required": True,
             "max_length": 35,
-        },
+        }
     )
-    revision_number: Optional[str] = field(
-        default=None,
+    revision_number: str = field(
         metadata={
             "name": "revisionNumber",
             "type": "Element",
             "required": True,
             "pattern": r"[1-9]([0-9]){0,2}",
-        },
+        }
     )
-    type_value: Optional[MessageTypeList] = field(
-        default=None,
+    type_value: MessageTypeList = field(
         metadata={
             "name": "type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
-        default=None,
+    process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    created_date_time: Optional[str] = field(
-        default=None,
+    created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
+        }
     )
     schedule_period_time_interval: Optional[EsmpDateTimeInterval] = field(
         default=None,
@@ -538,13 +532,12 @@ class OutageScheduleMarketDocument:
             "type": "Element",
         },
     )
-    domain_m_rid: Optional[AreaIdString] = field(
-        default=None,
+    domain_m_rid: AreaIdString = field(
         metadata={
             "name": "domain.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
     time_series: list[TimeSeries] = field(
         default_factory=list,
