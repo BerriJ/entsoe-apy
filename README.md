@@ -34,10 +34,12 @@ The package structure mirrors the [official ENTSO-E API docs](https://documenter
 After initializing the class, we can query the data using the query_data method.
 
 ```python
-# Import item from the Market Group
-from entsoe.Market import EnergyPrices
+from pandas import DataFrame
 
-EIC = "10Y1001A1001A82H" # DE-AT Biddingzone
+from entsoe.Market import EnergyPrices  # from the Market Group
+from entsoe.utils import extract_records
+
+EIC = "10Y1001A1001A82H"  # "DE-AT" bidding zone
 
 period_start = 201512312300
 period_end = 202107022300
@@ -50,6 +52,10 @@ ep = EnergyPrices(
     contract_market_agreement_type="A01",
 )
 result = ep.query_api()
+
+records = extract_records(result)
+
+df = DataFrame(records)
 ```
 
 The structure of the `result` object depends on the queried data. See the [examples](docs/examples.md) for more details.
