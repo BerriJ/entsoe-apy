@@ -53,7 +53,7 @@ ep = EnergyPrices(
 )
 result = ep.query_api()
 
-records = extract_records(result) 
+records = extract_records(result)
 
 df = DataFrame(records)
 ```
