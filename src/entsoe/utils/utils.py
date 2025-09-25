@@ -3,7 +3,6 @@ import inspect
 from xml.etree import ElementTree as ET
 
 from loguru import logger
-from pydantic import BaseModel
 
 import entsoe.xml_models as xml_models
 
