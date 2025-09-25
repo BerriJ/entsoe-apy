@@ -1,5 +1,7 @@
 from functools import wraps
+import io
 from time import sleep
+import zipfile
 
 import httpx
 from loguru import logger
@@ -12,6 +14,63 @@ class AcknowledgementDocumentError(Exception):
     """Raised when the API returns an acknowledgement document indicating an error."""
 
     pass
+
+
+def unzip(func):
+    """
+    Decorator that handles ZIP responses from the ENTSOE API.
+
+    Wraps query functions to automatically extract ZIP content when the API
+    returns application/zip content-type.
+    """
+
+    @wraps(func)
+    def unzip_wrapper(*args, **kwargs):
+        # Call the original function to get the response
+        response = func(*args, **kwargs)
+
+        # Check if response is ZIP format
+        content_type = response.headers.get("Content-Type", "")
+        if content_type == "application/zip":
+            logger.debug("Response is ZIP format, extracting XML content")
+            try:
+                # Create a BytesIO object from the response content
+                zip_buffer = io.BytesIO(response.content)
+
+                # Open the ZIP file and extract the first XML file
+                with zipfile.ZipFile(zip_buffer, "r") as zip_file:
+                    file_names = zip_file.namelist()
+
+                    if len(file_names) > 1:
+                        logger.error(
+                            "Multiple files found in ZIP, extracting only the first one"
+                        )
+
+                    if not file_names:
+                        raise ValueError("ZIP file is empty")
+
+                    logger.debug(f"Found files in ZIP: {file_names}")
+
+                    # Read the first XML file
+                    with zip_file.open(file_names[0]) as xml_file:
+                        xml_content = xml_file.read().decode("utf-8")
+
+                    logger.debug(
+                        f"Successfully extracted XML content ({len(xml_content)} characters)"
+                    )
+
+                    # Update response content and headers
+                    response._content = xml_content.encode("utf-8")
+                    response._text = xml_content
+                    response.headers["Content-Type"] = "text/xml; charset=utf-8"
+
+            except Exception as e:
+                logger.error(f"Failed to extract ZIP content: {e}")
+                raise ValueError(f"Failed to process ZIP response: {e}")
+
+        return response
+
+    return unzip_wrapper
 
 
 def range_limited(func):
