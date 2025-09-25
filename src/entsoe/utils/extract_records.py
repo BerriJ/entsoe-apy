@@ -127,4 +127,7 @@ def extract_records(
                 all_records.extend(domain_records)
         return all_records
 
-    return normalize_to_records(data_dict)
+    all_records = []
+    for item_dict in data_dict:
+        all_records.extend(normalize_to_records(item_dict))
+    return all_records
