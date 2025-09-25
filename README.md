@@ -39,7 +39,7 @@ from pandas import DataFrame
 from entsoe.Market import EnergyPrices  # from the Market Group
 from entsoe.utils import extract_records
 
-EIC = "10Y1001A1001A82H"  # "DE-AT" bidding zone
+EIC = "10Y1001A1001A82H"  # "DE-LU" bidding zone
 
 period_start = 201512312300
 period_end = 202107022300
@@ -57,6 +57,15 @@ records = extract_records(result)
 
 df = DataFrame(records)
 ```
+
+| period_time_interval.start   |   time_series.period.point.position |   time_series.period.point.price_amount | time_series.business_type   | time_series.currency_unit_name   | time_series.price_measure_unit_name   | time_series.period.resolution   |
+|:-----------------------------|------------------------------------:|----------------------------------------:|:----------------------------|:---------------------------------|:--------------------------------------|:--------------------------------|
+| 2018-09-30T22:00Z            |                                   1 |                                   49.3  | A62                         | EUR                              | MWH                                   | PT15M                           |
+| 2018-09-30T22:00Z            |                                   2 |                                   44.38 | A62                         | EUR                              | MWH                                   | PT15M                           |
+| 2018-09-30T22:00Z            |                                   3 |                                   36.99 | A62                         | EUR                              | MWH                                   | PT15M                           |
+| 2018-09-30T22:00Z            |                                   4 |                                   35.54 | A62                         | EUR                              | MWH                                   | PT15M                           |
+| 2018-09-30T22:00Z            |                                   5 |                                   46.5  | A62                         | EUR                              | MWH                                   | PT15M                           |
+
 
 The structure of the `result` object depends on the queried data. See the [examples](docs/examples.md) for more details.
 
