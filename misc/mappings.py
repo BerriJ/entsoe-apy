@@ -100,10 +100,10 @@ def consolidate_cty_entries(mappings_dict):
                     # If this country code exists as a separate key, merge CTY into it
                     if country_code in country_dict:
                         new_country_dict[country_code].extend(["CTY"])
-                        # Remove duplicates
-                        new_country_dict[country_code] = list(
+                        # Remove duplicates and sort
+                        new_country_dict[country_code] = sorted(list(
                             set(new_country_dict[country_code])
-                        )
+                        ))
                         # Mark this CTY entry for removal
                         cty_entries_to_remove.append(key)
 
@@ -121,17 +121,34 @@ def consolidate_cty_entries(mappings_dict):
 def write_mappings_to_file(mappings_dict, output_file="mappings_dict.py"):
     """
     Write the mappings dictionary to a Python file as a variable assignment.
+    
+    Sorts both the main dictionary keys and the inner list values for consistent output.
 
     Args:
         mappings_dict (dict): The mappings dictionary to write
         output_file (str): Output filename
     """
+    import pprint
+    
+    # Sort the main dictionary by keys and sort inner lists
+    sorted_mappings = {}
+    for key in sorted(mappings_dict.keys()):
+        inner_dict = mappings_dict[key]
+        sorted_inner_dict = {}
+        for inner_key in sorted(inner_dict.keys()):
+            # Sort the list values as well
+            sorted_inner_dict[inner_key] = sorted(inner_dict[inner_key])
+        sorted_mappings[key] = sorted_inner_dict
+    
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("# Auto-generated mappings dictionary\n")
         f.write("# Refer to mappings.py for more details\n")
         f.write("# EIC code mappings with country codes and prefixes\n\n")
         f.write("mappings = ")
-        f.write(repr(mappings_dict))
+        # Use pprint for better formatting
+        pp = pprint.PrettyPrinter(width=120, compact=True)
+        formatted_dict = pp.pformat(sorted_mappings)
+        f.write(formatted_dict)
         f.write("\n")
 
 
@@ -142,5 +159,5 @@ mappings_dict = convert_csv_list_to_dict(read_eic_codes_csv())
 mappings_consolidated = consolidate_cty_entries(mappings_dict)
 
 # Write the consolidated mappings to file
-write_mappings_to_file(mappings_consolidated, "./src/entsoe/mappings_dict.py")
+write_mappings_to_file(mappings_consolidated, "./src/entsoe/utils/mappings_dict.py")
 # %%

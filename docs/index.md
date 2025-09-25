@@ -52,6 +52,35 @@ result = ep.query_api()
 
 The structure of the `result` object depends on the queried data. See the [examples](./examples.md) for more details.
 
+## Working with API Results
+
+### JSON Serialization
+
+API results are returned as Pydantic models that support JSON serialization. You can export your data to JSON format using the built-in `model_dump_json()` method:
+
+```python
+# Convert the result to JSON string
+json_string = result.model_dump_json(indent=2)
+
+# Or convert to Python dict first, then to JSON
+result_dict = result.model_dump(mode="json")
+```
+
+The `model_dump_json()` method accepts several parameters:
+- `indent`: Pretty-print with specified indentation
+- `exclude`: Fields to exclude from the output
+- `include`: Only include specific fields
+- `by_alias`: Use field aliases if defined
+
+For more complex data processing, consider using the `extract_records()` utility function which flattens nested data structures into pandas-compatible records:
+
+```python
+from entsoe.utils import extract_records
+
+# Convert to flattened records suitable for pandas DataFrame
+records = extract_records(result)
+```
+
 ## Next Steps
 
 - [ENTSOE](./ENTSOE/index.md) - Class documentation
