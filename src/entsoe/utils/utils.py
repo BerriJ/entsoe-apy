@@ -160,6 +160,13 @@ def merge_documents(base, other):
 
     base_type = type(base).__name__ if base else None
     other_type = type(other).__name__ if other else None
+
+    if base_type != other_type:
+        logger.error(
+            f"Cannot merge documents of different types: {base_type} vs {other_type}"
+        )
+        raise TypeError("Cannot merge documents of different types")
+
     logger.debug(f"Merging documents: base={base_type}, other={other_type}")
 
     merge_count = 0
