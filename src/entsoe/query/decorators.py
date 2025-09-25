@@ -1,5 +1,8 @@
+from copy import deepcopy
 from functools import wraps
+import io
 from time import sleep
+import zipfile
 
 import httpx
 from loguru import logger
@@ -12,6 +15,101 @@ class AcknowledgementDocumentError(Exception):
     """Raised when the API returns an acknowledgement document indicating an error."""
 
     pass
+
+
+def unzip(func):
+    """
+    Decorator that handles ZIP responses from the ENTSOE API.
+
+    Wraps query functions to automatically extract ZIP content when the API
+    returns application/zip content-type. Returns a list of Response objects
+    if multiple files are found in the ZIP.
+    """
+
+    @wraps(func)
+    def unzip_wrapper(*args, **kwargs):
+        # Call the original function to get the response
+        response = func(*args, **kwargs)
+
+        # Check if response is ZIP format
+        if response.headers.get("Content-Type") == "text/xml":
+            return response
+        elif response.headers.get("Content-Type") == "application/zip":
+            logger.debug("Response is ZIP format, extracting XML content")
+            # Create a BytesIO object from the response content
+            zip_buffer = io.BytesIO(response.content)
+
+            # Open the ZIP file and extract XML files
+            with zipfile.ZipFile(zip_buffer, "r") as zip_file:
+                file_names = zip_file.namelist()
+
+                logger.debug(f"Found {len(file_names)} files in ZIP: {file_names}")
+
+                responses = []
+
+                for file_name in file_names:
+                    with zip_file.open(file_name) as xml_file:
+                        xml_content = xml_file.read().decode("utf-8")
+
+                    # Create a copy of the original response for each file
+                    # Create a new httpx.Response object with the required attributes
+                    new_response = httpx.Response(
+                        status_code=response.status_code,
+                        headers={**response.headers, "Content-Type": "text/xml; charset=utf-8"},
+                        content=xml_content.encode("utf-8"),
+                        request=response.request,
+                    )
+                    responses.append(new_response)
+                    logger.debug(
+                        f"Created Response object for {file_name} ({len(xml_content)} characters)"
+                    )
+
+                return responses[0] if len(responses) == 1 else responses
+        else:
+            logger.error("Response is not ZIP or XML, returning original response")
+            return response
+
+    return unzip_wrapper
+
+
+def handle_response_list(func):
+    """
+    Decorator that handles cases where the input to a function is a list of responses.
+
+    If the input is a list, calls the function for each element and merges
+    the results using merge_documents. Otherwise, calls the function normally.
+    """
+
+    @wraps(func)
+    def list_wrapper(response_or_list, *args, **kwargs):
+        # Check if the first argument is a list
+        if isinstance(response_or_list, list):
+            logger.debug(
+                f"Received list of {len(response_or_list)} responses, processing each"
+            )
+            merged_result = None
+            name = None
+
+            for i, response in enumerate(response_or_list):
+                logger.debug(f"Processing response {i + 1}/{len(response_or_list)}")
+
+                # Call the original function for each response
+                name, new_result = func(response, *args, **kwargs)
+
+                # Merge with accumulated results
+                merged_result = merge_documents(merged_result, new_result)
+                logger.debug(
+                    f"Merged new_result {i + 1}, type: {type(new_result).__name__}"
+                )
+
+            logger.debug(
+                f"Completed list processing, returning merged result: {type(merged_result).__name__}"
+            )
+            return name, merged_result
+        else:
+            return func(response_or_list, *args, **kwargs)
+
+    return list_wrapper
 
 
 def range_limited(func):
