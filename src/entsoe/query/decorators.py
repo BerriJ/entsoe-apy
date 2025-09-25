@@ -19,11 +19,16 @@ class AcknowledgementDocumentError(Exception):
 
 def unzip(func):
     """
-    Decorator that handles ZIP responses from the ENTSOE API.
+    Decorator that handles ZIP responses from the ENTSO-E API.
 
     Wraps query functions to automatically extract ZIP content when the API
-    returns application/zip content-type. Returns a list of Response objects
-    if multiple files are found in the ZIP.
+    returns application/zip content-type. Each file in the ZIP archive is
+    extracted and converted to a separate Response object, preserving the
+    original response metadata.
+
+    Returns:
+        List of Response objects - one for each file found in the ZIP archive,
+        or the original response list if the content is not a ZIP file.
     """
 
     @wraps(func)
@@ -79,10 +84,14 @@ def unzip(func):
 def range_limited(func):
     """
     Decorator that handles range limit errors by splitting the requested period
-    and merging the results.
+    and combining the results.
 
-    Catches a RangeLimitError, splits the requested period in two and tries
-    again. Finally it merges the results using merge_documents.
+    Catches cases where the date range exceeds the API's 1-year limit, splits
+    the requested period in two, and makes recursive calls. The results from
+    both halves are combined into a single list of BaseModel instances.
+
+    Returns:
+        List of BaseModel instances from all time periods combined.
     """
 
     @wraps(func)
@@ -139,6 +148,21 @@ def range_limited(func):
 
 
 def acknowledgement(func):
+    """
+    Decorator that handles acknowledgement documents from the ENTSO-E API.
+
+    Checks if the API response contains an acknowledgement document indicating
+    an error or "No matching data found" condition. Returns None for "No matching
+    data found" cases, or raises an AcknowledgementDocumentError for other error
+    conditions.
+
+    Returns:
+        The original BaseModel instance, or None if no data was found.
+
+    Raises:
+        AcknowledgementDocumentError: For acknowledgement documents containing errors
+    """
+
     @wraps(func)
     def ack_wrapper(params, *args, **kwargs) -> BaseModel | None:
         logger.debug(f"acknowledgement decorator called for function: {func.__name__}")
@@ -169,6 +193,18 @@ def acknowledgement(func):
 
 
 def pagination(func):
+    """
+    Decorator that handles pagination for API requests with large result sets.
+
+    When an 'offset' parameter is present, this decorator automatically
+    makes multiple API calls with increasing offset values (0, 100, 200, etc.)
+    until all data is retrieved. Results from all pages are combined into
+    a single list.
+
+    Returns:
+        List of BaseModel instances from all paginated results combined.
+    """
+
     @wraps(func)
     def pagination_wrapper(params, *args, **kwargs):
         logger.debug(f"pagination decorator called for function: {func.__name__}")
