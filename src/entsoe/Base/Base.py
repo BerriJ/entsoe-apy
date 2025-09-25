@@ -261,7 +261,7 @@ class Base:
         self.add_optional_param("periodEndUpdate", period_end_update)
         self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
-    def query_api(self) -> BaseModel:
+    def query_api(self) -> list[BaseModel]:
         """
         Query the ENTSO-E API with the specified parameters.
 

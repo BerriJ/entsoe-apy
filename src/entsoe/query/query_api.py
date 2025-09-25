@@ -7,7 +7,6 @@ from ..config.config import get_config
 from ..utils.utils import extract_namespace_and_find_classes
 from .decorators import (
     acknowledgement,
-    handle_response_list,
     pagination,
     range_limited,
     retry,
@@ -17,7 +16,7 @@ from .decorators import (
 
 @unzip
 @retry
-def query_core(params: dict) -> Response | list[Response]:
+def query_core(params: dict) -> list[Response]:
     config = get_config()
     URL = "https://web-api.tp.entsoe.eu/api"
 
@@ -36,12 +35,11 @@ def query_core(params: dict) -> Response | list[Response]:
         f"API response status: {response.status_code}, content length: {content_length}"
     )
 
-    return response
+    return [response]
 
 
-@handle_response_list
 @acknowledgement
-def parse_response(response) -> tuple[str | None, BaseModel]:
+def parse_response(response) -> BaseModel:
     logger.debug(f"Parsing response with status {response.status_code}")
 
     name, matching_class = extract_namespace_and_find_classes(response)
@@ -49,22 +47,26 @@ def parse_response(response) -> tuple[str | None, BaseModel]:
     class_name = matching_class.__name__ if matching_class else None
     logger.debug(f"Extracted namespace: {name}, matching class: {class_name}")
 
-    result = XmlParser().from_string(response.text, matching_class)
+    xml_model = XmlParser().from_string(response.text, matching_class)
 
-    logger.debug(f"Successfully parsed XML response into {type(result).__name__}")
+    logger.debug(f"Successfully parsed XML response into {type(xml_model).__name__}")
 
-    return name, result
+    return xml_model
 
 
 # Order matters! First handle range-limits, second handle pagination
 @range_limited
 @pagination
-def query_api(params: dict[str, str]) -> BaseModel:
+def query_api(params: dict[str, str]) -> list[BaseModel]:
     logger.debug("Starting query_api by calling query_core.")
 
-    response = query_core(params)
-    _, result = parse_response(response)
+    responses = query_core(params)
+    results = [
+        result
+        for response in responses
+        if (result := parse_response(response)) is not None
+    ]
 
-    logger.debug(f"query_api completed successfully, returning {type(result).__name__}")
+    logger.debug(f"query_api completed successfully, returning {len(results)} results.")
 
-    return result
+    return results
