@@ -52,13 +52,13 @@ def unzip(func):
                         xml_content = xml_file.read().decode("utf-8")
 
                     # Create a copy of the original response for each file
-                    new_response = deepcopy(response)
-
-                    # Update the content and headers
-                    new_response._content = xml_content.encode("utf-8")
-                    new_response._text = xml_content
-                    new_response.headers["Content-Type"] = "text/xml; charset=utf-8"
-
+                    # Create a new httpx.Response object with the required attributes
+                    new_response = httpx.Response(
+                        status_code=response.status_code,
+                        headers={**response.headers, "Content-Type": "text/xml; charset=utf-8"},
+                        content=xml_content.encode("utf-8"),
+                        request=response.request,
+                    )
                     responses.append(new_response)
                     logger.debug(
                         f"Created Response object for {file_name} ({len(xml_content)} characters)"
