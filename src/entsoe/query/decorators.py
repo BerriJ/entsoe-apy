@@ -1,4 +1,3 @@
-from copy import deepcopy
 from functools import wraps
 import io
 from time import sleep
@@ -55,7 +54,10 @@ def unzip(func):
                     # Create a new httpx.Response object with the required attributes
                     new_response = httpx.Response(
                         status_code=response.status_code,
-                        headers={**response.headers, "Content-Type": "text/xml; charset=utf-8"},
+                        headers={
+                            **response.headers,
+                            "Content-Type": "text/xml; charset=utf-8",
+                        },
                         content=xml_content.encode("utf-8"),
                         request=response.request,
                     )
