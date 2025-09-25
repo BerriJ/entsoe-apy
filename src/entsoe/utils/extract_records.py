@@ -1,5 +1,7 @@
 from typing import Any, Dict, List, Optional, Union
+import warnings
 
+from loguru import logger
 from pydantic import BaseModel
 
 
@@ -68,33 +70,64 @@ def normalize_to_records(
 
 
 def extract_records(
-    data: BaseModel, domain: Optional[str] = None
+    data: Union[BaseModel, list[BaseModel]], domain: Optional[str] = None
 ) -> List[Dict[str, Union[int, float, str, None]]]:
     """
-    Convert a Pydantic model to a list of flattened records suitable for pandas DataFrame.
+    Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
 
     Args:
-        data: Pydantic model instance
-        domain: Optional key to extract a specific domain from the data
+        data: Single Pydantic model instance or list of Pydantic model instances
+        domain: Optional key to extract a specific domain from each model
 
     Returns:
-        List of flattened dictionaries (records)
+        List of flattened dictionaries (records) from all BaseModel instances
 
     Raises:
         KeyError: If specified domain is not found in the data
+        TypeError: If data is not a BaseModel or list of BaseModels
     """
 
-    if not isinstance(data, BaseModel):
-        raise TypeError(f"Expected data to be a Pydantic BaseModel, got {type(data)}")
+    # Convert single BaseModel to list for uniform processing
+    if isinstance(data, BaseModel):
+        data_list = [data]
+    elif isinstance(data, list) and all(isinstance(item, BaseModel) for item in data):
+        data_list = data
 
-    data_dict = data.model_dump(mode="json")
+        # Check if all BaseModel instances have the same type
+        if len(data_list) > 1:
+            first_type = type(data_list[0])
+            different_types = [
+                type(item) for item in data_list if type(item) is not first_type
+            ]
+            if different_types:
+                unique_types = set([type(item).__name__ for item in data_list])
+                logger.warning(
+                    f"Mixed BaseModel types detected in list: {sorted(unique_types)}. "
+                    "This may result in inconsistent record structures.",
+                    UserWarning,
+                    stacklevel=2,
+                )
+    else:
+        raise TypeError(
+            f"Expected data to be a BaseModel or list of BaseModel instances, got {type(data)}"
+        )
+
+    data_dict = [item.model_dump(mode="json") for item in data_list]
 
     if domain:
-        if domain not in data_dict:
-            available_keys = list(data_dict.keys())
+        # Check if domain exists in all dictionaries
+        available_keys = set().union(*(d.keys() for d in data_dict))
+        if domain not in available_keys:
             raise KeyError(
                 f"Domain '{domain}' not found in data. Available keys: {available_keys}"
             )
-        return normalize_to_records(data_dict[domain])
+
+        # Extract the domain from each dictionary and flatten all results
+        all_records = []
+        for item_dict in data_dict:
+            if domain in item_dict:
+                domain_records = normalize_to_records(item_dict[domain])
+                all_records.extend(domain_records)
+        return all_records
 
     return normalize_to_records(data_dict)
