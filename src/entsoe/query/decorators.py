@@ -1,3 +1,4 @@
+from copy import deepcopy
 from functools import wraps
 import io
 from time import sleep
@@ -21,7 +22,8 @@ def unzip(func):
     Decorator that handles ZIP responses from the ENTSOE API.
 
     Wraps query functions to automatically extract ZIP content when the API
-    returns application/zip content-type.
+    returns application/zip content-type. Returns a list of Response objects
+    if multiple files are found in the ZIP.
     """
 
     @wraps(func)
@@ -30,47 +32,84 @@ def unzip(func):
         response = func(*args, **kwargs)
 
         # Check if response is ZIP format
-        content_type = response.headers.get("Content-Type", "")
-        if content_type == "application/zip":
+        if response.headers.get("Content-Type") == "text/xml":
+            return response
+        elif response.headers.get("Content-Type") == "application/zip":
             logger.debug("Response is ZIP format, extracting XML content")
-            try:
-                # Create a BytesIO object from the response content
-                zip_buffer = io.BytesIO(response.content)
+            # Create a BytesIO object from the response content
+            zip_buffer = io.BytesIO(response.content)
 
-                # Open the ZIP file and extract the first XML file
-                with zipfile.ZipFile(zip_buffer, "r") as zip_file:
-                    file_names = zip_file.namelist()
+            # Open the ZIP file and extract XML files
+            with zipfile.ZipFile(zip_buffer, "r") as zip_file:
+                file_names = zip_file.namelist()
 
-                    if len(file_names) > 1:
-                        logger.error(
-                            "Multiple files found in ZIP, extracting only the first one"
-                        )
+                logger.debug(f"Found {len(file_names)} files in ZIP: {file_names}")
 
-                    if not file_names:
-                        raise ValueError("ZIP file is empty")
+                responses = []
 
-                    logger.debug(f"Found files in ZIP: {file_names}")
-
-                    # Read the first XML file
-                    with zip_file.open(file_names[0]) as xml_file:
+                for file_name in file_names:
+                    with zip_file.open(file_name) as xml_file:
                         xml_content = xml_file.read().decode("utf-8")
 
+                    # Create a copy of the original response for each file
+                    new_response = deepcopy(response)
+
+                    # Update the content and headers
+                    new_response._content = xml_content.encode("utf-8")
+                    new_response._text = xml_content
+                    new_response.headers["Content-Type"] = "text/xml; charset=utf-8"
+
+                    responses.append(new_response)
                     logger.debug(
-                        f"Successfully extracted XML content ({len(xml_content)} characters)"
+                        f"Created Response object for {file_name} ({len(xml_content)} characters)"
                     )
 
-                    # Update response content and headers
-                    response._content = xml_content.encode("utf-8")
-                    response._text = xml_content
-                    response.headers["Content-Type"] = "text/xml; charset=utf-8"
-
-            except Exception as e:
-                logger.error(f"Failed to extract ZIP content: {e}")
-                raise ValueError(f"Failed to process ZIP response: {e}")
-
-        return response
+                return responses[0] if len(responses) == 1 else responses
+        else:
+            logger.error("Response is not ZIP or XML, returning original response")
+            return response
 
     return unzip_wrapper
+
+
+def handle_response_list(func):
+    """
+    Decorator that handles cases where the input to a function is a list of responses.
+
+    If the input is a list, calls the function for each element and merges
+    the results using merge_documents. Otherwise, calls the function normally.
+    """
+
+    @wraps(func)
+    def list_wrapper(response_or_list, *args, **kwargs):
+        # Check if the first argument is a list
+        if isinstance(response_or_list, list):
+            logger.debug(
+                f"Received list of {len(response_or_list)} responses, processing each"
+            )
+            merged_result = None
+            name = None
+
+            for i, response in enumerate(response_or_list):
+                logger.debug(f"Processing response {i + 1}/{len(response_or_list)}")
+
+                # Call the original function for each response
+                name, new_result = func(response, *args, **kwargs)
+
+                # Merge with accumulated results
+                merged_result = merge_documents(merged_result, new_result)
+                logger.debug(
+                    f"Merged new_result {i + 1}, type: {type(new_result).__name__}"
+                )
+
+            logger.debug(
+                f"Completed list processing, returning merged result: {type(merged_result).__name__}"
+            )
+            return name, merged_result
+        else:
+            return func(response_or_list, *args, **kwargs)
+
+    return list_wrapper
 
 
 def range_limited(func):

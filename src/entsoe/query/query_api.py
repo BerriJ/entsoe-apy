@@ -5,12 +5,19 @@ from xsdata_pydantic.bindings import XmlParser
 
 from ..config.config import get_config
 from ..utils.utils import extract_namespace_and_find_classes
-from .decorators import acknowledgement, pagination, range_limited, retry, unzip
+from .decorators import (
+    acknowledgement,
+    handle_response_list,
+    pagination,
+    range_limited,
+    retry,
+    unzip,
+)
 
 
 @unzip
 @retry
-def query_core(params: dict) -> Response:
+def query_core(params: dict) -> Response | list[Response]:
     config = get_config()
     URL = "https://web-api.tp.entsoe.eu/api"
 
@@ -32,6 +39,7 @@ def query_core(params: dict) -> Response:
     return response
 
 
+@handle_response_list
 @acknowledgement
 def parse_response(response) -> tuple[str | None, BaseModel]:
     logger.debug(f"Parsing response with status {response.status_code}")
