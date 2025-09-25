@@ -102,9 +102,7 @@ def extract_records(
                 unique_types = set([type(item).__name__ for item in data_list])
                 logger.warning(
                     f"Mixed BaseModel types detected in list: {sorted(unique_types)}. "
-                    "This may result in inconsistent record structures.",
-                    UserWarning,
-                    stacklevel=2,
+                    "This may result in inconsistent record structures."
                 )
     else:
         raise TypeError(
