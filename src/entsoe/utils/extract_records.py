@@ -103,7 +103,12 @@ def extract_records(
     # Convert single BaseModel to list for uniform processing
     if isinstance(data, BaseModel):
         data_list = [data]
-    elif isinstance(data, list) and all(isinstance(item, BaseModel) for item in data):
+    elif isinstance(data, list):
+        for item in data:
+            if not isinstance(item, BaseModel):
+                raise TypeError(
+                    f"Expected all items in the list to be BaseModel instances, got {type(item)}"
+                )
         data_list = data
 
         # Check if all BaseModel instances have the same type
