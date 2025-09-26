@@ -15,6 +15,7 @@ nav:
   - Package Structure: entsoe_export_tree.md
   - Examples: examples.md
   - Mappings: mappings.md
+  - Codes: codes.md
   - Development: development.md
   - Issues [Github]: "https://github.com/BerriJ/entsoe-apy/issues"
   - Source [Github]: "https://github.com/BerriJ/entsoe-apy"
@@ -55,6 +56,7 @@ plugins:
           heading_level: 2
           line_length: 80
           show_source: false
+          members: true
           show_root_heading: true
           show_signature: true
           separate_signature: true
