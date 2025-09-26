@@ -165,9 +165,13 @@ class ActualGenerationPerGenerationUnit(Generation):
     - Returns actual generation data for individual generation units
     - Can be filtered by PSR Type and/or specific Registered Resource (generation unit)
     - Provides more granular data than per production type endpoints
+    - Maximum time interval: 1 day (API limitation)
     """
 
     code = "16.1.A"
+    max_days_limit: int = (
+        1  # Override: Maximum time interval is 1 day for this endpoint
+    )
 
     def __init__(
         self,

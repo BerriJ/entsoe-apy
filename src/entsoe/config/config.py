@@ -90,6 +90,34 @@ class EntsoEConfig:
         self.retry_delay = retry_delay
         self.log_level = log_level.upper()
 
+    def validate_security_token(self) -> None:
+        """
+        Validate that the security token is present and valid.
+
+        Raises:
+            ValueError: If security token is None or invalid format
+        """
+        if self.security_token is None:
+            logger.error(
+                'Security token is not set. Please provide it explicitly using entsoe.set_config("<security_token>") or set the ENTSOE_API environment variable.'
+            )
+            raise ValueError(
+                "Security token is required but not provided. Please set it explicitly "
+                'using entsoe.set_config("<security_token>") or set the ENTSOE_API '
+                "environment variable."
+            )
+
+        try:
+            # Validate UUID format
+            UUID(self.security_token)
+        except ValueError as e:
+            logger.error("Invalid security_token format. Must be a valid UUID.")
+            raise ValueError(
+                f"Invalid security token format. Must be a valid UUID. Error: {e}"
+            ) from e
+
+        logger.debug("security_token validation passed.")
+
 
 # Global configuration instance
 _global_config: Optional[EntsoEConfig] = None

@@ -3,7 +3,6 @@ import inspect
 from xml.etree import ElementTree as ET
 
 from loguru import logger
-from pydantic import BaseModel
 
 import entsoe.xml_models as xml_models
 
@@ -70,23 +69,26 @@ def check_date_range_limit(
     return exceeds_limit
 
 
-def split_date_range(period_start: int, period_end: int) -> int:
+def split_date_range(period_start: int, period_end: int, max_days: int = 365) -> int:
     """
-    Split a date range into the first 365 days and the remaining days.
+    Split a date range at the specified maximum number of days.
 
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
+        max_days: Maximum days for the first segment (default: 365)
 
     Returns:
         The pivot date (end of first segment) in YYYYMMDDHHMM format
     """
-    logger.debug(f"Splitting date range: {period_start} to {period_end}")
+    logger.debug(
+        f"Splitting date range: {period_start} to {period_end} at {max_days} days"
+    )
 
     start_dt = parse_entsoe_datetime(period_start)
 
-    # Add 365 days to the start date
-    pivot_dt = start_dt + timedelta(days=365)
+    # Add max_days to the start date
+    pivot_dt = start_dt + timedelta(days=max_days)
 
     period_pivot = format_entsoe_datetime(pivot_dt)
 
@@ -131,66 +133,3 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
     logger.debug(f"Selected class: {selected_class.__name__}")
 
     return namespace, selected_class
-
-
-def merge_documents(base, other):
-    """
-    Merge `other` document into `base` document.
-
-    Args:
-        base: Base document to merge into (modified in-place)
-        other: Other document to merge from
-
-    Rules:
-    - If base is None, returns other
-    - If other is None, returns base
-    - Lists: extend base list with other's items
-    - Nested Pydantic models: merge recursively
-    - Scalars: keep base value, use other only if base is None
-
-    Returns:
-        The modified base document, or other/base if one is None
-    """
-    if not base:
-        logger.debug("Base is None/empty, returning other")
-        return other
-    if not other:
-        logger.debug("Other is None/empty, returning base")
-        return base
-
-    base_type = type(base).__name__ if base else None
-    other_type = type(other).__name__ if other else None
-    logger.debug(f"Merging documents: base={base_type}, other={other_type}")
-
-    merge_count = 0
-
-    # Handle Pydantic models only
-    if not isinstance(base, BaseModel):
-        logger.debug(f"Base is not a Pydantic model: {type(base)}")
-        raise TypeError("Base document must be a Pydantic model")
-
-    # Use Pydantic model fields
-    field_items = type(base).model_fields.items()
-
-    for field_name, field_info in field_items:
-        base_value = getattr(base, field_name)
-        other_value = getattr(other, field_name)
-
-        if isinstance(base_value, list) and isinstance(other_value, list):
-            if other_value:  # Only log if there are items to merge
-                logger.debug(
-                    f"Merging list field '{field_name}': {len(base_value)} + "
-                    f"{len(other_value)} items"
-                )
-                base_value.extend(other_value)
-                merge_count += len(other_value)
-        elif isinstance(base_value, BaseModel) and isinstance(other_value, BaseModel):
-            logger.debug(f"Recursively merging nested model field '{field_name}'")
-            merge_documents(base_value, other_value)
-        elif base_value is None and other_value is not None:
-            logger.debug(f"Setting field '{field_name}' from other (base was None)")
-            setattr(base, field_name, other_value)
-            merge_count += 1
-
-    logger.debug(f"Document merge completed, {merge_count} fields/items merged")
-    return base
