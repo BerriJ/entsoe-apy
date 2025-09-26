@@ -32,6 +32,10 @@ def query_core(params: dict) -> list[Response]:
         to maintain consistency with decorators that may return multiple responses.
     """
     config = get_config()
+
+    # Validate that security token is present and valid before making API request
+    config.validate_security_token()
+
     URL = "https://web-api.tp.entsoe.eu/api"
 
     # Make a copy of params and extend it with the security_token
