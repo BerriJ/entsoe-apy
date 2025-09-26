@@ -266,7 +266,10 @@ class Base:
         Query the ENTSO-E API with the specified parameters.
 
         Returns:
-            The API response
+            List of Pydantic BaseModel instances containing the API responses.
+            Multiple models may be returned when the query spans multiple time
+            periods or when the API returns multiple documents in response to
+            a single request. Each model preserves its associated metadata.
         """
         response = query_api(self.params)
         return response
