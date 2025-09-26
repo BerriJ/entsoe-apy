@@ -1,10 +1,11 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
+from loguru import logger
 from pydantic import BaseModel
 
 
 def normalize_to_records(
-    data: Union[Dict[str, Any], List[Any], Any], parent_key: str = "", sep: str = "."
+    data: Dict[str, Any] | List[Any] | Any, parent_key: str = "", sep: str = "."
 ) -> List[Dict[str, Any]]:
     """
     Recursively flattens nested JSON/dictionary structures into a list of records suitable for pandas DataFrames.
@@ -68,33 +69,79 @@ def normalize_to_records(
 
 
 def extract_records(
-    data: BaseModel, domain: Optional[str] = None
-) -> List[Dict[str, Union[int, float, str, None]]]:
+    data: BaseModel | list[BaseModel], domain: Optional[str] = None
+) -> List[Dict[str, int | float | str | None]]:
     """
-    Convert a Pydantic model to a list of flattened records suitable for pandas DataFrame.
+    Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
+
+    This function now handles both single BaseModel instances and lists of BaseModel instances,
+    flattening all data into a unified list of records. When multiple BaseModel instances
+    are provided, their records are combined while preserving the individual metadata
+    and structure of each model.
 
     Args:
-        data: Pydantic model instance
-        domain: Optional key to extract a specific domain from the data
+        data: Single Pydantic model instance or list of Pydantic model instances.
+              When a list is provided, all models are processed and their records
+              are combined into a single result list.
+        domain: Optional key to extract a specific domain from each model.
+               When specified, only the data under this key is extracted from
+               each BaseModel instance.
 
     Returns:
-        List of flattened dictionaries (records)
+        List of flattened dictionaries (records) from all BaseModel instances.
+        Records from multiple models are concatenated in the order they appear.
 
     Raises:
         KeyError: If specified domain is not found in the data
+        TypeError: If data is not a BaseModel or list of BaseModels
+
+    Note:
+        If mixed BaseModel types are detected in a list, a warning is logged
+        as this may result in inconsistent record structures.
     """
 
-    if not isinstance(data, BaseModel):
-        raise TypeError(f"Expected data to be a Pydantic BaseModel, got {type(data)}")
+    # Convert single BaseModel to list for uniform processing
+    if isinstance(data, BaseModel):
+        data_list = [data]
+    elif isinstance(data, list) and all(isinstance(item, BaseModel) for item in data):
+        data_list = data
 
-    data_dict = data.model_dump(mode="json")
+        # Check if all BaseModel instances have the same type
+        if len(data_list) > 1:
+            first_type = type(data_list[0])
+            different_types = [
+                type(item) for item in data_list if type(item) is not first_type
+            ]
+            if different_types:
+                unique_types = set([type(item).__name__ for item in data_list])
+                logger.warning(
+                    f"Mixed BaseModel types detected in list: {sorted(unique_types)}. "
+                    "This may result in inconsistent record structures."
+                )
+    else:
+        raise TypeError(
+            f"Expected data to be a BaseModel or list of BaseModel instances, got {type(data)}"
+        )
+
+    data_dict = [item.model_dump(mode="json") for item in data_list]
 
     if domain:
-        if domain not in data_dict:
-            available_keys = list(data_dict.keys())
+        # Check if domain exists in all dictionaries
+        available_keys = set().union(*(d.keys() for d in data_dict))
+        if domain not in available_keys:
             raise KeyError(
                 f"Domain '{domain}' not found in data. Available keys: {available_keys}"
             )
-        return normalize_to_records(data_dict[domain])
 
-    return normalize_to_records(data_dict)
+        # Extract the domain from each dictionary and flatten all results
+        all_records = []
+        for item_dict in data_dict:
+            if domain in item_dict:
+                domain_records = normalize_to_records(item_dict[domain])
+                all_records.extend(domain_records)
+        return all_records
+
+    all_records = []
+    for item_dict in data_dict:
+        all_records.extend(normalize_to_records(item_dict))
+    return all_records

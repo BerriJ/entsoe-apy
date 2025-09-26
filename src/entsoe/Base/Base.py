@@ -261,12 +261,15 @@ class Base:
         self.add_optional_param("periodEndUpdate", period_end_update)
         self.add_optional_param("TimeIntervalUpdate", time_interval_update)
 
-    def query_api(self) -> BaseModel:
+    def query_api(self) -> list[BaseModel]:
         """
         Query the ENTSO-E API with the specified parameters.
 
         Returns:
-            The API response
+            List of Pydantic BaseModel instances containing the API responses.
+            Multiple models may be returned when the query spans multiple time
+            periods or when the API returns multiple documents in response to
+            a single request. Each model preserves its associated metadata.
         """
         response = query_api(self.params)
         return response
