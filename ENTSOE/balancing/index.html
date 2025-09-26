@@ -1,0 +1,5338 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../outages/">
+      
+      
+        <link rel="next" href="../omi/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Balancing - ENTSO-E API Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#balancing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ENTSO-E API Python" class="md-header__button md-logo" aria-label="ENTSO-E API Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ENTSO-E API Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Balancing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ENTSO-E API Python" class="md-nav__button md-logo" aria-label="ENTSO-E API Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ENTSO-E API Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    ENTSOE
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ENTSOE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../market/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Market
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transmission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transmission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../outages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Outages
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Balancing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Balancing
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entsoe.Balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Balancing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balancing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.__all__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __all__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AcceptedAggregatedOffers" class="md-nav__link">
+    <span class="md-ellipsis">
+      AcceptedAggregatedOffers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ActivatedBalancingEnergy" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActivatedBalancingEnergy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AggregatedBalancingEnergyBids" class="md-nav__link">
+    <span class="md-ellipsis">
+      AggregatedBalancingEnergyBids
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AllocationAndUseOfCrossZonalBalancingCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      AllocationAndUseOfCrossZonalBalancingCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingBorderCapacityLimitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingBorderCapacityLimitations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingEnergyBids" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingEnergyBids
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingEnergyBidsArchives" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingEnergyBidsArchives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ChangesToBidAvailability" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChangesToBidAvailability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CrossBorderBalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      CrossBorderBalancing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CrossBorderMarginalPricesForAFRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      CrossBorderMarginalPricesForAFRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CurrentBalancingState" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurrentBalancingState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ElasticDemands" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElasticDemands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ExchangedReserveCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExchangedReserveCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FCRTotalCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      FCRTotalCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FinancialExpensesAndIncomeForBalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      FinancialExpensesAndIncomeForBalancing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRActualCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRActualCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRAndRRActualCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRAndRRActualCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRAndRRCapacityOutlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRAndRRCapacityOutlook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ImbalancePrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImbalancePrices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.NettedAndExchangedVolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      NettedAndExchangedVolumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.NettedAndExchangedVolumesPerBorder" class="md-nav__link">
+    <span class="md-ellipsis">
+      NettedAndExchangedVolumesPerBorder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.OutlookOfReserveCapacitiesOnRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      OutlookOfReserveCapacitiesOnRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.PermanentAllocationLimitationsToHVDCLines" class="md-nav__link">
+    <span class="md-ellipsis">
+      PermanentAllocationLimitationsToHVDCLines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.PricesOfActivatedBalancingEnergy" class="md-nav__link">
+    <span class="md-ellipsis">
+      PricesOfActivatedBalancingEnergy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ProcuredBalancingCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProcuredBalancingCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ResultsOfCriteriaApplicationProcess" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResultsOfCriteriaApplicationProcess
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.RRActualCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      RRActualCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.RRActualCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      RRActualCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharesOfFCRCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharesOfFCRCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharesOfFCRCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharesOfFCRCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfFCRBetweenSAs" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfFCRBetweenSAs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfRRAndFRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfRRAndFRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfRRAndFRRLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfRRAndFRRLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.TotalImbalanceVolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      TotalImbalanceVolumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.VolumesAndPricesOfContractedReserves" class="md-nav__link">
+    <span class="md-ellipsis">
+      VolumesAndPricesOfContractedReserves
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../omi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OMI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entsoe_export_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Package Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mappings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mappings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Codes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/BerriJ/entsoe-apy/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Issues [Github]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/BerriJ/entsoe-apy" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Source [Github]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/BerriJ/entsoe-apy/blob/main/LICENSE" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    License [Github]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entsoe.Balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Balancing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Balancing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.__all__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __all__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AcceptedAggregatedOffers" class="md-nav__link">
+    <span class="md-ellipsis">
+      AcceptedAggregatedOffers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ActivatedBalancingEnergy" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActivatedBalancingEnergy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AggregatedBalancingEnergyBids" class="md-nav__link">
+    <span class="md-ellipsis">
+      AggregatedBalancingEnergyBids
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.AllocationAndUseOfCrossZonalBalancingCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      AllocationAndUseOfCrossZonalBalancingCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingBorderCapacityLimitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingBorderCapacityLimitations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingEnergyBids" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingEnergyBids
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.BalancingEnergyBidsArchives" class="md-nav__link">
+    <span class="md-ellipsis">
+      BalancingEnergyBidsArchives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ChangesToBidAvailability" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChangesToBidAvailability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CrossBorderBalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      CrossBorderBalancing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CrossBorderMarginalPricesForAFRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      CrossBorderMarginalPricesForAFRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.CurrentBalancingState" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurrentBalancingState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ElasticDemands" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElasticDemands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ExchangedReserveCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExchangedReserveCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FCRTotalCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      FCRTotalCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FinancialExpensesAndIncomeForBalancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      FinancialExpensesAndIncomeForBalancing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRActualCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRActualCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRAndRRActualCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRAndRRActualCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.FRRAndRRCapacityOutlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      FRRAndRRCapacityOutlook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ImbalancePrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImbalancePrices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.NettedAndExchangedVolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      NettedAndExchangedVolumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.NettedAndExchangedVolumesPerBorder" class="md-nav__link">
+    <span class="md-ellipsis">
+      NettedAndExchangedVolumesPerBorder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.OutlookOfReserveCapacitiesOnRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      OutlookOfReserveCapacitiesOnRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.PermanentAllocationLimitationsToHVDCLines" class="md-nav__link">
+    <span class="md-ellipsis">
+      PermanentAllocationLimitationsToHVDCLines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.PricesOfActivatedBalancingEnergy" class="md-nav__link">
+    <span class="md-ellipsis">
+      PricesOfActivatedBalancingEnergy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ProcuredBalancingCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProcuredBalancingCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.ResultsOfCriteriaApplicationProcess" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResultsOfCriteriaApplicationProcess
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.RRActualCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      RRActualCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.RRActualCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      RRActualCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharesOfFCRCapacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharesOfFCRCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharesOfFCRCapacityLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharesOfFCRCapacityLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfFCRBetweenSAs" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfFCRBetweenSAs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfRRAndFRR" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfRRAndFRR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.SharingOfRRAndFRRLegacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      SharingOfRRAndFRRLegacy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.TotalImbalanceVolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      TotalImbalanceVolumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entsoe.Balancing.VolumesAndPricesOfContractedReserves" class="md-nav__link">
+    <span class="md-ellipsis">
+      VolumesAndPricesOfContractedReserves
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="balancing">Balancing<a class="headerlink" href="#balancing" title="Permanent link">&para;</a></h1>
+<p>This page provides detailed information about balancing-related parameter classes.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="entsoe.Balancing" class="doc doc-heading">
+            <span class="doc doc-object-name doc-module-name">entsoe.Balancing</span>
+
+
+<a href="#entsoe.Balancing" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Balancing parameter classes for ENTSO-E Transparency Platform API.</p>
+<p>This module provides parameter classes for ENTSO-E Balancing data endpoints,
+each inheriting from BalancingParams and providing preset values for specific
+endpoints.</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="entsoe.Balancing.__all__" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">__all__</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#entsoe.Balancing.__all__" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s2">&quot;AcceptedAggregatedOffers&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s2">&quot;ActivatedBalancingEnergy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;AggregatedBalancingEnergyBids&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="s2">&quot;AllocationAndUseOfCrossZonalBalancingCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="s2">&quot;BalancingBorderCapacityLimitations&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;BalancingEnergyBidsArchives&quot;</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;BalancingEnergyBids&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;ChangesToBidAvailability&quot;</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">&quot;CrossBorderBalancing&quot;</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;CrossBorderMarginalPricesForAFRR&quot;</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="s2">&quot;CurrentBalancingState&quot;</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="s2">&quot;ElasticDemands&quot;</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s2">&quot;ExchangedReserveCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s2">&quot;FCRTotalCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="s2">&quot;FinancialExpensesAndIncomeForBalancing&quot;</span><span class="p">,</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="s2">&quot;FRRActualCapacityLegacy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="s2">&quot;FRRAndRRActualCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="s2">&quot;FRRAndRRCapacityOutlook&quot;</span><span class="p">,</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="s2">&quot;ImbalancePrices&quot;</span><span class="p">,</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="s2">&quot;NettedAndExchangedVolumes&quot;</span><span class="p">,</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="s2">&quot;NettedAndExchangedVolumesPerBorder&quot;</span><span class="p">,</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="s2">&quot;OutlookOfReserveCapacitiesOnRR&quot;</span><span class="p">,</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="s2">&quot;PermanentAllocationLimitationsToHVDCLines&quot;</span><span class="p">,</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="s2">&quot;PricesOfActivatedBalancingEnergy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="s2">&quot;ProcuredBalancingCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="s2">&quot;ResultsOfCriteriaApplicationProcess&quot;</span><span class="p">,</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    <span class="s2">&quot;RRActualCapacityLegacy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="s2">&quot;RRActualCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    <span class="s2">&quot;SharesOfFCRCapacityLegacy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="s2">&quot;SharesOfFCRCapacity&quot;</span><span class="p">,</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>    <span class="s2">&quot;SharingOfFCRBetweenSAs&quot;</span><span class="p">,</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>    <span class="s2">&quot;SharingOfRRAndFRRLegacy&quot;</span><span class="p">,</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>    <span class="s2">&quot;SharingOfRRAndFRR&quot;</span><span class="p">,</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>    <span class="s2">&quot;TotalImbalanceVolumes&quot;</span><span class="p">,</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    <span class="s2">&quot;VolumesAndPricesOfContractedReserves&quot;</span><span class="p">,</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="p">]</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.AcceptedAggregatedOffers" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">AcceptedAggregatedOffers</span>
+
+
+<a href="#entsoe.Balancing.AcceptedAggregatedOffers" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">AcceptedAggregatedOffers</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">control_area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">psr_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.D Accepted Aggregated Offers.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/acceptedAggregatedOffers/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A82 (Accepted offers)</li>
+</ul>
+<p>Optional parameters:
+- businessType: A95=Frequency containment reserve, A96=Automatic frequency
+               restoration reserve, A97=Manual frequency restoration reserve,
+               A98=Replacement reserve</p>
+
+        <p>Initialize accepted aggregated offers parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>control_area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balance Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A95=FCR, A96=aFRR, A97=mFRR, A98=RR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>psr_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A04=Generation, A05=Load, A03=Mixed</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ActivatedBalancingEnergy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ActivatedBalancingEnergy</span>
+
+
+<a href="#entsoe.Balancing.ActivatedBalancingEnergy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ActivatedBalancingEnergy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">control_area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">psr_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.E Activated Balancing Energy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A83 (Activated balancing quantities)</li>
+</ul>
+<p>Optional parameters:
+- businessType: A95=Frequency containment reserve, A96=Automatic frequency
+               restoration reserve, A97=Manual frequency restoration reserve,
+               A98=Replacement reserve</p>
+
+        <p>Initialize activated balancing energy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>control_area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balance Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A95=FCR, A96=aFRR, A97=mFRR, A98=RR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>psr_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A04=Generation, A05=Load, A03=Mixed</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.AggregatedBalancingEnergyBids" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">AggregatedBalancingEnergyBids</span>
+
+
+<a href="#entsoe.Balancing.AggregatedBalancingEnergyBids" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">AggregatedBalancingEnergyBids</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.E Aggregated Balancing Energy Bids (GL EB).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/aggregatedBalancingEnergyBids/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A24 (Bid document)</li>
+</ul>
+<p>Required parameters:
+- processType: A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled activation mFRR,
+              A61=Direct activation mFRR, A67=Central Selection aFRR,
+              A68=Local Selection aFRR</p>
+
+        <p>Initialize aggregated balancing energy bids parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled mFRR,
+         A61=Direct mFRR, A67=Central aFRR, A68=Local aFRR</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.AllocationAndUseOfCrossZonalBalancingCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">AllocationAndUseOfCrossZonalBalancingCapacity</span>
+
+
+<a href="#entsoe.Balancing.AllocationAndUseOfCrossZonalBalancingCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">AllocationAndUseOfCrossZonalBalancingCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.H&amp;I Allocation and Use of Cross-zonal Balancing Capacity.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/allocationAndUseOfCrossZonalBalancingCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A38 (Reserve allocation result document)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement reserve, A47=Manual frequency restoration reserve,
+              A51=Automatic frequency restoration reserve,
+              A52=Frequency containment reserve</p>
+
+        <p>Initialize allocation and use of cross-zonal balancing capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=RR, A47=mFRR, A51=aFRR, A52=FCR</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.BalancingBorderCapacityLimitations" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">BalancingBorderCapacityLimitations</span>
+
+
+<a href="#entsoe.Balancing.BalancingBorderCapacityLimitations" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BalancingBorderCapacityLimitations</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">acquiring_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs 4.3 &amp; 4.4 Balancing Border Capacity Limitations.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/balancingBorderCapacityLimitations/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A31 (Agreed capacity)</li>
+</ul>
+<p>Required parameters:
+- processType: A51=Automatic Frequency Restoration Reserve,
+              A63=Imbalance Netting, A47=Manual frequency restoration reserve</p>
+
+        <p>Initialize balancing border capacity limitations parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>acquiring_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (acquiring area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (connecting area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A51=aFRR, A63=Imbalance Netting, A47=mFRR</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.BalancingEnergyBids" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">BalancingEnergyBids</span>
+
+
+<a href="#entsoe.Balancing.BalancingEnergyBids" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BalancingEnergyBids</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">standard_market_product</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">original_market_product</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">direction</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.B&amp;C Balancing Energy Bids.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/balancingEnergyBids/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A37 (Reserve bid document)</li>
+<li>businessType: B74 (Offer)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement reserve, A47=Manual frequency restoration reserve,
+              A51=Automatic frequency restoration reserve</p>
+
+        <p>Initialize balancing energy bids parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=RR, A47=mFRR, A51=aFRR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>standard_market_product</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A01=Standard, A05=Standard mFRR scheduled,
+                     A07=Standard mFRR direct activation</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>original_market_product</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A02=Specific, A03=Integrated Process, A04=Local</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>direction</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A01=Up, A02=Down</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.BalancingEnergyBidsArchives" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">BalancingEnergyBidsArchives</span>
+
+
+<a href="#entsoe.Balancing.BalancingEnergyBidsArchives" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BalancingEnergyBidsArchives</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.B&amp;C Balancing Energy Bids Archives.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/balancingEnergyBidsArchives/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A37 (Reserve bid document)</li>
+<li>businessType: B74 (Offer)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement reserve, A47=Manual frequency restoration reserve,
+              A51=Automatic frequency restoration reserve</p>
+<p>Notes:
+- This is the archived version of balancing energy bids
+- Contains historical bid data for analysis and reporting</p>
+
+        <p>Initialize balancing energy bids archives parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=RR, A47=mFRR, A51=aFRR</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ChangesToBidAvailability" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ChangesToBidAvailability</span>
+
+
+<a href="#entsoe.Balancing.ChangesToBidAvailability" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ChangesToBidAvailability</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs mFRR 9.9, aFRR 9.6&amp;9.8 Changes to Bid Availability.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/changesToBidAvailability/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: B45 (Bid Availability Document)</li>
+<li>processType: A47 (Manual frequency restoration reserve)</li>
+</ul>
+<p>Optional parameters:
+- businessType: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
+               C43=Voltage limit, C44=Current limit,
+               C45=Short-circuit current limits,
+               C46=Dynamic stability limit</p>
+
+        <p>Initialize changes to bid availability parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area or LFA</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
+          C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
+          C46=Dynamic stability limit</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.CrossBorderBalancing" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">CrossBorderBalancing</span>
+
+
+<a href="#entsoe.Balancing.CrossBorderBalancing" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">CrossBorderBalancing</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">acquiring_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.J Cross Border Balancing.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/crossBorderBalancing/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A88 (Cross border balancing)</li>
+</ul>
+<p>Notes:
+- Cross-border balancing activities between different market areas
+- Requires acquiring_domain and connecting_domain for cross-border queries</p>
+
+        <p>Initialize cross border balancing parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>acquiring_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (acquiring area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (connecting area)</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.CrossBorderMarginalPricesForAFRR" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">CrossBorderMarginalPricesForAFRR</span>
+
+
+<a href="#entsoe.Balancing.CrossBorderMarginalPricesForAFRR" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">CrossBorderMarginalPricesForAFRR</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for
+aFRR Central Selection (CS).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/crossBorderMarginalPricesForAFRR/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A84 (Activated balancing prices)</li>
+<li>processType: A67 (Central Selection aFRR)</li>
+<li>businessType: A96 (Automatic frequency restoration reserve)</li>
+</ul>
+<p>Notes:
+- Specific to aFRR Central Selection marginal prices
+- Cross-border pricing information for automatic frequency restoration</p>
+
+        <p>Initialize cross border marginal prices for aFRR parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.CurrentBalancingState" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">CurrentBalancingState</span>
+
+
+<a href="#entsoe.Balancing.CurrentBalancingState" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">CurrentBalancingState</span><span class="p">(</span><span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.A Current Balancing State (GL EB).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/currentBalancingState/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A86 (Imbalance volume)</li>
+<li>businessType: B33 (Area Control Error)</li>
+</ul>
+<p>Notes:
+- Returns current balancing state information
+- Shows real-time area control error data</p>
+
+        <p>Initialize current balancing state parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ElasticDemands" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ElasticDemands</span>
+
+
+<a href="#entsoe.Balancing.ElasticDemands" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ElasticDemands</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs aFRR 3.4 &amp; mFRR 3.4 Elastic Demands.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/elasticDemands/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A37 (Reserve bid document)</li>
+<li>businessType: B75 (Need)</li>
+</ul>
+<p>Required parameters:
+- processType: A51=Automatic Frequency Restoration Reserve,
+              A47=Manual Frequency Restoration Reserve</p>
+
+        <p>Initialize elastic demands parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A51=aFRR, A47=mFRR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ExchangedReserveCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ExchangedReserveCapacity</span>
+
+
+<a href="#entsoe.Balancing.ExchangedReserveCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ExchangedReserveCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 190.3 Exchanged Reserve Capacity (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/exchangedReserveCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A46 (Replacement reserve)</li>
+</ul>
+<p>Notes:
+- Shows exchanged reserve capacity between areas
+- Used for cross-border capacity exchange tracking</p>
+
+        <p>Initialize exchanged reserve capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.FCRTotalCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FCRTotalCapacity</span>
+
+
+<a href="#entsoe.Balancing.FCRTotalCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">FCRTotalCapacity</span><span class="p">(</span><span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 187.2 FCR Total Capacity (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/fcrTotalCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>businessType: A25 (General Capacity Information)</li>
+</ul>
+<p>Notes:
+- Returns total FCR (Frequency Containment Reserve) capacity data
+- Used for capacity planning and reserve management</p>
+
+        <p>Initialize FCR total capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.FinancialExpensesAndIncomeForBalancing" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FinancialExpensesAndIncomeForBalancing</span>
+
+
+<a href="#entsoe.Balancing.FinancialExpensesAndIncomeForBalancing" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">FinancialExpensesAndIncomeForBalancing</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.I Financial Expenses and Income for Balancing.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/financialExpensesAndIncomeForBalancing/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A87 (Financial situation)</li>
+</ul>
+<p>Notes:
+- Returns financial data related to balancing activities
+- Shows expenses and income from balancing operations</p>
+
+        <p>Initialize financial expenses and income for balancing parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.FRRActualCapacityLegacy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FRRActualCapacityLegacy</span>
+
+
+<a href="#entsoe.Balancing.FRRActualCapacityLegacy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">FRRActualCapacityLegacy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 188.4 FRR Actual Capacity (SO GL) - Legacy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/frrActualCapacityLegacy/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A46=Replacement reserve, A56=Frequency restoration reserve</li>
+<li>businessType: C77=Min, C78=Avg, C79=Max</li>
+</ul>
+<p>Notes:
+- This is the legacy version of FRR actual capacity endpoint
+- Maintained for backward compatibility</p>
+
+        <p>Initialize FRR actual capacity legacy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=Replacement reserve, A56=Frequency restoration reserve</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>C77=Min, C78=Avg, C79=Max</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.FRRAndRRActualCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FRRAndRRActualCapacity</span>
+
+
+<a href="#entsoe.Balancing.FRRAndRRActualCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">FRRAndRRActualCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 188.4 &amp; 189.3 FRR and RR Actual Capacity (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/frrAndRRActualCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement reserve, A56=Frequency restoration reserve
+- businessType: C77=Min, C78=Avg, C79=Max</p>
+
+        <p>Initialize FRR and RR actual capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=Replacement reserve, A56=Frequency restoration reserve</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>C77=Min, C78=Avg, C79=Max</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.FRRAndRRCapacityOutlook" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">FRRAndRRCapacityOutlook</span>
+
+
+<a href="#entsoe.Balancing.FRRAndRRCapacityOutlook" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">FRRAndRRCapacityOutlook</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 188.3 &amp; 189.2 FRR &amp; RR Capacity Outlook (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/frrAndRRCapacityOutlook/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>businessType: C76 (Forecasted capacity)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement Reserve, A56=Frequency Restoration Reserve</p>
+
+        <p>Initialize FRR and RR capacity outlook parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=Replacement Reserve, A56=Frequency Restoration Reserve</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ImbalancePrices" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ImbalancePrices</span>
+
+
+<a href="#entsoe.Balancing.ImbalancePrices" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ImbalancePrices</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">control_area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">psr_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.G Imbalance Prices.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/imbalancePricing/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A85 (Imbalance prices)</li>
+</ul>
+<p>Notes:
+- Returns imbalance prices for the specified bidding zone
+- Used for settlement and pricing of imbalances</p>
+
+        <p>Initialize imbalance prices parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>control_area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>psr_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A04=Generation, A05=Load</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.NettedAndExchangedVolumes" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">NettedAndExchangedVolumes</span>
+
+
+<a href="#entsoe.Balancing.NettedAndExchangedVolumes" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">NettedAndExchangedVolumes</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">acquiring_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs 3.10, 3.16 &amp; 3.17 Netted and Exchanged Volumes.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumes/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: B17 (Aggregated netted external TSO schedule document)</li>
+</ul>
+<p>Required parameters:
+- processType: A60=mFRR with Scheduled Activation, A61=mFRR with Direct Activation,
+              A51=Automatic Frequency Restoration Reserve, A63=Imbalance Netting</p>
+
+        <p>Initialize netted and exchanged volumes parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>acquiring_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of LFA or SCA</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of LFA or SCA</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
+         A63=Imbalance Netting</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.NettedAndExchangedVolumesPerBorder" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">NettedAndExchangedVolumesPerBorder</span>
+
+
+<a href="#entsoe.Balancing.NettedAndExchangedVolumesPerBorder" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">NettedAndExchangedVolumesPerBorder</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">acquiring_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs 3.10, 3.16 &amp; 3.17 Netted and Exchanged Volumes per Border.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/nettedAndExchangedVolumesPerBorder/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A30 (Cross border schedule)</li>
+</ul>
+<p>Required parameters:
+- processType: A60=mFRR with Scheduled Activation, A61=mFRR with Direct Activation,
+              A51=Automatic Frequency Restoration Reserve, A63=Imbalance Netting</p>
+
+        <p>Initialize netted and exchanged volumes per border parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>acquiring_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (acquiring area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (connecting area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A60=mFRR Scheduled, A61=mFRR Direct, A51=aFRR,
+         A63=Imbalance Netting</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.OutlookOfReserveCapacitiesOnRR" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">OutlookOfReserveCapacitiesOnRR</span>
+
+
+<a href="#entsoe.Balancing.OutlookOfReserveCapacitiesOnRR" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">OutlookOfReserveCapacitiesOnRR</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 189.2 Outlook of Reserve Capacities on RR (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/outlookOfReserveCapacitiesOnRR/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A46 (Replacement reserve)</li>
+<li>businessType: C76 (Forecasted capacity)</li>
+</ul>
+<p>Notes:
+- Provides outlook/forecast of replacement reserve capacities
+- Used for medium-term capacity planning</p>
+
+        <p>Initialize outlook of reserve capacities on RR parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.PermanentAllocationLimitationsToHVDCLines" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">PermanentAllocationLimitationsToHVDCLines</span>
+
+
+<a href="#entsoe.Balancing.PermanentAllocationLimitationsToHVDCLines" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">PermanentAllocationLimitationsToHVDCLines</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">acquiring_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">connecting_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for IFs 4.5 Permanent Allocation Limitations to Cross-border
+Capacity on HVDC Lines.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/permanentAllocationLimitationsToHVDCLines/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A99 (HVDC Link constraints)</li>
+</ul>
+<p>Required parameters:
+- processType: A51=Automatic Frequency Restoration Reserve,
+              A63=Imbalance Netting, A47=Manual frequency restoration reserve</p>
+
+        <p>Initialize permanent allocation limitations to HVDC lines parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>acquiring_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (acquiring area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>connecting_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Market Balancing Area (connecting area)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A51=aFRR, A63=Imbalance Netting, A47=mFRR</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.PricesOfActivatedBalancingEnergy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">PricesOfActivatedBalancingEnergy</span>
+
+
+<a href="#entsoe.Balancing.PricesOfActivatedBalancingEnergy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">PricesOfActivatedBalancingEnergy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">control_area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">psr_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">standard_market_product</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">original_market_product</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">export_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.F Prices of Activated Balancing Energy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/activationAndActivatedBalancingReserves/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A84 (Activated balancing prices)</li>
+</ul>
+<p>Required parameters:
+- processType: A16=Realised, A60=Scheduled activation mFRR,
+              A61=Direct activation mFRR, A68=Local Selection aFRR</p>
+<p>Optional parameters:
+- businessType: A95=FCR, A96=aFRR, A97=mFRR, A98=RR</p>
+
+        <p>Initialize prices of activated balancing energy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>control_area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of LFA, IPA, or SCA</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A16=Realised, A60=Scheduled activation mFRR,
+         A61=Direct activation mFRR, A68=Local Selection aFRR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A95=FCR, A96=aFRR, A97=mFRR, A98=RR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>psr_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A04=Generation, A05=Load</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>standard_market_product</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A01=Standard</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>original_market_product</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A02=Specific, A04=Local</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>export_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>zip (planned to be discontinued)</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ProcuredBalancingCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ProcuredBalancingCapacity</span>
+
+
+<a href="#entsoe.Balancing.ProcuredBalancingCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ProcuredBalancingCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 12.3.F Procured Balancing Capacity (GL EB).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/procuredBalancingCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A15 (Acquiring system operator reserve schedule)</li>
+</ul>
+<p>Required parameters:
+- processType: A46=Replacement reserve, A47=Manual frequency restoration reserve,
+              A51=Automatic frequency restoration reserve,
+              A52=Frequency containment reserve</p>
+
+        <p>Initialize procured balancing capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A46=RR, A47=mFRR, A51=aFRR, A52=FCR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.ResultsOfCriteriaApplicationProcess" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">ResultsOfCriteriaApplicationProcess</span>
+
+
+<a href="#entsoe.Balancing.ResultsOfCriteriaApplicationProcess" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ResultsOfCriteriaApplicationProcess</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 185.4 Results of the Criteria Application Process -
+Measurements (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/resultsOfCriteriaApplicationProcess/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A45 (Measurement Value Document)</li>
+</ul>
+<p>Required parameters:
+- processType: A64=Criteria application for instantaneous frequency (For SNA),
+              A65=Criteria application for frequency restoration (for LFC Block)</p>
+
+        <p>Initialize results of criteria application process parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A64=Instantaneous frequency criteria,
+         A65=Frequency restoration criteria</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.RRActualCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">RRActualCapacity</span>
+
+
+<a href="#entsoe.Balancing.RRActualCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">RRActualCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 189.3 RR Actual Capacity (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/rrActualCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A46 (Replacement reserve)</li>
+<li>businessType: C77 (Min)</li>
+</ul>
+<p>Notes:
+- Returns actual replacement reserve capacity data
+- Shows minimum actual capacity available</p>
+
+        <p>Initialize RR actual capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.RRActualCapacityLegacy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">RRActualCapacityLegacy</span>
+
+
+<a href="#entsoe.Balancing.RRActualCapacityLegacy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">RRActualCapacityLegacy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 189.3 RR Actual Capacity (SO GL) Legacy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/rrActualCapacityLegacy/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A46 (Replacement reserve)</li>
+<li>businessType: C24 (Actual reserve capacity)</li>
+</ul>
+<p>Notes:
+- This is the legacy version using C24 instead of C77 business type
+- Maintained for backward compatibility with older implementations</p>
+
+        <p>Initialize RR actual capacity legacy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.SharesOfFCRCapacity" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SharesOfFCRCapacity</span>
+
+
+<a href="#entsoe.Balancing.SharesOfFCRCapacity" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">SharesOfFCRCapacity</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 187.2 Shares of FCR Capacity (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacity/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>businessType: C23 (Share of reserve capacity)</li>
+</ul>
+<p>Notes:
+- Returns shares of FCR capacity between different areas
+- Shows distribution of frequency containment reserves</p>
+
+        <p>Initialize shares of FCR capacity parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.SharesOfFCRCapacityLegacy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SharesOfFCRCapacityLegacy</span>
+
+
+<a href="#entsoe.Balancing.SharesOfFCRCapacityLegacy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">SharesOfFCRCapacityLegacy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 187.2 Shares of FCR Capacity - Share of Capacity (SO GL) Legacy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/sharesOfFCRCapacityLegacy/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>businessType: C23 (Share of reserve capacity)</li>
+<li>processType: A52 (Frequency containment reserve)</li>
+</ul>
+<p>Notes:
+- This is the legacy version with explicit A52 process type
+- Maintained for backward compatibility with older implementations</p>
+
+        <p>Initialize shares of FCR capacity legacy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.SharingOfFCRBetweenSAs" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SharingOfFCRBetweenSAs</span>
+
+
+<a href="#entsoe.Balancing.SharingOfFCRBetweenSAs" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">SharingOfFCRBetweenSAs</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 190.2 Sharing of FCR between SAs (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/sharingOfFCRBetweenSAs/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A52 (Frequency containment reserve)</li>
+<li>businessType: C22 (Shared Balancing Reserve Capacity)</li>
+</ul>
+<p>Notes:
+- Shows sharing arrangements of FCR between Scheduling Areas
+- Used for cross-border reserve sharing coordination</p>
+
+        <p>Initialize sharing of FCR between SAs parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.SharingOfRRAndFRR" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SharingOfRRAndFRR</span>
+
+
+<a href="#entsoe.Balancing.SharingOfRRAndFRR" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">SharingOfRRAndFRR</span><span class="p">(</span><span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 190.1 Sharing of RR and FRR (SO GL).</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRR/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A56 (Frequency restoration reserve)</li>
+</ul>
+<p>Notes:
+- Shows sharing arrangements for RR and FRR between areas
+- Used for cross-border reserve sharing coordination</p>
+
+        <p>Initialize sharing of RR and FRR parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.SharingOfRRAndFRRLegacy" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">SharingOfRRAndFRRLegacy</span>
+
+
+<a href="#entsoe.Balancing.SharingOfRRAndFRRLegacy" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">SharingOfRRAndFRRLegacy</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 190.1 Sharing of RR and FRR (SO GL) Legacy.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/sharingOfRRAndFRRLegacy/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A26 (Capacity document)</li>
+<li>processType: A47 (Manual frequency restoration reserve)</li>
+</ul>
+<p>Notes:
+- This is the legacy version using A47 instead of A56 process type
+- Maintained for backward compatibility with older implementations</p>
+
+        <p>Initialize sharing of RR and FRR legacy parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.TotalImbalanceVolumes" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">TotalImbalanceVolumes</span>
+
+
+<a href="#entsoe.Balancing.TotalImbalanceVolumes" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">TotalImbalanceVolumes</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">control_area_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">business_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.H Total Imbalance Volumes.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/imbalanceVolume/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A86 (Imbalance volume)</li>
+</ul>
+<p>Optional parameters:
+- businessType: A19=Balance Energy Deviation (default when not specified)</p>
+
+        <p>Initialize total imbalance volumes parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>control_area_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Scheduling Area or Market Balance Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>business_type</code></b>
+              (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>A19=Balance Energy Deviation (default)</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="entsoe.Balancing.VolumesAndPricesOfContractedReserves" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">VolumesAndPricesOfContractedReserves</span>
+
+
+<a href="#entsoe.Balancing.VolumesAndPricesOfContractedReserves" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">VolumesAndPricesOfContractedReserves</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">period_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">period_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">bidding_zone_domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">process_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span></code></pre></div>
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="entsoe.Base.Balancing.Balancing">Balancing</span></code></p>
+
+
+        <p>Parameters for 17.1.B&amp;C Volumes and Prices of Contracted Reserves.</p>
+<p>Data view:
+https://transparency.entsoe.eu/balancing/r2/contractedReserves/show</p>
+<p>Fixed parameters:</p>
+<ul>
+<li>documentType: A81 (Contracted reserves)</li>
+<li>businessType: B95 (Procured capacity)</li>
+</ul>
+<p>Required parameters:
+- processType: A51=Automatic frequency restoration reserve,
+              A52=Frequency containment reserve, A47=Manual frequency
+              restoration reserve, A46=Replacement reserve</p>
+
+        <p>Initialize volumes and prices of contracted reserves parameters.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>period_start</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>Start period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>period_end</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>End period (YYYYMMDDHHMM format)</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>bidding_zone_domain</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>EIC code of Bidding Zone or Market Balancing Area</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>process_type</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A51=aFRR, A52=FCR, A47=mFRR, A46=RR</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>offset</code></b>
+              (<code><span title="int">int</span></code>, default:
+                  <code>0</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Offset for pagination</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.share", "search.highlight", "search.suggest", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
