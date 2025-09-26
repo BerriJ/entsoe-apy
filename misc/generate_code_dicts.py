@@ -43,9 +43,7 @@ for simple_type in root.findall("xs:simpleType", ns):
         enum_classes_fixed.append("\n".join(lines))
 
 # Write all enum classes to a file
-output_file = (
-    "/home/jonathan/git/DSEE/database/code/entsoe-apy/src/entsoe/utils/codes.py"
-)
+output_file = "../src/entsoe/codes/codes.py"
 
 with open(output_file, "w") as f:
     f.write("from enum import Enum\n\n")
