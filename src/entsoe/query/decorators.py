@@ -219,7 +219,7 @@ def pagination(func):
 
         logger.debug("Offset parameter found, starting pagination")
 
-        merged_result = []  # Move this outside the loop
+        merged_result = []
 
         for offset in range(0, 4801, 100):  # 0 to 4800 in increments of 100
             logger.debug(f"Processing pagination offset: {offset}")

@@ -13,7 +13,8 @@ class TestLogging:
 
     def setup_method(self):
         """Set up test configuration before each test."""
-        set_config(security_token="test_token")
+        # Use a valid UUID format token for testing
+        set_config(security_token="12345678-1234-1234-1234-123456789012")
 
     def teardown_method(self):
         """Clean up configuration after each test."""
