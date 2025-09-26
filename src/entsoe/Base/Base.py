@@ -17,6 +17,9 @@ class ValidationError(ValueError):
 class Base:
     """Base class for ENTSO-E Transparency Platform query parameters."""
 
+    # Maximum days for date range queries (can be overridden by subclasses)
+    max_days_limit: int = 365
+
     def __init__(
         self,
         document_type: str,
@@ -271,5 +274,5 @@ class Base:
             periods or when the API returns multiple documents in response to
             a single request. Each model preserves its associated metadata.
         """
-        response = query_api(self.params)
+        response = query_api(self.params, max_days_limit=self.max_days_limit)
         return response

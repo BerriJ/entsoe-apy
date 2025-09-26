@@ -69,23 +69,26 @@ def check_date_range_limit(
     return exceeds_limit
 
 
-def split_date_range(period_start: int, period_end: int) -> int:
+def split_date_range(period_start: int, period_end: int, max_days: int = 365) -> int:
     """
-    Split a date range into the first 365 days and the remaining days.
+    Split a date range at the specified maximum number of days.
 
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
+        max_days: Maximum days for the first segment (default: 365)
 
     Returns:
         The pivot date (end of first segment) in YYYYMMDDHHMM format
     """
-    logger.debug(f"Splitting date range: {period_start} to {period_end}")
+    logger.debug(
+        f"Splitting date range: {period_start} to {period_end} at {max_days} days"
+    )
 
     start_dt = parse_entsoe_datetime(period_start)
 
-    # Add 365 days to the start date
-    pivot_dt = start_dt + timedelta(days=365)
+    # Add max_days to the start date
+    pivot_dt = start_dt + timedelta(days=max_days)
 
     period_pivot = format_entsoe_datetime(pivot_dt)
 

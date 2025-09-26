@@ -95,7 +95,7 @@ def range_limited(func):
     """
 
     @wraps(func)
-    def range_wrapper(params, *args, **kwargs):
+    def range_wrapper(params, max_days_limit=365, *args, **kwargs):
         # Extract period parameters from params dict
         period_start = params.get("periodStart")
         period_end = params.get("periodEnd")
@@ -103,17 +103,20 @@ def range_limited(func):
         # If no period parameters, just call the function normally
         if period_start is None or period_end is None:
             logger.debug("No period parameters found, calling function directly")
-            return func(params, *args, **kwargs)
+            return func(params, max_days_limit, *args, **kwargs)
 
         logger.debug(f"Range_limited decorator called for function: {func.__name__}")
         logger.debug(f"Period range: {period_start} to {period_end}")
+        logger.debug(f"Using max_days_limit: {max_days_limit}")
 
-        # Check if the range exceeds the limit (1 year = 365 days)
-        if check_date_range_limit(period_start, period_end, max_days=365):
-            logger.debug("Range exceeds 365 days, splitting range")
+        # Check if the range exceeds the limit
+        if check_date_range_limit(period_start, period_end, max_days=max_days_limit):
+            logger.debug(f"Range exceeds {max_days_limit} days, splitting range")
 
             # Split the range and make recursive calls
-            pivot_date = split_date_range(period_start, period_end)
+            pivot_date = split_date_range(
+                period_start, period_end, max_days=max_days_limit
+            )
             logger.debug(f"Split at pivot date: {pivot_date}")
 
             # Create new params for the first half
@@ -132,17 +135,17 @@ def range_limited(func):
 
             # Recursively call for both halves
             logger.debug("Making recursive call for first half")
-            result1 = range_wrapper(params1, *args, **kwargs)
+            result1 = range_wrapper(params1, max_days_limit, *args, **kwargs)
             logger.debug("Making recursive call for second half")
-            result2 = range_wrapper(params2, *args, **kwargs)
+            result2 = range_wrapper(params2, max_days_limit, *args, **kwargs)
 
             logger.debug("Merging results from both halves")
             return [*result1, *result2]
 
         else:
             # Range is within limit, make the API call
-            logger.debug("Range within 365 days, making API call")
-            return func(params, *args, **kwargs)
+            logger.debug(f"Range within {max_days_limit} days, making API call")
+            return func(params, max_days_limit, *args, **kwargs)
 
     return range_wrapper
 
