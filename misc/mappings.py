@@ -65,9 +65,13 @@ def convert_csv_list_to_dict(csv_rows, key_column=0, value_column=1):
                         if parts[1] not in value_dict:
                             value_dict[parts[1]] = []
                         value_dict[parts[1]].append(parts[0])
+            # Sort the lists within each value_dict
+            for k in value_dict:
+                value_dict[k] = sorted(value_dict[k])
             result_dict[key] = value_dict
 
-    return result_dict
+    # Sort the result dictionary by keys
+    return dict(sorted(result_dict.items()))
 
 
 def consolidate_cty_entries(mappings_dict):
@@ -112,9 +116,15 @@ def consolidate_cty_entries(mappings_dict):
             if key in new_country_dict:
                 del new_country_dict[key]
 
+        # Sort the lists within each country_dict
+        for k in new_country_dict:
+            if isinstance(new_country_dict[k], list):
+                new_country_dict[k] = sorted(new_country_dict[k])
+
         consolidated_dict[eic_code] = new_country_dict
 
-    return consolidated_dict
+    # Sort the consolidated dictionary by keys
+    return dict(sorted(consolidated_dict.items()))
 
 
 # Write the consolidated mappings dictionary to a new file
@@ -126,12 +136,15 @@ def write_mappings_to_file(mappings_dict, output_file="mappings_dict.py"):
         mappings_dict (dict): The mappings dictionary to write
         output_file (str): Output filename
     """
+    # Ensure the mappings_dict is sorted
+    sorted_mappings = dict(sorted(mappings_dict.items()))
+
     with open(output_file, "w", encoding="utf-8") as f:
         f.write("# Auto-generated mappings dictionary\n")
         f.write("# Refer to mappings.py for more details\n")
         f.write("# EIC code mappings with country codes and prefixes\n\n")
         f.write("mappings = ")
-        f.write(repr(mappings_dict))
+        f.write(repr(sorted_mappings))
         f.write("\n")
 
 
@@ -142,5 +155,5 @@ mappings_dict = convert_csv_list_to_dict(read_eic_codes_csv())
 mappings_consolidated = consolidate_cty_entries(mappings_dict)
 
 # Write the consolidated mappings to file
-write_mappings_to_file(mappings_consolidated, "./src/entsoe/mappings_dict.py")
+write_mappings_to_file(mappings_consolidated, "./src/entsoe/utils/mappings_dict.py")
 # %%

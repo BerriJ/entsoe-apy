@@ -1,5 +1,4 @@
-from dataclasses import fields, is_dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
 
@@ -70,30 +69,32 @@ def check_date_range_limit(
     return exceeds_limit
 
 
-def split_date_range(period_start: int, period_end: int) -> tuple[int, int]:
+def split_date_range(period_start: int, period_end: int, max_days: int = 365) -> int:
     """
-    Split a date range into two equal parts.
+    Split a date range at the specified maximum number of days.
 
     Args:
         period_start: Start date in YYYYMMDDHHMM format
         period_end: End date in YYYYMMDDHHMM format
+        max_days: Maximum days for the first segment (default: 365)
 
     Returns:
-        Tuple of (pivot_date, end_date) where pivot_date is the midpoint
+        The pivot date (end of first segment) in YYYYMMDDHHMM format
     """
-    logger.debug(f"Splitting date range: {period_start} to {period_end}")
+    logger.debug(
+        f"Splitting date range: {period_start} to {period_end} at {max_days} days"
+    )
 
     start_dt = parse_entsoe_datetime(period_start)
-    end_dt = parse_entsoe_datetime(period_end)
 
-    # Calculate the midpoint
-    diff = end_dt - start_dt
-    pivot_dt = start_dt + (diff / 2)
+    # Add max_days to the start date
+    pivot_dt = start_dt + timedelta(days=max_days)
 
-    pivot_date = format_entsoe_datetime(pivot_dt)
-    logger.debug(f"Split result: pivot={pivot_date}, end={period_end}")
+    period_pivot = format_entsoe_datetime(pivot_dt)
 
-    return pivot_date, period_end
+    logger.debug(f"Split at {period_pivot}")
+
+    return period_pivot
 
 
 def extract_namespace_and_find_classes(response) -> tuple[str, type]:
@@ -114,11 +115,7 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
 
     # Get all classes from the xml_models module
     for name, obj in inspect.getmembers(xml_models, inspect.isclass):
-        if (
-            hasattr(obj, "__dataclass_fields__")
-            and hasattr(obj, "Meta")
-            and hasattr(obj.Meta, "namespace")
-        ):
+        if hasattr(obj, "Meta") and hasattr(obj.Meta, "namespace"):
             if obj.Meta.namespace == namespace:
                 matching_classes.append((name, obj))
 
@@ -136,57 +133,3 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
     logger.debug(f"Selected class: {selected_class.__name__}")
 
     return namespace, selected_class
-
-
-def merge_documents(base, other):
-    """
-    Merge `other` document into `base` document.
-
-    Args:
-        base: Base document to merge into (modified in-place)
-        other: Other document to merge from
-
-    Rules:
-    - If base is None, returns other
-    - If other is None, returns base
-    - Lists: extend base list with other's items
-    - Nested dataclasses: merge recursively
-    - Scalars: keep base value, use other only if base is None
-
-    Returns:
-        The modified base document, or other/base if one is None
-    """
-    base_type = type(base).__name__ if base else None
-    other_type = type(other).__name__ if other else None
-    logger.debug(f"Merging documents: base={base_type}, other={other_type}")
-
-    if not base:
-        logger.debug("Base is None/empty, returning other")
-        return other
-    if not other:
-        logger.debug("Other is None/empty, returning base")
-        return base
-
-    merge_count = 0
-    for field in fields(base):
-        base_value = getattr(base, field.name)
-        other_value = getattr(other, field.name)
-
-        if isinstance(base_value, list) and isinstance(other_value, list):
-            if other_value:  # Only log if there are items to merge
-                logger.debug(
-                    f"Merging list field '{field.name}': {len(base_value)} + "
-                    f"{len(other_value)} items"
-                )
-                base_value.extend(other_value)
-                merge_count += len(other_value)
-        elif is_dataclass(base_value) and is_dataclass(other_value):
-            logger.debug(f"Recursively merging dataclass field '{field.name}'")
-            merge_documents(base_value, other_value)
-        elif base_value is None and other_value is not None:
-            logger.debug(f"Setting field '{field.name}' from other (base was None)")
-            setattr(base, field.name, other_value)
-            merge_count += 1
-
-    logger.debug(f"Document merge completed, {merge_count} fields/items merged")
-    return base

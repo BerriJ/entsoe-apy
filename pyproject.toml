@@ -4,7 +4,7 @@ authors = [
   {name="Jonathan Berrisch", email="jonathan.berrisch@uni-due.de"},
   {name="Jie Xu", email="jie.xu@uni-due.de"}
 ]
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python library for accessing ENTSO-E Transparency Platform API endpoints"
 readme = "README.md"
 license = "GPL-3.0-or-later"
@@ -23,9 +23,9 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-  "xsdata[cli,lxml,soap]~=25.7",
   "httpx~=0.28.1",
   "loguru~=0.7.2",
+  "xsdata-pydantic>=24.5",
 ]
 
 [project.urls]

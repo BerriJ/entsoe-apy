@@ -38,8 +38,6 @@ class InstalledCapacityPerProductionType(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize installed capacity per production type parameters.
@@ -49,7 +47,6 @@ class InstalledCapacityPerProductionType(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             psr_type: Power system resource type (B01-B25)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -59,7 +56,6 @@ class InstalledCapacityPerProductionType(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            offset=offset,
         )
 
 
@@ -86,8 +82,6 @@ class WaterReservoirsAndHydroStorage(Generation):
         period_start: int,
         period_end: int,
         in_domain: str,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
@@ -96,7 +90,6 @@ class WaterReservoirsAndHydroStorage(Generation):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -105,7 +98,6 @@ class WaterReservoirsAndHydroStorage(Generation):
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
-            offset=offset,
         )
 
 
@@ -137,8 +129,6 @@ class ActualGenerationPerProductionType(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize actual generation per production type parameters.
@@ -148,7 +138,6 @@ class ActualGenerationPerProductionType(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
             psr_type: Power system resource type (B01-B25)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -158,7 +147,6 @@ class ActualGenerationPerProductionType(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            offset=offset,
         )
 
 
@@ -177,9 +165,13 @@ class ActualGenerationPerGenerationUnit(Generation):
     - Returns actual generation data for individual generation units
     - Can be filtered by PSR Type and/or specific Registered Resource (generation unit)
     - Provides more granular data than per production type endpoints
+    - Maximum time interval: 1 day (API limitation)
     """
 
     code = "16.1.A"
+    max_days_limit: int = (
+        1  # Override: Maximum time interval is 1 day for this endpoint
+    )
 
     def __init__(
         self,
@@ -189,8 +181,6 @@ class ActualGenerationPerGenerationUnit(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize actual generation per generation unit parameters.
@@ -201,7 +191,6 @@ class ActualGenerationPerGenerationUnit(Generation):
             in_domain: EIC code of a Control Area
             psr_type: Power system resource type (B01-B25)
             registered_resource: EIC Code of a specific Generation Unit
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -212,7 +201,6 @@ class ActualGenerationPerGenerationUnit(Generation):
             in_domain=in_domain,
             psr_type=psr_type,
             registered_resource=registered_resource,
-            offset=offset,
         )
 
 
@@ -240,8 +228,6 @@ class GenerationForecastDayAhead(Generation):
         period_start: int,
         period_end: int,
         in_domain: str,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize generation forecast day ahead parameters.
@@ -250,7 +236,6 @@ class GenerationForecastDayAhead(Generation):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -259,7 +244,6 @@ class GenerationForecastDayAhead(Generation):
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
-            offset=offset,
         )
 
 
@@ -290,8 +274,6 @@ class GenerationForecastWindAndSolar(Generation):
         # Optional generation-specific parameters
         process_type: str = "A01",  # Default to Day ahead
         psr_type: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize generation forecast wind and solar parameters.
@@ -302,7 +284,6 @@ class GenerationForecastWindAndSolar(Generation):
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             process_type: A01=Day ahead, A18=Current, A40=Intraday
             psr_type: B16=Solar, B18=Wind Offshore, B19=Wind Onshore
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -312,7 +293,6 @@ class GenerationForecastWindAndSolar(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            offset=offset,
         )
 
 
@@ -343,8 +323,6 @@ class InstalledCapacityPerProductionUnit(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
-        # Additional common parameters
-        offset: int = 0,
     ):
         """
         Initialize installed capacity per production unit parameters.
@@ -354,7 +332,6 @@ class InstalledCapacityPerProductionUnit(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area or Bidding Zone
             psr_type: Power system resource type (B01-B25)
-            offset: Offset for pagination
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -364,5 +341,4 @@ class InstalledCapacityPerProductionUnit(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
-            offset=offset,
         )

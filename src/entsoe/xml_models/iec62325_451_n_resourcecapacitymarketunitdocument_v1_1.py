@@ -1,8 +1,9 @@
-from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Optional
 
+from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
+from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
     AnalogTypeList,
@@ -22,71 +23,68 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1"
+)
 
 
-@dataclass
-class EsmpDateTimeInterval:
+class EsmpDateTimeInterval(BaseModel):
     class Meta:
         name = "ESMP_DateTimeInterval"
 
-    start: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    start: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
-    end: Optional[str] = field(
-        default=None,
+    end: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
-        },
+        }
     )
 
 
-@dataclass
-class ElectronicAddress:
-    email1: Optional[str] = field(
-        default=None,
+class ElectronicAddress(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    email1: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "max_length": 70,
-        },
+        }
     )
 
 
-@dataclass
-class Point:
-    position: Optional[int] = field(
-        default=None,
+class Point(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    position: int = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
-        },
+        }
     )
-    quantity: Optional[Decimal] = field(
-        default=None,
+    quantity: Decimal = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class StreetDetail:
+class StreetDetail(BaseModel):
+    model_config = ConfigDict(defer_build=True)
     address_general: Optional[str] = field(
         default=None,
         metadata={
@@ -114,118 +112,109 @@ class StreetDetail:
             "max_length": 70,
         },
     )
-    floor_identification: Optional[str] = field(
-        default=None,
+    floor_identification: str = field(
         metadata={
             "name": "floorIdentification",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class TelephoneNumber:
-    itu_phone: Optional[str] = field(
-        default=None,
+class TelephoneNumber(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    itu_phone: str = field(
         metadata={
             "name": "ituPhone",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "max_length": 15,
-        },
+        }
     )
 
 
-@dataclass
-class TownDetail:
-    name: Optional[str] = field(
-        default=None,
+class TownDetail(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    name: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "max_length": 35,
-        },
+        }
     )
-    country: Optional[str] = field(
-        default=None,
+    country: str = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "length": 2,
             "pattern": r"[A-Z]*",
-        },
+        }
     )
 
 
-@dataclass
-class ActionStatus:
+class ActionStatus(BaseModel):
     class Meta:
         name = "Action_Status"
 
-    value: Optional[StatusTypeList] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    value: StatusTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class Analog:
-    measurement_type: Optional[AnalogTypeList] = field(
-        default=None,
+class Analog(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    measurement_type: AnalogTypeList = field(
         metadata={
             "name": "measurementType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    unit_symbol: Optional[UnitSymbol] = field(
-        default=None,
+    unit_symbol: UnitSymbol = field(
         metadata={
             "name": "unitSymbol",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    analog_values_value: Optional[str] = field(
-        default=None,
+    analog_values_value: str = field(
         metadata={
             "name": "analogValues.value",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "pattern": r"([0-9]*\.?[0-9]*)",
-        },
+        }
     )
 
 
-@dataclass
-class Fuel:
-    fuel: Optional[FuelTypeList] = field(
-        default=None,
+class Fuel(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    fuel: FuelTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class MeasurementPointIdString:
+class MeasurementPointIdString(BaseModel):
     class Meta:
         name = "MeasurementPointID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -233,21 +222,20 @@ class MeasurementPointIdString:
             "max_length": 35,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class PartyIdString:
+class PartyIdString(BaseModel):
     class Meta:
         name = "PartyID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -255,21 +243,20 @@ class PartyIdString:
             "max_length": 16,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class ResourceIdString:
+class ResourceIdString(BaseModel):
     class Meta:
         name = "ResourceID_String"
 
+    model_config = ConfigDict(defer_build=True)
     value: str = field(
         default="",
         metadata={
@@ -277,37 +264,34 @@ class ResourceIdString:
             "max_length": 60,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
-        default=None,
+    coding_scheme: CodingSchemeTypeList = field(
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class SeriesPeriod:
+class SeriesPeriod(BaseModel):
     class Meta:
         name = "Series_Period"
 
-    time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    resolution: Optional[XmlDuration] = field(
-        default=None,
+    resolution: XmlDuration = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
     point: list[Point] = field(
         default_factory=list,
@@ -320,35 +304,32 @@ class SeriesPeriod:
     )
 
 
-@dataclass
-class StreetAddress:
-    street_detail: Optional[StreetDetail] = field(
-        default=None,
+class StreetAddress(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    street_detail: StreetDetail = field(
         metadata={
             "name": "streetDetail",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    postal_code: Optional[str] = field(
-        default=None,
+    postal_code: str = field(
         metadata={
             "name": "postalCode",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "max_length": 10,
-        },
+        }
     )
-    town_detail: Optional[TownDetail] = field(
-        default=None,
+    town_detail: TownDetail = field(
         metadata={
             "name": "townDetail",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
     language: Optional[str] = field(
         default=None,
@@ -359,48 +340,45 @@ class StreetAddress:
     )
 
 
-@dataclass
-class TimePeriod:
+class TimePeriod(BaseModel):
     class Meta:
         name = "Time_Period"
 
-    time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class MarketEvaluationPoint:
-    m_rid: Optional[MeasurementPointIdString] = field(
-        default=None,
+class MarketEvaluationPoint(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: MeasurementPointIdString = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
 
 
-@dataclass
-class ResourceCapacityMarketUnitRegisteredResource:
+class ResourceCapacityMarketUnitRegisteredResource(BaseModel):
     class Meta:
         name = "ResourceCapacityMarketUnit_RegisteredResource"
 
-    m_rid: Optional[ResourceIdString] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
     resource_capacity_maximum_capacity: Optional[Decimal] = field(
         default=None,
@@ -436,19 +414,18 @@ class ResourceCapacityMarketUnitRegisteredResource:
     )
 
 
-@dataclass
-class UnitRegisteredResource:
+class UnitRegisteredResource(BaseModel):
     class Meta:
         name = "Unit_RegisteredResource"
 
-    m_rid: Optional[ResourceIdString] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
     resource_capacity_maximum_capacity: Optional[Decimal] = field(
         default=None,
@@ -506,15 +483,15 @@ class UnitRegisteredResource:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
         },
     )
-    g_ps_location_g_ps_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "gPS_Location.gPS_CoordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
-            },
-        )
+    g_ps_location_g_ps_coordinate_system_m_rid: Optional[
+        CoordinateSystemTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "gPS_Location.gPS_CoordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
+        },
     )
     g_ps_location_g_ps_position_points_x_position: Optional[str] = field(
         default=None,
@@ -574,45 +551,39 @@ class UnitRegisteredResource:
     )
 
 
-@dataclass
-class TimeSeries:
-    m_rid: Optional[str] = field(
-        default=None,
+class TimeSeries(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
             "max_length": 60,
-        },
+        }
     )
-    business_type: Optional[BusinessTypeList] = field(
-        default=None,
+    business_type: BusinessTypeList = field(
         metadata={
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    product: Optional[EnergyProductTypeList] = field(
-        default=None,
+    product: EnergyProductTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
-    resource_capacity_market_unit_registered_resource: Optional[
-        ResourceCapacityMarketUnitRegisteredResource
-    ] = field(
-        default=None,
+    resource_capacity_market_unit_registered_resource: ResourceCapacityMarketUnitRegisteredResource = field(
         metadata={
             "name": "ResourceCapacityMarketUnit_RegisteredResource",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             "required": True,
-        },
+        }
     )
     curve_type: Optional[CurveTypeList] = field(
         default=None,
@@ -622,13 +593,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "resourceProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
-        },
+    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "resourceProvider_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
+            },
+        )
     )
     resource_provider_market_participant_name: Optional[str] = field(
         default=None,
@@ -638,23 +611,25 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
         },
     )
-    resource_provider_market_participant_street_address: Optional[StreetAddress] = (
+    resource_provider_market_participant_street_address: Optional[
+        StreetAddress
+    ] = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.streetAddress",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
+        },
+    )
+    resource_provider_market_participant_phone1: Optional[TelephoneNumber] = (
         field(
             default=None,
             metadata={
-                "name": "resourceProvider_MarketParticipant.streetAddress",
+                "name": "resourceProvider_MarketParticipant.phone1",
                 "type": "Element",
                 "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
             },
         )
-    )
-    resource_provider_market_participant_phone1: Optional[TelephoneNumber] = field(
-        default=None,
-        metadata={
-            "name": "resourceProvider_MarketParticipant.phone1",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
-        },
     )
     resource_provider_market_participant_electronic_address: Optional[
         ElectronicAddress
@@ -692,13 +667,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
         },
     )
-    initial_registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
-        default=None,
-        metadata={
-            "name": "initialRegistration_DateAndOrTime.dateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
-        },
+    initial_registration_date_and_or_time_date_time: Optional[XmlDateTime] = (
+        field(
+            default=None,
+            metadata={
+                "name": "initialRegistration_DateAndOrTime.dateTime",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
+            },
+        )
     )
     registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
         default=None,
@@ -708,13 +685,15 @@ class TimeSeries:
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
         },
     )
-    last_verification_date_and_or_time_date_time: Optional[XmlDateTime] = field(
-        default=None,
-        metadata={
-            "name": "lastVerification_DateAndOrTime.dateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
-        },
+    last_verification_date_and_or_time_date_time: Optional[XmlDateTime] = (
+        field(
+            default=None,
+            metadata={
+                "name": "lastVerification_DateAndOrTime.dateTime",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1",
+            },
+        )
     )
     primary_market_participation_market_object_status_status: Optional[
         StatusTypeList
@@ -788,96 +767,84 @@ class TimeSeries:
     )
 
 
-@dataclass
-class ResourceCapacityMarketUnitMarketDocument:
+class ResourceCapacityMarketUnitMarketDocument(BaseModel):
     class Meta:
         name = "ResourceCapacityMarketUnit_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1"
-        )
+        namespace = "urn:iec62325.351:tc57wg16:451-n:resourcecapacitymarketunitdocument:1:1"
 
-    m_rid: Optional[str] = field(
-        default=None,
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
         metadata={
             "name": "mRID",
             "type": "Element",
             "required": True,
             "max_length": 60,
-        },
+        }
     )
-    revision_number: Optional[str] = field(
-        default=None,
+    revision_number: str = field(
         metadata={
             "name": "revisionNumber",
             "type": "Element",
             "required": True,
             "pattern": r"[1-9]([0-9]){0,2}",
-        },
+        }
     )
-    type_value: Optional[MessageTypeList] = field(
-        default=None,
+    type_value: MessageTypeList = field(
         metadata={
             "name": "type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
-        default=None,
+    process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    sender_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
+    receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = field(
-        default=None,
+    receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
             "required": True,
-        },
+        }
     )
-    created_date_time: Optional[str] = field(
-        default=None,
+    created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
+        }
     )
-    time_period: Optional[TimePeriod] = field(
-        default=None,
+    time_period: TimePeriod = field(
         metadata={
             "name": "Time_Period",
             "type": "Element",
             "required": True,
-        },
+        }
     )
     doc_status: Optional[ActionStatus] = field(
         default=None,
