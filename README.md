@@ -34,12 +34,10 @@ The package structure mirrors the [official ENTSO-E API docs](https://documenter
 After initializing the class, we can query the data using the query_data method.
 
 ```python
-from pandas import DataFrame
+# Import item from the Market Group
+from entsoe.Market import EnergyPrices
 
-from entsoe.Market import EnergyPrices  # from the Market Group
-from entsoe.utils import extract_records
-
-EIC = "10Y1001A1001A82H"  # "DE-LU" bidding zone
+EIC = "10Y1001A1001A82H" # DE-AT Biddingzone
 
 period_start = 201512312300
 period_end = 202107022300
@@ -52,43 +50,6 @@ ep = EnergyPrices(
     contract_market_agreement_type="A01",
 )
 result = ep.query_api()
-
-# Convert result to DataFrame-ready records
-records = extract_records(result)
-df = DataFrame(records)
-```
-
-| period_time_interval.start   |   time_series.period.point.position |   time_series.period.point.price_amount | time_series.business_type   | time_series.currency_unit_name   | time_series.price_measure_unit_name   | time_series.period.resolution   |
-|:-----------------------------|------------------------------------:|----------------------------------------:|:----------------------------|:---------------------------------|:--------------------------------------|:--------------------------------|
-| 2018-09-30T22:00Z            |                                   1 |                                   49.3  | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   2 |                                   44.38 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   3 |                                   36.99 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   4 |                                   35.54 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   5 |                                   46.5  | A62                         | EUR                              | MWH                                   | PT15M                           |
-
-The `extract_records()` function flattens the nested result structure into a list of records suitable for creating DataFrames. You can also extract specific domains from the result:
-
-```python
-# Extract only time series data
-time_series_records = extract_records(result, domain="time_series")
-```
-
-### Converting Results to JSON
-
-All API result objects are Pydantic models that support JSON serialization. You can convert any result to JSON using the `model_dump_json()` method:
-
-```python
-# Convert result to JSON string
-json_string = result.model_dump_json()
-
-# Pretty print JSON
-import json
-pretty_json = json.dumps(json.loads(json_string), indent=2)
-print(pretty_json)
-
-# Save to file
-with open("result.json", "w") as f:
-    f.write(json_string)
 ```
 
 The structure of the `result` object depends on the queried data. See the [examples](docs/examples.md) for more details.
