@@ -85,7 +85,7 @@ def parse_response(response) -> BaseModel:
 # Order matters! First handle range-limits, second handle pagination
 @range_limited
 @pagination
-def query_api(params: dict[str, str]) -> list[BaseModel]:
+def query_api(params: dict[str, str], max_days_limit: int = 365) -> list[BaseModel]:
     """
     Main API query function that orchestrates the complete query process.
 
@@ -96,6 +96,7 @@ def query_api(params: dict[str, str]) -> list[BaseModel]:
 
     Args:
         params: Dictionary of string parameters for the ENTSO-E API query
+        max_days_limit: Maximum number of days allowed in a single query (default: 365)
 
     Returns:
         List of Pydantic BaseModel instances. Multiple models may be returned when:
