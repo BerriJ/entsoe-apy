@@ -17,6 +17,12 @@ class AcknowledgementDocumentError(Exception):
     pass
 
 
+class ServiceUnavailableError(Exception):
+    """Raised when the ENTSO-E API returns a 503 Service Unavailable status."""
+
+    pass
+
+
 def unzip(func):
     """
     Decorator that handles ZIP responses from the ENTSO-E API.
@@ -243,6 +249,43 @@ def pagination(func):
         return merged_result
 
     return pagination_wrapper
+
+
+def service_unavailable(func):
+    """
+    Decorator that handles 503 Service Unavailable responses from the ENTSO-E API.
+
+    Checks if any response in the returned list has a 503 status code, logs an error,
+    and raises a ServiceUnavailableError with details about the service status.
+
+    Returns:
+        The original list of Response objects if no 503 responses are found.
+
+    Raises:
+        ServiceUnavailableError: When any response has a 503 Service Unavailable status
+    """
+
+    @wraps(func)
+    def service_unavailable_wrapper(*args, **kwargs) -> list[Response]:
+        logger.debug(
+            f"service_unavailable decorator called for function: {func.__name__}"
+        )
+
+        # Call the original function to get the list of responses
+        response_list = func(*args, **kwargs)
+
+        # Check each response for 503 status
+        for response in response_list:
+            if response.status_code == 503:
+                logger.error("ENTSO-E API returned 503 Service Unavailable.")
+                raise ServiceUnavailableError(
+                    "ENTSO-E API is currently unavailable (HTTP 503). Please try again later."
+                )
+
+        logger.debug("No 503 Service Unavailable responses found")
+        return response_list
+
+    return service_unavailable_wrapper
 
 
 def retry(func):

@@ -10,11 +10,13 @@ from .decorators import (
     pagination,
     range_limited,
     retry,
+    service_unavailable,
     unzip,
 )
 
 
 @unzip
+@service_unavailable
 @retry
 def query_core(params: dict) -> list[Response]:
     """
