@@ -268,7 +268,7 @@ def service_unavailable(func):
     @wraps(func)
     def service_unavailable_wrapper(*args, **kwargs) -> list[Response]:
         logger.debug(
-            f"service_unavailable decorator called for function: {func.__name__}"
+            "service_unavailable decorator called for function: {}", func.__name__
         )
 
         # Call the original function to get the list of responses
