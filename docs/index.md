@@ -8,7 +8,7 @@ A Python library for accessing ENTSO-E Transparency Platform API endpoints.
 - Supports all major API functionalities
 - Well-documented, easy to use and highly consistent with the API
 - Automatically splits up large requests into multiple smaller calls to the API
-- Retries on connection errors
+- Intelligent retry mechanism with exponential backoff for connection errors and service unavailability
 - Returns meaningful error messages if something goes wrong
 
 ## Install

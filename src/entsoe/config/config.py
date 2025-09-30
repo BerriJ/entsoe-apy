@@ -2,7 +2,7 @@
 
 import os
 import sys
-from typing import Optional
+from typing import Callable, Optional, Union
 from uuid import UUID
 
 from loguru import logger
@@ -24,8 +24,8 @@ class EntsoEConfig:
         self,
         security_token: Optional[str] = None,
         timeout: int = 5,
-        retries: int = 3,
-        retry_delay: int = 10,
+        retries: int = 5,
+        retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
         log_level: str = "SUCCESS",
     ):
         """
@@ -36,8 +36,9 @@ class EntsoEConfig:
                           ENTSOE_API environment variable. If neither is available,
                           raises ValueError.
             timeout: Request timeout in seconds (default: 5)
-            retries: Number of retry attempts for failed requests (default: 3)
-            retry_delay: Delay between retry attempts in seconds (default: 10)
+            retries: Number of retry attempts for failed requests (default: 5)
+            retry_delay: Function that takes attempt number and returns delay in seconds,
+                        or integer for constant delay (default: exponential backoff 2**attempt)
             log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                       INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
 
@@ -87,7 +88,13 @@ class EntsoEConfig:
         self.security_token = security_token
         self.timeout = timeout
         self.retries = retries
-        self.retry_delay = retry_delay
+        # Handle retry_delay: support both int and function
+        if isinstance(retry_delay, int):
+            # Convert integer to constant function
+            self.retry_delay = lambda attempt: retry_delay
+        else:
+            # It's already a callable function (including the default)
+            self.retry_delay = retry_delay
         self.log_level = log_level.upper()
 
     def validate_security_token(self) -> None:
@@ -145,8 +152,8 @@ def get_config() -> EntsoEConfig:
 def set_config(
     security_token: Optional[str] = None,
     timeout: int = 5,
-    retries: int = 3,
-    retry_delay: int = 10,
+    retries: int = 5,
+    retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
     log_level: str = "SUCCESS",
 ) -> None:
     """
@@ -156,8 +163,9 @@ def set_config(
         security_token: API security token. If not provided, will try to get from
                       ENTSOE_API environment variable.
         timeout: Request timeout in seconds (default: 5)
-        retries: Number of retry attempts for failed requests (default: 3)
-        retry_delay: Delay between retry attempts in seconds (default: 10)
+        retries: Number of retry attempts for failed requests (default: 5)
+        retry_delay: Function that takes attempt number and returns delay in seconds,
+                    or integer for constant delay (default: exponential backoff 2**attempt)
         log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                   INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
     """

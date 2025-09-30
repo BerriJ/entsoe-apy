@@ -10,7 +10,7 @@ A Python library for accessing ENTSO-E Transparency Platform API endpoints.
 - Supports all major API functionalities
 - Well-documented, easy to use and highly consistent with the API
 - Automatically splits up large requests into multiple smaller calls to the API
-- Retries on connection errors
+- Intelligent retry mechanism with exponential backoff for connection errors and service unavailability
 - Returns meaningful error messages if something goes wrong
 
 ## Install
@@ -58,13 +58,13 @@ records = extract_records(result)
 df = DataFrame(records)
 ```
 
-| period_time_interval.start   |   time_series.period.point.position |   time_series.period.point.price_amount | time_series.business_type   | time_series.currency_unit_name   | time_series.price_measure_unit_name   | time_series.period.resolution   |
-|:-----------------------------|------------------------------------:|----------------------------------------:|:----------------------------|:---------------------------------|:--------------------------------------|:--------------------------------|
-| 2018-09-30T22:00Z            |                                   1 |                                   49.3  | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   2 |                                   44.38 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   3 |                                   36.99 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   4 |                                   35.54 | A62                         | EUR                              | MWH                                   | PT15M                           |
-| 2018-09-30T22:00Z            |                                   5 |                                   46.5  | A62                         | EUR                              | MWH                                   | PT15M                           |
+| period_time_interval.start | time_series.period.point.position | time_series.period.point.price_amount | time_series.business_type | time_series.currency_unit_name | time_series.price_measure_unit_name | time_series.period.resolution |
+| :------------------------- | --------------------------------: | ------------------------------------: | :------------------------ | :----------------------------- | :---------------------------------- | :---------------------------- |
+| 2018-09-30T22:00Z          |                                 1 |                                  49.3 | A62                       | EUR                            | MWH                                 | PT15M                         |
+| 2018-09-30T22:00Z          |                                 2 |                                 44.38 | A62                       | EUR                            | MWH                                 | PT15M                         |
+| 2018-09-30T22:00Z          |                                 3 |                                 36.99 | A62                       | EUR                            | MWH                                 | PT15M                         |
+| 2018-09-30T22:00Z          |                                 4 |                                 35.54 | A62                       | EUR                            | MWH                                 | PT15M                         |
+| 2018-09-30T22:00Z          |                                 5 |                                  46.5 | A62                       | EUR                            | MWH                                 | PT15M                         |
 
 
 The structure of the `result` object depends on the queried data. See the [examples](docs/examples.md) for more details.

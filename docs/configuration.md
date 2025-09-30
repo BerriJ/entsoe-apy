@@ -9,7 +9,7 @@ The library uses a global configuration system that allows you to set common par
 - **API Key (Security Token)**: Required for authentication with the ENTSO-E Transparency Platform
 - **Timeout**: HTTP request timeout duration
 - **Retries**: Number of retry attempts for failed requests
-- **Retry Delay**: Wait time between retry attempts
+- **Retry Delay Function**: Function that determines wait time between retry attempts (supports exponential backoff)
 - **Log Level**: Configurable logging level for controlling output verbosity
 
 ## API Key Management
