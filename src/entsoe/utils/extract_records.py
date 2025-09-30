@@ -4,8 +4,23 @@ from loguru import logger
 from pydantic import BaseModel
 
 
+def _deduplicate_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Remove duplicate records while preserving order."""
+    seen = set()
+    unique_records = []
+    for record in records:
+        record_key = frozenset(record.items())
+        if record_key not in seen:
+            seen.add(record_key)
+            unique_records.append(record)
+    return unique_records
+
+
 def normalize_to_records(
-    data: Dict[str, Any] | List[Any] | Any, parent_key: str = "", sep: str = "."
+    data: Dict[str, Any] | List[Any] | Any,
+    parent_key: str = "",
+    sep: str = ".",
+    ignore_fields: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
     """
     Recursively flattens nested JSON/dictionary structures into a list of records suitable for pandas DataFrames.
@@ -15,15 +30,18 @@ def normalize_to_records(
     - Expanding lists into multiple records (one per list element)
     - Creating cross-products when multiple lists exist at the same level
     - Preserving primitive values as-is
+    - Filtering out specified fields from the final records
 
     Args:
         data: The input data to flatten. Can be a dictionary, list, or primitive value.
         parent_key: The parent key prefix for nested structures. Used internally for recursion.
         sep: The separator character used to join nested keys. Defaults to ".".
+        ignore_fields: List of field names to exclude from the flattened records. Fields are
+                      matched by their full dotted path (e.g., "m_rid", "time_series.m_rid").
 
     Returns:
         A list of flattened dictionaries where each dictionary represents a record
-        suitable for creating a pandas DataFrame.
+        suitable for creating a pandas DataFrame, with ignored fields removed.
 
     Examples:
         >>> data = {"user": "john", "orders": [{"id": 1, "amount": 100}, {"id": 2, "amount": 200}]}
@@ -36,40 +54,71 @@ def normalize_to_records(
         >>> data = {"nested": {"level1": {"level2": "value"}}}
         >>> normalize_to_records(data)
         [{"nested.level1.level2": "value"}]
+
+        >>> data = {"m_rid": "123", "user": "john", "orders": [{"id": 1}]}
+        >>> normalize_to_records(data, ignore_fields=["m_rid"])
+        [{"user": "john", "orders.id": 1}]
     """
+
+    if ignore_fields is None:
+        ignore_fields = []
+
+    def _filter_ignored_fields(record: Dict[str, Any]) -> Dict[str, Any]:
+        """Filter out ignored fields from a record."""
+        return {k: v for k, v in record.items() if k not in ignore_fields}
 
     if isinstance(data, dict):
         items = {}
         for k, v in data.items():
             new_key = f"{parent_key}{sep}{k}" if parent_key else k
             if isinstance(v, dict):
-                items.update(normalize_to_records(v, new_key, sep=sep)[0])  # merge dict
+                sub_records = normalize_to_records(
+                    v, new_key, sep=sep, ignore_fields=ignore_fields
+                )
+                items.update(sub_records[0])  # merge dict
             elif isinstance(v, list):
                 # Expand list elements into multiple records
                 list_records = []
                 for elem in v:
                     if isinstance(elem, dict):
-                        sub_records = normalize_to_records(elem, new_key, sep=sep)
+                        sub_records = normalize_to_records(
+                            elem, new_key, sep=sep, ignore_fields=ignore_fields
+                        )
                         list_records.extend(sub_records)
                     else:
                         list_records.append({new_key: elem})
                 # Cross join if multiple records, else just keep one
                 if list_records:
-                    return [dict(items, **lr) for lr in list_records]
+                    return [
+                        _filter_ignored_fields(dict(items, **lr)) for lr in list_records
+                    ]
             else:
                 items[new_key] = v
-        return [items]
+        return [_filter_ignored_fields(items)]
     elif isinstance(data, list):
         records = []
         for elem in data:
-            records.extend(normalize_to_records(elem, parent_key, sep=sep))
+            records.extend(
+                normalize_to_records(
+                    elem, parent_key, sep=sep, ignore_fields=ignore_fields
+                )
+            )
         return records
     else:
-        return [{parent_key: data}]
+        return [_filter_ignored_fields({parent_key: data})]
 
 
 def extract_records(
-    data: BaseModel | list[BaseModel], domain: Optional[str] = None
+    data: BaseModel | list[BaseModel],
+    domain: Optional[str] = None,
+    ignore_fields: Optional[List[str]] = [
+        "m_rid",
+        "time_series.m_rid",
+        "created_date_time",
+        "time_period_time_interval.start",
+        "time_period_time_interval.end",
+    ],
+    deduplicate: bool = True,
 ) -> List[Dict[str, int | float | str | None]]:
     """
     Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
@@ -86,10 +135,17 @@ def extract_records(
         domain: Optional key to extract a specific domain from each model.
                When specified, only the data under this key is extracted from
                each BaseModel instance.
+        ignore_fields: Optional list of field names to exclude from the flattened records.
+                      Fields are matched by their full dotted path (e.g., "m_rid", "time_series.m_rid").
+                      Defaults to ["m_rid", "time_series.m_rid", "created_date_time",
+                      "time_period_time_interval.start", "time_period_time_interval.end"].
+                      Pass None to disable field filtering.
+        deduplicate: Whether to remove duplicate records while preserving order. Defaults to True.
 
     Returns:
         List of flattened dictionaries (records) from all BaseModel instances.
-        Records from multiple models are concatenated in the order they appear.
+        Records from multiple models are concatenated in the order they appear,
+        with ignored fields removed and optionally duplicates eliminated while preserving order.
 
     Raises:
         KeyError: If specified domain is not found in the data
@@ -129,6 +185,7 @@ def extract_records(
         )
 
     data_dict = [item.model_dump(mode="json") for item in data_list]
+    all_records = []
 
     if domain:
         # Check if domain exists in all dictionaries
@@ -139,14 +196,16 @@ def extract_records(
             )
 
         # Extract the domain from each dictionary and flatten all results
-        all_records = []
         for item_dict in data_dict:
             if domain in item_dict:
-                domain_records = normalize_to_records(item_dict[domain])
+                domain_records = normalize_to_records(
+                    item_dict[domain], ignore_fields=ignore_fields
+                )
                 all_records.extend(domain_records)
-        return all_records
+    else:
+        for item_dict in data_dict:
+            all_records.extend(
+                normalize_to_records(item_dict, ignore_fields=ignore_fields)
+            )
 
-    all_records = []
-    for item_dict in data_dict:
-        all_records.extend(normalize_to_records(item_dict))
-    return all_records
+    return _deduplicate_records(all_records) if deduplicate else all_records
