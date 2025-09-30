@@ -290,7 +290,7 @@ def service_unavailable(func):
 
 def retry(func):
     """
-    Decorator that catches connection errors, waits and retries.
+    Decorator that catches connection errors, service unavailable errors, waits and retries.
 
     Args:
         retry_count: Number of retry attempts (default: 3)
@@ -306,13 +306,19 @@ def retry(func):
             try:
                 result = func(*args, **kwargs)
                 return result
-            # Catch connection errors and socket errors
-            except (RequestError,) as e:
+            # Catch connection errors, socket errors, and service unavailable errors
+            except (RequestError, ServiceUnavailableError) as e:
                 last_exception = e
-                logger.warning(
-                    f"Connection Error on attempt {attempt + 1}/{config.retries}: "
-                    f"{e}. Retrying in {config.retry_delay} seconds..."
-                )
+                if isinstance(e, ServiceUnavailableError):
+                    logger.warning(
+                        f"Service Unavailable Error on attempt {attempt + 1}/{config.retries}: "
+                        f"{e}. Retrying in {config.retry_delay} seconds..."
+                    )
+                else:
+                    logger.warning(
+                        f"Connection Error on attempt {attempt + 1}/{config.retries}: "
+                        f"{e}. Retrying in {config.retry_delay} seconds..."
+                    )
                 if attempt < config.retries - 1:  # Don't sleep on the last attempt
                     sleep(config.retry_delay)
                 continue
