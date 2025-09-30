@@ -97,3 +97,42 @@ class TestLoggingConfig:
         assert config.retries == 5
         assert config.retry_delay(0) == 15  # Test the function call
         assert config.log_level == "INFO"
+
+    def test_retry_delay_integer_support(self):
+        """Test that retry_delay accepts integers and converts them to constant functions."""
+        config = EntsoEConfig(
+            security_token="test_token",
+            retry_delay=10,  # Integer value
+        )
+
+        # Should return 10 for any attempt
+        assert config.retry_delay(0) == 10
+        assert config.retry_delay(1) == 10
+        assert config.retry_delay(5) == 10
+
+    def test_retry_delay_function_support(self):
+        """Test that retry_delay accepts functions."""
+
+        def linear_backoff(attempt):
+            return (attempt + 1) * 3
+
+        config = EntsoEConfig(
+            security_token="test_token",
+            retry_delay=linear_backoff,
+        )
+
+        # Should return linear progression: 3, 6, 9, 12...
+        assert config.retry_delay(0) == 3
+        assert config.retry_delay(1) == 6
+        assert config.retry_delay(2) == 9
+        assert config.retry_delay(3) == 12
+
+    def test_retry_delay_default_exponential(self):
+        """Test that retry_delay defaults to exponential backoff when not specified."""
+        config = EntsoEConfig(security_token="test_token")
+
+        # Should return exponential progression: 1, 2, 4, 8...
+        assert config.retry_delay(0) == 1  # 2^0
+        assert config.retry_delay(1) == 2  # 2^1
+        assert config.retry_delay(2) == 4  # 2^2
+        assert config.retry_delay(3) == 8  # 2^3

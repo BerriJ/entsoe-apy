@@ -265,3 +265,30 @@ class TestRetryDecorator:
         assert mock_sleep.call_count == 2
         mock_sleep.assert_any_call(5)  # (0 + 1) * 5 = 5
         mock_sleep.assert_any_call(10)  # (1 + 1) * 5 = 10
+
+    def test_integer_retry_delay(self):
+        """Test that integer retry_delay values work correctly."""
+        reset_config()
+        set_config(
+            security_token="test_token", retries=3, retry_delay=7
+        )  # Integer delay
+
+        call_count = 0
+
+        @retry
+        def function_that_fails_twice(*args, **kwargs):
+            nonlocal call_count
+            call_count += 1
+            if call_count < 3:
+                raise httpx.RequestError("Connection failed")
+            return "success"
+
+        with patch("entsoe.query.decorators.sleep") as mock_sleep:
+            result = function_that_fails_twice()
+
+        assert result == "success"
+        assert call_count == 3
+        # Verify constant backoff: both retries wait 7 seconds
+        assert mock_sleep.call_count == 2
+        mock_sleep.assert_any_call(7)  # First retry
+        mock_sleep.assert_any_call(7)  # Second retry
