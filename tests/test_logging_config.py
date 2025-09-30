@@ -80,16 +80,20 @@ class TestLoggingConfig:
 
     def test_existing_functionality_preserved(self):
         """Test that existing functionality is preserved with log_level parameter."""
+
+        def custom_retry_delay(attempt):
+            return 15
+
         config = EntsoEConfig(
             security_token="test_token",
             timeout=30,
             retries=5,
-            retry_delay=15,
+            retry_delay=custom_retry_delay,
             log_level="INFO",
         )
 
         assert config.security_token == "test_token"
         assert config.timeout == 30
         assert config.retries == 5
-        assert config.retry_delay == 15
+        assert config.retry_delay(0) == 15  # Test the function call
         assert config.log_level == "INFO"

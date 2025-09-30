@@ -312,15 +312,15 @@ def retry(func):
                 if isinstance(e, ServiceUnavailableError):
                     logger.warning(
                         f"Service Unavailable Error on attempt {attempt + 1}/{config.retries}: "
-                        f"{e}. Retrying in {config.retry_delay} seconds..."
+                        f"{e}. Retrying in {config.retry_delay(attempt)} seconds..."
                     )
                 else:
                     logger.warning(
                         f"Connection Error on attempt {attempt + 1}/{config.retries}: "
-                        f"{e}. Retrying in {config.retry_delay} seconds..."
+                        f"{e}. Retrying in {config.retry_delay(attempt)} seconds..."
                     )
                 if attempt < config.retries - 1:  # Don't sleep on the last attempt
-                    sleep(config.retry_delay)
+                    sleep(config.retry_delay(attempt))
                 continue
 
         # If we've exhausted all retries, raise the last exception

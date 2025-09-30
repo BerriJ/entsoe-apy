@@ -2,7 +2,7 @@
 
 import os
 import sys
-from typing import Optional
+from typing import Callable, Optional
 from uuid import UUID
 
 from loguru import logger
@@ -24,8 +24,8 @@ class EntsoEConfig:
         self,
         security_token: Optional[str] = None,
         timeout: int = 5,
-        retries: int = 3,
-        retry_delay: int = 10,
+        retries: int = 5,
+        retry_delay: Optional[Callable[[int], int]] = None,
         log_level: str = "SUCCESS",
     ):
         """
@@ -36,8 +36,9 @@ class EntsoEConfig:
                           ENTSOE_API environment variable. If neither is available,
                           raises ValueError.
             timeout: Request timeout in seconds (default: 5)
-            retries: Number of retry attempts for failed requests (default: 3)
-            retry_delay: Delay between retry attempts in seconds (default: 10)
+            retries: Number of retry attempts for failed requests (default: 5)
+            retry_delay: Function that takes attempt number and returns delay in seconds.
+                        Defaults to exponential backoff (2**attempt)
             log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                       INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
 
@@ -87,7 +88,11 @@ class EntsoEConfig:
         self.security_token = security_token
         self.timeout = timeout
         self.retries = retries
-        self.retry_delay = retry_delay
+        # Set default exponential backoff function if none provided
+        if retry_delay is None:
+            self.retry_delay = lambda attempt: 2**attempt
+        else:
+            self.retry_delay = retry_delay
         self.log_level = log_level.upper()
 
     def validate_security_token(self) -> None:
@@ -146,7 +151,7 @@ def set_config(
     security_token: Optional[str] = None,
     timeout: int = 5,
     retries: int = 3,
-    retry_delay: int = 10,
+    retry_delay: Optional[Callable[[int], int]] = None,
     log_level: str = "SUCCESS",
 ) -> None:
     """
@@ -157,7 +162,8 @@ def set_config(
                       ENTSOE_API environment variable.
         timeout: Request timeout in seconds (default: 5)
         retries: Number of retry attempts for failed requests (default: 3)
-        retry_delay: Delay between retry attempts in seconds (default: 10)
+        retry_delay: Function that takes attempt number and returns delay in seconds.
+                    Defaults to exponential backoff (2**attempt)
         log_level: Log level for loguru logger. Available levels: TRACE, DEBUG,
                   INFO, SUCCESS, WARNING, ERROR, CRITICAL (default: SUCCESS)
     """

@@ -15,7 +15,9 @@ class TestRetryDecorator:
 
     def setup_method(self):
         """Set up test configuration before each test."""
-        set_config(security_token="test_token", retries=3, retry_delay=1)
+        set_config(
+            security_token="test_token", retries=3, retry_delay=lambda attempt: 1
+        )
 
     def teardown_method(self):
         """Clean up configuration after each test."""
@@ -208,3 +210,58 @@ class TestRetryDecorator:
         source = inspect.getsource(retry)
         assert "RuntimeError" in source
         assert "All retry attempts failed with unknown error" in source
+
+    def test_default_exponential_backoff(self):
+        """Test that default exponential backoff function works correctly."""
+        # Reset to use default configuration
+        reset_config()
+        set_config(security_token="test_token", retries=3)
+
+        call_count = 0
+
+        @retry
+        def function_that_fails_twice(*args, **kwargs):
+            nonlocal call_count
+            call_count += 1
+            if call_count < 3:
+                raise httpx.RequestError("Connection failed")
+            return "success"
+
+        with patch("entsoe.query.decorators.sleep") as mock_sleep:
+            result = function_that_fails_twice()
+
+        assert result == "success"
+        assert call_count == 3
+        # Verify exponential backoff: first retry waits 2^0=1, second retry waits 2^1=2
+        assert mock_sleep.call_count == 2
+        mock_sleep.assert_any_call(1)  # 2^0 = 1
+        mock_sleep.assert_any_call(2)  # 2^1 = 2
+
+    def test_custom_retry_delay_function(self):
+        """Test that custom retry delay functions work correctly."""
+
+        def linear_backoff(attempt):
+            return (attempt + 1) * 5  # 5, 10, 15, etc.
+
+        reset_config()
+        set_config(security_token="test_token", retries=3, retry_delay=linear_backoff)
+
+        call_count = 0
+
+        @retry
+        def function_that_fails_twice(*args, **kwargs):
+            nonlocal call_count
+            call_count += 1
+            if call_count < 3:
+                raise httpx.RequestError("Connection failed")
+            return "success"
+
+        with patch("entsoe.query.decorators.sleep") as mock_sleep:
+            result = function_that_fails_twice()
+
+        assert result == "success"
+        assert call_count == 3
+        # Verify custom backoff: first retry waits 5, second retry waits 10
+        assert mock_sleep.call_count == 2
+        mock_sleep.assert_any_call(5)  # (0 + 1) * 5 = 5
+        mock_sleep.assert_any_call(10)  # (1 + 1) * 5 = 10
