@@ -172,6 +172,7 @@ class EnergyPrices(Market):
     """
 
     code = "12.1.D"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,

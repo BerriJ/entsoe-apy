@@ -92,7 +92,7 @@ def range_limited(func):
     Decorator that handles range limit errors by splitting the requested period
     and combining the results.
 
-    Catches cases where the date range exceeds the API's 1-year limit, splits
+    Catches cases where the date range exceeds the API's limit, splits
     the requested period in two, and makes recursive calls. The results from
     both halves are combined into a single list of BaseModel instances.
 
@@ -101,7 +101,7 @@ def range_limited(func):
     """
 
     @wraps(func)
-    def range_wrapper(params, max_days_limit=365, *args, **kwargs):
+    def range_wrapper(params, max_days_limit=100000, *args, **kwargs):
         # Extract period parameters from params dict
         period_start = params.get("periodStart")
         period_end = params.get("periodEnd")

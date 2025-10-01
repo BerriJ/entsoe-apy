@@ -24,6 +24,7 @@ class ActualTotalLoad(Load):
     """
 
     code = "6.1.A"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,
@@ -66,6 +67,7 @@ class DayAheadTotalLoadForecast(Load):
     """
 
     code = "6.1.B"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,
@@ -108,6 +110,7 @@ class WeekAheadTotalLoadForecast(Load):
     """
 
     code = "6.1.C"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,
@@ -150,6 +153,7 @@ class MonthAheadTotalLoadForecast(Load):
     """
 
     code = "6.1.D"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,
@@ -192,6 +196,7 @@ class YearAheadTotalLoadForecast(Load):
     """
 
     code = "6.1.E"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,
@@ -234,6 +239,7 @@ class YearAheadForecastMargin(Load):
     """
 
     code = "8.1"
+    max_days_limit: int = 365  # One year range limit
 
     def __init__(
         self,

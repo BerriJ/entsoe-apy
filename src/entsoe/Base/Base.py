@@ -18,7 +18,9 @@ class Base:
     """Base class for ENTSO-E Transparency Platform query parameters."""
 
     # Maximum days for date range queries (can be overridden by subclasses)
-    max_days_limit: int = 365
+    # Default is set to a very high value (100000 days ≈ 274 years) to avoid
+    # unnecessary splitting for endpoints without explicit limits
+    max_days_limit: int = 100000
 
     def __init__(
         self,
