@@ -16,8 +16,8 @@ from .decorators import (
 
 
 @unzip
-@service_unavailable
 @retry
+@service_unavailable
 def query_core(params: dict) -> list[Response]:
     """
     Core function to make HTTP requests to the ENTSO-E API.
