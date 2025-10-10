@@ -7,7 +7,7 @@ from entsoe import set_config
 from entsoe.Market import EnergyPrices
 from entsoe.utils import extract_records
 
-_ENTSOE_API = getenv("ENTSOE_API")
+_ENTSOE_API = getenv("ENTSOE_API") or None
 
 EIC = "10Y1001A1001A82H"
 
