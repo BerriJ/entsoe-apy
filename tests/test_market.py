@@ -3,6 +3,8 @@ import pytest
 from entsoe.config import get_config
 from entsoe.Market import EnergyPrices
 
+print("Security Token:")
+print(get_config().security_token)
 
 @pytest.mark.skipif(
     get_config().security_token is None,
