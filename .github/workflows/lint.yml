@@ -1,53 +1,54 @@
 name: Lint and Commit
 
 on:
-    pull_request:
-        types: [opened, synchronize, reopened]
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
-        steps:
-            - uses: actions/checkout@v5
-              with:
-                  ref: ${{ github.event.pull_request.head.repo.fork && (github.event.pull_request.head.sha || github.sha) || (github.head_ref || github.ref_name) }}
-                  fetch-depth: 0
-            - name: Configure git
-              run: |
-                  git config --global user.name 'github-actions[bot]'
-                  git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            - uses: actions/setup-python@v5
-              with:
-                  python-version: "3.13"
-            - name: Install ruff without running check or format
-              uses: astral-sh/ruff-action@v3
-              with:
-                  args: "--version"
-                  src: "./src"
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.repo.fork && (github.event.pull_request.head.sha || github.sha) || (github.head_ref || github.ref_name) }}
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install ruff without running check or format
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: "--version"
+          src: "./src"
 
-            - name: Format (fix issues automatically)
-              if: github.event.pull_request.head.repo.fork == false
-              run: ruff check --fix .
+      - name: Format (fix issues automatically)
+        if: github.event.pull_request.head.repo.fork == false
+        run: ruff check --fix .
 
-            - name: Format code style
-              if: github.event.pull_request.head.repo.fork == false
-              run: ruff format
+      - name: Format code style
+        if: github.event.pull_request.head.repo.fork == false
+        run: ruff format
 
-            - name: Commit changes
-              if: github.event.pull_request.head.repo.fork == false
-              uses: stefanzweifel/git-auto-commit-action@v6
-              with:
-                  commit_message: "Style fixes by ruff"
-                  file_pattern: "*.py"
+      - name: Commit changes
+        if: github.event.pull_request.head.repo.fork == false
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "Style fixes by ruff"
+          file_pattern: "*.py"
 
-            - name: Lint (check for remaining issues)
-              run: ruff check --output-format=github .
+      - name: Lint (check for remaining issues)
+        run: ruff check --output-format=github .
 
-    run-tests:
-        needs: lint
-        if: always()
-        uses: ./.github/workflows/tests.yml
-        permissions:
-            contents: read
+  run-tests:
+    needs: lint
+    if: always()
+    uses: ./.github/workflows/tests.yml
+    secrets: inherit
+    permissions:
+      contents: read
