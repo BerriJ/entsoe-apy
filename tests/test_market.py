@@ -1,14 +1,14 @@
+import os
+
 import pytest
 
-from entsoe.config import get_config
 from entsoe.Market import EnergyPrices
 
-print("Security Token:")
-print(get_config().security_token)
+_ENTSOE_API = os.getenv("ENTSOE_API") or None
 
 
 @pytest.mark.skipif(
-    get_config().security_token is None,
+    _ENTSOE_API is None,
     reason="ENTSOE_API environment variable not set",
 )
 def test_energy_prices():
