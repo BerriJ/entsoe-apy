@@ -77,6 +77,7 @@ class EntsoEConfig:
 
     This class holds global configuration options including:
     - Security token for API authentication
+    - API endpoint URL (configurable via ENTSOE_ENDPOINT_URL environment variable)
     - Request timeout settings
     - Number of retries for failed requests
     - Delay between retry attempts
@@ -86,6 +87,7 @@ class EntsoEConfig:
     def __init__(
         self,
         security_token: Optional[str] = None,
+        endpoint_url: Optional[str] = None,
         timeout: int = 5,
         retries: int = 5,
         retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
@@ -99,6 +101,9 @@ class EntsoEConfig:
             security_token: API security token. If not provided, will try to get from
                           ENTSOE_API environment variable. If neither is available,
                           raises ValueError.
+            endpoint_url: API endpoint URL. If not provided, will try to get from
+                         ENTSOE_ENDPOINT_URL environment variable. If neither is available,
+                         defaults to "https://web-api.tp.entsoe.eu/api".
             timeout: Request timeout in seconds (default: 5)
             retries: Number of retry attempts for failed requests (default: 5)
             retry_delay: Function that takes attempt number and returns delay in seconds,
@@ -114,6 +119,18 @@ class EntsoEConfig:
         """
         # Set the log level using our independent logger's set_log_level function
         set_log_level(log_level)
+
+        # Handle endpoint URL
+        env_endpoint_url = os.getenv("ENTSOE_ENDPOINT_URL") or None
+        if endpoint_url is None and env_endpoint_url is not None:
+            endpoint_url = env_endpoint_url
+            logger.success("API endpoint URL loaded from environment.")
+
+        if endpoint_url is None:
+            endpoint_url = "https://web-api.tp.entsoe.eu/api"
+            logger.debug("Using default API endpoint URL.")
+
+        self.endpoint_url = endpoint_url
 
         # Handle security token
         env_token = os.getenv("ENTSOE_API") or None
@@ -205,6 +222,7 @@ def get_config() -> EntsoEConfig:
 
 def set_config(
     security_token: Optional[str] = None,
+    endpoint_url: Optional[str] = None,
     timeout: int = 5,
     retries: int = 5,
     retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
@@ -217,6 +235,9 @@ def set_config(
     Args:
         security_token: API security token. If not provided, will try to get from
                       ENTSOE_API environment variable.
+        endpoint_url: API endpoint URL. If not provided, will try to get from
+                     ENTSOE_ENDPOINT_URL environment variable. If neither is available,
+                     defaults to "https://web-api.tp.entsoe.eu/api".
         timeout: Request timeout in seconds (default: 5)
         retries: Number of retry attempts for failed requests (default: 5)
         retry_delay: Function that takes attempt number and returns delay in seconds,
@@ -229,6 +250,7 @@ def set_config(
     global _global_config
     _global_config = EntsoEConfig(
         security_token=security_token,
+        endpoint_url=endpoint_url,
         timeout=timeout,
         retries=retries,
         retry_delay=retry_delay,

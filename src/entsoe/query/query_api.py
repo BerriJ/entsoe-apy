@@ -35,16 +35,14 @@ def query_core(params: dict) -> Response:
     # Validate that security token is present and valid before making API request
     config.validate_security_token()
 
-    URL = "https://web-api.tp.entsoe.eu/api"
-
     # Make a copy of params and extend it with the security_token
     params_with_token = {**params, "securityToken": config.security_token}
 
     # Log the API call with sanitized parameters
     logger.info(f"Making API request with params: {params}")
-    logger.debug(f"Request URL: {URL}, timeout: {config.timeout}s")
+    logger.debug(f"Request URL: {config.endpoint_url}, timeout: {config.timeout}s")
 
-    response = get(URL, params=params_with_token, timeout=config.timeout)
+    response = get(config.endpoint_url, params=params_with_token, timeout=config.timeout)
 
     content_length = len(response.text) if response.text else 0
     logger.info(
