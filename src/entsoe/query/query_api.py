@@ -8,6 +8,7 @@ from .decorators import (
     check_service_unavailable,
     handle_acknowledgement,
     pagination,
+    rate_limit,
     retry,
     split_date_range,
     unzip,
@@ -15,6 +16,7 @@ from .decorators import (
 
 
 @check_service_unavailable
+@rate_limit(max_calls=400)
 def query_core(params: dict) -> Response:
     """
     Core function to make HTTP requests to the ENTSO-E API.

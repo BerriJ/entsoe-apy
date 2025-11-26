@@ -1,9 +1,11 @@
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 from contextvars import ContextVar
 from functools import wraps
 import io
 from itertools import chain
-from time import sleep
+import threading
+from time import time
 import zipfile
 
 from httpx import RequestError, Response
@@ -399,7 +401,7 @@ def retry(func):
                         f"Attempt {attempt + 1}/{config.retries} failed: {e} "
                         f"Retrying in {config.retry_delay(attempt)}s..."
                     )
-                    sleep(config.retry_delay(attempt))
+                    time.sleep(config.retry_delay(attempt))
                 continue
 
         # If we've exhausted all retries, raise the last exception
@@ -414,3 +416,36 @@ def retry(func):
             )
 
     return retry_wrapper
+
+
+def rate_limit(max_calls, period=1.0):
+    def decorator(func):
+        calls = deque()
+        lock = threading.Lock()
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            with lock:
+                now = time.time()
+
+                # Clean old calls
+                while calls and calls[0] < now - period:
+                    calls.popleft()
+
+                if len(calls) >= max_calls:
+                    wait_time = period - (now - calls[0])
+                    time.sleep(wait_time)
+
+                    now = time.time()
+                    while calls and calls[0] < now - period:
+                        calls.popleft()
+
+                calls.append(time.time())
+
+            # Important: The actual function runs OUTSIDE the lock
+            # This allows valid calls to run in parallel!
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
