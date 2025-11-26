@@ -18,7 +18,7 @@ from .decorators import (
 
 @check_if_banned
 @check_service_unavailable
-@rate_limit(max_calls=400)
+@rate_limit(max_calls=400, period=60)
 def query_core(params: dict) -> Response:
     """
     Core function to make HTTP requests to the ENTSO-E API.
