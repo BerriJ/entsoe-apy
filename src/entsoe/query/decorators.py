@@ -399,7 +399,7 @@ def check_if_banned(func):
         if response.status_code == 429:
             match = re.search(r"<p>(.*?)</p>", response.text)
             message = match.group(1) if match else response.text
-            
+
             logger.info(f"ENTSO-E API returned 429: {message}")
             raise GotBannedError(message)
 
