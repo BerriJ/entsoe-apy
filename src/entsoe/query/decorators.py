@@ -5,7 +5,7 @@ from functools import wraps
 import io
 from itertools import chain
 import threading
-from time import time
+from time import sleep, time
 import zipfile
 
 from httpx import RequestError, Response
@@ -401,7 +401,7 @@ def retry(func):
                         f"Attempt {attempt + 1}/{config.retries} failed: {e} "
                         f"Retrying in {config.retry_delay(attempt)}s..."
                     )
-                    time.sleep(config.retry_delay(attempt))
+                    sleep(config.retry_delay(attempt))
                 continue
 
         # If we've exhausted all retries, raise the last exception
@@ -426,7 +426,7 @@ def rate_limit(max_calls, period=1.0):
         @wraps(func)
         def wrapper(*args, **kwargs):
             with lock:
-                now = time.time()
+                now = time()
 
                 # Clean old calls
                 while calls and calls[0] < now - period:
@@ -434,13 +434,13 @@ def rate_limit(max_calls, period=1.0):
 
                 if len(calls) >= max_calls:
                     wait_time = period - (now - calls[0])
-                    time.sleep(wait_time)
+                    sleep(wait_time)
 
-                    now = time.time()
+                    now = time()
                     while calls and calls[0] < now - period:
                         calls.popleft()
 
-                calls.append(time.time())
+                calls.append(time())
 
             # Important: The actual function runs OUTSIDE the lock
             # This allows valid calls to run in parallel!
