@@ -466,6 +466,7 @@ def rate_limit(max_calls, period=1.0):
 
         @wraps(func)
         def wrapper(*args, **kwargs):
+            logger.trace("rate_limit wrapper: Enter")
             with lock:
                 now = time()
 
@@ -475,6 +476,9 @@ def rate_limit(max_calls, period=1.0):
 
                 if len(calls) >= max_calls:
                     wait_time = period - (now - calls[0])
+                    logger.debug(
+                        f"Rate limit reached ({len(calls)}/{max_calls} calls in {period}s), waiting {wait_time:.2f}s"
+                    )
                     sleep(wait_time)
 
                     now = time()
@@ -482,10 +486,15 @@ def rate_limit(max_calls, period=1.0):
                         calls.popleft()
 
                 calls.append(time())
+                logger.trace(
+                    f"Rate limit: {len(calls)}/{max_calls} calls in last {period}s"
+                )
 
             # Important: The actual function runs OUTSIDE the lock
             # This allows valid calls to run in parallel!
-            return func(*args, **kwargs)
+            result = func(*args, **kwargs)
+            logger.trace("rate_limit wrapper: Exit")
+            return result
 
         return wrapper
 
