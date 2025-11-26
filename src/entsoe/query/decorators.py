@@ -33,6 +33,12 @@ class ServiceUnavailableError(Exception):
     pass
 
 
+class GotBannedError(Exception):
+    """Raised when the ENTSO-E API returns a 429  requester banned status."""
+
+    pass
+
+
 class UnexpectedError(Exception):
     """Raised when the ENTSO-E API returns an unexpected error."""
 
@@ -370,6 +376,36 @@ def check_service_unavailable(func):
     return service_unavailable_wrapper
 
 
+def check_if_banned(func):
+    """
+    Decorator that checks for 429 requester banned responses from the ENTSO-E API.
+
+    Inspects the HTTP response status code and raises a ServiceUnavailableError
+    if a 503 status is detected, which triggers the retry mechanism.
+
+    Returns:
+        The original Response object if no 503 status is found.
+
+    Raises:
+        ServiceUnavailableError: When the response has a 503 Service Unavailable status
+    """
+
+    @wraps(func)
+    def banned_wrapper(*args, **kwargs) -> Response:
+        logger.trace("check_if_banned wrapper: Enter")
+        response = func(*args, **kwargs)
+
+        # Check response for 503 status
+        if response.status_code == 429:
+            logger.info("ENTSO-E API returned 429 Requester Banned")
+            raise GotBannedError(response.text)
+
+        logger.trace("check_if_banned wrapper: Exit")
+        return response
+
+    return banned_wrapper
+
+
 def retry(func):
     """
     Decorator that catches connection errors, service unavailable errors, waits and retries.
@@ -394,7 +430,12 @@ def retry(func):
                 )
                 return result
             # Catch connection errors, socket errors, and service unavailable errors
-            except (RequestError, ServiceUnavailableError, UnexpectedError) as e:
+            except (
+                RequestError,
+                ServiceUnavailableError,
+                UnexpectedError,
+                GotBannedError,
+            ) as e:
                 last_exception = e
                 if attempt < config.retries - 1:
                     logger.warning(
