@@ -4,6 +4,7 @@ from contextvars import ContextVar
 from functools import wraps
 import io
 from itertools import chain
+import re
 import threading
 from time import sleep, time
 import zipfile
@@ -380,14 +381,14 @@ def check_if_banned(func):
     """
     Decorator that checks for 429 requester banned responses from the ENTSO-E API.
 
-    Inspects the HTTP response status code and raises a ServiceUnavailableError
-    if a 503 status is detected, which triggers the retry mechanism.
+    Inspects the HTTP response status code and raises a GotBannedError
+    if a 429 status is detected, extracting the ban message from the HTML response.
 
     Returns:
-        The original Response object if no 503 status is found.
+        The original Response object if no 429 status is found.
 
     Raises:
-        ServiceUnavailableError: When the response has a 503 Service Unavailable status
+        GotBannedError: When the response has a 429 Too Many Requests status
     """
 
     @wraps(func)
@@ -395,10 +396,12 @@ def check_if_banned(func):
         logger.trace("check_if_banned wrapper: Enter")
         response = func(*args, **kwargs)
 
-        # Check response for 503 status
         if response.status_code == 429:
-            logger.info("ENTSO-E API returned 429 Requester Banned")
-            raise GotBannedError(response.text)
+            match = re.search(r"<p>(.*?)</p>", response.text)
+            message = match.group(1) if match else response.text
+            
+            logger.info(f"ENTSO-E API returned 429: {message}")
+            raise GotBannedError(message)
 
         logger.trace("check_if_banned wrapper: Exit")
         return response
