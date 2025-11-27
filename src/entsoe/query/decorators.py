@@ -462,7 +462,7 @@ def retry(func):
     return retry_wrapper
 
 
-def rate_limit(max_calls, period=1.0):
+def rate_limit(max_calls: int, period: float | int):
     def decorator(func):
         calls = deque()
         lock = threading.Lock()
@@ -485,8 +485,6 @@ def rate_limit(max_calls, period=1.0):
                     sleep(wait_time)
 
                     now = time()
-                    while calls and calls[0] < now - period:
-                        calls.popleft()
 
                 calls.append(time())
                 logger.trace(
