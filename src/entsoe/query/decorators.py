@@ -35,7 +35,7 @@ class ServiceUnavailableError(Exception):
 
 
 class GotBannedError(Exception):
-    """Raised when the ENTSO-E API returns a 429  requester banned status."""
+    """Raised when the ENTSO-E API returns a 429 requester banned status."""
 
     pass
 
