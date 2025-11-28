@@ -9,14 +9,14 @@ from loguru._logger import Core as _Core, Logger as _Logger
 
 LogLevel = Literal["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
 LogFormat = (
-    "<fg #B0BEC5>{time:YYYY-MM-DD HH:mm:ss}</fg #B0BEC5> | "
-    "<level>{level: <8}</level> | "
-    "<fg #E91E63>{process.name: <11}</fg #E91E63> | "
-    "<fg #E91E63>{thread.name: <10}</fg #E91E63> | "
-    "<fg #2196F3>{name}</fg #2196F3>:"
-    "<fg #03A9F4>{function}</fg #03A9F4>:"
-    "<fg #009688>{line}</fg #009688> - "
-    "<level>{message}</level>"
+  "<fg #B0BEC5>{time:YYYY-MM-DD HH:mm:ss.SSS}</fg #B0BEC5> | "
+  "<level>{level: <8}</level> | "
+  "<fg #E91E63>{process.name: <11}</fg #E91E63> | "
+  "<fg #E91E63>{thread.name: <10}</fg #E91E63> | "
+  "<fg #2196F3>{name}</fg #2196F3>:"
+  "<fg #03A9F4>{function}</fg #03A9F4>:"
+  "<fg #009688>{line}</fg #009688> - "
+  "<level>{message}</level>"
 )
 
 # Create an independent Loguru logger instance for this package
