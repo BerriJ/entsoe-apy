@@ -9,7 +9,7 @@ from loguru._logger import Core as _Core, Logger as _Logger
 
 LogLevel = Literal["TRACE", "DEBUG", "INFO", "SUCCESS", "WARNING", "ERROR", "CRITICAL"]
 LogFormat = (
-    "<fg #B0BEC5>{time:YYYY-MM-DD HH:mm:ss}</fg #B0BEC5> | "
+    "<fg #B0BEC5>{time:YYYY-MM-DD HH:mm:ss.SSS}</fg #B0BEC5> | "
     "<level>{level: <8}</level> | "
     "<fg #E91E63>{process.name: <11}</fg #E91E63> | "
     "<fg #E91E63>{thread.name: <10}</fg #E91E63> | "

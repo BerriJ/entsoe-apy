@@ -5,16 +5,20 @@ from xsdata_pydantic.bindings import XmlParser
 from ..config.config import get_config, logger
 from ..utils.utils import extract_namespace_and_find_classes
 from .decorators import (
+    check_if_banned,
     check_service_unavailable,
     handle_acknowledgement,
     pagination,
+    rate_limit,
     retry,
     split_date_range,
     unzip,
 )
 
 
+@check_if_banned
 @check_service_unavailable
+@rate_limit(max_calls=380, period=60)
 def query_core(params: dict) -> Response:
     """
     Core function to make HTTP requests to the ENTSO-E API.

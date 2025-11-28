@@ -1,9 +1,12 @@
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 from contextvars import ContextVar
 from functools import wraps
 import io
 from itertools import chain
-from time import sleep
+import re
+import threading
+from time import sleep, time
 import zipfile
 
 from httpx import RequestError, Response
@@ -27,6 +30,12 @@ class AcknowledgementDocumentError(Exception):
 
 class ServiceUnavailableError(Exception):
     """Raised when the ENTSO-E API returns a 503 Service Unavailable status."""
+
+    pass
+
+
+class GotBannedError(Exception):
+    """Raised when the ENTSO-E API returns a 429 requester banned status."""
 
     pass
 
@@ -368,6 +377,38 @@ def check_service_unavailable(func):
     return service_unavailable_wrapper
 
 
+def check_if_banned(func):
+    """
+    Decorator that checks for 429 requester banned responses from the ENTSO-E API.
+
+    Inspects the HTTP response status code and raises a GotBannedError
+    if a 429 status is detected, extracting the ban message from the HTML response.
+
+    Returns:
+        The original Response object if no 429 status is found.
+
+    Raises:
+        GotBannedError: When the response has a 429 Too Many Requests status
+    """
+
+    @wraps(func)
+    def banned_wrapper(*args, **kwargs) -> Response:
+        logger.trace("check_if_banned wrapper: Enter")
+        response = func(*args, **kwargs)
+
+        if response.status_code == 429:
+            match = re.search(r"<p>(.*?)</p>", response.text)
+            message = match.group(1) if match else response.text
+
+            logger.info(f"ENTSO-E API returned 429: {message}")
+            raise GotBannedError(message)
+
+        logger.trace("check_if_banned wrapper: Exit")
+        return response
+
+    return banned_wrapper
+
+
 def retry(func):
     """
     Decorator that catches connection errors, service unavailable errors, waits and retries.
@@ -392,7 +433,12 @@ def retry(func):
                 )
                 return result
             # Catch connection errors, socket errors, and service unavailable errors
-            except (RequestError, ServiceUnavailableError, UnexpectedError) as e:
+            except (
+                RequestError,
+                ServiceUnavailableError,
+                UnexpectedError,
+                GotBannedError,
+            ) as e:
                 last_exception = e
                 if attempt < config.retries - 1:
                     logger.warning(
@@ -414,3 +460,56 @@ def retry(func):
             )
 
     return retry_wrapper
+
+
+def rate_limit(max_calls: int, period: float | int):
+    """
+    Decorator that enforces a rate limit on function calls.
+
+    Args:
+        max_calls (int): Maximum number of allowed calls within the time window.
+        period (float | int): Time window in seconds during which max_calls are allowed.
+
+    Thread-safety:
+        This decorator uses a threading.Lock to synchronize access to the call history,
+        ensuring that the rate limit is enforced correctly even when the decorated function
+        is called from multiple threads.
+
+    Behavior:
+        If the rate limit is exceeded, the decorator sleeps until a call slot becomes available,
+        then proceeds to execute the function. The actual function execution occurs outside the lock,
+        allowing valid calls to run in parallel.
+    """
+
+    def decorator(func):
+        calls = deque()
+        lock = threading.Lock()
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            logger.trace("rate_limit wrapper: Enter")
+            with lock:
+                now = time()
+
+                # Clean old calls
+                while calls and calls[0] < now - period:
+                    calls.popleft()
+
+                if len(calls) >= max_calls:
+                    wait_time = max(0, period - (now - calls[0]))
+                    logger.debug(
+                        f"Rate limit reached ({len(calls)}/{max_calls} calls in {period}s), waiting {wait_time:.2f}s"
+                    )
+                    sleep(wait_time)
+
+                calls.append(time())
+
+            # Important: The actual function runs OUTSIDE the lock
+            # This allows valid calls to run in parallel!
+            result = func(*args, **kwargs)
+            logger.trace("rate_limit wrapper: Exit")
+            return result
+
+        return wrapper
+
+    return decorator
