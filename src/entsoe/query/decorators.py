@@ -484,12 +484,7 @@ def rate_limit(max_calls: int, period: float | int):
                     )
                     sleep(wait_time)
 
-                    now = time()
-
                 calls.append(time())
-                logger.trace(
-                    f"Rate limit: {len(calls)}/{max_calls} calls in last {period}s"
-                )
 
             # Important: The actual function runs OUTSIDE the lock
             # This allows valid calls to run in parallel!
