@@ -463,6 +463,23 @@ def retry(func):
 
 
 def rate_limit(max_calls: int, period: float | int):
+    """
+    Decorator that enforces a rate limit on function calls.
+
+    Args:
+        max_calls (int): Maximum number of allowed calls within the time window.
+        period (float | int): Time window in seconds during which max_calls are allowed.
+
+    Thread-safety:
+        This decorator uses a threading.Lock to synchronize access to the call history,
+        ensuring that the rate limit is enforced correctly even when the decorated function
+        is called from multiple threads.
+
+    Behavior:
+        If the rate limit is exceeded, the decorator sleeps until a call slot becomes available,
+        then proceeds to execute the function. The actual function execution occurs outside the lock,
+        allowing valid calls to run in parallel.
+    """
     def decorator(func):
         calls = deque()
         lock = threading.Lock()
