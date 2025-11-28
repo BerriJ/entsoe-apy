@@ -496,7 +496,7 @@ def rate_limit(max_calls: int, period: float | int):
                     calls.popleft()
 
                 if len(calls) >= max_calls:
-                    wait_time = period - (now - calls[0])
+                    wait_time = max(0, period - (now - calls[0]))
                     logger.debug(
                         f"Rate limit reached ({len(calls)}/{max_calls} calls in {period}s), waiting {wait_time:.2f}s"
                     )
