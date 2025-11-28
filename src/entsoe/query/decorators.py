@@ -480,6 +480,7 @@ def rate_limit(max_calls: int, period: float | int):
         then proceeds to execute the function. The actual function execution occurs outside the lock,
         allowing valid calls to run in parallel.
     """
+
     def decorator(func):
         calls = deque()
         lock = threading.Lock()
