@@ -2,6 +2,7 @@
 
 from concurrent.futures import ThreadPoolExecutor
 import threading
+import time as real_time
 from unittest.mock import patch
 
 from entsoe.query.decorators import rate_limit
@@ -127,8 +128,6 @@ class TestRateLimitDecorator:
         @rate_limit(max_calls=3, period=1)
         def tracked_function():
             # Record real time for each call
-            import time as real_time
-
             with timestamps_lock:
                 call_timestamps.append(real_time.time())
             return "success"
@@ -157,8 +156,7 @@ class TestRateLimitDecorator:
         assert documented_function.__doc__ == "This is a documented function."
 
     def test_passes_arguments_correctly(self):
-        """Test that rate_limit decorator correctly passes positional and
-        keyword arguments."""
+        """Test that rate_limit decorator correctly passes arguments."""
 
         @rate_limit(max_calls=10, period=60)
         def function_with_args(*args, **kwargs):
@@ -253,8 +251,7 @@ class TestRateLimitDecorator:
         assert calls_b == 2
 
     def test_function_executes_outside_lock(self):
-        """Test that the decorated function executes outside the lock,
-        allowing parallel execution of valid calls."""
+        """Test that decorated function executes outside lock, allowing parallel calls."""
         execution_order = []
         execution_lock = threading.Lock()
         in_function = threading.Event()
