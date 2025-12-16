@@ -33,6 +33,10 @@ class ServiceUnavailableError(Exception):
 
     pass
 
+class BadGatewayError(Exception):
+    """Raised when the ENTSO-E API returns a 502 Bad Gateway status."""
+
+    pass
 
 class GotBannedError(Exception):
     """Raised when the ENTSO-E API returns a 429 requester banned status."""
@@ -286,6 +290,9 @@ def handle_acknowledgement(func):
             elif "Unexpected error occurred" in reason:
                 logger.info(reason)
                 raise UnexpectedError("Acknowledgement: Unexpected error occurred.")
+            elif "502 Bad Gateway" in reason:
+                logger.info(reason)
+                raise BadGatewayError("Acknowledgement: 502 Bad Gateway.")
             else:
                 logger.error(f"Acknowledgement: {reason}")
                 raise AcknowledgementDocumentError(reason)
@@ -437,6 +444,7 @@ def retry(func):
                 RequestError,
                 ServiceUnavailableError,
                 UnexpectedError,
+                BadGatewayError,
                 GotBannedError,
             ) as e:
                 last_exception = e
