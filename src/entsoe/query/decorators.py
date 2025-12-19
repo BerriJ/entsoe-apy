@@ -49,6 +49,11 @@ class UnexpectedError(Exception):
 
     pass
 
+class UnkownResponseTypeError(Exception):
+    """Raised when the return type of a function is not as expected."""
+
+    pass
+
 
 class ContextPropagatingThreadPoolExecutor(ThreadPoolExecutor):
     """
@@ -98,6 +103,36 @@ class ContextPropagatingThreadPoolExecutor(ThreadPoolExecutor):
             self._context_propagation_wrapper, fn, offset_increment, *args, **kwargs
         )
 
+
+def check_response_type(func):
+    """
+    Decorator that checks the return type of the decorated function.
+
+    Ensures that the decorated function returns a list of Response objects.
+    Raises UnkownResponseTypeError if the return type is not as expected.
+
+    Returns:
+        The original return value of the function if the type check passes.
+    Raises:
+        UnkownResponseTypeError: If the return type is not a list of Response objects
+    """
+
+    @wraps(func)
+    def type_check_wrapper(*args, **kwargs) -> Response:
+        logger.trace("check_response_type wrapper: Enter")
+        response = func(*args, **kwargs)
+
+        if response.headers.get("Content-Type") not in ("application/zip", "text/xml"):
+            logger.error(
+                f"Unexpected response type: {response.headers.get('Content-Type')}"
+            )
+            raise UnkownResponseTypeError(
+                f"Expected response with Content-Type 'application/zip' or 'text/xml', got '{response.headers.get('Content-Type')}'"
+            )
+        logger.trace("check_response_type wrapper: Exit")
+        return response
+
+    return type_check_wrapper
 
 def unzip(func):
     """

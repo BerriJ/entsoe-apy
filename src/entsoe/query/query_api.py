@@ -7,6 +7,7 @@ from ..utils.utils import extract_namespace_and_find_classes
 from .decorators import (
     check_if_banned,
     check_service_unavailable,
+    check_response_type,
     handle_acknowledgement,
     pagination,
     rate_limit,
@@ -15,7 +16,7 @@ from .decorators import (
     unzip,
 )
 
-
+@check_response_type
 @check_if_banned
 @check_service_unavailable
 @rate_limit(max_calls=380, period=60)
