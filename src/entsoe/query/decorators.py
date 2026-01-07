@@ -113,14 +113,14 @@ def check_response_type(func):
 
     Ensures that the decorated function returns a single httpx.Response object
     whose Content-Type header is either ``application/zip`` or ``text/xml``.
-    Raises UnkownResponseTypeError if the response type or Content-Type is not as
+    Raises UnknownResponseTypeError if the response type or Content-Type is not as
     expected.
 
     Returns:
         The original Response object returned by the function if the type check
         passes.
     Raises:
-        UnkownResponseTypeError: If the return value is not a Response with
+        UnknownResponseTypeError: If the return value is not a Response with
         Content-Type ``application/zip`` or ``text/xml``.
     """
 
@@ -133,7 +133,7 @@ def check_response_type(func):
             logger.error(
                 f"Unexpected response type: {response.headers.get('Content-Type')}"
             )
-            raise UnkownResponseTypeError(
+            raise UnknownResponseTypeError(
                 f"Expected response with Content-Type 'application/zip' or 'text/xml', got '{response.headers.get('Content-Type')}'"
             )
         logger.trace("check_response_type wrapper: Exit")
