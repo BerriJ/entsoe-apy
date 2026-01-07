@@ -109,15 +109,19 @@ class ContextPropagatingThreadPoolExecutor(ThreadPoolExecutor):
 
 def check_response_type(func):
     """
-    Decorator that checks the return type of the decorated function.
+    Decorator that validates the response type of the decorated function.
 
-    Ensures that the decorated function returns a list of Response objects.
-    Raises UnkownResponseTypeError if the return type is not as expected.
+    Ensures that the decorated function returns a single httpx.Response object
+    whose Content-Type header is either ``application/zip`` or ``text/xml``.
+    Raises UnkownResponseTypeError if the response type or Content-Type is not as
+    expected.
 
     Returns:
-        The original return value of the function if the type check passes.
+        The original Response object returned by the function if the type check
+        passes.
     Raises:
-        UnkownResponseTypeError: If the return type is not a list of Response objects
+        UnkownResponseTypeError: If the return value is not a Response with
+        Content-Type ``application/zip`` or ``text/xml``.
     """
 
     @wraps(func)
