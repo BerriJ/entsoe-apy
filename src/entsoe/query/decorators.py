@@ -33,10 +33,12 @@ class ServiceUnavailableError(Exception):
 
     pass
 
+
 class BadGatewayError(Exception):
     """Raised when the ENTSO-E API returns a 502 Bad Gateway status."""
 
     pass
+
 
 class GotBannedError(Exception):
     """Raised when the ENTSO-E API returns a 429 requester banned status."""
@@ -48,6 +50,7 @@ class UnexpectedError(Exception):
     """Raised when the ENTSO-E API returns an unexpected error."""
 
     pass
+
 
 class UnkownResponseTypeError(Exception):
     """Raised when the return type of a function is not as expected."""
@@ -133,6 +136,7 @@ def check_response_type(func):
         return response
 
     return type_check_wrapper
+
 
 def unzip(func):
     """
