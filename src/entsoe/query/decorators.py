@@ -52,7 +52,7 @@ class UnexpectedError(Exception):
     pass
 
 
-class UnkownResponseTypeError(Exception):
+class UnknownResponseTypeError(Exception):
     """Raised when the return type of a function is not as expected."""
 
     pass
