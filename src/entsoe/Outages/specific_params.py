@@ -71,6 +71,7 @@ class UnavailabilityOfProductionUnits(Outages):
             doc_status=doc_status,
             registered_resource=registered_resource,
             m_rid=m_rid,
+            offset=offset,
         )
 
 
@@ -135,6 +136,7 @@ class UnavailabilityOfGenerationUnits(Outages):
             doc_status=doc_status,
             registered_resource=registered_resource,
             m_rid=m_rid,
+            offset=offset,
         )
 
 
@@ -259,6 +261,7 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
             business_type=business_type,
             doc_status=doc_status,
             m_rid=m_rid,
+            offset=offset,
         )
 
         # Add domain parameters specific to this endpoint
@@ -323,6 +326,7 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
             period_end_update=period_end_update,
             doc_status=doc_status,
             m_rid=m_rid,
+            offset=offset,
         )
 
 
