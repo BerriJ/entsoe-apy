@@ -1,4 +1,4 @@
-name: Daily Upstream Check
+name: Daily Upstream Check for Postman Docs
 
 on:
   schedule:
@@ -30,5 +30,5 @@ jobs:
           commit-message: "chore: update postman json"
           title: "Update Postman Documentation"
           body: "The postman documentation has changed. This PR updates the local copy."
-          branch: "automated"
+          branch: "automated-postman-update"
           base: "develop"

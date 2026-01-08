@@ -209,3 +209,5 @@ poetry.toml
 pyrightconfig.json
 
 misc/TransparencyPlatformRestfulAPI.postman_collection.json
+
+*.zip
