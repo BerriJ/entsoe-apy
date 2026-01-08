@@ -1,0 +1,36 @@
+{
+  "name": "190.1 Sharing of RR and FRR (SO GL) Legacy",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "processType",
+      "value": "A47",
+      "description": "A47 =  Manual frequency restoration reserve"
+    },
+    {
+      "key": "BusinessType",
+      "value": "C22",
+      "description": "C22 = Shared balancing reserve capacity"
+    },
+    {
+      "key": "area_domain",
+      "value": "10YAT-APG------L",
+      "description": "Load Frequency Control Block"
+    },
+    {
+      "key": "periodStart",
+      "value": "202101010000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202112310000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "189.2 Outlook of Reserve Capacities on RR (SO GL)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "processType",
+      "value": "A46",
+      "description": "A46 = Replacement reserve"
+    },
+    {
+      "key": "businessType",
+      "value": "C76",
+      "description": "C76 = Forecasted capacity"
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202212310000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202305010000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "offset",
+      "value": "100",
+      "description": "Optional parameter"
+    }
+  ]
+}

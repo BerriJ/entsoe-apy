@@ -1,0 +1,41 @@
+{
+  "name": "12.1.E Implicit Auction — Net Positions",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A25",
+      "description": "[M] A25 = Allocation results"
+    },
+    {
+      "key": "businessType",
+      "value": "B09",
+      "description": "[M] B09 = Net position"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A07",
+      "description": "[M] A01 = Daily; A05 = Total; A07 = Intraday"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Bidding Zone or a Control Area"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Bidding Zone or a Control Area (must be same as out_Domain)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308222200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308232200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

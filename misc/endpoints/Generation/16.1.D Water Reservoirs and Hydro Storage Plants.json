@@ -1,0 +1,31 @@
+{
+  "name": "16.1.D Water Reservoirs and Hydro Storage Plants",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A72",
+      "description": "[M] A72 = Reservoir filling information"
+    },
+    {
+      "key": "processType",
+      "value": "A16",
+      "description": "[M] A16 = Realised"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YCA-BULGARIA-R",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202307092100",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202307162100",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

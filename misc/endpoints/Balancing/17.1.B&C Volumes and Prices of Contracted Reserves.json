@@ -1,0 +1,53 @@
+{
+  "name": "17.1.B&C Volumes and Prices of Contracted Reserves",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A81",
+      "description": "[M] A81 = Contracted reserves"
+    },
+    {
+      "key": "businessType",
+      "value": "B95",
+      "description": "[M] B95 = Procured capacity "
+    },
+    {
+      "key": "processType",
+      "value": "A52",
+      "description": "[M*] A51 = Automatic frequency restoration reserve; A52 =  Frequency containment reserve; A47 = Manual frequency restoration reserve; A46 = Replacement reserve"
+    },
+    {
+      "key": "Type_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A01 = Daily; A02 = Weekly; A03 = Monthly; A04 = Yearly; A06 = Long term; A13 = Hourly"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309242200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309252200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "psrType",
+      "value": "A04",
+      "description": "[O] A03 = Mixed; A04 = Generation; A05 = Load",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset must belong to the range [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+      "disabled": true
+    }
+  ]
+}

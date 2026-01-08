@@ -1,0 +1,36 @@
+{
+  "name": "13.1.A Redispatching Internal",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A63",
+      "description": "[M] A63 = Redispatch notice"
+    },
+    {
+      "key": "businessType",
+      "value": "A85",
+      "description": "[M] A85 = Internal requirements"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YNL----------L",
+      "description": "[M] EIC code of a Control Area"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YNL----------L",
+      "description": "[M] EIC code of a Control Area (must be same as out_Domain)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202310312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202311302300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

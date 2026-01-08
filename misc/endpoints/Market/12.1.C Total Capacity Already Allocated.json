@@ -1,0 +1,47 @@
+{
+  "name": "12.1.C Total Capacity Already Allocated",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "[M] A26 = Capacity Document"
+    },
+    {
+      "key": "businessType",
+      "value": "A29",
+      "description": "[M] A29 = Already Allocated Capacity"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A07 = Intraday; A01 = Daily; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YHR-HEP------M",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBA-JPCC-----D",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308242200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308252200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "auction.Category",
+      "value": "A02",
+      "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+      "disabled": true
+    }
+  ]
+}

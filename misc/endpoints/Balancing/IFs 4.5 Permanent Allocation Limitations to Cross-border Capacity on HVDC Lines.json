@@ -1,0 +1,46 @@
+{
+  "name": "IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A99",
+      "description": "[M] A99 = HVDC Link constraints"
+    },
+    {
+      "key": "processType",
+      "value": "A63",
+      "description": "[M] A51 = Automatic Frequency Restoration Reserve; A63= Imbalance Netting; A47 = Manual frequency restoration reserve"
+    },
+    {
+      "key": "BusinessType",
+      "value": "B06",
+      "description": "[M] B06 = DC Link constraint"
+    },
+    {
+      "key": "Out_Domain",
+      "value": "10YNL----------L",
+      "description": "[M] EIC code of a Scheduling Area or LFC area"
+    },
+    {
+      "key": "In_Domain",
+      "value": "10YDK-1--------W",
+      "description": "[M] EIC code of a Scheduling Area or LFC area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202101010000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202112310000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "registeredResource",
+      "value": "10T-DK-NL-000012",
+      "description": "[O] EIC of interconnector (If used, data for the given Transmission Asset is returned, otherwise, data for IC not specified is returned.)"
+    }
+  ]
+}

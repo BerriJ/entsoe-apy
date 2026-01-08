@@ -1,0 +1,31 @@
+{
+  "name": "13.1.B Countertrading",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A91",
+      "description": "[M] A91 = Counter trade notice"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YES-REE------0",
+      "description": "[M] EIC code of a Control Area, or Bidding Zone"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YFR-RTE------C",
+      "description": "[M] EIC code of a Control Area, or Bidding Zone"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309122200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309132200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

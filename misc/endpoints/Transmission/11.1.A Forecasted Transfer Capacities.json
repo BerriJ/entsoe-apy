@@ -1,0 +1,36 @@
+{
+  "name": "11.1.A Forecasted Transfer Capacities",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A61",
+      "description": "[M] A61 = Estimated Net Transfer Capacity"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A01 = Day ahead; A02 = Week ahead; A03 = Month ahead; A04 = Year ahead"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YGB----------A",
+      "description": "[M] EIC code of a Control Area or Bidding Zone"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area or Bidding Zone"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308152200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

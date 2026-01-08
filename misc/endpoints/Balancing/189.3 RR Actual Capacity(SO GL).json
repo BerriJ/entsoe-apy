@@ -1,0 +1,41 @@
+{
+  "name": "189.3 RR Actual Capacity(SO GL)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "processType",
+      "value": "A46",
+      "description": "A46 = Replacement reserve"
+    },
+    {
+      "key": "businessType",
+      "value": "C77",
+      "description": "C77 = Min"
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202212310000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202305010000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "offset",
+      "value": "100",
+      "description": "Optional parameter"
+    }
+  ]
+}

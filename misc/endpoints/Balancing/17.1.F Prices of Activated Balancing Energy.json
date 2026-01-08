@@ -1,0 +1,60 @@
+{
+  "name": "17.1.F Prices of Activated Balancing Energy",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A84",
+      "description": "[M] A84 = Activated balancing prices"
+    },
+    {
+      "key": "processType",
+      "value": "A16",
+      "description": "[M] A16\t= Realised; A60 = Scheduled activation mFRR; A61 = Direct activation mFRR; A68 = Local Selection aFRR"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC Code of a LFA, IPA, or a SCA"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309032200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309042200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "businessType",
+      "value": "A96",
+      "description": "[O] A95 = Frequency containment reserve; A96 = Automatic frequency restoration reserve; A97 = Manual frequency restoration reserve; A98 = Replacement reserve"
+    },
+    {
+      "key": "ExportType",
+      "value": "zip",
+      "description": "[O] Note: This parameter is planned to be discontinued in R3.09 (October 2023)",
+      "disabled": true
+    },
+    {
+      "key": "PsrType",
+      "value": "A04",
+      "description": "[O] A04 = Generation; A05 = Load",
+      "disabled": true
+    },
+    {
+      "key": "Standard_MarketProduct",
+      "value": "A01",
+      "description": "[O] A01 = Standard",
+      "disabled": true
+    },
+    {
+      "key": "Original_MarketProduct",
+      "value": "A02",
+      "description": "[O] A02 = Specific; A04 = Local",
+      "disabled": true
+    }
+  ]
+}

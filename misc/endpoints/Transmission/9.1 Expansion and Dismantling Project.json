@@ -1,0 +1,43 @@
+{
+  "name": "9.1 Expansion and Dismantling Project",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A90",
+      "description": "[M] A90 = Interconnector network expension"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YHU-MAVIR----U",
+      "description": "[M] EIC code of a Bidding Zone or a Control Area"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YSK-SEPS-----K",
+      "description": "[M] EIC code of a Bidding Zone or a Control Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202301010000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202312312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "businessType",
+      "value": "B01",
+      "description": "[O] B01 = interconnector network evolution; B02 = interconnector network dismantling",
+      "disabled": true
+    },
+    {
+      "key": "DocStatus",
+      "value": "A01",
+      "description": "[O] A01 = Intermediate; A02 = Final; A05 = Active; A09 = Cancelled; A13 = Withdrawn; X01 = Estimated",
+      "disabled": true
+    }
+  ]
+}

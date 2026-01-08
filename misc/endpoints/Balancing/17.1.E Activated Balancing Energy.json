@@ -1,0 +1,37 @@
+{
+  "name": "17.1.E Activated Balancing Energy",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A83",
+      "description": "[M] A83 = Activated balancing quantities"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Market Balance Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309022200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309032200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "businessType",
+      "value": "A96",
+      "description": "[O] A95 = Frequency containment reserve; A96 = Automatic frequency restoration reserve; A97 = Manual frequency restoration reserve; A98 = Replacement reserve"
+    },
+    {
+      "key": "psrType",
+      "value": "A04",
+      "description": "[O] A04 = Generation; A05 = Load; A03 = Mixed",
+      "disabled": true
+    }
+  ]
+}

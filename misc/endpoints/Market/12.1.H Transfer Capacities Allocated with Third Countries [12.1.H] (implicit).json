@@ -1,0 +1,47 @@
+{
+  "name": "12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (implicit)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A94",
+      "description": "[M] A94 = Non EU allocations"
+    },
+    {
+      "key": "auction.Type",
+      "value": "A01",
+      "description": "[M] A01 = Implicit"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A01 = Daily; A07 = Intraday"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YLV-1001A00074",
+      "description": "[M] EIC of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10Y1001A1001A49F",
+      "description": "[M] EIC of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "periodStart",
+      "value": "201512012300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "201512022300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "classificationSequence_AttributeInstanceComponent.Position",
+      "value": "1",
+      "description": "[O] Integer",
+      "disabled": true
+    }
+  ]
+}
