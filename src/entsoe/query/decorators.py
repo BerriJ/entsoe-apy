@@ -34,6 +34,12 @@ class ServiceUnavailableError(Exception):
     pass
 
 
+class BadGatewayError(Exception):
+    """Raised when the ENTSO-E API returns a 502 Bad Gateway status."""
+
+    pass
+
+
 class GotBannedError(Exception):
     """Raised when the ENTSO-E API returns a 429 requester banned status."""
 
@@ -42,6 +48,12 @@ class GotBannedError(Exception):
 
 class UnexpectedError(Exception):
     """Raised when the ENTSO-E API returns an unexpected error."""
+
+    pass
+
+
+class UnknownResponseTypeError(Exception):
+    """Raised when the return type of a function is not as expected."""
 
     pass
 
@@ -93,6 +105,41 @@ class ContextPropagatingThreadPoolExecutor(ThreadPoolExecutor):
         return super().submit(
             self._context_propagation_wrapper, fn, offset_increment, *args, **kwargs
         )
+
+
+def check_response_type(func):
+    """
+    Decorator that validates the response type of the decorated function.
+
+    Ensures that the decorated function returns a single httpx.Response object
+    whose Content-Type header is either ``application/zip`` or ``text/xml``.
+    Raises UnknownResponseTypeError if the response type or Content-Type is not as
+    expected.
+
+    Returns:
+        The original Response object returned by the function if the type check
+        passes.
+    Raises:
+        UnknownResponseTypeError: If the return value is not a Response with
+        Content-Type ``application/zip`` or ``text/xml``.
+    """
+
+    @wraps(func)
+    def type_check_wrapper(*args, **kwargs) -> Response:
+        logger.trace("check_response_type wrapper: Enter")
+        response = func(*args, **kwargs)
+
+        if response.headers.get("Content-Type") not in ("application/zip", "text/xml"):
+            logger.error(
+                f"Unexpected response type: {response.headers.get('Content-Type')}"
+            )
+            raise UnknownResponseTypeError(
+                f"Expected response with Content-Type 'application/zip' or 'text/xml', got '{response.headers.get('Content-Type')}'"
+            )
+        logger.trace("check_response_type wrapper: Exit")
+        return response
+
+    return type_check_wrapper
 
 
 def unzip(func):
@@ -286,6 +333,9 @@ def handle_acknowledgement(func):
             elif "Unexpected error occurred" in reason:
                 logger.info(reason)
                 raise UnexpectedError("Acknowledgement: Unexpected error occurred.")
+            elif "502 Bad Gateway" in reason:
+                logger.info(reason)
+                raise BadGatewayError("Acknowledgement: 502 Bad Gateway.")
             else:
                 logger.error(f"Acknowledgement: {reason}")
                 raise AcknowledgementDocumentError(reason)
@@ -437,6 +487,7 @@ def retry(func):
                 RequestError,
                 ServiceUnavailableError,
                 UnexpectedError,
+                BadGatewayError,
                 GotBannedError,
             ) as e:
                 last_exception = e

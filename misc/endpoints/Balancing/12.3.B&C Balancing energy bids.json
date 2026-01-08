@@ -1,0 +1,60 @@
+{
+  "name": "12.3.B&C Balancing energy bids",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A37",
+      "description": "[M] A37 = Reserve bid document"
+    },
+    {
+      "key": "businessType",
+      "value": "B74",
+      "description": "[M] B74 = Offer"
+    },
+    {
+      "key": "processType",
+      "value": "A47",
+      "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve"
+    },
+    {
+      "key": "connecting_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202310072200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested date should be within the retention period."
+    },
+    {
+      "key": "periodEnd",
+      "value": "202310082200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested date should be within the retention period."
+    },
+    {
+      "key": "offset",
+      "value": "1000",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+      "disabled": true
+    },
+    {
+      "key": "Standard_MarketProduct",
+      "value": "A01",
+      "description": "[O] A01 = Standard; A05 = Standard mFRR scheduled activation; A07 = Standard mFRR direct activation",
+      "disabled": true
+    },
+    {
+      "key": "Original_MarketProduct",
+      "value": "A02",
+      "description": "[O] A02 = Specific; A03 = Integrated Process; A04 = Local",
+      "disabled": true
+    },
+    {
+      "key": "Direction",
+      "value": "A01",
+      "description": "[O] A01 = Up; A02 = Down",
+      "disabled": true
+    }
+  ]
+}

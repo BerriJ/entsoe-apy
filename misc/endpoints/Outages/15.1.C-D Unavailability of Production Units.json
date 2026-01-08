@@ -1,0 +1,68 @@
+{
+  "name": "15.1.C-D Unavailability of Production Units",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A77",
+      "description": "[M] A77 = Production unit unavailability"
+    },
+    {
+      "key": "BiddingZone_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area, Bidding Zone (optional if mRID is present)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202212312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202301312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "BusinessType",
+      "value": "A53",
+      "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+      "disabled": true
+    },
+    {
+      "key": "DocStatus",
+      "value": "A05",
+      "description": "[O] A05 = Active; A09 = Cancelled; A13 = Withdrawn; (when not defined only Active and Cancelled outages are returned)",
+      "disabled": true
+    },
+    {
+      "key": "PeriodStartUpdate",
+      "value": "202301152300",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "PeriodEndUpdate",
+      "value": "202301312300",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "RegisteredResource",
+      "value": "22W20200608A---8",
+      "description": "[O] EIC Code of Production Unit",
+      "disabled": true
+    },
+    {
+      "key": "mRID",
+      "value": "-WmcUg9Da9u8AF3A_gx8UQ",
+      "description": "[O] Older versions of an outage is returned only when mRID parameter is used",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "1",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+100)",
+      "disabled": true
+    }
+  ]
+}

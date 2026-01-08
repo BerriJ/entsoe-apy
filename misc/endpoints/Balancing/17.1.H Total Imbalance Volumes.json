@@ -1,0 +1,32 @@
+{
+  "name": "17.1.H Total Imbalance Volumes",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A86",
+      "description": "[M] A86 = Imbalance volume"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Scheduling Area or Market Balance Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202311032300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202311042300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "businessType",
+      "value": "A19",
+      "description": "[O] A19: Balance Energy Deviation (default value when not specified)",
+      "disabled": true
+    }
+  ]
+}

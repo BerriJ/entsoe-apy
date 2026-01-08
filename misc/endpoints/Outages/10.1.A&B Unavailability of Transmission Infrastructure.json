@@ -1,0 +1,67 @@
+{
+  "name": "10.1.A&B Unavailability of Transmission Infrastructure",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A78",
+      "description": "[M] A78 = Transmission unavailability"
+    },
+    {
+      "key": "Out_Domain",
+      "value": "10YFR-RTE------C",
+      "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+    },
+    {
+      "key": "In_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202312012300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202312022300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "BusinessType",
+      "value": "A53",
+      "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+      "disabled": true
+    },
+    {
+      "key": "DocStatus",
+      "value": "A05",
+      "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned) A05 = Active A09 = Cancelled A13 = Withdrawn",
+      "disabled": true
+    },
+    {
+      "key": "PeriodStartUpdate",
+      "value": "202111090000",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "PeriodEndUpdate",
+      "value": "202112212300",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "mRID",
+      "value": "A47mJe5e9jml9FeSL6jfKg",
+      "description": "[O] Used to retrieve previous outage versions",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 200 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)",
+      "disabled": true
+    }
+  ]
+}

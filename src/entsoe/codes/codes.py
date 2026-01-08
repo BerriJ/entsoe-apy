@@ -1,12 +1,6 @@
 from enum import Enum
 
 
-class StandardFlowCommodityTypeList(Enum):
-    E17 = "Consumption"
-    E18 = "Production"
-    E19 = "Combined"
-
-
 class StandardAllocationModeTypeList(Enum):
     A01 = "Order by price with pro rata"
     A02 = "Order by price with first come - first served"
@@ -473,6 +467,7 @@ class StandardClassificationTypeList(Enum):
 class StandardCodingSchemeTypeList(Enum):
     A01 = "EIC"
     A02 = "CGM"
+    A03 = "ISO"
     A10 = "Coding scheme which are part of GS1 system"
     NAD = "Andorra National coding scheme"
     NAL = "Albania National coding scheme"
@@ -612,6 +607,13 @@ class StandardEnergyProductTypeList(Enum):
     _8716867009911 = "Water"
 
 
+class StandardFlowCommodityOptionTypeList(Enum):
+    E17 = "Consumption"
+    E18 = "Production"
+    E19 = "Combined"
+    E20 = "Exchange"
+
+
 class StandardFuelTypeList(Enum):
     A01 = "Unspecified"
     A02 = "Renewable solid unspecified"
@@ -668,6 +670,15 @@ class StandardFuelTypeList(Enum):
     A53 = "Waste heat and cold By-product in power generation"
     A54 = "Waste heat and cold By-product in tertiary sector"
     A55 = "Hydrogen"
+
+
+class StandardGridAgreementTypeList(Enum):
+    E01 = "Grid usage contract directly between Grid Access Provider and Customer"
+    E02 = (
+        "Grid usage contract  directly between Energy Supplier and Grid Access Provider"
+    )
+    E03 = "Grid usage contract  between Grid Access Provider and Customer through Energy Supplier"
+    E04 = "No grid usage contract"
 
 
 class StandardHVDCModeTypeList(Enum):
@@ -847,6 +858,8 @@ class StandardMarketProductTypeList(Enum):
     A10 = "Other resource capacity mechanism"
     A11 = "Fast activation product"
     A12 = "Remedial Action Cost Sharing Polluter Pays"
+    A13 = "Static product"
+    A14 = "Dynamic product"
 
 
 class StandardObjectAggregationTypeList(Enum):
@@ -981,6 +994,7 @@ class StandardQualityTypeList(Enum):
     A04 = "As provided"
     A05 = "Incomplete"
     A06 = "Calculated"
+    A07 = "Temporary"
 
 
 class StandardReasonCodeTypeList(Enum):
@@ -1149,6 +1163,8 @@ class StandardReasonCodeTypeList(Enum):
     B78 = "Reach of end timestamp"
     B79 = "Revocation"
     B80 = "Termination"
+    B81 = "No valid grid access contract"
+    B82 = "Customer move-out"
 
 
 class StandardRightsTypeList(Enum):
@@ -1220,6 +1236,11 @@ class StandardRoleTypeList(Enum):
     A57 = "Data access provider"
     A58 = "Metered data administrator"
     A59 = "Permission administrator"
+
+
+class StandardSettlementMethodTypeList(Enum):
+    E01 = "Profiled"
+    E02 = "Non-profiled"
 
 
 class StandardStatusTypeList(Enum):

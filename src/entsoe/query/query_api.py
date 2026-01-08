@@ -6,6 +6,7 @@ from ..config.config import get_config, logger
 from ..utils.utils import extract_namespace_and_find_classes
 from .decorators import (
     check_if_banned,
+    check_response_type,
     check_service_unavailable,
     handle_acknowledgement,
     pagination,
@@ -16,6 +17,7 @@ from .decorators import (
 )
 
 
+@check_response_type
 @check_if_banned
 @check_service_unavailable
 @rate_limit(max_calls=380, period=60)

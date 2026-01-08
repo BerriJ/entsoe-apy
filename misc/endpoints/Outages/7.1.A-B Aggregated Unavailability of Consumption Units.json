@@ -1,0 +1,32 @@
+{
+  "name": "7.1.A-B Aggregated Unavailability of Consumption Units",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A76",
+      "description": "[M] A76 = Load unavailability"
+    },
+    {
+      "key": "BiddingZone_Domain",
+      "value": "10Y1001A1001A82H",
+      "description": "[M] EIC code of a Control Area or a Bidding Zone (optional if mRID is present)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202310312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodStartUpdate is defined)"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202311302300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000 (optional if PeriodEndUpdate is defined)"
+    },
+    {
+      "key": "BusinessType",
+      "value": "A53",
+      "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+      "disabled": true
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "12.3.B&C Balancing energy bids archives",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A37",
+      "description": "[M] A37 = Reserve bid document"
+    },
+    {
+      "key": "businessType",
+      "value": "B74",
+      "description": "[M] B74 = Offer"
+    },
+    {
+      "key": "processType",
+      "value": "A47",
+      "description": "[M] A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A51 = Automatic frequency restoration reserve."
+    },
+    {
+      "key": "connecting_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202310072200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested period should not be within the retention period."
+    },
+    {
+      "key": "periodEnd",
+      "value": "202310082200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested period should not be within the retention period."
+    },
+    {
+      "key": "storageType",
+      "value": "archive ",
+      "description": "[M] Used to request archives"
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset must belong to the range [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)"
+    }
+  ]
+}

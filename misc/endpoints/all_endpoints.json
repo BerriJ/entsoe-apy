@@ -1,0 +1,115 @@
+[
+  {
+    "name": "Market",
+    "items": [
+      "12.1.E Implicit and Flow-based Allocations - Congestion Income",
+      "12.1.B Total Nominated Capacity",
+      "11.1 Implicit Allocations - Offered Transfer Capacity",
+      "12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (explicit)",
+      "12.1.C Total Capacity Already Allocated",
+      "11.1.A Explicit Allocations - Offered Transfer Capacity",
+      "12.1.A Explicit Allocations - Use of the Transfer Capacity",
+      "12.1.A Explicit Allocations - Auction Revenue",
+      "12.1.E Implicit Auction — Net Positions",
+      "11.1.B Flow Based Allocations",
+      "11.1 Continuous Allocations - Offered Transfer Capacity",
+      "12.1.D Energy Prices"
+    ]
+  },
+  {
+    "name": "Load",
+    "items": [
+      "6.1.A Actual Total Load",
+      "6.1.B Day-ahead Total Load Forecast",
+      "6.1.C Week-ahead Total Load Forecast",
+      "6.1.D Month-ahead Total Load Forecast",
+      "6.1.E Year-ahead Total Load Forecast",
+      "8.1 Year-ahead Forecast Margin"
+    ]
+  },
+  {
+    "name": "Generation",
+    "items": [
+      "14.1.A Installed Capacity per Production Type",
+      "16.1.D Water Reservoirs and Hydro Storage Plants",
+      "16.1.B&C Actual Generation per Production Type",
+      "16.1.A Actual Generation per Generation Unit",
+      "14.1.C Generation Forecast - Day ahead",
+      "14.1.D Generation Forecasts for Wind and Solar",
+      "14.1.B Installed Capacity Per Production Unit"
+    ]
+  },
+  {
+    "name": "Transmission",
+    "items": [
+      "12.1.G Cross-Border Physical Flows",
+      "11.1.A Forecasted Transfer Capacities",
+      "12.1.F Commercial Schedules",
+      "12.1.F Commercial Schedules - Net Positions",
+      "11.3 Cross Border Capacity of DC Links - Intraday Transfer Limits",
+      "13.1.C Costs of Congestion Management",
+      "13.1.A Redispatching Internal",
+      "13.1.A Redispatching Cross Border",
+      "9.1 Expansion and Dismantling Project",
+      "13.1.B Countertrading"
+    ]
+  },
+  {
+    "name": "Outages",
+    "items": [
+      "15.1.C-D Unavailability of Production Units",
+      "15.1.A&B Unavailability of Generation Units",
+      "7.1.A-B Aggregated Unavailability of Consumption Units",
+      "10.1.A&B Unavailability of Transmission Infrastructure",
+      "10.1.A&B Unavailability of Transmission Infrastructure - Available Capacity",
+      "10.1.A&B Unavailability of Transmission Infrastructure  - Net Position Impact",
+      "10.1.C Unavailability of Offshore Grid Infrastructure",
+      "Fall-backs [IFs IN 7.2, mFRR 3.11, aFRR 3.10]"
+    ]
+  },
+  {
+    "name": "Balancing",
+    "items": [
+      "17.1.F Prices of Activated Balancing Energy",
+      "IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS)",
+      "12.3.B&C Balancing energy bids",
+      "12.3.B&C Balancing energy bids archives",
+      "IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability",
+      "12.3.E Aggregated Balancing Energy Bids (GL EB)",
+      "IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes",
+      "IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes per Border",
+      "IFs aFRR 3.4 & mFRR 3.4 Elastic Demands",
+      "17.1.B&C Volumes and Prices of Contracted Reserves",
+      "12.3.F Procured balancing capacity (GL EB)",
+      "187.2 FCR Total capacity (SO GL)",
+      "187.2 Shares of FCR capacity (SO GL)",
+      "190.2 Sharing of FCR between SAs (SO GL)",
+      "188.3 & 189.2 FRR & RR Capacity Outlook (SO GL)",
+      "188.4 & 189.3 FRR and RR Actual Capacity (SO GL)",
+      "189.2 Outlook of Reserve Capacities on RR (SO GL)",
+      "189.3 RR Actual Capacity(SO GL)",
+      "17.1.I Financial Expenses and Income for Balancing",
+      "12.3.H&I Allocation and use of cross-zonal balancing capacity",
+      "IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines",
+      "IFs 4.3 & 4.4 Balancing Border Capacity Limitations",
+      "190.1 Sharing of RR and FRR (SO GL)",
+      "190.3 Exchanged Reserve Capacity (SO GL)",
+      "17.1.G Imbalance prices",
+      "17.1.H Total Imbalance Volumes",
+      "12.3.A Current balancing state [GL EB]",
+      "185.4 Results of the Criteria Application Process - Measurements (SO GL)"
+    ]
+  },
+  {
+    "name": "Master Data",
+    "items": [
+      "Production and Generation Units"
+    ]
+  },
+  {
+    "name": "OMI",
+    "items": [
+      "Other Market Information"
+    ]
+  }
+]

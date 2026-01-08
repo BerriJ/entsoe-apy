@@ -1,0 +1,37 @@
+{
+  "name": "14.1.D Generation Forecasts for Wind and Solar",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A69",
+      "description": "[M] A69 = Wind and solar forecast"
+    },
+    {
+      "key": "processType",
+      "value": "A01",
+      "description": "[M] A01 = Day ahead; A18 = Current; A40 = Intraday"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308152200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "PsrType",
+      "value": "B16",
+      "description": "[O] B16 = Solar; B18 = Wind Offshore; B19 = Wind Onshore;",
+      "disabled": true
+    }
+  ]
+}

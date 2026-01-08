@@ -1,0 +1,31 @@
+{
+  "name": "13.1.C Costs of Congestion Management",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A92",
+      "description": "[M] A92 = Congestion costs"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area (same as out_Domain)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202112312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202212312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

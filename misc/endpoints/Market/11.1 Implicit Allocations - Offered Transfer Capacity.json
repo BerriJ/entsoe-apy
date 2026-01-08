@@ -1,0 +1,53 @@
+{
+  "name": "11.1 Implicit Allocations - Offered Transfer Capacity",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A31",
+      "description": "[M] A31 = Agreed capacity"
+    },
+    {
+      "key": "auction.Type",
+      "value": "A01",
+      "description": "[M] A01 = Implicit"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A01 = Day ahead; A07 = Intraday"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YDK-1--------W",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10Y1001A1001A82H",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "periodStart",
+      "value": "202212312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202301012300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "Update_DateAndOrTime",
+      "value": "20230313123900",
+      "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000",
+      "disabled": true
+    },
+    {
+      "key": "ClassificationSequence_AttributeInstanceComponent.Position",
+      "value": "1",
+      "description": "[O] Integer",
+      "disabled": true
+    }
+  ]
+}

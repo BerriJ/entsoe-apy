@@ -71,7 +71,7 @@ def get_module_exports(module_name, max_depth=3, current_depth=0):
         return f"Error importing {module_name}: {str(e)[:50]}"
 
 
-def print_tree(exports, indent=0, max_items_per_level=20, file=None):
+def print_tree(exports, indent=0, max_items_per_level=30, file=None):
     """Print the export tree in a nice format"""
     prefix = "  " * indent
 
@@ -124,7 +124,7 @@ print("=" * 50)
 exports = get_module_exports("entsoe", max_depth=2)
 
 # Write tree to a markdown file
-with open("./docs/entsoe_export_tree.md", "w") as f:
+with open("./misc/README.md", "w") as f:
     print("# ENTSOE Module Export Tree", file=f)
     print("", file=f)
     print(

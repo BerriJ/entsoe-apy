@@ -1,0 +1,41 @@
+{
+  "name": "IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A84",
+      "description": "[M] A84 = Activated balancing prices"
+    },
+    {
+      "key": "processType",
+      "value": "A67",
+      "description": "[M] A67 = Central Selection aFRR"
+    },
+    {
+      "key": "businessType",
+      "value": "A96",
+      "description": "[M] A96 = automatic frequency restoration reserve"
+    },
+    {
+      "key": "Standard_MarketProduct",
+      "value": "A01",
+      "description": "[M] A01 = Standard"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YDE-VE-------2",
+      "description": "[M] EIC code of a LFA, SCA, IPA"
+    },
+    {
+      "key": "periodStart",
+      "value": "202311082300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202311092300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

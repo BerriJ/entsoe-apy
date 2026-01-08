@@ -9,7 +9,6 @@ from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
     EnergyProductTypeList,
-    FlowCommodityTypeList,
     MessageTypeList,
     ProcessTypeList,
     QualityTypeList,
@@ -143,7 +142,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    flow_commodity_option: Optional[FlowCommodityTypeList] = field(
+    flow_commodity_option: Optional[str] = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",

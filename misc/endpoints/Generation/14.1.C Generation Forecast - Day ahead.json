@@ -1,0 +1,31 @@
+{
+  "name": "14.1.C Generation Forecast - Day ahead",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A71",
+      "description": "[M] A71 = Generation forecast"
+    },
+    {
+      "key": "processType",
+      "value": "A01",
+      "description": "[M] A01 = Day ahead"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] Control Area, Bidding Zone, Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308152200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

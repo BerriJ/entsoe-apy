@@ -1,0 +1,31 @@
+{
+  "name": "12.3.A Current balancing state [GL EB]",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A86",
+      "description": "[M] A86 = Imbalance volume"
+    },
+    {
+      "key": "businessType",
+      "value": "B33",
+      "description": "[M] B33 = Area Control Error"
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YHU-MAVIR----U",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202405292200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202405302200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

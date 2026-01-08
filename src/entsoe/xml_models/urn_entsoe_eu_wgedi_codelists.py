@@ -2291,6 +2291,12 @@ class CodingSchemeType(Enum):
     :cvar A02: <CodeDescription xmlns=""> <Title>CGM</Title>
         <Definition>The coding scheme used for Common Grid Model
         Exchange Standard (CGMES).</Definition> </CodeDescription>
+    :cvar A03: <CodeDescription xmlns=""> <Title>ISO</Title>
+        <Definition>The coding scheme for the preceding attribute is a
+        code maintained by International Organization for
+        Standardization (ISO), such as “ISO 3166
+        &lt;i&gt;English&lt;/i&gt; &lt;i&gt;country names and code
+        elements&lt;/i&gt;”.</Definition> </CodeDescription>
     :cvar A10: <CodeDescription xmlns=""> <Title>Coding scheme which are
         part of GS1 system</Title> <Definition>The coding schemes
         maintained by GS1.</Definition> </CodeDescription>
@@ -2443,6 +2449,7 @@ class CodingSchemeType(Enum):
 
     A01 = "A01"
     A02 = "A02"
+    A03 = "A03"
     A10 = "A10"
     NAD = "NAD"
     NAL = "NAL"
@@ -2502,6 +2509,12 @@ class CodingSchemeTypeList(Enum):
     :cvar A02: <CodeDescription xmlns=""> <Title>CGM</Title>
         <Definition>The coding scheme used for Common Grid Model
         Exchange Standard (CGMES).</Definition> </CodeDescription>
+    :cvar A03: <CodeDescription xmlns=""> <Title>ISO</Title>
+        <Definition>The coding scheme for the preceding attribute is a
+        code maintained by International Organization for
+        Standardization (ISO), such as “ISO 3166
+        &lt;i&gt;English&lt;/i&gt; &lt;i&gt;country names and code
+        elements&lt;/i&gt;”.</Definition> </CodeDescription>
     :cvar A10: <CodeDescription xmlns=""> <Title>Coding scheme which are
         part of GS1 system</Title> <Definition>The coding schemes
         maintained by GS1.</Definition> </CodeDescription>
@@ -2654,6 +2667,7 @@ class CodingSchemeTypeList(Enum):
 
     A01 = "A01"
     A02 = "A02"
+    A03 = "A03"
     A10 = "A10"
     NAD = "NAD"
     NAL = "NAL"
@@ -3550,19 +3564,27 @@ class EnergyProductTypeList(Enum):
     VALUE_8716867009911 = "8716867009911"
 
 
-class FlowCommodityTypeList(Enum):
+class FlowCommodityOptionTypeList(Enum):
     """
     :cvar E17: <CodeDescription xmlns=""> <Title>Consumption</Title>
-        <Definition> </Definition> </CodeDescription>
+        <Definition>The coded identification of the type of entity, e.g.
+        consumption metering point.</Definition> </CodeDescription>
     :cvar E18: <CodeDescription xmlns=""> <Title>Production</Title>
-        <Definition> </Definition> </CodeDescription>
+        <Definition>The coded identification of the type of entity, e.g.
+        production metering point.</Definition> </CodeDescription>
     :cvar E19: <CodeDescription xmlns=""> <Title>Combined</Title>
-        <Definition> </Definition> </CodeDescription>
+        <Definition>The coded identification of the type of entity, e.g.
+        combined consumption and production metering point.</Definition>
+        </CodeDescription>
+    :cvar E20: <CodeDescription xmlns=""> <Title>Exchange</Title>
+        <Definition>The coded identification of the type of entity, e.g.
+        exchange metering point.</Definition> </CodeDescription>
     """
 
     E17 = "E17"
     E18 = "E18"
     E19 = "E19"
+    E20 = "E20"
 
 
 class FuelTypeList(Enum):
@@ -3925,6 +3947,17 @@ class MarketProductTypeList(Enum):
         coordinated remedial action measures (redispatch and
         countertrading) under the polluter pays principle.</Definition>
         </CodeDescription>
+    :cvar A13: <CodeDescription xmlns=""> <Title>Static product</Title>
+        <Definition>The market product type is static. E.g. used in the
+        Frequency Containment Reserve (FCR) market for entities that
+        have difficulties to comply with dynamic requirements, such as
+        activation/deactivation performance and dynamic stability.
+        </Definition> </CodeDescription>
+    :cvar A14: <CodeDescription xmlns=""> <Title>Dynamic product</Title>
+        <Definition>The market product type is dynamic. E.g. used in the
+        Frequency Containment Reserve (FCR) market for entities that can
+        provide continuous response and comply with dynamic
+        requirements.</Definition> </CodeDescription>
     """
 
     A01 = "A01"
@@ -3939,6 +3972,8 @@ class MarketProductTypeList(Enum):
     A10 = "A10"
     A11 = "A11"
     A12 = "A12"
+    A13 = "A13"
+    A14 = "A14"
 
 
 class MessageTypeList(Enum):
@@ -5198,6 +5233,11 @@ class QualityTypeList(Enum):
         <Definition>The contents of the object are calculated. The code
         is typically used when a value is calculated based on several
         other known values.</Definition> </CodeDescription>
+    :cvar A07: <CodeDescription xmlns=""> <Title>Temporary</Title>
+        <Definition>The content of the object is temporary. The code is
+        typically used when there is communication trouble to a meter
+        and a more correct value is expected later. </Definition>
+        </CodeDescription>
     """
 
     A01 = "A01"
@@ -5206,6 +5246,7 @@ class QualityTypeList(Enum):
     A04 = "A04"
     A05 = "A05"
     A06 = "A06"
+    A07 = "A07"
 
 
 class ReasonCodeTypeList(Enum):
@@ -5851,6 +5892,14 @@ class ReasonCodeTypeList(Enum):
     :cvar B80: <CodeDescription xmlns=""> <Title>Termination</Title>
         <Definition>Termination of the action or object.</Definition>
         </CodeDescription>
+    :cvar B81: <CodeDescription xmlns=""> <Title>No valid grid access
+        contract</Title> <Definition>There is no valid grid access
+        contract for a specific metering point. There is no valid grid
+        access contract for a specific metering point.</Definition>
+        </CodeDescription>
+    :cvar B82: <CodeDescription xmlns=""> <Title>Customer move-
+        out</Title> <Definition>A customer has moved out. </Definition>
+        </CodeDescription>
     """
 
     VALUE_999 = "999"
@@ -6014,6 +6063,8 @@ class ReasonCodeTypeList(Enum):
     B78 = "B78"
     B79 = "B79"
     B80 = "B80"
+    B81 = "B81"
+    B82 = "B82"
 
 
 class RightsTypeList(Enum):
@@ -6355,6 +6406,21 @@ class RoleTypeList(Enum):
     A57 = "A57"
     A58 = "A58"
     A59 = "A59"
+
+
+class SettlementMethodTypeList(Enum):
+    """
+    :cvar E01: <CodeDescription xmlns=""> <Title>Profiled</Title>
+        <Definition>The settlement method regards profiled metered
+        accounting points.</Definition> </CodeDescription>
+    :cvar E02: <CodeDescription xmlns=""> <Title>Non-profiled</Title>
+        <Definition>The settlement method regards continuous metered
+        (non-profiled) accounting points.</Definition>
+        </CodeDescription>
+    """
+
+    E01 = "E01"
+    E02 = "E02"
 
 
 class StatusTypeList(Enum):

@@ -1,0 +1,53 @@
+{
+  "name": "12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (explicit)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A94",
+      "description": "[M] A94 = Non EU allocations"
+    },
+    {
+      "key": "auction.Type",
+      "value": "A02",
+      "description": "[M] A02 = Explicit"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A07",
+      "description": "[M] A07 = Intraday; A01 = Daily; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YFI-1--------U",
+      "description": "[M] EIC code of a Control Area, Bidding Zone, Bidding Zone Aggregation"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10Y1001A1001A49F",
+      "description": "[M] EIC code of a Control Area, Bidding Zone, Bidding Zone Aggregation"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308232200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308242200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "auction.Category",
+      "value": "A04",
+      "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+      "disabled": true
+    },
+    {
+      "key": "classificationSequence_AttributeInstanceComponent.Position",
+      "value": "1",
+      "description": "[O] Integer",
+      "disabled": true
+    }
+  ]
+}

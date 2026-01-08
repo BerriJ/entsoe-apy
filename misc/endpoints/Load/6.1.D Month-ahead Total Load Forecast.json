@@ -1,0 +1,31 @@
+{
+  "name": "6.1.D Month-ahead Total Load Forecast",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A65",
+      "description": "[M] A65 = System total load"
+    },
+    {
+      "key": "processType",
+      "value": "A32",
+      "description": "[M] A32 = Month ahead"
+    },
+    {
+      "key": "outBiddingZone_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202307022200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308062200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

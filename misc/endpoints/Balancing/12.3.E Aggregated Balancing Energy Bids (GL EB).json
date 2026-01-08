@@ -1,0 +1,31 @@
+{
+  "name": "12.3.E Aggregated Balancing Energy Bids (GL EB)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A24",
+      "description": "[M] A24 = Bid document"
+    },
+    {
+      "key": "processType",
+      "value": "A51",
+      "description": "[M] A51 = Automatic frequency restoration reserve; A46 = Replacement reserve; A47 = Manual frequency restoration reserve; A60 = Scheduled activation mFRR;  A61 = Direct activation mFRR; A67 = Central Selection aFRR; A68 = Local Selection aFRR"
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309022200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309032200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "13.1.A Redispatching Cross Border",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A63",
+      "description": "[M] A63 = Redispatch notice"
+    },
+    {
+      "key": "businessType",
+      "value": "A46",
+      "description": "[M] A46 = System Operator re-dispatching"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Control Area"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YFR-RTE------C",
+      "description": "[M] EIC code of a Control Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202311010000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202312010000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

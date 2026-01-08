@@ -1,0 +1,41 @@
+{
+  "name": "190.1 Sharing of RR and FRR (SO GL)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "processType",
+      "value": "A56",
+      "description": "A56 = Frequency restoration reserve"
+    },
+    {
+      "key": "BusinessType",
+      "value": "C22",
+      "description": "C22 = Shared balancing reserve capacity"
+    },
+    {
+      "key": "Acquiring_Domain",
+      "value": "10YAT-APG------L",
+      "description": "Load Frequency Control Block"
+    },
+    {
+      "key": "Connecting_Domain",
+      "value": "10YCB-GERMANY--8",
+      "description": "Load Frequency Control Block"
+    },
+    {
+      "key": "periodStart",
+      "value": "202101010000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202112310000",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -207,3 +207,5 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+misc/TransparencyPlatformRestfulAPI.postman_collection.json

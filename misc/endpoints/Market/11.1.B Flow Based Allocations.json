@@ -1,0 +1,36 @@
+{
+  "name": "11.1.B Flow Based Allocations",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "B09",
+      "description": "[M] B09 = Flow Based Domain Publication"
+    },
+    {
+      "key": "processType",
+      "value": "A33",
+      "description": "[M] A43 = Day ahead; A44 = Intraday; A32 = Month-ahead; A33 = Year-ahead"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10Y1001A1001A91G",
+      "description": "[M] EIC code of a Region"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10Y1001A1001A91G",
+      "description": "[M] EIC code of a Region"
+    },
+    {
+      "key": "periodStart",
+      "value": "202412312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202512312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "IFs aFRR 3.4 & mFRR 3.4 Elastic Demands",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A37",
+      "description": "[M] A37 = Reserve bid document"
+    },
+    {
+      "key": "businessType",
+      "value": "B75",
+      "description": "[M] B75 = Need"
+    },
+    {
+      "key": "processType",
+      "value": "A47",
+      "description": "[M] A51 = Automatic Frequency Restoration Reserve; A47 = Manual Frequency Restoration Reserve"
+    },
+    {
+      "key": "Acquiring_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC code of a Scheduling Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202311302300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202312012300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (0 - 4800)",
+      "disabled": true
+    }
+  ]
+}

@@ -2,7 +2,10 @@
 
 import pytest
 
-from entsoe.Balancing import AcceptedAggregatedOffers, CrossBorderBalancing
+from entsoe.Balancing import (
+    ImbalancePrices,
+    VolumesAndPricesOfContractedReserves,
+)
 from entsoe.Base.Base import Base, ValidationError
 from entsoe.Market import EnergyPrices
 
@@ -85,7 +88,7 @@ class TestEICValidation:
         """Test EIC validation in Balancing-derived classes."""
         # Should raise ValidationError for invalid control_area_domain
         with pytest.raises(ValidationError) as exc_info:
-            AcceptedAggregatedOffers(
+            ImbalancePrices(
                 period_start=202012312300,
                 period_end=202101022300,
                 control_area_domain="INVALID_EIC",
@@ -94,19 +97,19 @@ class TestEICValidation:
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
         assert "control_area_domain" in str(exc_info.value)
 
-    def test_cross_border_balancing_eic_validation(self):
+    def test_balancing_eic_validation_bidding_zone(self):
         """Test EIC validation in specific parameter classes."""
-        # Should raise ValidationError for invalid acquiring_domain
+        # Should raise ValidationError for invalid bidding_zone_domain
         with pytest.raises(ValidationError) as exc_info:
-            CrossBorderBalancing(
+            VolumesAndPricesOfContractedReserves(
                 period_start=202012312300,
                 period_end=202101022300,
-                acquiring_domain="INVALID_EIC",
-                connecting_domain="10YBE----------2",
+                bidding_zone_domain="INVALID_EIC",
+                process_type="A52",
             )
 
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
-        assert "acquiring_domain" in str(exc_info.value)
+        assert "bidding_zone_domain" in str(exc_info.value)
 
     def test_market_class_eic_validation(self):
         """Test EIC validation in Market-derived classes."""
@@ -135,18 +138,16 @@ class TestEICValidation:
         assert energy_prices.params["in_Domain"] == "10Y1001A1001A82H"
         assert energy_prices.params["out_Domain"] == "10Y1001A1001A82H"
 
-    def test_valid_cross_border_balancing_construction(self):
+    def test_valid_balancing_construction(self):
         """Test that construction with valid EIC codes succeeds for specific classes."""
         # Should succeed with valid EIC codes
-        cross_border = CrossBorderBalancing(
+        imbalance_prices = ImbalancePrices(
             period_start=202012312300,
             period_end=202101022300,
-            acquiring_domain="10Y1001A1001A82H",
-            connecting_domain="10YGB----------A",
+            control_area_domain="10Y1001A1001A82H",
         )
 
-        assert cross_border.params["acquiring_Domain"] == "10Y1001A1001A82H"
-        assert cross_border.params["connecting_Domain"] == "10YGB----------A"
+        assert imbalance_prices.params["controlArea_Domain"] == "10Y1001A1001A82H"
 
     def test_mixed_valid_invalid_eic_validation(self):
         """Test validation with mixed valid and invalid EIC codes."""
