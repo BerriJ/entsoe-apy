@@ -612,59 +612,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class TransferCapacitiesThirdCountriesImplicit(Market):
-    """Parameters for 12.1.H Transfer Capacities Allocated with Third Countries.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show
-
-    Fixed parameters:
-
-    - documentType: A94 (Non EU allocations)
-    - auction_Type: A01 (Implicit)
-    """
-
-    code = "12.1.H"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        contract_market_agreement_type: Literal["A01", "A07"] = "A01",
-        classification_sequence_position: Optional[int] = None,
-        # Additional common parameters
-    ):
-        """
-        Initialize transfer capacities allocated with third countries parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of a Control Area, Bidding Zone or
-                Bidding Zone Aggregation
-            out_domain: EIC code of a Control Area, Bidding Zone or
-                Bidding Zone Aggregation
-            contract_market_agreement_type: A01=Daily; A07=Intraday
-            classification_sequence_position: Integer for classification
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A94",  # Fixed: Non EU allocations
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-        # Add optional classification parameter
-        param_name = "classificationSequence_AttributeInstanceComponent.Position"
-        self.add_optional_param(param_name, classification_sequence_position)
 
 
 class ImplicitAuctionNetPositions(Market):

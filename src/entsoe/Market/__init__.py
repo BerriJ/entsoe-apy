@@ -11,7 +11,6 @@ from .specific_params import (
     TotalCapacityAllocated,
     TotalNominatedCapacity,
     TransferCapacitiesThirdCountriesExplicit,
-    TransferCapacitiesThirdCountriesImplicit,
 )
 
 __all__ = [
@@ -27,5 +26,4 @@ __all__ = [
     "TotalCapacityAllocated",
     "TotalNominatedCapacity",
     "TransferCapacitiesThirdCountriesExplicit",
-    "TransferCapacitiesThirdCountriesImplicit",
 ]
