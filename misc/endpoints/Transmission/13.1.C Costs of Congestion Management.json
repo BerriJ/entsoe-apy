@@ -26,12 +26,6 @@
       "key": "periodEnd",
       "value": "202212312300",
       "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
-    },
-    {
-      "key": "businessType",
-      "value": "B03",
-      "description": "[O] A46 = Redispatching costs; B03 = Countertrading costs; B04 = Congestion costs",
-      "disabled": true
     }
   ]
 }

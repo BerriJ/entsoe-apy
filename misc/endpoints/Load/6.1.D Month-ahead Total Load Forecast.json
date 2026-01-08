@@ -14,7 +14,7 @@
     },
     {
       "key": "outBiddingZone_Domain",
-      "value": "{{outBiddingZone_Domain}}",
+      "value": "10YCZ-CEPS-----N",
       "description": "[M] EIC of a Control Area, Bidding Zone or Country"
     },
     {

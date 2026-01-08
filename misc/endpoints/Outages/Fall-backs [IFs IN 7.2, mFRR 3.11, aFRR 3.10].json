@@ -40,7 +40,7 @@
     },
     {
       "key": "mRID",
-      "value": "",
+      "value": null,
       "description": "[O] Used to retrieve previous publication versions",
       "disabled": true
     }

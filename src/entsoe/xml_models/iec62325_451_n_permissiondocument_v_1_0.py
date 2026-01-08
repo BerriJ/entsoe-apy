@@ -9,7 +9,6 @@ from .urn_entsoe_eu_wgedi_codelists import (
     CodingSchemeTypeList,
     CurveTypeList,
     EnergyProductTypeList,
-    FlowCommodityTypeList,
     MessageTypeList,
     ProcessTypeList,
     ReasonCodeTypeList,
@@ -120,7 +119,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    flow_commodity_option: Optional[FlowCommodityTypeList] = field(
+    flow_commodity_option: Optional[str] = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",
@@ -308,7 +307,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
         },
     )
-    flow_commodity_option: Optional[FlowCommodityTypeList] = field(
+    flow_commodity_option: Optional[str] = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",

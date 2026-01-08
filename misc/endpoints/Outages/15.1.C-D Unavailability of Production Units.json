@@ -61,7 +61,7 @@
     {
       "key": "offset",
       "value": "1",
-      "description": "[O] Integer (allows downloading more than 200 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+100)",
       "disabled": true
     }
   ]

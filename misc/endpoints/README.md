@@ -1,8 +1,7 @@
-Endpoints extracted from Postman collection on 2026-01-08:
-
 To regenerate this list, run:
 
  ```sh
+./misc/get_postman.sh 
 ./misc/process_postman.sh 
  ```
 
@@ -11,20 +10,17 @@ To regenerate this list, run:
 - [12.1.B Total Nominated Capacity](Market/12.1.B%20Total%20Nominated%20Capacity.json)
 - [11.1 Implicit Allocations - Offered Transfer Capacity](Market/11.1%20Implicit%20Allocations%20-%20Offered%20Transfer%20Capacity.json)
 - [12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (explicit)](Market/12.1.H%20Transfer%20Capacities%20Allocated%20with%20Third%20Countries%20%5B12.1.H%5D%20%28explicit%29.json)
-- [12.1.H Transfer Capacities Allocated with Third Countries [12.1.H] (implicit)](Market/12.1.H%20Transfer%20Capacities%20Allocated%20with%20Third%20Countries%20%5B12.1.H%5D%20%28implicit%29.json)
 - [12.1.C Total Capacity Already Allocated](Market/12.1.C%20Total%20Capacity%20Already%20Allocated.json)
 - [11.1.A Explicit Allocations - Offered Transfer Capacity](Market/11.1.A%20Explicit%20Allocations%20-%20Offered%20Transfer%20Capacity.json)
 - [12.1.A Explicit Allocations - Use of the Transfer Capacity](Market/12.1.A%20Explicit%20Allocations%20-%20Use%20of%20the%20Transfer%20Capacity.json)
 - [12.1.A Explicit Allocations - Auction Revenue](Market/12.1.A%20Explicit%20Allocations%20-%20Auction%20Revenue.json)
-- [11.1.B Flow Based Allocations](Market/11.1.B%20Flow%20Based%20Allocations.json)
-- [11.1.B Flow Based Allocations (legacy)](Market/11.1.B%20Flow%20Based%20Allocations%20%28legacy%29.json)
 - [12.1.E Implicit Auction — Net Positions](Market/12.1.E%20Implicit%20Auction%E2%80%89%E2%80%94%E2%80%89Net%20Positions.json)
+- [11.1.B Flow Based Allocations](Market/11.1.B%20Flow%20Based%20Allocations.json)
 - [11.1 Continuous Allocations - Offered Transfer Capacity](Market/11.1%20Continuous%20Allocations%20-%20Offered%20Transfer%20Capacity.json)
 - [12.1.D Energy Prices](Market/12.1.D%20Energy%20Prices.json)
 
 ## [Load](Load)
 - [6.1.A Actual Total Load](Load/6.1.A%20Actual%20Total%20Load.json)
-- [6.1.A Actual Total Load (Post)](Load/6.1.A%20Actual%20Total%20Load%20%28Post%29.json)
 - [6.1.B Day-ahead Total Load Forecast](Load/6.1.B%20Day-ahead%20Total%20Load%20Forecast.json)
 - [6.1.C Week-ahead Total Load Forecast](Load/6.1.C%20Week-ahead%20Total%20Load%20Forecast.json)
 - [6.1.D Month-ahead Total Load Forecast](Load/6.1.D%20Month-ahead%20Total%20Load%20Forecast.json)
@@ -44,6 +40,7 @@ To regenerate this list, run:
 - [12.1.G Cross-Border Physical Flows](Transmission/12.1.G%20Cross-Border%20Physical%20Flows.json)
 - [11.1.A Forecasted Transfer Capacities](Transmission/11.1.A%20Forecasted%20Transfer%20Capacities.json)
 - [12.1.F Commercial Schedules](Transmission/12.1.F%20Commercial%20Schedules.json)
+- [12.1.F Commercial Schedules - Net Positions](Transmission/12.1.F%20Commercial%20Schedules%20-%20Net%20Positions.json)
 - [11.3 Cross Border Capacity of DC Links - Intraday Transfer Limits](Transmission/11.3%20Cross%20Border%20Capacity%20of%20DC%20Links%20-%20Intraday%20Transfer%20Limits.json)
 - [13.1.C Costs of Congestion Management](Transmission/13.1.C%20Costs%20of%20Congestion%20Management.json)
 - [13.1.A Redispatching Internal](Transmission/13.1.A%20Redispatching%20Internal.json)
@@ -56,13 +53,12 @@ To regenerate this list, run:
 - [15.1.A&B Unavailability of Generation Units](Outages/15.1.A%26B%20Unavailability%20of%20Generation%20Units.json)
 - [7.1.A-B Aggregated Unavailability of Consumption Units](Outages/7.1.A-B%20Aggregated%20Unavailability%20of%20Consumption%20Units.json)
 - [10.1.A&B Unavailability of Transmission Infrastructure](Outages/10.1.A%26B%20Unavailability%20of%20Transmission%20Infrastructure.json)
+- [10.1.A&B Unavailability of Transmission Infrastructure - Available Capacity](Outages/10.1.A%26B%20Unavailability%20of%20Transmission%20Infrastructure%20-%20Available%20Capacity.json)
+- [10.1.A&B Unavailability of Transmission Infrastructure  - Net Position Impact](Outages/10.1.A%26B%20Unavailability%20of%20Transmission%20Infrastructure%20%20-%20Net%20Position%20Impact.json)
 - [10.1.C Unavailability of Offshore Grid Infrastructure](Outages/10.1.C%20Unavailability%20of%20Offshore%20Grid%20Infrastructure.json)
 - [Fall-backs [IFs IN 7.2, mFRR 3.11, aFRR 3.10]](Outages/Fall-backs%20%5BIFs%20IN%207.2%2C%20mFRR%203.11%2C%20aFRR%203.10%5D.json)
 
 ## [Balancing](Balancing)
-- [17.1.J Cross Border Balancing](Balancing/17.1.J%20Cross%20Border%20Balancing.json)
-- [17.1.D Accepted Aggregated Offers](Balancing/17.1.D%20Accepted%20Aggregated%20Offers.json)
-- [17.1.E Activated Balancing Energy](Balancing/17.1.E%20Activated%20Balancing%20Energy.json)
 - [17.1.F Prices of Activated Balancing Energy](Balancing/17.1.F%20Prices%20of%20Activated%20Balancing%20Energy.json)
 - [IF aFRR 3.16 Cross Border Marginal Prices (CBMPs) for aFRR Central Selection (CS)](Balancing/IF%20aFRR%203.16%20Cross%20Border%20Marginal%20Prices%20%28CBMPs%29%20for%20aFRR%20Central%20Selection%20%28CS%29.json)
 - [12.3.B&C Balancing energy bids](Balancing/12.3.B%26C%20Balancing%20energy%20bids.json)
@@ -76,25 +72,24 @@ To regenerate this list, run:
 - [12.3.F Procured balancing capacity (GL EB)](Balancing/12.3.F%20Procured%20balancing%20capacity%20%28GL%20EB%29.json)
 - [187.2 FCR Total capacity (SO GL)](Balancing/187.2%20FCR%20Total%20capacity%20%28SO%20GL%29.json)
 - [187.2 Shares of FCR capacity (SO GL)](Balancing/187.2%20Shares%20of%20FCR%20capacity%20%28SO%20GL%29.json)
-- [187.2 Shares of FCR capacity - share of capacity (SO GL) Legacy](Balancing/187.2%20Shares%20of%20FCR%20capacity%20-%20share%20of%20capacity%20%28SO%20GL%29%20Legacy.json)
 - [190.2 Sharing of FCR between SAs (SO GL)](Balancing/190.2%20Sharing%20of%20FCR%20between%20SAs%20%28SO%20GL%29.json)
 - [188.3 & 189.2 FRR & RR Capacity Outlook (SO GL)](Balancing/188.3%20%26%20189.2%20FRR%20%26%20RR%20Capacity%20Outlook%20%28SO%20GL%29.json)
 - [188.4 & 189.3 FRR and RR Actual Capacity (SO GL)](Balancing/188.4%20%26%20189.3%20FRR%20and%20RR%20Actual%20Capacity%20%28SO%20GL%29.json)
-- [188.4 FRR Actual Capacity (SO GL) - Legacy](Balancing/188.4%20FRR%20Actual%20Capacity%20%28SO%20GL%29%20-%20Legacy.json)
 - [189.2 Outlook of Reserve Capacities on RR (SO GL)](Balancing/189.2%20Outlook%20of%20Reserve%20Capacities%20on%20RR%20%28SO%20GL%29.json)
 - [189.3 RR Actual Capacity(SO GL)](Balancing/189.3%20RR%20Actual%20Capacity%28SO%20GL%29.json)
-- [189.3 RR Actual Capacity(SO GL) Legacy](Balancing/189.3%20RR%20Actual%20Capacity%28SO%20GL%29%20Legacy.json)
 - [17.1.I Financial Expenses and Income for Balancing](Balancing/17.1.I%20Financial%20Expenses%20and%20Income%20for%20Balancing.json)
 - [12.3.H&I Allocation and use of cross-zonal balancing capacity](Balancing/12.3.H%26I%20Allocation%20and%20use%20of%20cross-zonal%20balancing%20capacity.json)
 - [IFs 4.5 Permanent Allocation Limitations to Cross-border Capacity on HVDC Lines](Balancing/IFs%204.5%20Permanent%20Allocation%20Limitations%20to%20Cross-border%20Capacity%20on%20HVDC%20Lines.json)
 - [IFs 4.3 & 4.4 Balancing Border Capacity Limitations](Balancing/IFs%204.3%20%26%204.4%20Balancing%20Border%20Capacity%20Limitations.json)
 - [190.1 Sharing of RR and FRR (SO GL)](Balancing/190.1%20Sharing%20of%20RR%20and%20FRR%20%28SO%20GL%29.json)
-- [190.1 Sharing of RR and FRR (SO GL) Legacy](Balancing/190.1%20Sharing%20of%20RR%20and%20FRR%20%28SO%20GL%29%20Legacy.json)
 - [190.3 Exchanged Reserve Capacity (SO GL)](Balancing/190.3%20Exchanged%20Reserve%20Capacity%20%28SO%20GL%29.json)
 - [17.1.G Imbalance prices](Balancing/17.1.G%20Imbalance%20prices.json)
 - [17.1.H Total Imbalance Volumes](Balancing/17.1.H%20Total%20Imbalance%20Volumes.json)
 - [12.3.A Current balancing state [GL EB]](Balancing/12.3.A%20Current%20balancing%20state%20%5BGL%20EB%5D.json)
 - [185.4 Results of the Criteria Application Process - Measurements (SO GL)](Balancing/185.4%20Results%20of%20the%20Criteria%20Application%20Process%20-%20Measurements%20%28SO%20GL%29.json)
+
+## [Master Data](Master%20Data)
+- [Production and Generation Units](Master%20Data/Production%20and%20Generation%20Units.json)
 
 ## [OMI](OMI)
 - [Other Market Information](OMI/Other%20Market%20Information.json)

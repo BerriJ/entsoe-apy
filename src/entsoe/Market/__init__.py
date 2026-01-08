@@ -5,14 +5,12 @@ from .specific_params import (
     ExplicitAllocationsOfferedCapacity,
     ExplicitAllocationsUseTransferCapacity,
     FlowBasedAllocations,
-    FlowBasedAllocationsLegacy,
     ImplicitAllocationsOfferedCapacity,
     ImplicitAuctionNetPositions,
     ImplicitFlowBasedAllocationsCongestionIncome,
     TotalCapacityAllocated,
     TotalNominatedCapacity,
     TransferCapacitiesThirdCountriesExplicit,
-    TransferCapacitiesThirdCountriesImplicit,
 )
 
 __all__ = [
@@ -21,7 +19,6 @@ __all__ = [
     "ExplicitAllocationsAuctionRevenue",
     "ExplicitAllocationsOfferedCapacity",
     "ExplicitAllocationsUseTransferCapacity",
-    "FlowBasedAllocationsLegacy",
     "FlowBasedAllocations",
     "ImplicitAllocationsOfferedCapacity",
     "ImplicitAuctionNetPositions",
@@ -29,5 +26,4 @@ __all__ = [
     "TotalCapacityAllocated",
     "TotalNominatedCapacity",
     "TransferCapacitiesThirdCountriesExplicit",
-    "TransferCapacitiesThirdCountriesImplicit",
 ]

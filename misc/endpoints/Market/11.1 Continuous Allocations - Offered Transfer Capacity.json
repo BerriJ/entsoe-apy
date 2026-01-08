@@ -35,13 +35,12 @@
     {
       "key": "Contract_MarketAgreement.Type",
       "value": "A07",
-      "description": "[O] A07 = Intraday",
-      "disabled": true
+      "description": "[M] A07 = Intraday"
     },
     {
       "key": "Update_DateAndOrTime",
       "value": "20240515123900",
-      "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000.\n\nIf there is no OC evolution version with requested update_DateAndOrTime the system selects OC version valid in the given time (e.g., closest previous update_DateAndOrTime). The most recent publish OC version is provided in case the update_DateAndOrTime parameter is omitted. The most recent published OC version and intermediate OC versions is distinguished by document type:\n−\tIntermediate OC values: A31\n−\tMost recent published OC values: B33\n",
+      "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000. If there is no OC evolution version with requested update_DateAndOrTime the system selects OC version valid in the given time (e.g., closest previous update_DateAndOrTime). The most recent publish OC version is provided in case the update_DateAndOrTime parameter is omitted. The most recent published OC version and intermediate OC versions is distinguished by document type: −   Intermediate OC values: A31 −   Most recent published OC values: B33",
       "disabled": true
     },
     {
