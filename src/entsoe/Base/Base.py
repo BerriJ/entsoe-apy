@@ -262,7 +262,9 @@ class Base:
         self.validate_eic_code(asset_registered_resource, "asset_registered_resource")
 
         self.add_optional_param("registeredResource", registered_resource)
-        self.add_optional_param("Asset_RegisteredResource.mRID", asset_registered_resource)
+        self.add_optional_param(
+            "Asset_RegisteredResource.mRID", asset_registered_resource
+        )
         self.add_optional_param("subject_Party.name", subject_party_name)
         self.add_optional_param(
             "subject_Party.marketRole.type", subject_party_market_role

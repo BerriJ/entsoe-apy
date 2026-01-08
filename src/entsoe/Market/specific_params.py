@@ -612,8 +612,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-
-
 class ImplicitAuctionNetPositions(Market):
     """Parameters for 12.1.E Implicit Auction — Net Positions.
 
@@ -658,4 +656,3 @@ class ImplicitAuctionNetPositions(Market):
 
         # Validate that in_domain and out_domain are the same
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
-

@@ -322,7 +322,7 @@ class RedispatchingInternal(Transmission):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area (in_domain and out_domain 
+            in_domain: EIC code of Control Area (in_domain and out_domain
                 must be the same for internal)
         """
         # Initialize with preset and user parameters
@@ -410,7 +410,7 @@ class CostsOfCongestionManagement(Transmission):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area (in_domain and out_domain 
+            in_domain: EIC code of Control Area (in_domain and out_domain
                 must be the same)
         """
         # Initialize with preset and user parameters
@@ -457,9 +457,9 @@ class ExpansionAndDismantlingProject(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Bidding Zone or Control Area
             out_domain: EIC code of Bidding Zone or Control Area
-            business_type: B01=interconnector network evolution; 
+            business_type: B01=interconnector network evolution;
                 B02=interconnector network dismantling (optional)
-            doc_status: A01=Intermediate; A02=Final; A05=Active; A09=Cancelled; 
+            doc_status: A01=Intermediate; A02=Final; A05=Active; A09=Cancelled;
                 A13=Withdrawn; X01=Estimated (optional)
         """
         # Initialize with preset and user parameters
