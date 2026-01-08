@@ -3,7 +3,7 @@
 rm -rf ./misc/endpoints
 
 # Input file path
-POSTMAN_FILE="./misc/Transparency Platform Restful API.postman_collection.json"
+POSTMAN_FILE=./misc/TransparencyPlatformRestfulAPI.postman_collection.json
 
 # Create endpoint-specific JSON files organized by category
 echo "Creating endpoint-specific JSON files..."
