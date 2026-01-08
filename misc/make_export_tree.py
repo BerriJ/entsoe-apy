@@ -124,7 +124,7 @@ print("=" * 50)
 exports = get_module_exports("entsoe", max_depth=2)
 
 # Write tree to a markdown file
-with open("./docs/entsoe_export_tree.md", "w") as f:
+with open("./misc/README.md", "w") as f:
     print("# ENTSOE Module Export Tree", file=f)
     print("", file=f)
     print(

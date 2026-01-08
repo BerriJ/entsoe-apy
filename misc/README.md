@@ -105,7 +105,7 @@ This tree shows the hierarchical structure of the package with direct exports an
   │   └── RedispatchingInternal (type)
   │
 ├── codes/
-  ├── Direct exports (38 items):
+  ├── Direct exports (40 items):
   │   ├── StandardAllocationModeTypeList (EnumType)
   │   ├── StandardAnalogTypeList (EnumType)
   │   ├── StandardAssetTypeList (EnumType)
@@ -122,8 +122,9 @@ This tree shows the hierarchical structure of the package with direct exports an
   │   ├── StandardDocumentTypeList (EnumType)
   │   ├── StandardEicTypeList (EnumType)
   │   ├── StandardEnergyProductTypeList (EnumType)
-  │   ├── StandardFlowCommodityTypeList (EnumType)
+  │   ├── StandardFlowCommodityOptionTypeList (EnumType)
   │   ├── StandardFuelTypeList (EnumType)
+  │   ├── StandardGridAgreementTypeList (EnumType)
   │   ├── StandardHVDCModeTypeList (EnumType)
   │   ├── StandardIndicatorTypeList (EnumType)
   │   ├── StandardMarketProductTypeList (EnumType)
@@ -134,9 +135,8 @@ This tree shows the hierarchical structure of the package with direct exports an
   │   ├── StandardPriceComponentTypeList (EnumType)
   │   ├── StandardPriceDirectionTypeList (EnumType)
   │   ├── StandardProcessTypeList (EnumType)
-  │   ├── StandardQualityTypeList (EnumType)
-  │   └── StandardReasonCodeTypeList (EnumType)
-  │   └── ... and 8 more
+  │   └── StandardQualityTypeList (EnumType)
+  │   └── ... and 10 more
   │
 ├── config/
   ├── Direct exports (2 items):
