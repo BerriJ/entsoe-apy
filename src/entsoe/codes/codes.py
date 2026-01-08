@@ -1050,14 +1050,18 @@ class StandardReasonCodeTypeList(Enum):
     A82 = "In/Out area inconsistent with domain"
     A83 = "Disagree with matching results"
     A84 = "Confirmation ignored due to higher version already received"
-    A85 = "Confirmation without adjustment (time series have been matched without change)"
+    A85 = (
+        "Confirmation without adjustment (time series have been matched without change)"
+    )
     A86 = "Confirmation with adjustment (time series have been modified)"
     A87 = "For action (only in intermediate confirmation - time series need mutual agreement and action)"
     A88 = "Time series matched"
     A89 = "Time series ignored (note: this can only apply to time series that are set to zero - see matching principles)"
     A90 = "Modification proposal (intermediate confirmation)"
     A91 = "Expected document not received"
-    A92 = "Not possible to send document on time, but estimated delivery time is provided"
+    A92 = (
+        "Not possible to send document on time, but estimated delivery time is provided"
+    )
     A93 = "Not possible to send document on time, and furthermore no expected time of return to normal situation"
     A94 = "Document cannot be processed by receiving system"
     A95 = "Complementary information"
