@@ -22,7 +22,6 @@ To regenerate this list, run:
 
 ## [Load](Load)
 - [6.1.A Actual Total Load](Load/6.1.A%20Actual%20Total%20Load.json)
-- [6.1.A Actual Total Load (Post)](Load/6.1.A%20Actual%20Total%20Load%20%28Post%29.json)
 - [6.1.B Day-ahead Total Load Forecast](Load/6.1.B%20Day-ahead%20Total%20Load%20Forecast.json)
 - [6.1.C Week-ahead Total Load Forecast](Load/6.1.C%20Week-ahead%20Total%20Load%20Forecast.json)
 - [6.1.D Month-ahead Total Load Forecast](Load/6.1.D%20Month-ahead%20Total%20Load%20Forecast.json)

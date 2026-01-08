@@ -20,7 +20,6 @@
     "name": "Load",
     "items": [
       "6.1.A Actual Total Load",
-      "6.1.A Actual Total Load (Post)",
       "6.1.B Day-ahead Total Load Forecast",
       "6.1.C Week-ahead Total Load Forecast",
       "6.1.D Month-ahead Total Load Forecast",
