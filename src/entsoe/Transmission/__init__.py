@@ -4,7 +4,6 @@ from .specific_params import (
     CommercialSchedules,
     CrossBorderPhysicalFlows,
     ExplicitAllocationsOfferedCapacity,
-    FlowBasedAllocations,
     ForecastedTransferCapacities,
     ImplicitAllocationsOfferedCapacity,
     TotalCapacityAlreadyAllocated,
@@ -20,6 +19,5 @@ __all__ = [
     "CrossBorderPhysicalFlows",
     "CommercialSchedules",
     "ForecastedTransferCapacities",
-    "FlowBasedAllocations",
     "UnavailabilityOffshoreGridInfrastructure",
 ]

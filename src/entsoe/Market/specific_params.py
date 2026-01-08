@@ -325,6 +325,56 @@ class ExplicitAllocationsOfferedCapacity(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
+class FlowBasedAllocations(Market):
+    """Parameters for 11.1.B Flow Based Allocations.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
+
+    Fixed parameters:
+
+    - documentType: B09 (Flow based domain publication)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one MTU period
+    """
+
+    code = "11.1.B"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+        out_domain: str,
+        process_type: str,
+    ):
+        """
+        Initialize flow based allocations parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of a Region
+            out_domain: EIC code of a Region
+            process_type: Process type (A43=Day ahead, A44=Intraday,
+                A32=Month-ahead, A33=Year-ahead)
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="B09",
+            process_type=process_type,
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=out_domain,
+        )
+
+        # Validate that in_domain and out_domain are the same
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
+
+
 class ContinuousAllocationsOfferedCapacity(Market):
     """Parameters for 11.1 Continuous Allocations - Offered Transfer Capacity.
 
@@ -661,6 +711,4 @@ class ImplicitAuctionNetPositions(Market):
 
         # Validate that in_domain and out_domain are the same
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
-
-
 
