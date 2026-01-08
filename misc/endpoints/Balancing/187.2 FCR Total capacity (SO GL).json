@@ -1,0 +1,31 @@
+{
+  "name": "187.2 FCR Total capacity (SO GL)",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "businessType",
+      "value": "A25",
+      "description": "A25 = General Capacity Information"
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YEU-CONT-SYNC0",
+      "description": "Synchronous Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202312312300",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202412312300",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "187.2 Shares of FCR capacity - share of capacity (SO GL) Legacy",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "A26 = Capacity document"
+    },
+    {
+      "key": "businessType",
+      "value": "C23",
+      "description": "C23 = Share of reserve capacity"
+    },
+    {
+      "key": "processType",
+      "value": "A52",
+      "description": "A52 = Frequency containment reserve",
+      "disabled": true
+    },
+    {
+      "key": "area_Domain",
+      "value": "10YAT-APG------L",
+      "description": "Load Frequency Control Area, Load Frequency Control Block"
+    },
+    {
+      "key": "periodStart",
+      "value": "202312312300",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202412312300",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "name": "15.1.A&B Unavailability of Generation Units",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A80",
+      "description": "[M] A80 = Generation unavailability"
+    },
+    {
+      "key": "BiddingZone_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202301022200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202301032200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "BusinessType",
+      "value": "A53",
+      "description": "[O] A53 = Planned maintenance; A54 = Forced unavailability (unplanned outage)",
+      "disabled": true
+    },
+    {
+      "key": "DocStatus",
+      "value": "A05",
+      "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned): A05 = Active; A09 = Cancelled; A13 = Withdrawn",
+      "disabled": true
+    },
+    {
+      "key": "PeriodStartUpdate",
+      "value": "202301031000",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "PeriodEndUpdate",
+      "value": "202301032200",
+      "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
+      "disabled": true
+    },
+    {
+      "key": "RegisteredResource",
+      "value": "22WCOOX6X000064W",
+      "description": "[O] EIC Code of Generation Unit",
+      "disabled": true
+    },
+    {
+      "key": "mRID",
+      "value": "nCYGn4HPvOBiVrWtRFL35g",
+      "description": "[O] Used to retrieve older versions of an outage",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (Enables downloading more than 200 documents. The offset ∈ [0,4800] so that paging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)",
+      "disabled": true
+    }
+  ]
+}

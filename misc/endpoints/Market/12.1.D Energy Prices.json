@@ -1,0 +1,48 @@
+{
+  "name": "12.1.D Energy Prices",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A44",
+      "description": "[M] Price Document"
+    },
+    {
+      "key": "periodStart",
+      "value": "202407272200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202407282200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Bidding Zone "
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Bidding Zone (must be same as out_Domain)"
+    },
+    {
+      "key": "contract_MarketAgreement.type",
+      "value": "A01",
+      "description": "[O] A01 = Day-ahead ; A07 = Intraday"
+    },
+    {
+      "key": "classificationSequence_AttributeInstanceComponent.position",
+      "value": "1",
+      "description": "[O] Integer",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)\n",
+      "disabled": true
+    }
+  ]
+}

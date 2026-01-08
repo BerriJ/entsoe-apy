@@ -1,0 +1,26 @@
+{
+  "name": "17.1.I Financial Expenses and Income for Balancing",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A87",
+      "description": "[M] A87 = Financial situation"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YHU-MAVIR----U",
+      "description": "[M] EIC code of a Control Area or a Market Balance Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202301312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202302282300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

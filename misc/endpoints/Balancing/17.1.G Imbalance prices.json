@@ -1,0 +1,32 @@
+{
+  "name": "17.1.G Imbalance prices",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A85",
+      "description": "[M] A85 = Imbalance prices"
+    },
+    {
+      "key": "controlArea_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Scheduling Area or Market Balancing Area"
+    },
+    {
+      "key": "periodStart",
+      "value": "202401010000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202401050000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "PsrType",
+      "value": "A04",
+      "description": "[O] A04 = Generation; A05 = Load",
+      "disabled": true
+    }
+  ]
+}

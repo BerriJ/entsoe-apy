@@ -1,0 +1,31 @@
+{
+  "name": "12.1.G Cross-Border Physical Flows",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A11",
+      "description": "[M] A11 = Aggregated energy data report"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YDE-RWENET---I",
+      "description": "[M] EIC code of a Control Area, Bidding Zone, Country"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area, Bidding Zone, Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308232200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308242200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

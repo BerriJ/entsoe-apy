@@ -1,0 +1,54 @@
+{
+  "name": "11.1 Continuous Allocations - Offered Transfer Capacity",
+  "method": "GET",
+  "query": [
+    {
+      "key": "DocumentType",
+      "value": "A31",
+      "description": "[M] A31 = Agreed capacity; B33 = Published offered capacity"
+    },
+    {
+      "key": "Auction.Type",
+      "value": "A08",
+      "description": "[M] A08 = Continuous"
+    },
+    {
+      "key": "Out_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "In_Domain",
+      "value": "10YNL----------L",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "PeriodStart",
+      "value": "202405152200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "PeriodEnd",
+      "value": "202504162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "Contract_MarketAgreement.Type",
+      "value": "A07",
+      "description": "[O] A07 = Intraday",
+      "disabled": true
+    },
+    {
+      "key": "Update_DateAndOrTime",
+      "value": "20240515123900",
+      "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000.\n\nIf there is no OC evolution version with requested update_DateAndOrTime the system selects OC version valid in the given time (e.g., closest previous update_DateAndOrTime). The most recent publish OC version is provided in case the update_DateAndOrTime parameter is omitted. The most recent published OC version and intermediate OC versions is distinguished by document type:\n−\tIntermediate OC values: A31\n−\tMost recent published OC values: B33\n",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+      "disabled": true
+    }
+  ]
+}

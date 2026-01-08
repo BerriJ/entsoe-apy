@@ -1,0 +1,31 @@
+{
+  "name": "11.3 Cross Border Capacity of DC Links - Intraday Transfer Limits",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A93",
+      "description": "[M] A93 = DC link capacity"
+    },
+    {
+      "key": "out_Domain",
+      "value": "11Y0-0000-0265-K",
+      "description": "[M] EIC code of a Bidding Zone, Control Area or Country"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YFR-RTE------C",
+      "description": "[M] EIC code of a Bidding Zone, Control Area or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308160000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

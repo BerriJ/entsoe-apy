@@ -1,0 +1,59 @@
+{
+  "name": "11.1.A Explicit Allocations - Offered Transfer Capacity",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A31",
+      "description": "[M] A31 = Agreed capacity"
+    },
+    {
+      "key": "auction.Type",
+      "value": "A02",
+      "description": "[M] A02 = Explicit"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[M] A07 = Intraday; A01 = Day ahead; A02 = Weekly; A03 = Monthly; A08 = Quarterly; A04 = Yearly; A06 = Long Term"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YGB----------A",
+      "description": "[M] EIC code of Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of Control Area, Bidding Zone or Bidding Zone Aggregation"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308152200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308162200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "auction.Category",
+      "value": "A04",
+      "description": "[O] A01 = Base; A02 = Peak; A03 = Off Peak; A04 = Hourly",
+      "disabled": true
+    },
+    {
+      "key": "Update_DateAndOrTime",
+      "value": "20230313123900",
+      "description": "[O] For Offered Capacity Evolution can be quried with datetime in numeric. For example 20210803113900000 for evolution update date time 03.08.2021 13:39:00.000",
+      "disabled": true
+    },
+    {
+      "key": "ClassificationSequence_AttributeInstanceComponent.Position",
+      "value": "1",
+      "description": "[O] Integer",
+      "disabled": true
+    }
+  ]
+}

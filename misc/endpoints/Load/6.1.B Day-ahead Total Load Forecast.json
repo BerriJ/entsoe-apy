@@ -1,0 +1,31 @@
+{
+  "name": "6.1.B Day-ahead Total Load Forecast",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A65",
+      "description": "[M] A65 = System total load"
+    },
+    {
+      "key": "processType",
+      "value": "A01",
+      "description": "[M] A01 = Day ahead"
+    },
+    {
+      "key": "outBiddingZone_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308140000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308170000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

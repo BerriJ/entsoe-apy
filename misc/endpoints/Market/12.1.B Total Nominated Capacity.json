@@ -1,0 +1,36 @@
+{
+  "name": "12.1.B Total Nominated Capacity",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A26",
+      "description": "[M] A26 = Capacity document"
+    },
+    {
+      "key": "businessType",
+      "value": "B08",
+      "description": "[M] B08 = Total nominated capacity"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YGB----------A",
+      "description": "[M] EIC code of a Control Area or Bidding Zone"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YBE----------2",
+      "description": "[M] EIC code of a Control Area or Bidding Zone"
+    },
+    {
+      "key": "periodStart",
+      "value": "202308202200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202308212200",
+      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}

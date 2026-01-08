@@ -1,0 +1,31 @@
+{
+  "name": "8.1 Year-ahead Forecast Margin",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A70",
+      "description": "[M] A70 = Load forecast margin"
+    },
+    {
+      "key": "processType",
+      "value": "A33",
+      "description": "[M] A33 = Year ahead"
+    },
+    {
+      "key": "outBiddingZone_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202212312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202312312300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}
