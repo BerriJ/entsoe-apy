@@ -151,7 +151,7 @@ This tree shows the hierarchical structure of the package with direct exports an
   │   └── calculate_timestamp (function)
   │
 └── xml_models/
-  ├── Direct exports (2097 items):
+  ├── Direct exports (2220 items):
   │   ├── V7AcknowledgementMarketDocument (ModelMetaclass)
   │   ├── V7EsmpDateTimeInterval (ModelMetaclass)
   │   ├── V7PartyIdString (ModelMetaclass)
@@ -170,18 +170,18 @@ This tree shows the hierarchical structure of the package with direct exports an
   │   ├── Reason (ModelMetaclass)
   │   ├── TimeSeries (ModelMetaclass)
   │   ├── TimePeriod (ModelMetaclass)
+  │   ├── V90AcknowledgementMarketDocument (ModelMetaclass)
+  │   ├── V90EsmpDateTimeInterval (ModelMetaclass)
+  │   ├── AcknowledgementV9MktActivityRecord (ModelMetaclass)
+  │   ├── V90PartyIdString (ModelMetaclass)
+  │   ├── V90Reason (ModelMetaclass)
+  │   ├── Type1AcknowledgementV9Series (ModelMetaclass)
+  │   ├── V90TimeSeries (ModelMetaclass)
+  │   ├── V90TimePeriod (ModelMetaclass)
   │   ├── Type0AnomalyReportMarketDocument (ModelMetaclass)
   │   ├── Type0AnomalyTimeSeries (ModelMetaclass)
   │   ├── Type0AreaIdString (ModelMetaclass)
-  │   ├── Type2AnomalyV50EsmpDateTimeInterval (ModelMetaclass)
-  │   ├── Type0MeasurementPointIdString (ModelMetaclass)
-  │   ├── Type0OriginalMarketDocument (ModelMetaclass)
-  │   ├── Type2AnomalyV50PartyIdString (ModelMetaclass)
-  │   ├── Type0Point (ModelMetaclass)
-  │   ├── Type2AnomalyV50Reason (ModelMetaclass)
-  │   ├── Type0SeriesPeriod (ModelMetaclass)
-  │   ├── Type1AnomalyReportMarketDocument (ModelMetaclass)
-  │   └── Type1AnomalyTimeSeries (ModelMetaclass)
-  │   └── ... and 2067 more
+  │   └── Type2AnomalyV5EsmpDateTimeInterval (ModelMetaclass)
+  │   └── ... and 2190 more
   │
 ```

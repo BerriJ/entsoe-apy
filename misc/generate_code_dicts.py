@@ -48,3 +48,5 @@ output_file = "../src/entsoe/codes/codes.py"
 with open(output_file, "w") as f:
     f.write("from enum import Enum\n\n")
     f.write("\n\n".join(enum_classes_fixed))
+
+# %%

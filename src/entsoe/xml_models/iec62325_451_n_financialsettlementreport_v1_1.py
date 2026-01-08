@@ -8,15 +8,22 @@ from xsdata_pydantic.fields import field
 from .urn_entsoe_eu_wgedi_codelists import (
     BusinessTypeList,
     CodingSchemeTypeList,
+    CurrencyTypeList,
+    CurveTypeList,
+    DirectionTypeList,
     EnergyProductTypeList,
     MessageTypeList,
     ProcessTypeList,
-    QualityTypeList,
+    ReasonCodeTypeList,
     RoleTypeList,
+    StatusTypeList,
+    TimeframeTypeList,
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
+__NAMESPACE__ = (
+    "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1"
+)
 
 
 class EsmpDateTimeInterval(BaseModel):
@@ -27,7 +34,7 @@ class EsmpDateTimeInterval(BaseModel):
     start: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
@@ -35,9 +42,23 @@ class EsmpDateTimeInterval(BaseModel):
     end: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
+        }
+    )
+
+
+class ActionStatus(BaseModel):
+    class Meta:
+        name = "Action_Status"
+
+    model_config = ConfigDict(defer_build=True)
+    value: StatusTypeList = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "required": True,
         }
     )
 
@@ -52,27 +73,6 @@ class AreaIdString(BaseModel):
         metadata={
             "required": True,
             "max_length": 18,
-        },
-    )
-    coding_scheme: CodingSchemeTypeList = field(
-        metadata={
-            "name": "codingScheme",
-            "type": "Attribute",
-            "required": True,
-        }
-    )
-
-
-class MeasurementPointIdString(BaseModel):
-    class Meta:
-        name = "MeasurementPointID_String"
-
-    model_config = ConfigDict(defer_build=True)
-    value: str = field(
-        default="",
-        metadata={
-            "required": True,
-            "max_length": 60,
         },
     )
     coding_scheme: CodingSchemeTypeList = field(
@@ -105,12 +105,52 @@ class PartyIdString(BaseModel):
     )
 
 
+class Reason(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    code: ReasonCodeTypeList = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "required": True,
+        }
+    )
+    text: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "max_length": 512,
+        },
+    )
+
+
+class ResourceIdString(BaseModel):
+    class Meta:
+        name = "ResourceID_String"
+
+    model_config = ConfigDict(defer_build=True)
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+            "max_length": 60,
+        },
+    )
+    coding_scheme: CodingSchemeTypeList = field(
+        metadata={
+            "name": "codingScheme",
+            "type": "Attribute",
+            "required": True,
+        }
+    )
+
+
 class Point(BaseModel):
     model_config = ConfigDict(defer_build=True)
     position: int = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
@@ -119,35 +159,24 @@ class Point(BaseModel):
     quantity: Decimal = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
         }
     )
-    quality: QualityTypeList = field(
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
-        }
-    )
-
-
-class AccountingPoint(BaseModel):
-    model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    monetary_value_quantity_quantity: Optional[Decimal] = field(
         default=None,
         metadata={
-            "name": "mRID",
+            "name": "monetaryValue_Quantity.quantity",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
         },
     )
-    flow_commodity_option: Optional[str] = field(
-        default=None,
+    reason: list[Reason] = field(
+        default_factory=list,
         metadata={
-            "name": "flowCommodityOption",
+            "name": "Reason",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
         },
     )
 
@@ -157,18 +186,18 @@ class SeriesPeriod(BaseModel):
         name = "Series_Period"
 
     model_config = ConfigDict(defer_build=True)
-    resolution: XmlDuration = field(
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
-        }
-    )
     time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "required": True,
+        }
+    )
+    resolution: XmlDuration = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
         }
     )
@@ -177,7 +206,7 @@ class SeriesPeriod(BaseModel):
         metadata={
             "name": "Point",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "min_occurs": 1,
         },
     )
@@ -189,7 +218,7 @@ class TimeSeries(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
             "max_length": 60,
         }
@@ -198,86 +227,106 @@ class TimeSeries(BaseModel):
         metadata={
             "name": "businessType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
         }
     )
     product: EnergyProductTypeList = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "required": True,
         }
     )
-    reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    curve_type: CurveTypeList = field(
         metadata={
-            "name": "reading_Period.timeInterval",
+            "name": "curveType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "required": True,
+        }
     )
-    accounting_point_party_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
-        default=None,
-        metadata={
-            "name": "accountingPointParty_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
-    )
-    accounting_point_party_market_participant_market_role_type: Optional[
-        RoleTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "accountingPointParty_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
-    )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
-        default=None,
+    measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
             "name": "measurement_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            "required": True,
+        }
     )
-    accounting_point: list[AccountingPoint] = field(
-        default_factory=list,
-        metadata={
-            "name": "AccountingPoint",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
-    )
-    domain_m_rid: Optional[AreaIdString] = field(
+    currency_unit_name: Optional[CurrencyTypeList] = field(
         default=None,
         metadata={
-            "name": "domain.mRID",
+            "name": "currency_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
         },
+    )
+    in_domain_m_rid: Optional[AreaIdString] = field(
+        default=None,
+        metadata={
+            "name": "in_Domain.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+        },
+    )
+    out_domain_m_rid: Optional[AreaIdString] = field(
+        default=None,
+        metadata={
+            "name": "out_Domain.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+        },
+    )
+    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
+        field(
+            default=None,
+            metadata={
+                "name": "connectingLine_RegisteredResource.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+            },
+        )
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
         metadata={
             "name": "Period",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
             "min_occurs": 1,
+        },
+    )
+    reason: list[Reason] = field(
+        default_factory=list,
+        metadata={
+            "name": "Reason",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+        },
+    )
+    energy_market_timeframe: Optional[TimeframeTypeList] = field(
+        default=None,
+        metadata={
+            "name": "energyMarket.timeframe",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
+        },
+    )
+    flow_direction_direction: Optional[DirectionTypeList] = field(
+        default=None,
+        metadata={
+            "name": "flowDirection.direction",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1",
         },
     )
 
 
-class MeasurementDataMarketDocument(BaseModel):
+class FinancialSettlementReportMarketDocument(BaseModel):
     class Meta:
-        name = "MeasurementData_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
-        )
+        name = "FinancialSettlementReport_MarketDocument"
+        namespace = "urn:iec62325.351:tc57wg16:451-6:financialsettlementreportdocument:1:1"
 
     model_config = ConfigDict(defer_build=True)
     m_rid: str = field(
@@ -286,6 +335,14 @@ class MeasurementDataMarketDocument(BaseModel):
             "type": "Element",
             "required": True,
             "max_length": 60,
+        }
+    )
+    revision_number: str = field(
+        metadata={
+            "name": "revisionNumber",
+            "type": "Element",
+            "required": True,
+            "pattern": r"[1-9]([0-9]){0,2}",
         }
     )
     type_value: MessageTypeList = field(
@@ -345,10 +402,32 @@ class MeasurementDataMarketDocument(BaseModel):
             "required": True,
         }
     )
+    domain_m_rid: Optional[AreaIdString] = field(
+        default=None,
+        metadata={
+            "name": "domain.mRID",
+            "type": "Element",
+        },
+    )
+    doc_status: Optional[ActionStatus] = field(
+        default=None,
+        metadata={
+            "name": "docStatus",
+            "type": "Element",
+        },
+    )
     time_series: list[TimeSeries] = field(
         default_factory=list,
         metadata={
             "name": "TimeSeries",
+            "type": "Element",
+            "min_occurs": 1,
+        },
+    )
+    reason: list[Reason] = field(
+        default_factory=list,
+        metadata={
+            "name": "Reason",
             "type": "Element",
         },
     )

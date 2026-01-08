@@ -9,6 +9,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     CodingSchemeTypeList,
     CurveTypeList,
     EnergyProductTypeList,
+    FlowCommodityOptionTypeList,
     MessageTypeList,
     ProcessTypeList,
     ReasonCodeTypeList,
@@ -17,7 +18,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0"
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1"
 
 
 class EsmpDateTimeInterval(BaseModel):
@@ -28,7 +29,7 @@ class EsmpDateTimeInterval(BaseModel):
     start: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
@@ -36,7 +37,7 @@ class EsmpDateTimeInterval(BaseModel):
     end: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
@@ -92,7 +93,7 @@ class Series(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "max_length": 60,
         },
     )
@@ -101,14 +102,14 @@ class Series(BaseModel):
         metadata={
             "name": "businessType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     product: Optional[EnergyProductTypeList] = field(
         default=None,
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     curve_type: Optional[CurveTypeList] = field(
@@ -116,15 +117,7 @@ class Series(BaseModel):
         metadata={
             "name": "curveType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-        },
-    )
-    flow_commodity_option: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "flowCommodityOption",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
@@ -132,7 +125,7 @@ class Series(BaseModel):
         metadata={
             "name": "measurement_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     reading_period_resolution: Optional[XmlDuration] = field(
@@ -140,7 +133,7 @@ class Series(BaseModel):
         metadata={
             "name": "reading_Period.resolution",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
@@ -148,7 +141,7 @@ class Series(BaseModel):
         metadata={
             "name": "reading_Period.timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
 
@@ -160,7 +153,7 @@ class Permission(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "max_length": 60,
         },
     )
@@ -169,61 +162,8 @@ class Permission(BaseModel):
         metadata={
             "name": "createdDateTime",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
-        },
-    )
-    permitted_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "permitted_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-        },
-    )
-    permitted_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "permitted_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            },
-        )
-    )
-    permitting_market_participant_m_rid: Optional[PartyIdString] = field(
-        default=None,
-        metadata={
-            "name": "permitting_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-        },
-    )
-    permitting_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "permitting_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            },
-        )
-    )
-    purpose_reason_code: Optional[ReasonCodeTypeList] = field(
-        default=None,
-        metadata={
-            "name": "purpose_Reason.code",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-        },
-    )
-    purpose_reason_text: Optional[str] = field(
-        default=None,
-        metadata={
-            "name": "purpose_Reason.text",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            "max_length": 512,
         },
     )
     permission_end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
@@ -231,7 +171,7 @@ class Permission(BaseModel):
         metadata={
             "name": "permissionEnd_DateAndOrTime.dateTime",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     max_lifetime_permission_date_and_or_time_date_time: Optional[
@@ -241,32 +181,51 @@ class Permission(BaseModel):
         metadata={
             "name": "maxLifetimePermission_DateAndOrTime.dateTime",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    end_of_permission_reason_code: Optional[ReasonCodeTypeList] = field(
+    permitting_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
         metadata={
-            "name": "endOfPermission_Reason.code",
+            "name": "permitting_MarketParticipant.mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    end_of_permission_reason_text: Optional[str] = field(
+    permitting_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "permitting_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            },
+        )
+    )
+    permitted_market_participant_m_rid: Optional[PartyIdString] = field(
         default=None,
         metadata={
-            "name": "endOfPermission_Reason.text",
+            "name": "permitted_MarketParticipant.mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
-            "max_length": 512,
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    permission_status_status: Optional[StatusTypeList] = field(
-        default=None,
+    permitted_market_participant_market_role_type: Optional[RoleTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "permitted_MarketParticipant.marketRole.type",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            },
+        )
+    )
+    series: list[Series] = field(
+        default_factory=list,
         metadata={
-            "name": "permissionStatus.status",
+            "name": "Series",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     transmission_schedule_period_resolution: Optional[XmlDuration] = field(
@@ -274,7 +233,7 @@ class Permission(BaseModel):
         metadata={
             "name": "transmissionSchedule_Period.resolution",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     transmission_schedule_period_time_interval: Optional[
@@ -284,15 +243,49 @@ class Permission(BaseModel):
         metadata={
             "name": "transmissionSchedule_Period.timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    series: list[Series] = field(
-        default_factory=list,
+    purpose_reason_code: Optional[ReasonCodeTypeList] = field(
+        default=None,
         metadata={
-            "name": "Series",
+            "name": "purpose_Reason.code",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+        },
+    )
+    purpose_reason_text: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "purpose_Reason.text",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            "max_length": 512,
+        },
+    )
+    end_of_permission_reason_code: Optional[ReasonCodeTypeList] = field(
+        default=None,
+        metadata={
+            "name": "endOfPermission_Reason.code",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+        },
+    )
+    end_of_permission_reason_text: Optional[str] = field(
+        default=None,
+        metadata={
+            "name": "endOfPermission_Reason.text",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            "max_length": 512,
+        },
+    )
+    permission_market_object_status_status: Optional[StatusTypeList] = field(
+        default=None,
+        metadata={
+            "name": "permission_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
 
@@ -304,15 +297,15 @@ class AccountingPoint(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    flow_commodity_option: Optional[str] = field(
+    flow_commodity_option: Optional[FlowCommodityOptionTypeList] = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
     permission: list[Permission] = field(
@@ -320,7 +313,7 @@ class AccountingPoint(BaseModel):
         metadata={
             "name": "Permission",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
 
@@ -331,7 +324,7 @@ class MktActivityRecord(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "required": True,
         }
     )
@@ -339,7 +332,7 @@ class MktActivityRecord(BaseModel):
         metadata={
             "name": "type",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
             "required": True,
         }
     )
@@ -348,7 +341,7 @@ class MktActivityRecord(BaseModel):
         metadata={
             "name": "AccountingPoint",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
 
@@ -356,7 +349,7 @@ class MktActivityRecord(BaseModel):
 class PermissionMarketDocument(BaseModel):
     class Meta:
         name = "Permission_MarketDocument"
-        namespace = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:0"
+        namespace = "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1"
 
     model_config = ConfigDict(defer_build=True)
     m_rid: str = field(

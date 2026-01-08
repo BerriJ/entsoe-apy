@@ -6,17 +6,26 @@ from xsdata.models.datatype import XmlDuration
 from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
+    AssetTypeList,
     BusinessTypeList,
+    ClassificationTypeList,
     CodingSchemeTypeList,
+    CurrencyTypeList,
+    CurveTypeList,
     EnergyProductTypeList,
+    FlowCommodityOptionTypeList,
     MessageTypeList,
+    ObjectAggregationTypeList,
     ProcessTypeList,
     QualityTypeList,
+    ReasonCodeTypeList,
     RoleTypeList,
+    SettlementMethodTypeList,
+    StatusTypeList,
     UnitOfMeasureTypeList,
 )
 
-__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
+__NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2"
 
 
 class EsmpDateTimeInterval(BaseModel):
@@ -27,7 +36,7 @@ class EsmpDateTimeInterval(BaseModel):
     start: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
@@ -35,9 +44,23 @@ class EsmpDateTimeInterval(BaseModel):
     end: str = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
+        }
+    )
+
+
+class ActionStatus(BaseModel):
+    class Meta:
+        name = "Action_Status"
+
+    model_config = ConfigDict(defer_build=True)
+    value: StatusTypeList = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
         }
     )
 
@@ -105,49 +128,106 @@ class PartyIdString(BaseModel):
     )
 
 
+class Reason(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    code: ReasonCodeTypeList = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    text: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "max_length": 512,
+        },
+    )
+
+
+class PartyMarketParticipant(BaseModel):
+    class Meta:
+        name = "Party_MarketParticipant"
+
+    model_config = ConfigDict(defer_build=True)
+    m_rid: PartyIdString = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    party_market_role_type: Optional[RoleTypeList] = field(
+        default=None,
+        metadata={
+            "name": "party_MarketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+        },
+    )
+
+
 class Point(BaseModel):
     model_config = ConfigDict(defer_build=True)
     position: int = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
         }
     )
-    quantity: Decimal = field(
+    in_quantity_quantity: Decimal = field(
         metadata={
+            "name": "in_Quantity.quantity",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
         }
     )
-    quality: QualityTypeList = field(
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
-        }
-    )
-
-
-class AccountingPoint(BaseModel):
-    model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    in_quantity_quality: Optional[QualityTypeList] = field(
         default=None,
         metadata={
-            "name": "mRID",
+            "name": "in_Quantity.quality",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
         },
     )
-    flow_commodity_option: Optional[str] = field(
+    out_quantity_quantity: Decimal = field(
+        metadata={
+            "name": "out_Quantity.quantity",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    out_quantity_quality: Optional[QualityTypeList] = field(
         default=None,
         metadata={
-            "name": "flowCommodityOption",
+            "name": "out_Quantity.quality",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+        },
+    )
+    price_amount: Optional[Decimal] = field(
+        default=None,
+        metadata={
+            "name": "price.amount",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "total_digits": 17,
+        },
+    )
+    reason: list[Reason] = field(
+        default_factory=list,
+        metadata={
+            "name": "Reason",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
         },
     )
 
@@ -157,18 +237,18 @@ class SeriesPeriod(BaseModel):
         name = "Series_Period"
 
     model_config = ConfigDict(defer_build=True)
-    resolution: XmlDuration = field(
-        metadata={
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
-        }
-    )
     time_interval: EsmpDateTimeInterval = field(
         metadata={
             "name": "timeInterval",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    resolution: XmlDuration = field(
+        metadata={
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
         }
     )
@@ -177,7 +257,7 @@ class SeriesPeriod(BaseModel):
         metadata={
             "name": "Point",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "min_occurs": 1,
         },
     )
@@ -189,7 +269,7 @@ class TimeSeries(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
             "max_length": 60,
         }
@@ -198,86 +278,133 @@ class TimeSeries(BaseModel):
         metadata={
             "name": "businessType",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
         }
     )
     product: EnergyProductTypeList = field(
         metadata={
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "required": True,
         }
     )
-    reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
-        default=None,
+    object_aggregation: ObjectAggregationTypeList = field(
         metadata={
-            "name": "reading_Period.timeInterval",
+            "name": "objectAggregation",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    curve_type: CurveTypeList = field(
+        metadata={
+            "name": "curveType",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    area_domain_m_rid: AreaIdString = field(
+        metadata={
+            "name": "area_Domain.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
+    )
+    market_participant: list[PartyMarketParticipant] = field(
+        default_factory=list,
+        metadata={
+            "name": "MarketParticipant",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
         },
     )
-    accounting_point_party_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    market_agreement_m_rid: Optional[str] = field(
         default=None,
         metadata={
-            "name": "accountingPointParty_MarketParticipant.mRID",
+            "name": "marketAgreement.mRID",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "max_length": 60,
         },
     )
-    accounting_point_party_market_participant_market_role_type: Optional[
-        RoleTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "accountingPointParty_MarketParticipant.marketRole.type",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
-    )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
-        default=None,
+    measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
             "name": "measurement_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            "required": True,
+        }
     )
-    accounting_point: list[AccountingPoint] = field(
-        default_factory=list,
-        metadata={
-            "name": "AccountingPoint",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
-    )
-    domain_m_rid: Optional[AreaIdString] = field(
+    currency_unit_name: Optional[CurrencyTypeList] = field(
         default=None,
         metadata={
-            "name": "domain.mRID",
+            "name": "currency_Unit.name",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
         },
+    )
+    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+        default=None,
+        metadata={
+            "name": "marketEvaluationPoint.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+        },
+    )
+    market_evaluation_point_flow_commodity_option: Optional[
+        FlowCommodityOptionTypeList
+    ] = field(
+        default=None,
+        metadata={
+            "name": "marketEvaluationPoint.flowCommodityOption",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+        },
+    )
+    mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
+        default=None,
+        metadata={
+            "name": "mktPSRType.psrType",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+        },
+    )
+    accounting_point_settlement_method: Optional[SettlementMethodTypeList] = (
+        field(
+            default=None,
+            metadata={
+                "name": "accountingPoint.settlementMethod",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
+            },
+        )
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
         metadata={
             "name": "Period",
             "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
             "min_occurs": 1,
+        },
+    )
+    reason: list[Reason] = field(
+        default_factory=list,
+        metadata={
+            "name": "Reason",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2",
         },
     )
 
 
-class MeasurementDataMarketDocument(BaseModel):
+class EnergyAccountMarketDocument(BaseModel):
     class Meta:
-        name = "MeasurementData_MarketDocument"
-        namespace = (
-            "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0"
-        )
+        name = "EnergyAccount_MarketDocument"
+        namespace = "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:4:2"
 
     model_config = ConfigDict(defer_build=True)
     m_rid: str = field(
@@ -288,6 +415,14 @@ class MeasurementDataMarketDocument(BaseModel):
             "max_length": 60,
         }
     )
+    revision_number: str = field(
+        metadata={
+            "name": "revisionNumber",
+            "type": "Element",
+            "required": True,
+            "pattern": r"[1-9]([0-9]){0,2}",
+        }
+    )
     type_value: MessageTypeList = field(
         metadata={
             "name": "type",
@@ -295,9 +430,23 @@ class MeasurementDataMarketDocument(BaseModel):
             "required": True,
         }
     )
+    doc_status: ActionStatus = field(
+        metadata={
+            "name": "docStatus",
+            "type": "Element",
+            "required": True,
+        }
+    )
     process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
+            "type": "Element",
+            "required": True,
+        }
+    )
+    process_classification_type: ClassificationTypeList = field(
+        metadata={
+            "name": "process.classificationType",
             "type": "Element",
             "required": True,
         }
@@ -345,10 +494,18 @@ class MeasurementDataMarketDocument(BaseModel):
             "required": True,
         }
     )
+    domain_m_rid: Optional[AreaIdString] = field(
+        default=None,
+        metadata={
+            "name": "domain.mRID",
+            "type": "Element",
+        },
+    )
     time_series: list[TimeSeries] = field(
         default_factory=list,
         metadata={
             "name": "TimeSeries",
             "type": "Element",
+            "min_occurs": 1,
         },
     )

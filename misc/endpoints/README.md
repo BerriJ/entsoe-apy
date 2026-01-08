@@ -1,8 +1,7 @@
-Endpoints extracted from Postman collection on 2026-01-08:
-
 To regenerate this list, run:
 
  ```sh
+./misc/get_postman.sh 
 ./misc/process_postman.sh 
  ```
 
