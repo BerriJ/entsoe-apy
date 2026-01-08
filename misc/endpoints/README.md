@@ -1,10 +1,9 @@
--e To regenerate this list, run:
+To regenerate this list, run:
 
  ```sh
 ./misc/get_postman.sh 
 ./misc/process_postman.sh 
  ```
-
 ## [Market](Market)
 - [12.1.E Implicit and Flow-based Allocations - Congestion Income](Market/12.1.E%20Implicit%20and%20Flow-based%20Allocations%20-%E2%80%89Congestion%20Income.json)
 - [12.1.B Total Nominated Capacity](Market/12.1.B%20Total%20Nominated%20Capacity.json)

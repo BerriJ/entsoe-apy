@@ -15,25 +15,31 @@ mkdir -p "$BASE_DIR"
 sanitize_path_component() {
     local input="$1"
     
-    # Reject if empty, null, or contains null byte
-    if [ -z "$input" ] || [ "$input" = "null" ] || echo "$input" | grep -q $'\0'; then
+    # Reject if empty or null
+    if [ -z "$input" ] || [ "$input" = "null" ]; then
         return 1
     fi
     
     # Reject if starts with slash (absolute path) or dash (command option)
-    if echo "$input" | grep -q '^[/-]'; then
-        return 1
-    fi
+    case "$input" in
+        /*|/|.|-*) return 1 ;;
+    esac
     
-    # Reject if contains path traversal sequences or other dangerous characters
-    if echo "$input" | grep -qE '(\.\./|/\.\.|^\.\.(/|$)|/|\\|\$|`|\||;|&|<|>|\(|\)|\{|\}|\[|\]|\*|\?|~|#|!|%|\^)'; then
-        return 1
-    fi
+    # Reject if contains path traversal sequences
+    case "$input" in
+        *..*|*/..*|*../*)  return 1 ;;
+    esac
     
-    # Accept only alphanumeric characters, spaces, hyphens, underscores, and periods (not at start)
-    if ! echo "$input" | grep -qE '^[A-Za-z0-9_][A-Za-z0-9_ .-]*$'; then
-        return 1
-    fi
+    # Reject if contains dangerous characters
+    case "$input" in
+        *\\*|*\$*|*\`*|*\|*|*\;*|*\&*|*\<*|*\>*) return 1 ;;
+        *\(*|*\)*|*\{*|*\}*|*\[*|*\]*) return 1 ;;
+        *\**|*\?*|*\~*|*\#*|*\!*|*\%*|*\^*) return 1 ;;
+    esac
+    
+    # Accept only if it matches safe pattern: starts with alphanumeric or underscore,
+    # followed by alphanumeric, space, hyphen, underscore, or period
+    echo "$input" | grep -qE '^[A-Za-z0-9_][A-Za-z0-9_ .-]*$' || return 1
     
     return 0
 }
@@ -89,6 +95,6 @@ echo "Done! Endpoint JSON files created in misc/endpoints/"
 jq '[.item[] | select(.item) | {name, items: [.item[] | select(.request.method == "GET") | .name]}]' "$POSTMAN_FILE" > "$BASE_DIR/all_endpoints.json"
 
 # Extract and display the names of all Endpoints from a Postman collection JSON file
-echo -e 'To regenerate this list, run:\n\n ```sh\n./misc/get_postman.sh \n./misc/process_postman.sh \n ```\n' > "$BASE_DIR/README.md"
+printf 'To regenerate this list, run:\n\n ```sh\n./misc/get_postman.sh \n./misc/process_postman.sh \n ```\n' > "$BASE_DIR/README.md"
 
 jq -r '.item[] | select(.item) | .name as $cat | "## [\($cat)](\($cat | @uri))", (.item[] | select(.name) | select(.request.method == "GET") | "- [\(.name)](\($cat | @uri)/\(.name | @uri).json)"), ""' "$POSTMAN_FILE" >> "$BASE_DIR/README.md"
