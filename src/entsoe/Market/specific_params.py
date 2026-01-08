@@ -333,8 +333,11 @@ class FlowBasedAllocations(Market):
 
     Fixed parameters:
 
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
+    - documentType: B09 (Flow based domain publication)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one MTU period
     """
 
     code = "11.1.B"
@@ -345,9 +348,7 @@ class FlowBasedAllocations(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
-        # Additional common parameters
+        process_type: str,
     ):
         """
         Initialize flow based allocations parameters.
@@ -355,22 +356,23 @@ class FlowBasedAllocations(Market):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
+            in_domain: EIC code of a Region
+            out_domain: EIC code of a Region
+            process_type: Process type (A43=Day ahead, A44=Intraday,
+                A32=Month-ahead, A33=Year-ahead)
         """
         # Initialize with preset and user parameters
         super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
+            document_type="B09",
+            process_type=process_type,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
         )
 
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
+        # Validate that in_domain and out_domain are the same
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
 
 
 class ContinuousAllocationsOfferedCapacity(Market):
@@ -610,61 +612,6 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class TransferCapacitiesThirdCountriesImplicit(Market):
-    """Parameters for 12.1.H Transfer Capacities Allocated with Third Countries.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/transCapAllocThirdCountries/show
-
-    Fixed parameters:
-
-    - documentType: A94 (Non EU allocations)
-    - auction_Type: A01 (Implicit)
-    """
-
-    code = "12.1.H"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        contract_market_agreement_type: Literal["A01", "A07"] = "A01",
-        classification_sequence_position: Optional[int] = None,
-        # Additional common parameters
-    ):
-        """
-        Initialize transfer capacities allocated with third countries parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of a Control Area, Bidding Zone or
-                Bidding Zone Aggregation
-            out_domain: EIC code of a Control Area, Bidding Zone or
-                Bidding Zone Aggregation
-            contract_market_agreement_type: A01=Daily; A07=Intraday
-            classification_sequence_position: Integer for classification
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A94",  # Fixed: Non EU allocations
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-        # Add optional classification parameter
-        param_name = "classificationSequence_AttributeInstanceComponent.Position"
-        self.add_optional_param(param_name, classification_sequence_position)
-
-
 class ImplicitAuctionNetPositions(Market):
     """Parameters for 12.1.E Implicit Auction — Net Positions.
 
@@ -709,53 +656,3 @@ class ImplicitAuctionNetPositions(Market):
 
         # Validate that in_domain and out_domain are the same
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
-
-
-class FlowBasedAllocationsLegacy(Market):
-    """Parameters for 11.1.B Flow Based Allocations (legacy).
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
-
-    Fixed parameters:
-
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
-
-    Note: This is the legacy version of Flow Based Allocations.
-    """
-
-    code = "11.1.B"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
-        # Additional common parameters
-    ):
-        """
-        Initialize flow based allocations (legacy) parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)

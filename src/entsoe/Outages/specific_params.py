@@ -405,3 +405,145 @@ class Fallbacks(Outages):
 
         # Add process type parameter specific to this endpoint
         self.add_business_params(process_type=process_type)
+
+
+class UnavailabilityOfTransmissionInfrastructureAvailableCapacity(Outages):
+    """Parameters for 10.1.A&B Unavailability of Transmission Infrastructure - Available Capacity.
+
+    Data view:
+    https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
+
+    Fixed parameters:
+
+    - documentType: A78 (Transmission unavailability)
+
+    Notes:
+    - Returns transmission infrastructure unavailability data with available capacity
+    - Uses ControlArea_Domain instead of BiddingZone_Domain or In/Out_Domain
+    - Can be filtered by business type (A53=Planned maintenance,
+      A54=Forced unavailability)
+    - Supports Asset_RegisteredResource for filtering by transmission asset
+    """
+
+    code = "10.1.A&B"
+
+    def __init__(
+        self,
+        control_area_domain: str,
+        # Time period parameters (at least one set required)
+        period_start: Optional[int] = None,
+        period_end: Optional[int] = None,
+        period_start_update: Optional[int] = None,
+        period_end_update: Optional[int] = None,
+        # Optional filtering parameters
+        business_type: Optional[str] = None,
+        asset_registered_resource: Optional[str] = None,
+        doc_status: Optional[str] = None,
+        m_rid: Optional[str] = None,
+        # Additional common parameters
+        offset: int = 0,
+    ):
+        """
+        Initialize unavailability of transmission infrastructure (available capacity) parameters.
+
+        Args:
+            control_area_domain: EIC code of Control Area or Bidding Zone
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            period_start_update: Start of update period (YYYYMMDDHHMM format)
+            period_end_update: End of update period (YYYYMMDDHHMM format)
+            business_type: Business type (A53=Planned maintenance,
+                A54=Forced unavailability)
+            asset_registered_resource: EIC code of a Transmission Asset
+            doc_status: Document status (A05=Active, A09=Cancelled,
+                A13=Withdrawn)
+            m_rid: Message ID for specific outage versions
+        """
+        super().__init__(
+            document_type="A78",
+            period_start=period_start,
+            period_end=period_end,
+            period_start_update=period_start_update,
+            period_end_update=period_end_update,
+            business_type=business_type,
+            doc_status=doc_status,
+            m_rid=m_rid,
+            offset=offset,
+        )
+
+        # Add domain parameter specific to this endpoint
+        self.add_domain_params(control_area_domain=control_area_domain)
+
+        # Add asset registered resource parameter if provided
+        self.add_resource_params(asset_registered_resource=asset_registered_resource)
+
+
+class UnavailabilityOfTransmissionInfrastructureNetPositionImpact(Outages):
+    """Parameters for 10.1.A&B Unavailability of Transmission Infrastructure - Net Position Impact.
+
+    Data view:
+    https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
+
+    Fixed parameters:
+
+    - documentType: A78 (Transmission unavailability)
+
+    Notes:
+    - Returns transmission infrastructure unavailability data with net position impact
+    - Uses pTDF_Domain (Control Area or Bidding Zone)
+    - Can be filtered by business type (A53=Planned maintenance,
+      A54=Forced unavailability)
+    - Supports Asset_RegisteredResource for filtering by transmission asset
+    """
+
+    code = "10.1.A&B"
+
+    def __init__(
+        self,
+        ptdf_domain: str,
+        # Time period parameters (at least one set required)
+        period_start: Optional[int] = None,
+        period_end: Optional[int] = None,
+        period_start_update: Optional[int] = None,
+        period_end_update: Optional[int] = None,
+        # Optional filtering parameters
+        business_type: Optional[str] = None,
+        asset_registered_resource: Optional[str] = None,
+        doc_status: Optional[str] = None,
+        m_rid: Optional[str] = None,
+        # Additional common parameters
+        offset: int = 0,
+    ):
+        """
+        Initialize unavailability of transmission infrastructure (net position impact) parameters.
+
+        Args:
+            ptdf_domain: EIC code of Control Area or Bidding Zone
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            period_start_update: Start of update period (YYYYMMDDHHMM format)
+            period_end_update: End of update period (YYYYMMDDHHMM format)
+            business_type: Business type (A53=Planned maintenance,
+                A54=Forced unavailability)
+            asset_registered_resource: EIC code of a Transmission Asset
+            doc_status: Document status (A05=Active, A09=Cancelled,
+                A13=Withdrawn)
+            m_rid: Message ID for specific outage versions
+        """
+        super().__init__(
+            document_type="A78",
+            period_start=period_start,
+            period_end=period_end,
+            period_start_update=period_start_update,
+            period_end_update=period_end_update,
+            business_type=business_type,
+            doc_status=doc_status,
+            m_rid=m_rid,
+            offset=offset,
+        )
+
+        # Add domain parameter specific to this endpoint
+        self.add_domain_params(ptdf_domain=ptdf_domain)
+
+        # Add asset registered resource parameter if provided
+        self.add_resource_params(asset_registered_resource=asset_registered_resource)

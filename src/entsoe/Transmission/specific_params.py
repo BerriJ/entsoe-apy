@@ -5,205 +5,9 @@ endpoints, each inheriting from TransmissionParams and providing preset values f
 fixed parameters.
 """
 
+from typing import Optional
+
 from ..Base.Transmission import Transmission
-
-
-class TotalNominatedCapacity(Transmission):
-    """Parameters for 12.1.B Total Nominated Capacity.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/scheduledCommercialExchangesDayAhead/show
-
-    Fixed parameters:
-
-    - documentType: A26 (Capacity document)
-    - businessType: B08 (Total nominated capacity)
-
-    Request Limits:
-    - One year range limit applies
-    - Minimum time interval in query response is one MTU period
-    """
-
-    code = "12.1.B"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        out_domain: str,
-        in_domain: str,
-    ):
-        """
-        Initialize total nominated capacity parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A26",
-            business_type="B08",
-            period_start=period_start,
-            period_end=period_end,
-            out_domain=out_domain,
-            in_domain=in_domain,
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-
-class ImplicitAllocationsOfferedCapacity(Transmission):
-    """Parameters for 11.1 Implicit Allocations - Offered Transfer Capacity.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
-
-    Fixed parameters:
-
-    - documentType: A31 (Agreed capacity)
-    - auction.Type: A01 (Implicit)
-    - contract_MarketAgreement.Type: A01 (Daily)
-
-    Request Limits:
-    - One year range limit applies
-    - Minimum time interval in query response is one MTU period
-    """
-
-    code = "11.1"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        out_domain: str,
-        in_domain: str,
-    ):
-        """
-        Initialize implicit allocations offered capacity parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A31",
-            period_start=period_start,
-            period_end=period_end,
-            out_domain=out_domain,
-            in_domain=in_domain,
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-        # Add specific parameters for implicit allocations
-        self.add_optional_param("auction.Type", "A01")
-        self.add_optional_param("contract_MarketAgreement.Type", "A01")
-
-
-class ExplicitAllocationsOfferedCapacity(Transmission):
-    """Parameters for 11.1.A Explicit Allocations - Offered Transfer Capacity.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/explicitCapacityAllocations/show
-
-    Fixed parameters:
-
-    - documentType: A31 (Agreed capacity)
-    - auction.Type: A02 (Explicit)
-    - contract_MarketAgreement.Type: A01 (Daily)
-
-    Request Limits:
-    - One year range limit applies
-    - Minimum time interval in query response is one MTU period
-    """
-
-    code = "11.1.A"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        out_domain: str,
-        in_domain: str,
-    ):
-        """
-        Initialize explicit allocations offered capacity parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone"""
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A31",
-            period_start=period_start,
-            period_end=period_end,
-            out_domain=out_domain,
-            in_domain=in_domain,
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-        # Add specific parameters for explicit allocations
-        self.add_optional_param("auction.Type", "A02")
-        self.add_optional_param("contract_MarketAgreement.Type", "A01")
-
-
-class TotalCapacityAlreadyAllocated(Transmission):
-    """Parameters for 12.1.C Total Capacity Already Allocated.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/capacityAllocations/show
-
-    Fixed parameters:
-
-    - documentType: A26 (Capacity document)
-    - businessType: A29 (Already allocated capacity)
-    - contract_MarketAgreement.Type: A01 (Daily)
-
-    Request Limits:
-    - One year range limit applies
-    - Minimum time interval in query response is one MTU period
-    """
-
-    code = "12.1.C"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        out_domain: str,
-        in_domain: str,
-    ):
-        """
-        Initialize total capacity already allocated parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone"""
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A26",
-            business_type="A29",
-            period_start=period_start,
-            period_end=period_end,
-            out_domain=out_domain,
-            in_domain=in_domain,
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-        # Add specific parameters
-        self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
 class CrossBorderPhysicalFlows(Transmission):
@@ -346,83 +150,330 @@ class ForecastedTransferCapacities(Transmission):
         self.add_optional_param("contract_MarketAgreement.Type", "A01")
 
 
-class FlowBasedAllocations(Transmission):
-    """Parameters for 11.1.B Flow Based Allocations.
+class CommercialSchedulesNetPositions(Transmission):
+    """Parameters for 12.1.F Commercial Schedules - Net Positions.
 
     Data view:
-    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocations/show
+    https://transparency.entsoe.eu/transmission/r2/dayAheadCommercialSchedules/show
 
     Fixed parameters:
 
-    - documentType: B09 (Flow based allocations)
-    - processType: A44 (Flow based)
+    - documentType: A09 (Finalised schedule)
 
     Request Limits:
     - One year range limit applies
     - Minimum time interval in query response is one MTU period
     """
 
-    code = "11.1.B"
+    code = "12.1.F"
 
     def __init__(
         self,
         period_start: int,
         period_end: int,
-        domain_mrid: str,
+        in_domain: str,
+        contract_market_agreement_type: Optional[str] = None,
     ):
         """
-        Initialize flow based allocations parameters.
+        Initialize commercial schedules net positions parameters.
 
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            domain_mrid: EIC code of a Region (e.g., 10YDOM-REGION-1V)"""
+            in_domain: EIC code of Control Area, Bidding Zone or Country
+                (in_domain and out_domain must be the same)
+            contract_market_agreement_type: A01=Day Ahead; A05=Total (optional)
+        """
         # Initialize with preset and user parameters
         super().__init__(
-            document_type="B09",
-            process_type="A44",
+            document_type="A09",
             period_start=period_start,
             period_end=period_end,
+            in_domain=in_domain,
+            out_domain=in_domain,  # Same as in_domain for net positions
         )
 
-        # Add the domain mRID parameter manually
-        self.add_optional_param("domain.mRID", domain_mrid)
+        # Add optional contract type
+        if contract_market_agreement_type:
+            self.add_optional_param(
+                "contract_MarketAgreement.Type", contract_market_agreement_type
+            )
 
 
-class UnavailabilityOffshoreGridInfrastructure(Transmission):
-    """Parameters for 10.1.C Unavailability of Offshore Grid Infrastructure.
+class CrossBorderCapacityDCLinks(Transmission):
+    """Parameters for 11.3 Cross Border Capacity of DC Links - Intraday Transfer Limits.
 
     Data view:
-    https://transparency.entsoe.eu/outages/r2/unavailabilityOfOffshoreGridInfrastructure/show
+    https://transparency.entsoe.eu/transmission/r2/dcLinkCapacity/show
 
     Fixed parameters:
 
-    - documentType: A79 (Unavailability of offshore grid)
+    - documentType: A93 (DC link capacity)
 
     Request Limits:
     - One year range limit applies
     - Minimum time interval in query response is one MTU period
     """
 
-    code = "10.1.C"
+    code = "11.3"
 
     def __init__(
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        in_domain: str,
+        out_domain: str,
     ):
         """
-        Initialize unavailability of offshore grid infrastructure parameters.
+        Initialize DC link capacity parameters.
 
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of bidding zone domain"""
+            in_domain: EIC code of Bidding Zone, Control Area or Country
+            out_domain: EIC code of Bidding Zone, Control Area or Country
+        """
         # Initialize with preset and user parameters
         super().__init__(
-            document_type="A79",
+            document_type="A93",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            in_domain=in_domain,
+            out_domain=out_domain,
         )
+
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
+
+
+class RedispatchingCrossBorder(Transmission):
+    """Parameters for 13.1.A Redispatching Cross Border.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission-domain/r2/redispatching/show
+
+    Fixed parameters:
+
+    - documentType: A63 (Redispatch notice)
+    - businessType: A46 (System Operator re-dispatching)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one day
+    """
+
+    code = "13.1.A"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+        out_domain: str,
+    ):
+        """
+        Initialize cross border redispatching parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of Control Area
+            out_domain: EIC code of Control Area
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="A63",
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=out_domain,
+            business_type="A46",  # Fixed: System Operator re-dispatching
+        )
+
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
+
+
+class RedispatchingInternal(Transmission):
+    """Parameters for 13.1.A Redispatching Internal.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission-domain/r2/redispatching/show
+
+    Fixed parameters:
+
+    - documentType: A63 (Redispatch notice)
+    - businessType: A85 (Internal requirements)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one day
+    """
+
+    code = "13.1.A"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+    ):
+        """
+        Initialize internal redispatching parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of Control Area (in_domain and out_domain
+                must be the same for internal)
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="A63",
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=in_domain,  # Same as in_domain for internal
+            business_type="A85",  # Fixed: Internal requirements
+        )
+
+
+class Countertrading(Transmission):
+    """Parameters for 13.1.B Countertrading.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission-domain/r2/countertrading/show
+
+    Fixed parameters:
+
+    - documentType: A91 (Counter trade notice)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one day
+    """
+
+    code = "13.1.B"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+        out_domain: str,
+    ):
+        """
+        Initialize countertrading parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of Control Area or Bidding Zone
+            out_domain: EIC code of Control Area or Bidding Zone
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="A91",
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=out_domain,
+        )
+
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
+
+
+class CostsOfCongestionManagement(Transmission):
+    """Parameters for 13.1.C Costs of Congestion Management.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission-domain/r2/congestionManagementCosts/show
+
+    Fixed parameters:
+
+    - documentType: A92 (Congestion costs)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one year
+    """
+
+    code = "13.1.C"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+    ):
+        """
+        Initialize congestion management costs parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of Control Area (in_domain and out_domain
+                must be the same)
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="A92",
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=in_domain,  # Same as in_domain
+        )
+
+
+class ExpansionAndDismantlingProject(Transmission):
+    """Parameters for 9.1 Expansion and Dismantling Project.
+
+    Data view:
+    https://transparency.entsoe.eu/transmission-domain/r2/networkExpansion/show
+
+    Fixed parameters:
+
+    - documentType: A90 (Interconnector network expansion)
+
+    Request Limits:
+    - One year range limit applies
+    - Minimum time interval in query response is one year
+    """
+
+    code = "9.1"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        in_domain: str,
+        out_domain: str,
+        business_type: Optional[str] = None,
+        doc_status: Optional[str] = None,
+    ):
+        """
+        Initialize expansion and dismantling project parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            in_domain: EIC code of Bidding Zone or Control Area
+            out_domain: EIC code of Bidding Zone or Control Area
+            business_type: B01=interconnector network evolution;
+                B02=interconnector network dismantling (optional)
+            doc_status: A01=Intermediate; A02=Final; A05=Active; A09=Cancelled;
+                A13=Withdrawn; X01=Estimated (optional)
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="A90",
+            period_start=period_start,
+            period_end=period_end,
+            in_domain=in_domain,
+            out_domain=out_domain,
+            business_type=business_type,
+        )
+
+        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
+
+        # Add optional doc status
+        if doc_status:
+            self.add_optional_param("DocStatus", doc_status)
