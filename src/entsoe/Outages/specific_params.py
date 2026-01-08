@@ -453,10 +453,10 @@ class UnavailabilityOfTransmissionInfrastructureAvailableCapacity(Outages):
             period_start_update: Start of update period (YYYYMMDDHHMM format)
             period_end_update: End of update period (YYYYMMDDHHMM format)
             business_type: Business type (A53=Planned maintenance,
-                         A54=Forced unavailability)
+                A54=Forced unavailability)
             asset_registered_resource: EIC code of a Transmission Asset
             doc_status: Document status (A05=Active, A09=Cancelled,
-                       A13=Withdrawn)
+                A13=Withdrawn)
             m_rid: Message ID for specific outage versions
         """
         super().__init__(
@@ -524,10 +524,10 @@ class UnavailabilityOfTransmissionInfrastructureNetPositionImpact(Outages):
             period_start_update: Start of update period (YYYYMMDDHHMM format)
             period_end_update: End of update period (YYYYMMDDHHMM format)
             business_type: Business type (A53=Planned maintenance,
-                         A54=Forced unavailability)
+                A54=Forced unavailability)
             asset_registered_resource: EIC code of a Transmission Asset
             doc_status: Document status (A05=Active, A09=Cancelled,
-                       A13=Withdrawn)
+                A13=Withdrawn)
             m_rid: Message ID for specific outage versions
         """
         super().__init__(

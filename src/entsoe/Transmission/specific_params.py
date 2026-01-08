@@ -379,8 +379,8 @@ class FlowBasedAllocations(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Region
             out_domain: EIC code of a Region
-            process_type: Process type (A43=Day ahead, A44=Intraday, 
-                         A32=Month-ahead, A33=Year-ahead)
+            process_type: Process type (A43=Day ahead, A44=Intraday,
+                A32=Month-ahead, A33=Year-ahead)
         """
         # Initialize with preset and user parameters
         super().__init__(
