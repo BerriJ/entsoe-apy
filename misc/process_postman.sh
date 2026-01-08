@@ -43,6 +43,6 @@ echo "Done! Endpoint JSON files created in misc/endpoints/"
 jq '[.item[] | select(.item) | {name, items: [.item[] | select(.request.method == "GET") | .name]}]' "$POSTMAN_FILE" > ./misc/endpoints/all_endpoints.json
 
 # Extract and display the names of all Endpoints from a Postman collection JSON file
-echo -e 'To regenerate this list, run:\n\n ```sh\n./misc/get_postman.sh \n./misc/process_postman.sh \n ```\n' > misc/endpoints/README.md
+echo 'To regenerate this list, run:\n\n ```sh\n./misc/get_postman.sh \n./misc/process_postman.sh \n ```\n' > misc/endpoints/README.md
 
 jq -r '.item[] | select(.item) | .name as $cat | "## [\($cat)](\($cat | @uri))", (.item[] | select(.name) | select(.request.method == "GET") | "- [\(.name)](\($cat | @uri)/\(.name | @uri).json)"), ""' "$POSTMAN_FILE" >> misc/endpoints/README.md
