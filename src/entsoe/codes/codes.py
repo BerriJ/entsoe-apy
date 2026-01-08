@@ -674,7 +674,9 @@ class StandardFuelTypeList(Enum):
 
 class StandardGridAgreementTypeList(Enum):
     E01 = "Grid usage contract directly between Grid Access Provider and Customer"
-    E02 = "Grid usage contract  directly between Energy Supplier and Grid Access Provider"
+    E02 = (
+        "Grid usage contract  directly between Energy Supplier and Grid Access Provider"
+    )
     E03 = "Grid usage contract  between Grid Access Provider and Customer through Energy Supplier"
     E04 = "No grid usage contract"
 
