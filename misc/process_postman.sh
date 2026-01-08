@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+rm -rf ./misc/endpoints
+
 # Input file path
 POSTMAN_FILE="./misc/Transparency Platform Restful API.postman_collection.json"
 
@@ -32,7 +34,7 @@ jq '[.item[] | select(.item) | {name, items: [.item[].name]}]' "$POSTMAN_FILE" >
 
 # Extract and display the names of all Endpoints from a Postman collection JSON file
 echo -e "Endpoints extracted from Postman collection on $(date +"%Y-%m-%d"):\n" > misc/endpoints/README.md
-"$POSTMAN_FILE"
+
 echo -e 'To regenerate this list, run:\n\n ```sh\n./misc/process_postman.sh \n ```\n' >> misc/endpoints/README.md
 
 jq -r '.item[] | select(.item) | .name as $cat | "## [\($cat)](\($cat | @uri))", (.item[] | select(.name) | "- [\(.name)](\($cat | @uri)/\(.name | @uri).json)"), ""' "$POSTMAN_FILE" >> misc/endpoints/README.md

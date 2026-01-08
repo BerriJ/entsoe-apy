@@ -1,0 +1,37 @@
+{
+  "name": "12.1.F Commercial Schedules - Net Positions",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A09",
+      "description": "[M] A09 = Finalised schedule"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or a Country"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YAT-APG------L",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or a Country (same as above)"
+    },
+    {
+      "key": "periodStart",
+      "value": "202506102200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202506112200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "contract_MarketAgreement.Type",
+      "value": "A01",
+      "description": "[O] A01 = Day Ahead Commercial Schedules; A05 = Total Commercial Schedules",
+      "disabled": true
+    }
+  ]
+}

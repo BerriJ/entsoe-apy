@@ -1,25 +1,25 @@
 {
-  "name": "15.1.A&B Unavailability of Generation Units",
+  "name": "10.1.A&B Unavailability of Transmission Infrastructure  - Net Position Impact",
   "method": "GET",
   "query": [
     {
       "key": "documentType",
-      "value": "A80",
-      "description": "[M] A80 = Generation unavailability"
+      "value": "A78",
+      "description": "[M] A78 = Transmission unavailability"
     },
     {
-      "key": "BiddingZone_Domain",
+      "key": "pTDF_Domain.mRID",
       "value": "10YBE----------2",
       "description": "[M] Control Area, Bidding Zone (optional if mRID is present)"
     },
     {
       "key": "periodStart",
-      "value": "202301022200",
+      "value": "202312012300",
       "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
     },
     {
       "key": "periodEnd",
-      "value": "202401022200",
+      "value": "202312022300",
       "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
     },
     {
@@ -31,37 +31,37 @@
     {
       "key": "DocStatus",
       "value": "A05",
-      "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned): A05 = Active; A09 = Cancelled; A13 = Withdrawn",
+      "description": "[O] DocStatus (when not defined only Active and Cancelled outages are returned)\nA05\t= Active\nA09\t= Cancelled\nA13\t= Withdrawn",
       "disabled": true
     },
     {
       "key": "PeriodStartUpdate",
-      "value": "202301031000",
+      "value": "202111090000",
       "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
       "disabled": true
     },
     {
       "key": "PeriodEndUpdate",
-      "value": "202301032200",
+      "value": "202112212300",
       "description": "[O] Pattern yyyyMMddHHmm e.g. 201601010000",
       "disabled": true
     },
     {
-      "key": "RegisteredResource",
-      "value": "22WCOOX6X000064W",
-      "description": "[O] EIC Code of Generation Unit",
-      "disabled": true
-    },
-    {
       "key": "mRID",
-      "value": "nCYGn4HPvOBiVrWtRFL35g",
-      "description": "[O] Used to retrieve older versions of an outage",
+      "value": "A47mJe5e9jml9FeSL6jfKg",
+      "description": "[O] Used to retrieve previous outage versions",
       "disabled": true
     },
     {
       "key": "offset",
       "value": "0",
-      "description": "[O] Integer (Enables downloading more than 200 documents. The offset ∈ [0,4800] so that paging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)",
+      "description": "[O] Integer (allows downloading more than 200 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
+      "disabled": true
+    },
+    {
+      "key": "Asset_RegisteredResource.mRID",
+      "value": "",
+      "description": "EIC Code of the Transmission Asset",
       "disabled": true
     }
   ]

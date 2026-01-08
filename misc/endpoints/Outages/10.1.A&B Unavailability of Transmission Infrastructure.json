@@ -62,12 +62,6 @@
       "value": "0",
       "description": "[O] Integer (allows downloading more than 200 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)\n",
       "disabled": true
-    },
-    {
-      "key": "TimeIntervalUpdate",
-      "value": "2021-11-09T00:00Z/2021-12-22T00:00Z",
-      "description": "[O] Can be used instead of PeriodStartUpdate & PeriodEndUpdate",
-      "disabled": true
     }
   ]
 }

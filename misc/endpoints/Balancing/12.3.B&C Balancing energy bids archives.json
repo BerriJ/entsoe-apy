@@ -31,6 +31,16 @@
       "key": "periodEnd",
       "value": "202310082200",
       "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000. Note data is archived after 93 days of retention period. Therefore the requested period should not be within the retention period."
+    },
+    {
+      "key": "storageType",
+      "value": "archive ",
+      "description": "[M] Used to request archives"
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset must belong to the range [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)"
     }
   ]
 }

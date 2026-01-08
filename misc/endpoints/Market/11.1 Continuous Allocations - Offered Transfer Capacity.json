@@ -35,8 +35,7 @@
     {
       "key": "Contract_MarketAgreement.Type",
       "value": "A07",
-      "description": "[O] A07 = Intraday",
-      "disabled": true
+      "description": "[M] A07 = Intraday"
     },
     {
       "key": "Update_DateAndOrTime",

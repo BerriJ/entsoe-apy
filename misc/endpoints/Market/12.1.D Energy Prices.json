@@ -30,7 +30,8 @@
     {
       "key": "contract_MarketAgreement.type",
       "value": "A01",
-      "description": "[O] A01 = Day-ahead ; A07 = Intraday"
+      "description": "[O] A01 = Day-ahead ; A07 = Intraday",
+      "disabled": true
     },
     {
       "key": "classificationSequence_AttributeInstanceComponent.position",
