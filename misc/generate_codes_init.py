@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate __init__.py for the codes module by extracting all enums from codes.py."""
 
-import re
 from pathlib import Path
+import re
 
 
 def extract_class_names(codes_file: Path) -> list[str]:
