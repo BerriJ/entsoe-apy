@@ -2,7 +2,7 @@ name: Daily Upstream Check
 
 on:
   schedule:
-    - cron: "34 2 * * *"
+    - cron: "*/10 * * * *"
 
 jobs:
   update-json-pr:
