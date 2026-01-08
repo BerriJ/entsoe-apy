@@ -1,0 +1,31 @@
+name: Daily Upstream Check
+
+on:
+  schedule:
+    - cron: "34 2 * * *"
+
+jobs:
+  update-json-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write # Needed to create the PR
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch JSON
+        run: ./misc/get_postman.sh
+
+      - name: Process JSON
+        run: ./misc/process_postman.sh
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update postman json"
+          title: "Update Postman Documentation"
+          body: "The postman documentation has changed. This PR updates the local copy."
+          branch: "automated"
+          base: "develop"
