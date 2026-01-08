@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 
 # Load the XSD
-file_path = "urn-entsoe-eu-wgedi-codelists.xsd"
+file_path = "xsd/urn-entsoe-eu-wgedi-codelists.xsd"
 tree = ET.parse(file_path)
 root = tree.getroot()
 
@@ -43,7 +43,7 @@ for simple_type in root.findall("xs:simpleType", ns):
         enum_classes_fixed.append("\n".join(lines))
 
 # Write all enum classes to a file
-output_file = "../src/entsoe/codes/codes.py"
+output_file = "src/entsoe/codes/codes.py"
 
 with open(output_file, "w") as f:
     f.write("from enum import Enum\n\n")
