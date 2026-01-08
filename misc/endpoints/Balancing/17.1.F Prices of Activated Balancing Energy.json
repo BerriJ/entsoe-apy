@@ -10,7 +10,7 @@
     {
       "key": "processType",
       "value": "A16",
-      "description": "[M] A16\t= Realised; A60 = Scheduled activation mFRR; A61 = Direct activation mFRR; A68 = Local Selection aFRR"
+      "description": "[M] A16 = Realised; A60 = Scheduled activation mFRR; A61 = Direct activation mFRR; A68 = Local Selection aFRR"
     },
     {
       "key": "controlArea_Domain",

@@ -20,7 +20,7 @@
     {
       "key": "out_Domain",
       "value": "10YAT-APG------L",
-      "description": "[M] EIC code of a Bidding Zone "
+      "description": "[M] EIC code of a Bidding Zone"
     },
     {
       "key": "in_Domain",
@@ -42,7 +42,7 @@
     {
       "key": "offset",
       "value": "0",
-      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)\n",
+      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
       "disabled": true
     }
   ]

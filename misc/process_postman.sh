@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 rm -rf ./misc/endpoints
 
@@ -22,7 +22,17 @@ jq -c '.item[] | select(.item) | {name: .name, items: .item}' "$POSTMAN_FILE" | 
         # Skip if endpoint has no name or name is null
         if [ -n "$endpoint_name" ] && [ "$endpoint_name" != "null" ]; then
             # Write endpoint to individual JSON file with filtered fields
-            echo "$endpoint" | jq '{name: .name, method: .request.method, query: .request.url.query}' > "./misc/endpoints/$category_name/$endpoint_name.json"
+            # Extract query parameters and clean up descriptions
+            echo "$endpoint" | jq '{
+                name: .name, 
+                method: .request.method, 
+                query: ((.request.urlObject.query // .request.url.query) | map({
+                    key: .key,
+                    value: .value,
+                    description: (if .description.content then (.description.content | gsub("<[^>]*>"; "") | gsub("\\n"; " ") | gsub("^\\s+|\\s+$"; "")) else .description end),
+                    disabled: .disabled
+                } | if .disabled then . else del(.disabled) end))
+            }' > "./misc/endpoints/$category_name/$endpoint_name.json"
             echo "  Created: ./misc/endpoints/$category_name/$endpoint_name.json"
         fi
     done

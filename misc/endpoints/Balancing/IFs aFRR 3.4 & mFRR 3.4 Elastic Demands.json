@@ -35,7 +35,7 @@
     {
       "key": "offset",
       "value": "0",
-      "description": "[O] Integer (0 - 4800) ",
+      "description": "[O] Integer (0 - 4800)",
       "disabled": true
     }
   ]
