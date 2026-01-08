@@ -1,0 +1,42 @@
+name: Daily Upstream Check for XSD-Schema Changes
+
+on:
+  schedule:
+    - cron: "58 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-json-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write # Needed to create the PR
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install xsdata[cli] beautifulsoup4 requests
+          pip install -r requirements.txt
+
+      - name: Fetch JSON
+        run: ./misc/regenerate_xml_models.sh
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          commit-message: "chore: update xml models"
+          title: "Update XSD Schema"
+          body: "The XSD schema have changed. This PR updates the local XML models."
+          branch: "automated-xsd-update"
+          base: "develop"
