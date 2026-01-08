@@ -12,6 +12,8 @@ from .specific_params import (
     UnavailabilityOfOffshoreGridInfrastructure,
     UnavailabilityOfProductionUnits,
     UnavailabilityOfTransmissionInfrastructure,
+    UnavailabilityOfTransmissionInfrastructureAvailableCapacity,
+    UnavailabilityOfTransmissionInfrastructureNetPositionImpact,
 )
 
 __all__ = [
@@ -19,6 +21,8 @@ __all__ = [
     "UnavailabilityOfGenerationUnits",
     "AggregatedUnavailabilityOfConsumptionUnits",
     "UnavailabilityOfTransmissionInfrastructure",
+    "UnavailabilityOfTransmissionInfrastructureAvailableCapacity",
+    "UnavailabilityOfTransmissionInfrastructureNetPositionImpact",
     "UnavailabilityOfOffshoreGridInfrastructure",
     "Fallbacks",
 ]

@@ -325,54 +325,6 @@ class ExplicitAllocationsOfferedCapacity(Market):
         self.add_optional_param(param_name, classification_sequence_position)
 
 
-class FlowBasedAllocations(Market):
-    """Parameters for 11.1.B Flow Based Allocations.
-
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
-
-    Fixed parameters:
-
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
-    """
-
-    code = "11.1.B"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
-        # Additional common parameters
-    ):
-        """
-        Initialize flow based allocations parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
-
-
 class ContinuousAllocationsOfferedCapacity(Market):
     """Parameters for 11.1 Continuous Allocations - Offered Transfer Capacity.
 
@@ -711,51 +663,4 @@ class ImplicitAuctionNetPositions(Market):
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=True)
 
 
-class FlowBasedAllocationsLegacy(Market):
-    """Parameters for 11.1.B Flow Based Allocations (legacy).
 
-    Data view:
-    https://transparency.entsoe.eu/transmission/r2/flowBasedAllocationsDayAhead/show
-
-    Fixed parameters:
-
-    - documentType: A94 (Flow-based allocations)
-    - auction_Type: A01 (Implicit)
-
-    Note: This is the legacy version of Flow Based Allocations.
-    """
-
-    code = "11.1.B"
-
-    def __init__(
-        self,
-        period_start: int,
-        period_end: int,
-        in_domain: str,
-        out_domain: str,
-        # Only Day ahead for Flow Based
-        contract_market_agreement_type: Literal["A01"] = "A01",
-        # Additional common parameters
-    ):
-        """
-        Initialize flow based allocations (legacy) parameters.
-
-        Args:
-            period_start: Start period (YYYYMMDDHHMM format)
-            period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            out_domain: EIC code of Control Area, Bidding Zone or Aggregation
-            contract_market_agreement_type: A01=Day ahead (Flow Based only)
-        """
-        # Initialize with preset and user parameters
-        super().__init__(
-            document_type="A94",  # Fixed: Flow-based allocations
-            period_start=period_start,
-            period_end=period_end,
-            in_domain=in_domain,
-            out_domain=out_domain,
-            contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A01",  # Fixed: Implicit
-        )
-
-        self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)

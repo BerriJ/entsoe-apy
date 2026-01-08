@@ -132,6 +132,7 @@ class Base:
         acquiring_domain: Optional[str] = None,
         connecting_domain: Optional[str] = None,
         control_area_domain: Optional[str] = None,
+        ptdf_domain: Optional[str] = None,
         area_domain: Optional[str] = None,
         domain: Optional[str] = None,
     ) -> None:
@@ -147,6 +148,7 @@ class Base:
             acquiring_domain: Acquiring domain (EIC code)
             connecting_domain: Connecting domain (EIC code)
             control_area_domain: Control area domain (EIC code)
+            ptdf_domain: PTDF domain (EIC code)
             area_domain: Area domain (EIC code)
             domain: Domain (EIC code)
         """
@@ -159,6 +161,7 @@ class Base:
         self.validate_eic_code(acquiring_domain, "acquiring_domain")
         self.validate_eic_code(connecting_domain, "connecting_domain")
         self.validate_eic_code(control_area_domain, "control_area_domain")
+        self.validate_eic_code(ptdf_domain, "ptdf_domain")
         self.validate_eic_code(area_domain, "area_domain")
         self.validate_eic_code(domain, "domain")
 
@@ -170,6 +173,7 @@ class Base:
         self.add_optional_param("acquiring_Domain", acquiring_domain)
         self.add_optional_param("connecting_Domain", connecting_domain)
         self.add_optional_param("controlArea_Domain", control_area_domain)
+        self.add_optional_param("pTDF_Domain.mRID", ptdf_domain)
         self.add_optional_param("area_Domain", area_domain)
         self.add_optional_param("Domain", domain)
 
@@ -240,6 +244,7 @@ class Base:
     def add_resource_params(
         self,
         registered_resource: Optional[str] = None,
+        asset_registered_resource: Optional[str] = None,
         subject_party_name: Optional[str] = None,
         subject_party_market_role: Optional[str] = None,
     ) -> None:
@@ -248,13 +253,16 @@ class Base:
 
         Args:
             registered_resource: Registered resource identifier (EIC code)
+            asset_registered_resource: Asset registered resource identifier (EIC code)
             subject_party_name: Subject party name
             subject_party_market_role: Subject party market role
         """
         # Validate EIC code for registered_resource
         self.validate_eic_code(registered_resource, "registered_resource")
+        self.validate_eic_code(asset_registered_resource, "asset_registered_resource")
 
         self.add_optional_param("registeredResource", registered_resource)
+        self.add_optional_param("Asset_RegisteredResource.mRID", asset_registered_resource)
         self.add_optional_param("subject_Party.name", subject_party_name)
         self.add_optional_param(
             "subject_Party.marketRole.type", subject_party_market_role
