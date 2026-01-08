@@ -1,4 +1,4 @@
-To regenerate this list, run:
+-e To regenerate this list, run:
 
  ```sh
 ./misc/get_postman.sh 
