@@ -3,6 +3,7 @@ name: Daily Upstream Check
 on:
   schedule:
     - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 jobs:
   update-json-pr:
