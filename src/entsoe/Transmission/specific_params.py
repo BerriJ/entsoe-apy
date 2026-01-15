@@ -81,7 +81,7 @@ class CommercialSchedules(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
-        contract_market_agreement_type: Optional[Literal["A01", "A05"]] = "A01",
+        contract_market_agreement_type: Optional[Literal["A01", "A05"]] = None,
     ):
         """
         Initialize commercial schedules parameters.
@@ -91,7 +91,7 @@ class CommercialSchedules(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            contract_market_agreement_type: A01=Day Ahead Commercial Schedules (default),
+            contract_market_agreement_type: A01=Day Ahead Commercial Schedules,
                                            A05=Total Commercial Schedules (optional)
         """
         # Initialize with preset and user parameters
@@ -139,7 +139,7 @@ class ForecastedTransferCapacities(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
-        contract_market_agreement_type: Literal["A01", "A02", "A03", "A04"] = "A01",
+        contract_market_agreement_type: Literal["A01", "A02", "A03", "A04"],
     ):
         """
         Initialize forecasted transfer capacities parameters.
@@ -149,7 +149,7 @@ class ForecastedTransferCapacities(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
             in_domain: EIC code of input domain/bidding zone
-            contract_market_agreement_type: A01=Day ahead (default), A02=Week ahead,
+            contract_market_agreement_type: A01=Day ahead, A02=Week ahead,
                                            A03=Month ahead, A04=Year ahead
         """
         # Initialize with preset and user parameters
@@ -164,9 +164,10 @@ class ForecastedTransferCapacities(Transmission):
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
 
         # Add contract market agreement type parameter
-        self.add_optional_param(
-            "contract_MarketAgreement.Type", contract_market_agreement_type
-        )
+        if contract_market_agreement_type:
+            self.add_optional_param(
+                "contract_MarketAgreement.Type", contract_market_agreement_type
+            )
 
 
 class CommercialSchedulesNetPositions(Transmission):

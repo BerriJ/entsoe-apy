@@ -87,12 +87,12 @@ class VolumesAndPricesOfContractedReserves(Balancing):
     Required parameters:
     - type_marketagreement_type: A01=Daily, A02=Weekly, A03=Monthly, A04=Yearly,
                                  A06=Long term, A13=Hourly
-    - processType: A51=Automatic frequency restoration reserve,
-                  A52=Frequency containment reserve, A47=Manual frequency
-                  restoration reserve, A46=Replacement reserve
 
     Optional parameters:
     - psrType: A03=Mixed, A04=Generation, A05=Load
+    - processType: A51=Automatic frequency restoration reserve,
+                  A52=Frequency containment reserve, A47=Manual frequency
+                  restoration reserve, A46=Replacement reserve
     """
 
     code = "17.1.B_C"
@@ -192,7 +192,7 @@ class TotalImbalanceVolumes(Balancing):
     - documentType: A86 (Imbalance volume)
 
     Optional parameters:
-    - businessType: A19=Balance Energy Deviation (default when not specified)
+    - businessType: A19=Balance Energy Deviation
     """
 
     code = "17.1.H"
@@ -213,7 +213,7 @@ class TotalImbalanceVolumes(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balance Area
-            business_type: A19=Balance Energy Deviation (default)
+            business_type: A19=Balance Energy Deviation
         """
         # Initialize with preset and user parameters
         super().__init__(
