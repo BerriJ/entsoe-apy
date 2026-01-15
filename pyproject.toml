@@ -8,7 +8,7 @@ version = "0.8.0"
 description = "A Python library for accessing ENTSO-E Transparency Platform API endpoints"
 readme = "README.md"
 license = "GPL-3.0-or-later"
-requires-python = ">=3.11.0"
+requires-python = ">=3.11.0,<=3.13.0"
 keywords = ["entsoe", "energy", "electricity", "api", "transparency", "platform"]
 classifiers = [
   "Development Status :: 4 - Beta",
