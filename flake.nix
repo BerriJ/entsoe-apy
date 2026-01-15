@@ -13,9 +13,42 @@
         inherit system;
       };
       pypkgs = pkgs.python313Packages;
+      pyproject = fromTOML (builtins.readFile ./pyproject.toml);
     in
     {
-      devShells.${system}.default = pkgs.mkShell rec {
+      packages.${system} = rec {
+        default = pypkgs.buildPythonPackage {
+          pname = pyproject.project.name;
+          version = pyproject.project.version;
+          pyproject = true;
+
+          src = self;
+
+          build-system = [ pypkgs.setuptools ];
+
+          dependencies = with pypkgs; [
+            httpx
+            loguru
+            xsdata-pydantic
+            isodate
+          ];
+
+          nativeCheckInputs = [ pypkgs.pytestCheckHook ];
+
+          pythonImportsCheck = [ "entsoe" ];
+
+          meta = with pkgs.lib; {
+            description = pyproject.project.description;
+            homepage = pyproject.project.urls.Homepage;
+            license = licenses.gpl3Only;
+            maintainers = with lib.maintainers; [ berrij ];
+            platforms = platforms.all;
+          };
+        };
+        entsoe-apy = default;
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
         name = "Python";
         venvDir = "./.venv";
         buildInputs = [
