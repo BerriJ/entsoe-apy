@@ -200,7 +200,7 @@ class Base:
         contract_market_agreement_type: Optional[str] = None,
         auction_type: Optional[str] = None,
         auction_category: Optional[str] = None,
-        type_marketplace_agreement_type: Optional[str] = None,
+        type_marketagreement_type: Optional[str] = None,
     ) -> None:
         """
         Add market-related parameters to the params dictionary.
@@ -209,16 +209,14 @@ class Base:
             contract_market_agreement_type: Contract market agreement type
             auction_type: Auction type
             auction_category: Auction category
-            type_marketplace_agreement_type: Type marketplace agreement
+            type_marketagreement_type: Type market agreement
         """
         self.add_optional_param(
             "contract_MarketAgreement.Type", contract_market_agreement_type
         )
         self.add_optional_param("auction.Type", auction_type)
         self.add_optional_param("auction.category", auction_category)
-        self.add_optional_param(
-            "type_MarketAgreement.Type", type_marketplace_agreement_type
-        )
+        self.add_optional_param("type_MarketAgreement.Type", type_marketagreement_type)
 
     def add_balancing_params(
         self,

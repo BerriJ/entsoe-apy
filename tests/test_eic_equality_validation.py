@@ -200,6 +200,7 @@ class TestEICEqualityValidation:
             period_end=202101022300,
             in_domain="10YGB----------A",
             out_domain="10YFR-RTE------C",
+            contract_market_agreement_type="A01",
         )
         assert capacities.params["in_Domain"] == "10YGB----------A"
         assert capacities.params["out_Domain"] == "10YFR-RTE------C"
@@ -211,6 +212,7 @@ class TestEICEqualityValidation:
                 period_end=202101022300,
                 in_domain="10YGB----------A",
                 out_domain="10YGB----------A",
+                contract_market_agreement_type="A01",
             )
 
         assert "must be different" in str(exc_info.value)

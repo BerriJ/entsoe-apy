@@ -231,7 +231,15 @@ class TotalCapacityAllocated(Market):
     Fixed parameters:
 
     - documentType: A26 (Capacity document)
-    - businessType: B07 (Total allocated capacity)
+    - businessType: A29 (Already Allocated Capacity)
+
+    Required parameters:
+    - contract_market_agreement_type: A01=Daily, A02=Weekly, A03=Monthly,
+                                      A04=Yearly, A06=Long Term, A07=Intraday,
+                                      A08=Quarterly
+
+    Optional parameters:
+    - auction_category: A01=Base, A02=Peak, A03=Off Peak, A04=Hourly
     """
 
     code = "12.1.C"
@@ -242,7 +250,11 @@ class TotalCapacityAllocated(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
+        contract_market_agreement_type: Literal[
+            "A01", "A02", "A03", "A04", "A06", "A07", "A08"
+        ],
+        # Optional parameters
+        auction_category: Optional[Literal["A01", "A02", "A03", "A04"]] = None,
         # Additional common parameters
     ):
         """
@@ -251,9 +263,12 @@ class TotalCapacityAllocated(Market):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            in_domain: EIC code of a Control Area or Bidding Zone
-            out_domain: EIC code of a Control Area or Bidding Zone
-            contract_market_agreement_type: A01=Daily; A07=Intraday
+            in_domain: EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation
+            out_domain: EIC code of a Control Area, Bidding Zone or Bidding Zone Aggregation
+            contract_market_agreement_type: A01=Daily, A02=Weekly, A03=Monthly,
+                                           A04=Yearly, A06=Long Term, A07=Intraday,
+                                           A08=Quarterly
+            auction_category: A01=Base, A02=Peak, A03=Off Peak, A04=Hourly (optional)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -262,8 +277,9 @@ class TotalCapacityAllocated(Market):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            business_type="B07",  # Fixed: Total allocated capacity
+            business_type="A29",  # Fixed: Already Allocated Capacity
             contract_market_agreement_type=contract_market_agreement_type,
+            auction_category=auction_category,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -384,8 +400,15 @@ class ContinuousAllocationsOfferedCapacity(Market):
 
     Fixed parameters:
 
-    - documentType: B33 (Continuous capacity document)
     - auction_Type: A08 (Continuous)
+
+    Required parameters:
+    - document_type: A31=Agreed capacity (intermediate OC values),
+                    B33=Published offered capacity (most recent published OC values)
+
+    Notes:
+    - A31 provides intermediate OC values
+    - B33 provides most recent published OC values
     """
 
     code = "11.1"
@@ -396,6 +419,8 @@ class ContinuousAllocationsOfferedCapacity(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
+        # Document type selection
+        document_type: Literal["A31", "B33"],
         # Continuous is typically intraday
         contract_market_agreement_type: Literal["A07"] = "A07",
         business_type: Optional[str] = None,
@@ -411,6 +436,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Control Area, Bidding Zone or Aggregation
             out_domain: EIC code of Control Area, Bidding Zone or Aggregation
+            document_type: A31=Agreed capacity (intermediate), B33=Published offered capacity
             contract_market_agreement_type: A07=Intraday (Continuous)
             business_type: Business type (e.g., A31)
             update_date_and_or_time: Update date and time filter
@@ -418,14 +444,14 @@ class ContinuousAllocationsOfferedCapacity(Market):
         """
         # Initialize with preset and user parameters
         super().__init__(
-            document_type="B33",  # Fixed: Continuous capacity document
+            document_type=document_type,
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
             business_type=business_type,
             contract_market_agreement_type=contract_market_agreement_type,
-            auction_type="A08",  # Fixed: Continuous
+            auction_type="A08",
             offset=offset,
         )
 
@@ -444,7 +470,10 @@ class ExplicitAllocationsUseTransferCapacity(Market):
     Fixed parameters:
 
     - documentType: A25 (Allocation result document)
-    - businessType: B05 (Capacity allocated including price)
+
+    Required parameters:
+    - businessType: A43=Requested capacity (without price),
+                   B05=Capacity allocated (including price)
     """
 
     code = "12.1.A"
@@ -457,7 +486,8 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         out_domain: str,
         contract_market_agreement_type: Literal[
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
-        ] = "A07",
+        ],
+        business_type: Literal["A43", "B05"],
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
@@ -475,6 +505,8 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             contract_market_agreement_type: A01=Day ahead; A02=Weekly;
                 A03=Monthly; A04=Yearly; A06=Long Term; A07=Intraday;
                 A08=Quarterly
+            business_type: A43=Requested capacity (without price),
+                          B05=Capacity allocated (including price)
             auction_category: Auction category (e.g., A04=Hourly)
             classification_sequence_position: Integer for classification
         """
@@ -485,7 +517,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            business_type="B05",  # Fixed: Capacity allocated (including price)
+            business_type=business_type,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_category=auction_category,
         )

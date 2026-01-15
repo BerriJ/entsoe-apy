@@ -99,17 +99,18 @@ class TestEICValidation:
 
     def test_balancing_eic_validation_bidding_zone(self):
         """Test EIC validation in specific parameter classes."""
-        # Should raise ValidationError for invalid bidding_zone_domain
+        # Should raise ValidationError for invalid control_area_domain
         with pytest.raises(ValidationError) as exc_info:
             VolumesAndPricesOfContractedReserves(
                 period_start=202012312300,
                 period_end=202101022300,
-                bidding_zone_domain="INVALID_EIC",
+                control_area_domain="INVALID_EIC",
+                type_marketagreement_type="A01",
                 process_type="A52",
             )
 
         assert "Invalid EIC code 'INVALID_EIC'" in str(exc_info.value)
-        assert "bidding_zone_domain" in str(exc_info.value)
+        assert "control_area_domain" in str(exc_info.value)
 
     def test_market_class_eic_validation(self):
         """Test EIC validation in Market-derived classes."""
