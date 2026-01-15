@@ -41,7 +41,7 @@
             description = pyproject.project.description;
             homepage = pyproject.project.urls.Homepage;
             license = licenses.gpl3Only;
-            maintainers = [ BerriJ ];
+            maintainers = with lib.maintainers; [ berrij ];
             platforms = platforms.all;
           };
         };
