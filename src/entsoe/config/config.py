@@ -88,7 +88,7 @@ class EntsoEConfig:
         self,
         security_token: Optional[str] = None,
         endpoint_url: Optional[str] = None,
-        timeout: int = 5,
+        timeout: int = 20,
         retries: int = 5,
         retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
         max_workers: int = 4,
@@ -104,7 +104,7 @@ class EntsoEConfig:
             endpoint_url: API endpoint URL. If not provided, will try to get from
                          ENTSOE_ENDPOINT_URL environment variable. If neither is available,
                          defaults to "https://web-api.tp.entsoe.eu/api".
-            timeout: Request timeout in seconds (default: 5)
+            timeout: Request timeout in seconds (default: 20)
             retries: Number of retry attempts for failed requests (default: 5)
             retry_delay: Function that takes attempt number and returns delay in seconds,
                         or integer for constant delay (default: exponential backoff 2**attempt)
@@ -223,7 +223,7 @@ def get_config() -> EntsoEConfig:
 def set_config(
     security_token: Optional[str] = None,
     endpoint_url: Optional[str] = None,
-    timeout: int = 5,
+    timeout: int = 20,
     retries: int = 5,
     retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
     max_workers: int = 4,
@@ -238,7 +238,7 @@ def set_config(
         endpoint_url: API endpoint URL. If not provided, will try to get from
                      ENTSOE_ENDPOINT_URL environment variable. If neither is available,
                      defaults to "https://web-api.tp.entsoe.eu/api".
-        timeout: Request timeout in seconds (default: 5)
+        timeout: Request timeout in seconds (default: 20)
         retries: Number of retry attempts for failed requests (default: 5)
         retry_delay: Function that takes attempt number and returns delay in seconds,
                     or integer for constant delay (default: exponential backoff 2**attempt)
