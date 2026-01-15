@@ -85,9 +85,14 @@ class VolumesAndPricesOfContractedReserves(Balancing):
     - businessType: B95 (Procured capacity)
 
     Required parameters:
+    - type_marketagreement_type: A01=Daily, A02=Weekly, A03=Monthly, A04=Yearly,
+                                 A06=Long term, A13=Hourly
     - processType: A51=Automatic frequency restoration reserve,
                   A52=Frequency containment reserve, A47=Manual frequency
                   restoration reserve, A46=Replacement reserve
+
+    Optional parameters:
+    - psrType: A03=Mixed, A04=Generation, A05=Load
     """
 
     code = "17.1.B_C"
@@ -96,8 +101,11 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
-        process_type: str,
+        control_area_domain: str,
+        type_marketagreement_type: str,
+        process_type: Optional[str] = None,
+        # Optional parameters
+        psr_type: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -107,8 +115,11 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
-            process_type: A51=aFRR, A52=FCR, A47=mFRR, A46=RR
+            control_area_domain: EIC code of a Scheduling Area
+            type_marketagreement_type: A01=Daily, A02=Weekly, A03=Monthly,
+                                       A04=Yearly, A06=Long term, A13=Hourly
+            process_type: A51=aFRR, A52=FCR, A47=mFRR, A46=RR (optional)
+            psr_type: A03=Mixed, A04=Generation, A05=Load (optional)
             offset: Offset for pagination
         """
         # Initialize with preset and user parameters
@@ -116,9 +127,11 @@ class VolumesAndPricesOfContractedReserves(Balancing):
             document_type="A81",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             business_type="B95",
+            type_marketagreement_type=type_marketagreement_type,
             process_type=process_type,
+            psr_type=psr_type,
             offset=offset,
         )
 
@@ -233,7 +246,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         # Additional common parameters
     ):
         """
@@ -242,14 +255,14 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of a Control Area or a Market Balance Area
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A87",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
         )
 
 
@@ -421,6 +434,9 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
     - processType: A46=Replacement reserve, A47=Manual frequency restoration reserve,
                   A51=Automatic frequency restoration reserve,
                   A52=Frequency containment reserve
+
+    Optional parameters:
+    - type_marketagreement_type: A01=Daily, A02=Weekly, A06=Long term
     """
 
     code = "12.3.H_I"
@@ -429,8 +445,11 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        connecting_domain: str,
+        acquiring_domain: str,
         process_type: str,
+        # Optional parameters
+        type_marketagreement_type: Optional[str] = None,
         # Additional common parameters
     ):
         """
@@ -439,16 +458,20 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            connecting_domain: EIC code of a Bidding Zone
+            acquiring_domain: EIC code of a Bidding Zone
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
+            type_marketagreement_type: A01=Daily, A02=Weekly, A06=Long term (optional)
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A38",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            connecting_domain=connecting_domain,
+            acquiring_domain=acquiring_domain,
             process_type=process_type,
+            type_marketagreement_type=type_marketagreement_type,
         )
 
 
@@ -925,6 +948,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
     - documentType: A84 (Activated balancing prices)
     - processType: A67 (Central Selection aFRR)
     - businessType: A96 (Automatic frequency restoration reserve)
+    - standard_market_product: A01 (Standard)
 
     Notes:
     - Specific to aFRR Central Selection marginal prices
@@ -937,7 +961,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        control_area_domain: str,
         # Additional common parameters
     ):
         """
@@ -946,16 +970,17 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            control_area_domain: EIC code of a LFA, SCA, IPA
         """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A84",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            control_area_domain=control_area_domain,
             process_type="A67",
             business_type="A96",
+            standard_market_product="A01",
         )
 
 
@@ -1077,7 +1102,7 @@ class ElasticDemands(Balancing):
         self,
         period_start: int,
         period_end: int,
-        bidding_zone_domain: str,
+        acquiring_domain: str,
         process_type: str,
         # Additional common parameters
         offset: int = 0,
@@ -1088,7 +1113,7 @@ class ElasticDemands(Balancing):
         Args:
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
-            bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
+            acquiring_domain: EIC code of a Scheduling Area
             process_type: A51=aFRR, A47=mFRR
             offset: Offset for pagination
         """
@@ -1097,7 +1122,7 @@ class ElasticDemands(Balancing):
             document_type="A37",
             period_start=period_start,
             period_end=period_end,
-            bidding_zone_domain=bidding_zone_domain,
+            acquiring_domain=acquiring_domain,
             business_type="B75",
             process_type=process_type,
             offset=offset,

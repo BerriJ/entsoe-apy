@@ -5,7 +5,7 @@ endpoints, each inheriting from TransmissionParams and providing preset values f
 fixed parameters.
 """
 
-from typing import Optional
+from typing import Literal, Optional
 
 from ..Base.Transmission import Transmission
 
@@ -63,7 +63,10 @@ class CommercialSchedules(Transmission):
     Fixed parameters:
 
     - documentType: A09 (Finalised schedule)
-    - contract_MarketAgreement.Type: A01 (Daily)
+
+    Optional parameters:
+    - contract_MarketAgreement.Type: A01=Day Ahead Commercial Schedules,
+                                      A05=Total Commercial Schedules
 
     Request Limits:
     - One year range limit applies
@@ -78,6 +81,7 @@ class CommercialSchedules(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
+        contract_market_agreement_type: Optional[Literal["A01", "A05"]] = "A01",
     ):
         """
         Initialize commercial schedules parameters.
@@ -86,7 +90,10 @@ class CommercialSchedules(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone"""
+            in_domain: EIC code of input domain/bidding zone
+            contract_market_agreement_type: A01=Day Ahead Commercial Schedules (default),
+                                           A05=Total Commercial Schedules (optional)
+        """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A09",
@@ -98,8 +105,11 @@ class CommercialSchedules(Transmission):
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
 
-        # Add specific parameters
-        self.add_optional_param("contract_MarketAgreement.Type", "A01")
+        # Add contract market agreement type parameter
+        if contract_market_agreement_type:
+            self.add_optional_param(
+                "contract_MarketAgreement.Type", contract_market_agreement_type
+            )
 
 
 class ForecastedTransferCapacities(Transmission):
@@ -111,7 +121,10 @@ class ForecastedTransferCapacities(Transmission):
     Fixed parameters:
 
     - documentType: A61 (Estimated Net Transfer Capacity)
-    - contract_MarketAgreement.Type: A01 (Daily)
+
+    Required parameters:
+    - contract_MarketAgreement.Type: A01=Day ahead, A02=Week ahead,
+                                      A03=Month ahead, A04=Year ahead
 
     Request Limits:
     - One year range limit applies
@@ -126,6 +139,7 @@ class ForecastedTransferCapacities(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
+        contract_market_agreement_type: Literal["A01", "A02", "A03", "A04"] = "A01",
     ):
         """
         Initialize forecasted transfer capacities parameters.
@@ -134,7 +148,10 @@ class ForecastedTransferCapacities(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone"""
+            in_domain: EIC code of input domain/bidding zone
+            contract_market_agreement_type: A01=Day ahead (default), A02=Week ahead,
+                                           A03=Month ahead, A04=Year ahead
+        """
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A61",
@@ -146,8 +163,10 @@ class ForecastedTransferCapacities(Transmission):
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
 
-        # Add specific parameters
-        self.add_optional_param("contract_MarketAgreement.Type", "A01")
+        # Add contract market agreement type parameter
+        self.add_optional_param(
+            "contract_MarketAgreement.Type", contract_market_agreement_type
+        )
 
 
 class CommercialSchedulesNetPositions(Transmission):

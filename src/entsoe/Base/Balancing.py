@@ -24,7 +24,7 @@ class Balancing(Base):
         business_type: Optional[str] = None,
         process_type: Optional[str] = None,
         psr_type: Optional[str] = None,
-        type_marketplace_agreement_type: Optional[str] = None,
+        type_marketagreement_type: Optional[str] = None,
         standard_market_product: Optional[str] = None,
         original_market_product: Optional[str] = None,
         direction: Optional[str] = None,
@@ -55,7 +55,7 @@ class Balancing(Base):
             process_type: Process type (e.g., A01, A02, A16, A18, A31, A32, A33,
                          A39, A40, A44, A46, A47, A51, A52)
             psr_type: Power system resource type (A03, A04, A05, B01-B24)
-            type_marketplace_agreement_type: Type marketplace agreement (A01-A07)
+            type_marketagreement_type: Type market agreement (A01-A07)
             standard_market_product: Standard market product (A01-A07)
             original_market_product: Original market product (A02-A04)
             direction: Direction (A01=Up, A02=Down)
@@ -104,9 +104,7 @@ class Balancing(Base):
         )
 
         # Add market parameters
-        self.add_market_params(
-            type_marketplace_agreement_type=type_marketplace_agreement_type
-        )
+        self.add_market_params(type_marketagreement_type=type_marketagreement_type)
 
         # Add balancing-specific parameters
         self.add_balancing_params(
