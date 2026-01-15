@@ -106,7 +106,7 @@ class CommercialSchedules(Transmission):
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
 
         # Add contract market agreement type parameter
-        if contract_market_agreement_type:
+        if contract_market_agreement_type is not None:
             self.add_optional_param(
                 "contract_MarketAgreement.Type", contract_market_agreement_type
             )
@@ -163,11 +163,9 @@ class ForecastedTransferCapacities(Transmission):
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
 
-        # Add contract market agreement type parameter
-        if contract_market_agreement_type:
-            self.add_optional_param(
-                "contract_MarketAgreement.Type", contract_market_agreement_type
-            )
+        self.add_optional_param(
+            "contract_MarketAgreement.Type", contract_market_agreement_type
+        )
 
 
 class CommercialSchedulesNetPositions(Transmission):
