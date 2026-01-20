@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -110,7 +111,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -159,7 +160,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    secondary_quantity: Optional[Decimal] = field(
+    secondary_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "secondaryQuantity",
@@ -258,7 +259,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    secondary_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    secondary_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "secondary_Measurement_Unit.name",
@@ -266,7 +267,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:8:1",
         },
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -275,7 +276,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    auction_category: Optional[CategoryTypeList] = field(
+    auction_category: None | CategoryTypeList = field(
         default=None,
         metadata={
             "name": "auction.category",
@@ -283,7 +284,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:8:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -291,15 +292,13 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:8:1",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:8:1",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:8:1",
+        },
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
@@ -392,14 +391,14 @@ class CapacityMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",
             "type": "Element",
         },
     )
-    received_market_document_m_rid: Optional[str] = field(
+    received_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.mRID",
@@ -407,7 +406,7 @@ class CapacityMarketDocument(BaseModel):
             "max_length": 60,
         },
     )
-    received_market_document_revision_number: Optional[str] = field(
+    received_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.revisionNumber",

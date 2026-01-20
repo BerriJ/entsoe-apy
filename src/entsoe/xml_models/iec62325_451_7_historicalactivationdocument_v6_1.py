@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -97,7 +98,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -189,7 +190,7 @@ class SeriesPeriod(BaseModel):
 
 class TimeSeries(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    activation_original_market_document_m_rid: Optional[str] = field(
+    activation_original_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.mRID",
@@ -198,7 +199,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    activation_original_market_document_revision_number: Optional[str] = field(
+    activation_original_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.revisionNumber",
@@ -207,9 +208,9 @@ class TimeSeries(BaseModel):
             "pattern": r"[1-9]([0-9]){0,2}",
         },
     )
-    activation_original_market_document_activation_process_process_type: Optional[
-        ProcessTypeList
-    ] = field(
+    activation_original_market_document_activation_process_process_type: (
+        None | ProcessTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.activation_Process.processType",
@@ -217,9 +218,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:1",
         },
     )
-    activation_original_market_document_requesting_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    activation_original_market_document_requesting_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.requesting_MarketParticipant.mRID",
@@ -227,9 +228,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:1",
         },
     )
-    activation_original_market_document_activating_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    activation_original_market_document_activating_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.activating_MarketParticipant.mRID",
@@ -237,9 +238,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:1",
         },
     )
-    activation_original_market_document_activation_time_period_time_interval: Optional[
-        EsmpDateTimeInterval
-    ] = field(
+    activation_original_market_document_activation_time_period_time_interval: (
+        None | EsmpDateTimeInterval
+    ) = field(
         default=None,
         metadata={
             "name": "activation_Original_MarketDocument.activationTime_Period.timeInterval",
@@ -312,7 +313,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -320,7 +321,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:historicalactivationdocument:6:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -377,7 +378,7 @@ class HistoricalActivationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",
@@ -427,7 +428,7 @@ class HistoricalActivationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -62,7 +63,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -138,7 +139,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222,15 +223,13 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    transferee_rights_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "transferee_Rights_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
-            },
-        )
+    transferee_rights_market_participant_m_rid: None | PartyIdString = field(
+        default=None,
+        metadata={
+            "name": "transferee_Rights_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
+        },
     )
     market_agreement_m_rid: str = field(
         metadata={
@@ -249,7 +248,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    previous_market_agreement_m_rid: Optional[str] = field(
+    previous_market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "previous_MarketAgreement.mRID",
@@ -266,7 +265,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -275,7 +274,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -283,7 +282,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -291,7 +290,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:rightsdocument:7:0",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",

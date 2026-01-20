@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate
@@ -166,7 +167,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_location_name: Optional[str] = field(
+    registered_resource_location_name: None | str = field(
         default=None,
         metadata={
             "name": "registeredResource.location.name",
@@ -191,9 +192,9 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_p_srtype_power_system_resources_low_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    registered_resource_p_srtype_power_system_resources_low_voltage_limit: (
+        None | EsmpVoltage
+    ) = field(
         default=None,
         metadata={
             "name": "registeredResource.pSRType.powerSystemResources.lowVoltageLimit",
@@ -201,7 +202,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    cancelled_ts: Optional[IndicatorTypeList] = field(
+    cancelled_ts: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "cancelledTS",
@@ -209,7 +210,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -232,7 +233,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    end_lifetime_date_and_or_time_date: Optional[XmlDate] = field(
+    end_lifetime_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "endLifetime_DateAndOrTime.date",
@@ -240,7 +241,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    implementation_date_and_or_time_date: Optional[XmlDate] = field(
+    implementation_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "implementation_DateAndOrTime.date",
@@ -248,7 +249,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    active_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    active_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "active_Measurement_Unit.name",
@@ -256,7 +257,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    installed_generation_quantity_quantity: Optional[Decimal] = field(
+    installed_generation_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "installedGeneration_Quantity.quantity",
@@ -264,7 +265,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    installed_consumption_quantity_quantity: Optional[Decimal] = field(
+    installed_consumption_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "installedConsumption_Quantity.quantity",
@@ -272,7 +273,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    installed_reactive_quantity_quantity: Optional[Decimal] = field(
+    installed_reactive_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "installedReactive_Quantity.quantity",
@@ -280,7 +281,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    reactive_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    reactive_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "reactive_Measurement_Unit.name",
@@ -288,7 +289,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopconfigurationdocument:1:0",
         },
     )
-    multipod_registered_resource_m_rid: Optional[ResourceIdString] = field(
+    multipod_registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "multipod_RegisteredResource.mRID",

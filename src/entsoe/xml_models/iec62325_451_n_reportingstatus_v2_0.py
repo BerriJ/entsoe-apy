@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -94,7 +95,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -278,15 +279,13 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:0",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:0",
+        },
     )
     quantity_measure_unit_name: UnitOfMeasureTypeList = field(
         metadata={
@@ -404,7 +403,7 @@ class ReportingStatusMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

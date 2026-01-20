@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -168,7 +169,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_participant_m_rid: Optional[PartyIdString] = field(
+    market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "marketParticipant.mRID",
@@ -176,7 +177,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:rasettlementdocument:1:1",
         },
     )
-    market_participant_market_role_type: Optional[RoleTypeList] = field(
+    market_participant_market_role_type: None | RoleTypeList = field(
         default=None,
         metadata={
             "name": "marketParticipant.marketRole.type",

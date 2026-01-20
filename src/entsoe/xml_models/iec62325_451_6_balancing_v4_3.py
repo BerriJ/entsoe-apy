@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -138,7 +139,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -159,14 +160,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    secondary_quantity: Optional[Decimal] = field(
+    secondary_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "secondaryQuantity",
@@ -174,7 +175,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    unavailable_quantity_quantity: Optional[Decimal] = field(
+    unavailable_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "unavailable_Quantity.quantity",
@@ -182,7 +183,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    activation_price_amount: Optional[Decimal] = field(
+    activation_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "activation_Price.amount",
@@ -191,7 +192,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    procurement_price_amount: Optional[Decimal] = field(
+    procurement_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "procurement_Price.amount",
@@ -200,7 +201,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    min_price_amount: Optional[Decimal] = field(
+    min_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "min_Price.amount",
@@ -209,7 +210,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    max_price_amount: Optional[Decimal] = field(
+    max_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "max_Price.amount",
@@ -218,7 +219,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    imbalance_price_amount: Optional[Decimal] = field(
+    imbalance_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "imbalance_Price.amount",
@@ -227,7 +228,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    imbalance_price_category: Optional[PriceCategoryTypeList] = field(
+    imbalance_price_category: None | PriceCategoryTypeList = field(
         default=None,
         metadata={
             "name": "imbalance_Price.category",
@@ -235,7 +236,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -311,7 +312,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    acquiring_domain_m_rid: Optional[AreaIdString] = field(
+    acquiring_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "acquiring_Domain.mRID",
@@ -319,7 +320,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    connecting_domain_m_rid: Optional[AreaIdString] = field(
+    connecting_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "connecting_Domain.mRID",
@@ -327,7 +328,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    type_market_agreement_type: Optional[ContractTypeList] = field(
+    type_market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "type_MarketAgreement.type",
@@ -335,9 +336,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    standard_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
+    standard_market_product_market_product_type: (
+        None | MarketProductTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "standard_MarketProduct.marketProductType",
@@ -345,9 +346,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    original_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
+    original_market_product_market_product_type: (
+        None | MarketProductTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "original_MarketProduct.marketProductType",
@@ -355,7 +356,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
+    mkt_psrtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "mktPSRType.psrType",
@@ -363,7 +364,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -371,7 +372,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -379,7 +380,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    quantity_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    quantity_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "quantity_Measure_Unit.name",
@@ -387,7 +388,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -395,7 +396,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -403,7 +404,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    cancelled_ts: Optional[IndicatorTypeList] = field(
+    cancelled_ts: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "cancelledTS",
@@ -411,7 +412,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:balancingdocument:4:3",
         },
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -510,28 +511,26 @@ class BalancingMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",
             "type": "Element",
         },
     )
-    area_domain_m_rid: Optional[AreaIdString] = field(
+    area_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "area_Domain.mRID",
             "type": "Element",
         },
     )
-    allocation_decision_date_and_or_time_date_time: Optional[XmlDateTime] = (
-        field(
-            default=None,
-            metadata={
-                "name": "allocationDecision_DateAndOrTime.dateTime",
-                "type": "Element",
-            },
-        )
+    allocation_decision_date_and_or_time_date_time: None | XmlDateTime = field(
+        default=None,
+        metadata={
+            "name": "allocationDecision_DateAndOrTime.dateTime",
+            "type": "Element",
+        },
     )
     period_time_interval: EsmpDateTimeInterval = field(
         metadata={

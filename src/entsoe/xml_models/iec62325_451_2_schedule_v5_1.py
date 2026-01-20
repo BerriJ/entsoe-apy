@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -118,7 +119,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -250,7 +251,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -258,7 +259,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -266,7 +267,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",
@@ -274,7 +275,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    in_market_participant_m_rid: Optional[PartyIdString] = field(
+    in_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "in_MarketParticipant.mRID",
@@ -282,7 +283,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    out_market_participant_m_rid: Optional[PartyIdString] = field(
+    out_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "out_MarketParticipant.mRID",
@@ -290,7 +291,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -298,7 +299,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -307,15 +308,13 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-2:scheduledocument:5:1",
+        },
     )
     measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
@@ -325,7 +324,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -342,7 +341,7 @@ class TimeSeries(BaseModel):
             "min_occurs": 1,
         },
     )
-    reason: Optional[Reason] = field(
+    reason: None | Reason = field(
         default=None,
         metadata={
             "name": "Reason",
@@ -445,23 +444,21 @@ class ScheduleMarketDocument(BaseModel):
             "required": True,
         }
     )
-    subject_market_participant_m_rid: Optional[PartyIdString] = field(
+    subject_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "subject_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
-    matching_time_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    matching_time_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "matching_Time_Period.timeInterval",

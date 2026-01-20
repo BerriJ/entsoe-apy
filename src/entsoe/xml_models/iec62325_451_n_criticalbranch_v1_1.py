@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -38,7 +39,7 @@ class AnalogValue(BaseModel):
             "pattern": r"([0-9]+(\.[0-9]*))",
         }
     )
-    time_stamp: Optional[XmlDateTime] = field(
+    time_stamp: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "timeStamp",
@@ -46,7 +47,7 @@ class AnalogValue(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -96,7 +97,7 @@ class Analog(BaseModel):
             "required": True,
         }
     )
-    positive_flow_in: Optional[IndicatorTypeList] = field(
+    positive_flow_in: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "positiveFlowIn",
@@ -187,7 +188,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -231,14 +232,14 @@ class OutageRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -246,7 +247,7 @@ class OutageRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -254,7 +255,7 @@ class OutageRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    in_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "in_AggregateNode.mRID",
@@ -262,7 +263,7 @@ class OutageRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    out_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "out_AggregateNode.mRID",
@@ -293,7 +294,7 @@ class PtdfDomain(BaseModel):
             "required": True,
         }
     )
-    p_tdf_quantity_quality: Optional[QualityTypeList] = field(
+    p_tdf_quantity_quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "name": "pTDF_Quantity.quality",
@@ -331,14 +332,14 @@ class RemedialActionRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -346,7 +347,7 @@ class RemedialActionRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -354,7 +355,7 @@ class RemedialActionRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    in_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "in_AggregateNode.mRID",
@@ -362,7 +363,7 @@ class RemedialActionRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    out_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "out_AggregateNode.mRID",
@@ -393,7 +394,7 @@ class MonitoredRegisteredResource(BaseModel):
         name = "Monitored_RegisteredResource"
 
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[ResourceIdString] = field(
+    m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -401,14 +402,14 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -416,7 +417,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -424,7 +425,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    in_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    in_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "in_AggregateNode.mRID",
@@ -432,7 +433,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    out_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "out_AggregateNode.mRID",
@@ -440,7 +441,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    flow_based_study_domain_m_rid: Optional[AreaIdString] = field(
+    flow_based_study_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "flowBasedStudy_Domain.mRID",
@@ -448,9 +449,9 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    flow_based_study_domain_flow_based_margin_quantity_quantity: Optional[
-        Decimal
-    ] = field(
+    flow_based_study_domain_flow_based_margin_quantity_quantity: (
+        None | Decimal
+    ) = field(
         default=None,
         metadata={
             "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quantity",
@@ -458,9 +459,9 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    flow_based_study_domain_flow_based_margin_quantity_quality: Optional[
-        QualityTypeList
-    ] = field(
+    flow_based_study_domain_flow_based_margin_quantity_quality: (
+        None | QualityTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "flowBasedStudy_Domain.flowBasedMargin_Quantity.quality",
@@ -468,7 +469,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    market_coupling_domain_m_rid: Optional[AreaIdString] = field(
+    market_coupling_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "marketCoupling_Domain.mRID",
@@ -476,7 +477,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    market_coupling_domain_shadow_price_amount: Optional[Decimal] = field(
+    market_coupling_domain_shadow_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "marketCoupling_Domain.shadow_Price.amount",
@@ -525,14 +526,14 @@ class ConstraintTimeSeries(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    quantity_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    quantity_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "quantity_Measurement_Unit.name",
@@ -540,7 +541,7 @@ class ConstraintTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    external_constraint_quantity_quantity: Optional[Decimal] = field(
+    external_constraint_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "externalConstraint_Quantity.quantity",
@@ -548,7 +549,7 @@ class ConstraintTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    external_constraint_quantity_quality: Optional[QualityTypeList] = field(
+    external_constraint_quantity_quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "name": "externalConstraint_Quantity.quality",
@@ -556,7 +557,7 @@ class ConstraintTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    p_tdf_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    p_tdf_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "pTDF_Measurement_Unit.name",
@@ -564,17 +565,15 @@ class ConstraintTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    shadow_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "shadowPrice_Measurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
-            },
-        )
+    shadow_price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
+        default=None,
+        metadata={
+            "name": "shadowPrice_Measurement_Unit.name",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
+        },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -705,7 +704,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -713,7 +712,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:criticalnetworkelementdocument:1:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -827,7 +826,7 @@ class CriticalNetworkElementMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

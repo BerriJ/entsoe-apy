@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -63,7 +64,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    secondary_quantity: Optional[Decimal] = field(
+    secondary_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "secondaryQuantity",
@@ -213,7 +214,7 @@ class SeriesPeriod(BaseModel):
 
 class MktGeneratingUnit(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[ResourceIdString] = field(
+    m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -221,14 +222,14 @@ class MktGeneratingUnit(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    nominal_p: Optional[EsmpActivePower] = field(
+    nominal_p: None | EsmpActivePower = field(
         default=None,
         metadata={
             "name": "nominalP",
@@ -251,15 +252,15 @@ class MktPsrtype(BaseModel):
             "required": True,
         }
     )
-    voltage_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
-        default=None,
-        metadata={
-            "name": "voltage_PowerSystemResources.highVoltageLimit",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
-        },
+    voltage_power_system_resources_high_voltage_limit: None | EsmpVoltage = (
+        field(
+            default=None,
+            metadata={
+                "name": "voltage_PowerSystemResources.highVoltageLimit",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
+            },
+        )
     )
     power_system_resources: list[MktGeneratingUnit] = field(
         default_factory=list,
@@ -298,7 +299,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_bidding_zone_domain_m_rid: Optional[AreaIdString] = field(
+    in_bidding_zone_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "inBiddingZone_Domain.mRID",
@@ -306,7 +307,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    out_bidding_zone_domain_m_rid: Optional[AreaIdString] = field(
+    out_bidding_zone_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "outBiddingZone_Domain.mRID",
@@ -314,7 +315,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -322,7 +323,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    registered_resource_name: Optional[str] = field(
+    registered_resource_name: None | str = field(
         default=None,
         metadata={
             "name": "registeredResource.name",
@@ -346,7 +347,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    cancelled_ts: Optional[IndicatorTypeList] = field(
+    cancelled_ts: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "cancelledTS",
@@ -354,7 +355,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:generationloaddocument:3:2",
         },
     )
-    mkt_psrtype: Optional[MktPsrtype] = field(
+    mkt_psrtype: None | MktPsrtype = field(
         default=None,
         metadata={
             "name": "MktPSRType",

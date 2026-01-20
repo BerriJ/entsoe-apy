@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime
@@ -92,7 +92,7 @@ class ConnectedDomain(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -114,7 +114,7 @@ class ConnectionDetailRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    area_identification_domain_m_rid: Optional[AreaIdString] = field(
+    area_identification_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "areaIdentification_Domain.mRID",
@@ -122,7 +122,7 @@ class ConnectionDetailRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:0",
         },
     )
-    component_type_mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
+    component_type_mkt_psrtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "componentType_MktPSRType.psrType",
@@ -145,7 +145,7 @@ class ConsistOfDomain(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -203,7 +203,7 @@ class AreaSpecificationSeries(BaseModel):
             "max_length": 60,
         }
     )
-    market_participant_m_rid: Optional[PartyIdString] = field(
+    market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "marketParticipant.mRID",
@@ -211,7 +211,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:0",
         },
     )
-    market_participant_market_role_type: Optional[RoleTypeList] = field(
+    market_participant_market_role_type: None | RoleTypeList = field(
         default=None,
         metadata={
             "name": "marketParticipant.marketRole.type",
@@ -227,7 +227,7 @@ class AreaSpecificationSeries(BaseModel):
             "required": True,
         }
     )
-    area_domain_name: Optional[str] = field(
+    area_domain_name: None | str = field(
         default=None,
         metadata={
             "name": "area_Domain.name",
@@ -235,7 +235,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:0",
         },
     )
-    object_aggregation: Optional[ObjectAggregationTypeList] = field(
+    object_aggregation: None | ObjectAggregationTypeList = field(
         default=None,
         metadata={
             "name": "objectAggregation",
@@ -243,7 +243,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:0",
         },
     )
-    country_domain_m_rid: Optional[AreaIdString] = field(
+    country_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "country_Domain.mRID",
@@ -251,7 +251,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:0",
         },
     )
-    area_characteristics_domain_name: Optional[str] = field(
+    area_characteristics_domain_name: None | str = field(
         default=None,
         metadata={
             "name": "areaCharacteristics_Domain.name",
@@ -267,7 +267,7 @@ class AreaSpecificationSeries(BaseModel):
             "required": True,
         }
     )
-    validity_end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    validity_end_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "validityEnd_DateAndOrTime.dateTime",

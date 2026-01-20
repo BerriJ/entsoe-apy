@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata_pydantic.fields import field
@@ -67,7 +67,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -140,7 +140,7 @@ class Series(BaseModel):
             "max_length": 60,
         }
     )
-    version: Optional[str] = field(
+    version: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -177,7 +177,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    version: Optional[str] = field(
+    version: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -248,16 +248,14 @@ class AcknowledgementMarketDocument(BaseModel):
             "required": True,
         }
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
-    received_market_document_m_rid: Optional[str] = field(
+    received_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.mRID",
@@ -265,7 +263,7 @@ class AcknowledgementMarketDocument(BaseModel):
             "max_length": 60,
         },
     )
-    received_market_document_revision_number: Optional[str] = field(
+    received_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.revisionNumber",
@@ -273,23 +271,23 @@ class AcknowledgementMarketDocument(BaseModel):
             "pattern": r"[1-9]([0-9]){0,2}",
         },
     )
-    received_market_document_type: Optional[MessageTypeList] = field(
+    received_market_document_type: None | MessageTypeList = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.type",
             "type": "Element",
         },
     )
-    received_market_document_process_process_type: Optional[
-        ProcessTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "received_MarketDocument.process.processType",
-            "type": "Element",
-        },
+    received_market_document_process_process_type: None | ProcessTypeList = (
+        field(
+            default=None,
+            metadata={
+                "name": "received_MarketDocument.process.processType",
+                "type": "Element",
+            },
+        )
     )
-    received_market_document_title: Optional[str] = field(
+    received_market_document_title: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.title",
@@ -297,7 +295,7 @@ class AcknowledgementMarketDocument(BaseModel):
             "max_length": 150,
         },
     )
-    received_market_document_created_date_time: Optional[str] = field(
+    received_market_document_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "received_MarketDocument.createdDateTime",

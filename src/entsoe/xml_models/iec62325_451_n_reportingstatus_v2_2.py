@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -94,7 +95,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -195,7 +196,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    original_market_document_m_rid: Optional[str] = field(
+    original_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.mRID",
@@ -204,7 +205,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    original_market_document_revision_number: Optional[str] = field(
+    original_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.revisionNumber",
@@ -213,9 +214,9 @@ class TimeSeries(BaseModel):
             "pattern": r"[1-9]([0-9]){0,2}",
         },
     )
-    original_market_document_original_sender_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    original_market_document_original_sender_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.originalSender_MarketParticipant.mRID",
@@ -223,7 +224,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:2",
         },
     )
-    original_market_document_created_date_time: Optional[str] = field(
+    original_market_document_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.createdDateTime",
@@ -232,7 +233,7 @@ class TimeSeries(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    original_market_document_original_domain_m_rid: Optional[AreaIdString] = (
+    original_market_document_original_domain_m_rid: None | AreaIdString = (
         field(
             default=None,
             metadata={
@@ -242,7 +243,7 @@ class TimeSeries(BaseModel):
             },
         )
     )
-    original_market_document_original_time_series_m_rid: Optional[str] = field(
+    original_market_document_original_time_series_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.original_TimeSeries.mRID",
@@ -266,7 +267,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -274,7 +275,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:2",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -282,15 +283,13 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:2",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:2",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:reportingstatusdocument:2:2",
+        },
     )
     quantity_measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
@@ -408,7 +407,7 @@ class ReportingStatusMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

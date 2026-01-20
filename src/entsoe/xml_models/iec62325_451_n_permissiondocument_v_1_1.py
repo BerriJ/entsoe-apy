@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -88,7 +88,7 @@ class PartyIdString(BaseModel):
 
 class Series(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[str] = field(
+    m_rid: None | str = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -97,7 +97,7 @@ class Series(BaseModel):
             "max_length": 60,
         },
     )
-    business_type: Optional[BusinessTypeList] = field(
+    business_type: None | BusinessTypeList = field(
         default=None,
         metadata={
             "name": "businessType",
@@ -105,14 +105,14 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    product: Optional[EnergyProductTypeList] = field(
+    product: None | EnergyProductTypeList = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -120,7 +120,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
@@ -128,7 +128,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    reading_period_resolution: Optional[XmlDuration] = field(
+    reading_period_resolution: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "reading_Period.resolution",
@@ -136,7 +136,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    reading_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "reading_Period.timeInterval",
@@ -148,7 +148,7 @@ class Series(BaseModel):
 
 class Permission(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[str] = field(
+    m_rid: None | str = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -157,7 +157,7 @@ class Permission(BaseModel):
             "max_length": 60,
         },
     )
-    created_date_time: Optional[str] = field(
+    created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "createdDateTime",
@@ -166,7 +166,7 @@ class Permission(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    permission_end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    permission_end_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "permissionEnd_DateAndOrTime.dateTime",
@@ -174,17 +174,17 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    max_lifetime_permission_date_and_or_time_date_time: Optional[
-        XmlDateTime
-    ] = field(
-        default=None,
-        metadata={
-            "name": "maxLifetimePermission_DateAndOrTime.dateTime",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
-        },
+    max_lifetime_permission_date_and_or_time_date_time: None | XmlDateTime = (
+        field(
+            default=None,
+            metadata={
+                "name": "maxLifetimePermission_DateAndOrTime.dateTime",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            },
+        )
     )
-    permitting_market_participant_m_rid: Optional[PartyIdString] = field(
+    permitting_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "permitting_MarketParticipant.mRID",
@@ -192,7 +192,7 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    permitting_market_participant_market_role_type: Optional[RoleTypeList] = (
+    permitting_market_participant_market_role_type: None | RoleTypeList = (
         field(
             default=None,
             metadata={
@@ -202,7 +202,7 @@ class Permission(BaseModel):
             },
         )
     )
-    permitted_market_participant_m_rid: Optional[PartyIdString] = field(
+    permitted_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "permitted_MarketParticipant.mRID",
@@ -210,15 +210,13 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    permitted_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "permitted_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
-            },
-        )
+    permitted_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "permitted_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+        },
     )
     series: list[Series] = field(
         default_factory=list,
@@ -228,7 +226,7 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    transmission_schedule_period_resolution: Optional[XmlDuration] = field(
+    transmission_schedule_period_resolution: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "transmissionSchedule_Period.resolution",
@@ -236,17 +234,17 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    transmission_schedule_period_time_interval: Optional[
-        EsmpDateTimeInterval
-    ] = field(
-        default=None,
-        metadata={
-            "name": "transmissionSchedule_Period.timeInterval",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
-        },
+    transmission_schedule_period_time_interval: None | EsmpDateTimeInterval = (
+        field(
+            default=None,
+            metadata={
+                "name": "transmissionSchedule_Period.timeInterval",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
+            },
+        )
     )
-    purpose_reason_code: Optional[ReasonCodeTypeList] = field(
+    purpose_reason_code: None | ReasonCodeTypeList = field(
         default=None,
         metadata={
             "name": "purpose_Reason.code",
@@ -254,7 +252,7 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    purpose_reason_text: Optional[str] = field(
+    purpose_reason_text: None | str = field(
         default=None,
         metadata={
             "name": "purpose_Reason.text",
@@ -263,7 +261,7 @@ class Permission(BaseModel):
             "max_length": 512,
         },
     )
-    end_of_permission_reason_code: Optional[ReasonCodeTypeList] = field(
+    end_of_permission_reason_code: None | ReasonCodeTypeList = field(
         default=None,
         metadata={
             "name": "endOfPermission_Reason.code",
@@ -271,7 +269,7 @@ class Permission(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    end_of_permission_reason_text: Optional[str] = field(
+    end_of_permission_reason_text: None | str = field(
         default=None,
         metadata={
             "name": "endOfPermission_Reason.text",
@@ -280,7 +278,7 @@ class Permission(BaseModel):
             "max_length": 512,
         },
     )
-    permission_market_object_status_status: Optional[StatusTypeList] = field(
+    permission_market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "permission_MarketObjectStatus.status",
@@ -292,7 +290,7 @@ class Permission(BaseModel):
 
 class AccountingPoint(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -300,7 +298,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:permissiondocument:1:1",
         },
     )
-    flow_commodity_option: Optional[FlowCommodityOptionTypeList] = field(
+    flow_commodity_option: None | FlowCommodityOptionTypeList = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",

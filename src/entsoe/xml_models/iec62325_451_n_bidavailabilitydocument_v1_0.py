@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata_pydantic.fields import field
@@ -106,7 +107,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -186,7 +187,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    requesting_party_market_participant_name: Optional[str] = field(
+    requesting_party_market_participant_name: None | str = field(
         default=None,
         metadata={
             "name": "requestingParty_MarketParticipant.name",
@@ -218,7 +219,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    operational_limit_quantity_quantity: Optional[Decimal] = field(
+    operational_limit_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "operationalLimit_Quantity.quantity",
@@ -226,7 +227,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:bidavailabilitydocument:1:0",
         },
     )
-    limit_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    limit_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "limit_Measurement_Unit.name",
@@ -326,7 +327,7 @@ class BidAvailabilityMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",

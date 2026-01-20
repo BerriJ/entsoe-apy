@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate, XmlDuration
@@ -59,14 +60,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    congestion_cost_price_amount: Optional[Decimal] = field(
+    congestion_cost_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "congestionCost_Price.amount",
@@ -75,7 +76,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    total_redispatch_quantity_quantity: Optional[Decimal] = field(
+    total_redispatch_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "totalRedispatch_quantity.quantity",
@@ -150,7 +151,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -225,7 +226,7 @@ class AssetRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    p_srtype_psr_type: Optional[AssetTypeList] = field(
+    p_srtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "pSRType.psrType",
@@ -233,7 +234,7 @@ class AssetRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    location_name: Optional[str] = field(
+    location_name: None | str = field(
         default=None,
         metadata={
             "name": "location.name",
@@ -262,7 +263,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -270,7 +271,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -278,7 +279,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    quantity_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    quantity_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "quantity_Measure_Unit.name",
@@ -286,7 +287,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -294,7 +295,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
+    mkt_psrtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "mktPSRType.psrType",
@@ -310,7 +311,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    end_date_and_or_time_date: Optional[XmlDate] = field(
+    end_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.date",
@@ -318,7 +319,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:transmissionnetworkdocument:4:0",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -434,7 +435,7 @@ class TransmissionNetworkMarketDocument(BaseModel):
             "required": True,
         }
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",

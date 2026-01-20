@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate, XmlDuration, XmlTime
@@ -152,7 +153,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -227,14 +228,14 @@ class AssetRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    asset_psrtype_psr_type: Optional[AssetTypeList] = field(
+    asset_psrtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "asset_PSRType.psrType",
@@ -242,7 +243,7 @@ class AssetRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    location_name: Optional[str] = field(
+    location_name: None | str = field(
         default=None,
         metadata={
             "name": "location.name",
@@ -271,7 +272,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    bidding_zone_domain_m_rid: Optional[AreaIdString] = field(
+    bidding_zone_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "biddingZone_Domain.mRID",
@@ -279,7 +280,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -287,7 +288,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -343,7 +344,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    production_registered_resource_m_rid: Optional[ResourceIdString] = field(
+    production_registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.mRID",
@@ -351,7 +352,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    production_registered_resource_name: Optional[str] = field(
+    production_registered_resource_name: None | str = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.name",
@@ -359,7 +360,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    production_registered_resource_location_name: Optional[str] = field(
+    production_registered_resource_location_name: None | str = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.location.name",
@@ -367,19 +368,19 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    production_registered_resource_p_srtype_psr_type: Optional[
-        AssetTypeList
-    ] = field(
-        default=None,
-        metadata={
-            "name": "production_RegisteredResource.pSRType.psrType",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
-        },
+    production_registered_resource_p_srtype_psr_type: None | AssetTypeList = (
+        field(
+            default=None,
+            metadata={
+                "name": "production_RegisteredResource.pSRType.psrType",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
+            },
+        )
     )
-    production_registered_resource_p_srtype_power_system_resources_m_rid: Optional[
-        ResourceIdString
-    ] = field(
+    production_registered_resource_p_srtype_power_system_resources_m_rid: (
+        None | ResourceIdString
+    ) = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.pSRType.powerSystemResources.mRID",
@@ -387,9 +388,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    production_registered_resource_p_srtype_power_system_resources_name: Optional[
-        str
-    ] = field(
+    production_registered_resource_p_srtype_power_system_resources_name: (
+        None | str
+    ) = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.pSRType.powerSystemResources.name",
@@ -397,9 +398,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:outagedocument:4:0",
         },
     )
-    production_registered_resource_p_srtype_power_system_resources_nominal_p: Optional[
-        EsmpActivePower
-    ] = field(
+    production_registered_resource_p_srtype_power_system_resources_nominal_p: (
+        None | EsmpActivePower
+    ) = field(
         default=None,
         metadata={
             "name": "production_RegisteredResource.pSRType.powerSystemResources.nominalP",
@@ -520,7 +521,7 @@ class UnavailabilityMarketDocument(BaseModel):
             "required": True,
         }
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",

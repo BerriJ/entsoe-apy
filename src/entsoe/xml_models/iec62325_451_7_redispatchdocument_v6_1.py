@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -105,7 +106,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_category: Optional[PriceCategoryTypeList] = field(
+    price_category: None | PriceCategoryTypeList = field(
         default=None,
         metadata={
             "name": "price.category",
@@ -113,7 +114,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:redispatchdocument:6:1",
         },
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -122,7 +123,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    price_direction: Optional[PriceDirectionTypeList] = field(
+    price_direction: None | PriceDirectionTypeList = field(
         default=None,
         metadata={
             "name": "price.direction",
@@ -141,7 +142,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -254,7 +255,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -263,7 +264,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -271,7 +272,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:redispatchdocument:6:1",
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -279,7 +280,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:redispatchdocument:6:1",
         },
     )
-    price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measurement_Unit.name",
@@ -287,7 +288,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:redispatchdocument:6:1",
         },
     )
-    total_price_amount: Optional[Decimal] = field(
+    total_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "total_Price.amount",
@@ -296,7 +297,7 @@ class TimeSeries(BaseModel):
             "total_digits": 17,
         },
     )
-    total_price_direction: Optional[PriceDirectionTypeList] = field(
+    total_price_direction: None | PriceDirectionTypeList = field(
         default=None,
         metadata={
             "name": "total_Price.direction",
@@ -304,7 +305,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:redispatchdocument:6:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",

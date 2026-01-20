@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -71,7 +72,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -232,7 +233,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_participant_m_rid: Optional[PartyIdString] = field(
+    market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "marketParticipant.mRID",
@@ -240,7 +241,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:3:0",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -257,7 +258,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -265,7 +266,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-4:energyaccountdocument:3:0",
         },
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",
@@ -377,7 +378,7 @@ class EnergyAccountMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

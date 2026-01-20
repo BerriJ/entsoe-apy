@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -63,7 +64,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -72,7 +73,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    energy_price_amount: Optional[Decimal] = field(
+    energy_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "energy_Price.amount",
@@ -81,7 +82,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    activated_quantity_quantity: Optional[Decimal] = field(
+    activated_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "activated_Quantity.quantity",
@@ -142,7 +143,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -215,7 +216,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    market_agreement_created_date_time: Optional[str] = field(
+    market_agreement_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.createdDateTime",
@@ -224,24 +225,22 @@ class BidTimeSeries(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    priority: Optional[int] = field(
+    priority: None | int = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
         },
     )
-    resource_provider_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "resourceProvider_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
-            },
-        )
+    resource_provider_market_participant_m_rid: None | PartyIdString = field(
+        default=None,
+        metadata={
+            "name": "resourceProvider_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
+        },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -298,7 +297,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -306,7 +305,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
         },
     )
-    price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measurement_Unit.name",
@@ -314,15 +313,13 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
         },
     )
-    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "energyPrice_Measurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
-            },
-        )
+    energy_price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
+        default=None,
+        metadata={
+            "name": "energyPrice_Measurement_Unit.name",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
+        },
     )
     direction: DirectionTypeList = field(
         metadata={
@@ -331,7 +328,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    minimum_activation_quantity_quantity: Optional[Decimal] = field(
+    minimum_activation_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumActivation_Quantity.quantity",
@@ -339,7 +336,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:moldocument:7:1",
         },
     )
-    step_increment_quantity_quantity: Optional[Decimal] = field(
+    step_increment_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "stepIncrement_Quantity.quantity",
@@ -403,7 +400,7 @@ class MeritOrderListMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",
@@ -453,7 +450,7 @@ class MeritOrderListMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

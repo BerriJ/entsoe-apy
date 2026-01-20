@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -141,7 +142,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -271,7 +272,7 @@ class AuctionTimeSeries(BaseModel):
             "required": True,
         }
     )
-    auction_cancelled: Optional[IndicatorTypeList] = field(
+    auction_cancelled: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "auction.cancelled",
@@ -367,7 +368,7 @@ class AuctionTimeSeries(BaseModel):
             "required": True,
         }
     )
-    resale_market_agreement_created_date_time: Optional[XmlDateTime] = field(
+    resale_market_agreement_created_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "resale_MarketAgreement.createdDateTime",
@@ -471,21 +472,19 @@ class CapacityAuctionSpecificationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
+    receiver_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: str = field(
         metadata={

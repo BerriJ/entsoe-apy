@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata_pydantic.fields import field
@@ -24,7 +24,7 @@ class AttributeValueString(BaseModel):
             "max_length": 150,
         },
     )
-    coding_scheme: Optional[CodingSchemeTypeList] = field(
+    coding_scheme: None | CodingSchemeTypeList = field(
         default=None,
         metadata={
             "name": "codingScheme",

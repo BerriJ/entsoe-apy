@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate
@@ -105,14 +105,14 @@ class EnvironmentalMonitoringStation(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_m_rid: Optional[str] = field(
+    location_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "location.mRID",
@@ -120,7 +120,7 @@ class EnvironmentalMonitoringStation(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_name: Optional[str] = field(
+    location_name: None | str = field(
         default=None,
         metadata={
             "name": "location.name",
@@ -128,7 +128,7 @@ class EnvironmentalMonitoringStation(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_x_position: Optional[str] = field(
+    location_position_points_x_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.xPosition",
@@ -136,7 +136,7 @@ class EnvironmentalMonitoringStation(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_y_position: Optional[str] = field(
+    location_position_points_y_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.yPosition",
@@ -144,7 +144,7 @@ class EnvironmentalMonitoringStation(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_z_position: Optional[str] = field(
+    location_position_points_z_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.zPosition",
@@ -152,15 +152,13 @@ class EnvironmentalMonitoringStation(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "location.coordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
-            },
-        )
+    location_coordinate_system_m_rid: None | CoordinateSystemTypeList = field(
+        default=None,
+        metadata={
+            "name": "location.coordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
+        },
     )
 
 
@@ -174,7 +172,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -189,7 +187,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    location_m_rid: Optional[str] = field(
+    location_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "location.mRID",
@@ -197,7 +195,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_name: Optional[str] = field(
+    location_name: None | str = field(
         default=None,
         metadata={
             "name": "location.name",
@@ -205,7 +203,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_x_position: Optional[str] = field(
+    location_position_points_x_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.xPosition",
@@ -213,7 +211,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_y_position: Optional[str] = field(
+    location_position_points_y_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.yPosition",
@@ -221,7 +219,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_position_points_z_position: Optional[str] = field(
+    location_position_points_z_position: None | str = field(
         default=None,
         metadata={
             "name": "location.positionPoints.zPosition",
@@ -229,15 +227,13 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    location_coordinate_system_m_rid: Optional[CoordinateSystemTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "location.coordinateSystem.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
-            },
-        )
+    location_coordinate_system_m_rid: None | CoordinateSystemTypeList = field(
+        default=None,
+        metadata={
+            "name": "location.coordinateSystem.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
+        },
     )
 
 
@@ -252,21 +248,21 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    start_date_and_or_time_date: Optional[XmlDate] = field(
+    start_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "start_DateAndOrTime.date",
@@ -274,7 +270,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    end_date_and_or_time_date: Optional[XmlDate] = field(
+    end_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.date",
@@ -282,7 +278,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherconfigurationdocument:1:1",
         },
     )
-    associated_domain_m_rid: Optional[AreaIdString] = field(
+    associated_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "associated_Domain.mRID",

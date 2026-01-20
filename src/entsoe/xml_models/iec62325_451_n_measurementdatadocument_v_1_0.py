@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -134,7 +135,7 @@ class Point(BaseModel):
 
 class AccountingPoint(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -142,7 +143,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    flow_commodity_option: Optional[str] = field(
+    flow_commodity_option: None | str = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",
@@ -209,7 +210,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    reading_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    reading_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "reading_Period.timeInterval",
@@ -217,19 +218,19 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    accounting_point_party_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
-        default=None,
-        metadata={
-            "name": "accountingPointParty_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-        },
+    accounting_point_party_market_participant_m_rid: None | PartyIdString = (
+        field(
+            default=None,
+            metadata={
+                "name": "accountingPointParty_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
+            },
+        )
     )
-    accounting_point_party_market_participant_market_role_type: Optional[
-        RoleTypeList
-    ] = field(
+    accounting_point_party_market_participant_market_role_type: (
+        None | RoleTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "accountingPointParty_MarketParticipant.marketRole.type",
@@ -237,7 +238,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
@@ -253,7 +254,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
         },
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

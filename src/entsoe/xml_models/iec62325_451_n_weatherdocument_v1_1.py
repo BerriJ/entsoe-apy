@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -55,7 +56,7 @@ class UncertaintyPercentageQuantity(BaseModel):
             "required": True,
         }
     )
-    minimum_percentage_quantity_quantity: Optional[Decimal] = field(
+    minimum_percentage_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumPercentage_Quantity.quantity",
@@ -63,7 +64,7 @@ class UncertaintyPercentageQuantity(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    maximum_percentage_quantity_quantity: Optional[Decimal] = field(
+    maximum_percentage_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximumPercentage_Quantity.quantity",
@@ -103,7 +104,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221,7 +222,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    business_type: Optional[BusinessTypeList] = field(
+    business_type: None | BusinessTypeList = field(
         default=None,
         metadata={
             "name": "businessType",
@@ -229,7 +230,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -237,7 +238,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    height_quantity_quantity: Optional[Decimal] = field(
+    height_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "height_Quantity.quantity",
@@ -245,7 +246,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    main_environmental_monitoring_station_m_rid: Optional[ResourceIdString] = (
+    main_environmental_monitoring_station_m_rid: None | ResourceIdString = (
         field(
             default=None,
             metadata={
@@ -255,9 +256,9 @@ class TimeSeries(BaseModel):
             },
         )
     )
-    alternate_environmental_monitoring_station_m_rid: Optional[
-        ResourceIdString
-    ] = field(
+    alternate_environmental_monitoring_station_m_rid: (
+        None | ResourceIdString
+    ) = field(
         default=None,
         metadata={
             "name": "alternate_EnvironmentalMonitoringStation.mRID",
@@ -265,7 +266,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:weatherdocument:1:1",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
