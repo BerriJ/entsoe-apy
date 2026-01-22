@@ -16,11 +16,13 @@ To regenerate this list, run:
 - [12.1.A Explicit Allocations - Auction Revenue](Market/12.1.A%20Explicit%20Allocations%20-%20Auction%20Revenue.json)
 - [12.1.E Implicit Auction — Net Positions](Market/12.1.E%20Implicit%20Auction%E2%80%89%E2%80%94%E2%80%89Net%20Positions.json)
 - [11.1.B Flow Based Allocations](Market/11.1.B%20Flow%20Based%20Allocations.json)
+- [11.1.B Flow Based Allocations Archives](Market/11.1.B%20Flow%20Based%20Allocations%20Archives.json)
 - [11.1 Continuous Allocations - Offered Transfer Capacity](Market/11.1%20Continuous%20Allocations%20-%20Offered%20Transfer%20Capacity.json)
 - [12.1.D Energy Prices](Market/12.1.D%20Energy%20Prices.json)
 
 ## [Load](Load)
 - [6.1.A Actual Total Load](Load/6.1.A%20Actual%20Total%20Load.json)
+- [6.1.A Actual Total Load - SECURITY_TOKEN in header](Load/6.1.A%20Actual%20Total%20Load%20-%20SECURITY_TOKEN%20in%20header.json)
 - [6.1.B Day-ahead Total Load Forecast](Load/6.1.B%20Day-ahead%20Total%20Load%20Forecast.json)
 - [6.1.C Week-ahead Total Load Forecast](Load/6.1.C%20Week-ahead%20Total%20Load%20Forecast.json)
 - [6.1.D Month-ahead Total Load Forecast](Load/6.1.D%20Month-ahead%20Total%20Load%20Forecast.json)

@@ -1,0 +1,31 @@
+{
+  "name": "6.1.A Actual Total Load - SECURITY_TOKEN in header",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "A65",
+      "description": "[M] A65 = System total load"
+    },
+    {
+      "key": "processType",
+      "value": "A16",
+      "description": "[M] A16 = Realised"
+    },
+    {
+      "key": "outBiddingZone_Domain",
+      "value": "10YCZ-CEPS-----N",
+      "description": "[M] EIC code of a Control Area, Bidding Zone or Country"
+    },
+    {
+      "key": "periodStart",
+      "value": "202303030000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202303060000",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    }
+  ]
+}
