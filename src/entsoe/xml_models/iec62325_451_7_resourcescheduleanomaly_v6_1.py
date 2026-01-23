@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -97,7 +98,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -206,7 +207,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -229,7 +230,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -245,9 +246,9 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    substitute_resource_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    substitute_resource_provider_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "substituteResourceProvider_MarketParticipant.mRID",
@@ -255,7 +256,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleanomalydocument:6:1",
         },
     )
-    acquiring_domain_m_rid: Optional[AreaIdString] = field(
+    acquiring_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "acquiring_Domain.mRID",
@@ -263,7 +264,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleanomalydocument:6:1",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -271,7 +272,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleanomalydocument:6:1",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -288,7 +289,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    object_aggregation: Optional[ObjectAggregationTypeList] = field(
+    object_aggregation: None | ObjectAggregationTypeList = field(
         default=None,
         metadata={
             "name": "objectAggregation",
@@ -296,7 +297,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:resourcescheduleanomalydocument:6:1",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",

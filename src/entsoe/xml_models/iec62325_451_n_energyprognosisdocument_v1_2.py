@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -55,7 +56,7 @@ class UncertaintyPercentageQuantity(BaseModel):
             "required": True,
         }
     )
-    minimum_percentage_quantity_quantity: Optional[Decimal] = field(
+    minimum_percentage_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumPercentage_Quantity.quantity",
@@ -63,7 +64,7 @@ class UncertaintyPercentageQuantity(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:energyprognosisdocument:1:2",
         },
     )
-    maximum_percentage_quantity_quantity: Optional[Decimal] = field(
+    maximum_percentage_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximumPercentage_Quantity.quantity",
@@ -231,7 +232,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -348,7 +349,7 @@ class EnergyPrognosisMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",

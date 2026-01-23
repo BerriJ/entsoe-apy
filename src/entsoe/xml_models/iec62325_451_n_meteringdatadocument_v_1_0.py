@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -119,14 +120,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    quality: Optional[QualityTypeList] = field(
+    quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "type": "Element",
@@ -216,7 +217,7 @@ class Series(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -224,7 +225,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -232,7 +233,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -240,7 +241,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    registration_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "registration_DateAndOrTime.dateTime",
@@ -248,7 +249,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    object_aggregation: Optional[ObjectAggregationTypeList] = field(
+    object_aggregation: None | ObjectAggregationTypeList = field(
         default=None,
         metadata={
             "name": "objectAggregation",
@@ -256,7 +257,7 @@ class Series(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:meteringdatadocument:1:0",
         },
     )
-    original_transaction_series_m_rid: Optional[str] = field(
+    original_transaction_series_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "originalTransaction_Series.mRID",
@@ -355,7 +356,7 @@ class MeteringDataMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

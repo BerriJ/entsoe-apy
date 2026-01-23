@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata_pydantic.fields import field
@@ -127,7 +127,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    time_series_auction_category: Optional[CategoryTypeList] = field(
+    time_series_auction_category: None | CategoryTypeList = field(
         default=None,
         metadata={
             "name": "timeSeries.auction.category",
@@ -150,7 +150,7 @@ class AllocationTimeSeries(BaseModel):
             "max_length": 20,
         }
     )
-    cancelled_ts: Optional[IndicatorTypeList] = field(
+    cancelled_ts: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "cancelledTS",
@@ -158,7 +158,7 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -174,7 +174,7 @@ class AllocationTimeSeries(BaseModel):
             "required": True,
         }
     )
-    auction_allocation_mode: Optional[AllocationModeTypeList] = field(
+    auction_allocation_mode: None | AllocationModeTypeList = field(
         default=None,
         metadata={
             "name": "auction.allocationMode",
@@ -182,7 +182,7 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    sub_type_auction_type: Optional[AuctionTypeList] = field(
+    sub_type_auction_type: None | AuctionTypeList = field(
         default=None,
         metadata={
             "name": "subType_Auction.type",
@@ -222,7 +222,7 @@ class AllocationTimeSeries(BaseModel):
             "required": True,
         }
     )
-    bidding_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    bidding_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "bidding_Period.timeInterval",
@@ -230,9 +230,9 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    offered_capacity_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    offered_capacity_provider_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "offeredCapacityProvider_MarketParticipant.mRID",
@@ -240,19 +240,19 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    use_of_capacity_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
-        default=None,
-        metadata={
-            "name": "useOfCapacityProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
-        },
+    use_of_capacity_provider_market_participant_m_rid: None | PartyIdString = (
+        field(
+            default=None,
+            metadata={
+                "name": "useOfCapacityProvider_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
+            },
+        )
     )
-    already_allocated_capacity_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    already_allocated_capacity_provider_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "alreadyAllocatedCapacityProvider_MarketParticipant.mRID",
@@ -260,19 +260,19 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    auction_revenue_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
-        default=None,
-        metadata={
-            "name": "auctionRevenueProvider_MarketParticipant.mRID",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
-        },
+    auction_revenue_provider_market_participant_m_rid: None | PartyIdString = (
+        field(
+            default=None,
+            metadata={
+                "name": "auctionRevenueProvider_MarketParticipant.mRID",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
+            },
+        )
     )
-    capacity_third_countries_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    capacity_third_countries_provider_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "capacityThirdCountriesProvider_MarketParticipant.mRID",
@@ -280,17 +280,15 @@ class AllocationTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
         },
     )
-    congestion_income_market_participant_m_rid: Optional[PartyIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "congestionIncome_MarketParticipant.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
-            },
-        )
+    congestion_income_market_participant_m_rid: None | PartyIdString = field(
+        default=None,
+        metadata={
+            "name": "congestionIncome_MarketParticipant.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-6a:capacityallocationconfigurationdocument:1:0",
+        },
     )
-    conducting_party_market_participant_m_rid: Optional[PartyIdString] = field(
+    conducting_party_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "conductingParty_MarketParticipant.mRID",

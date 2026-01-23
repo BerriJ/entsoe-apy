@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -116,14 +117,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementvaluedocument:1:0",
         },
     )
-    quality: Optional[QualityTypeList] = field(
+    quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "type": "Element",
@@ -213,7 +214,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",

@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate
@@ -36,7 +36,7 @@ class Analog(BaseModel):
             "required": True,
         }
     )
-    analog_values_value: Optional[str] = field(
+    analog_values_value: None | str = field(
         default=None,
         metadata={
             "name": "analogValues.value",
@@ -275,9 +275,9 @@ class MktPsrtype(BaseModel):
             "required": True,
         }
     )
-    production_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
+    production_power_system_resources_high_voltage_limit: (
+        None | EsmpVoltage
+    ) = field(
         default=None,
         metadata={
             "name": "production_PowerSystemResources.highVoltageLimit",
@@ -285,7 +285,7 @@ class MktPsrtype(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-6:configurationdocument:3:3",
         },
     )
-    nominal_ip_power_system_resources_nominal_p: Optional[EsmpActivePower] = (
+    nominal_ip_power_system_resources_nominal_p: None | EsmpActivePower = (
         field(
             default=None,
             metadata={
@@ -332,7 +332,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    bidding_zone_domain_m_rid: Optional[AreaIdString] = field(
+    bidding_zone_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "biddingZone_Domain.mRID",

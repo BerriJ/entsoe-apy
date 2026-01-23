@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -95,7 +96,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -123,7 +124,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    amount_price_amount: Optional[Decimal] = field(
+    amount_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "amount_Price.amount",
@@ -132,7 +133,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    secondary_quantity: Optional[Decimal] = field(
+    secondary_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "secondaryQuantity",
@@ -140,7 +141,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:allocationresultdocument:7:0",
         },
     )
-    bid_amount_price_amount: Optional[Decimal] = field(
+    bid_amount_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "bidAmount_Price.amount",
@@ -219,7 +220,7 @@ class TimeSeries(BaseModel):
             "pattern": r"[1-9]([0-9]){0,2}",
         }
     )
-    bid_document_market_document_bid_time_series_m_rid: Optional[str] = field(
+    bid_document_market_document_bid_time_series_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "bidDocument_MarketDocument.bidTimeSeries.mRID",
@@ -237,7 +238,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    auction_category: Optional[CategoryTypeList] = field(
+    auction_category: None | CategoryTypeList = field(
         default=None,
         metadata={
             "name": "auction.category",
@@ -294,7 +295,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -302,7 +303,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:allocationresultdocument:7:0",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -310,7 +311,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:allocationresultdocument:7:0",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",

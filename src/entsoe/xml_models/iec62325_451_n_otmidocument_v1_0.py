@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime
@@ -136,7 +136,7 @@ class OtherTransparencyMarketInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    end_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.dateTime",
@@ -150,7 +150,7 @@ class OtherTransparencyMarketInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    reason_text: Optional[str] = field(
+    reason_text: None | str = field(
         default=None,
         metadata={
             "name": "reason.text",

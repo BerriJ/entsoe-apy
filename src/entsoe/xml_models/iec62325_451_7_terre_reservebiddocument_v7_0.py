@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -65,7 +66,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    minimum_quantity_quantity: Optional[Decimal] = field(
+    minimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimum_Quantity.quantity",
@@ -73,7 +74,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -82,7 +83,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    energy_price_amount: Optional[Decimal] = field(
+    energy_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "energy_Price.amount",
@@ -158,7 +159,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -287,7 +288,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -295,7 +296,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -310,7 +311,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    linked_bids_identification: Optional[str] = field(
+    linked_bids_identification: None | str = field(
         default=None,
         metadata={
             "name": "linkedBidsIdentification",
@@ -319,7 +320,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    exclusive_bids_identification: Optional[str] = field(
+    exclusive_bids_identification: None | str = field(
         default=None,
         metadata={
             "name": "exclusiveBidsIdentification",
@@ -336,21 +337,21 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    status: Optional[ActionStatus] = field(
+    status: None | ActionStatus = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    priority: Optional[int] = field(
+    priority: None | int = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -366,7 +367,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    step_increment_quantity: Optional[Decimal] = field(
+    step_increment_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "stepIncrementQuantity",
@@ -374,7 +375,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    energy_price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    energy_price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "energyPrice_Measure_Unit.name",
@@ -382,7 +383,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -390,7 +391,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -399,7 +400,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    activation_constraint_duration_duration: Optional[XmlDuration] = field(
+    activation_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "activation_ConstraintDuration.duration",
@@ -407,7 +408,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    resting_constraint_duration_duration: Optional[XmlDuration] = field(
+    resting_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "resting_ConstraintDuration.duration",
@@ -415,7 +416,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    minimum_constraint_duration_duration: Optional[XmlDuration] = field(
+    minimum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "minimum_ConstraintDuration.duration",
@@ -423,7 +424,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7_TERRE:reservebiddocument:7:",
         },
     )
-    maximum_constraint_duration_duration: Optional[XmlDuration] = field(
+    maximum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "maximum_ConstraintDuration.duration",
@@ -489,7 +490,7 @@ class ReserveBidMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",

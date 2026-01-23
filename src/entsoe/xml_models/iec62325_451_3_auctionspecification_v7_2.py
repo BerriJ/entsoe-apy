@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -143,7 +144,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -273,7 +274,7 @@ class AuctionTimeSeries(BaseModel):
             "required": True,
         }
     )
-    auction_cancelled: Optional[IndicatorTypeList] = field(
+    auction_cancelled: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "auction.cancelled",
@@ -372,7 +373,7 @@ class AuctionTimeSeries(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    resale_market_agreement_created_date_time: Optional[str] = field(
+    resale_market_agreement_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "resale_MarketAgreement.createdDateTime",
@@ -389,15 +390,13 @@ class AuctionTimeSeries(BaseModel):
             "required": True,
         }
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:2",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-3:capacityspecificationdocument:7:2",
+        },
     )
     period: list[SeriesPeriod] = field(
         default_factory=list,
@@ -487,21 +486,19 @@ class CapacityAuctionSpecificationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
+    receiver_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: str = field(
         metadata={

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -125,7 +126,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    generation_outage_probability_quantity_quantity: Optional[Decimal] = field(
+    generation_outage_probability_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "generationOutageProbability_Quantity.quantity",
@@ -217,7 +218,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    mkt_psrtype_psr_type: Optional[AssetTypeList] = field(
+    mkt_psrtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "mktPSRType.psrType",
@@ -225,7 +226,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:smtaprognosisdocument:1:1",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",

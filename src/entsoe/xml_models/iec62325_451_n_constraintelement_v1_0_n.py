@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -37,7 +38,7 @@ class AnalogValue(BaseModel):
             "pattern": r"([0-9]*\.?[0-9]*)",
         }
     )
-    time_stamp: Optional[XmlDateTime] = field(
+    time_stamp: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "timeStamp",
@@ -45,7 +46,7 @@ class AnalogValue(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -95,7 +96,7 @@ class Analog(BaseModel):
             "required": True,
         }
     )
-    positive_flow_in: Optional[IndicatorTypeList] = field(
+    positive_flow_in: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "positiveFlowIn",
@@ -186,7 +187,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -251,7 +252,7 @@ class ExternalConstraintSeries(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -290,7 +291,7 @@ class ExternalConstraintSeries(BaseModel):
             "required": True,
         }
     )
-    quantity_quality: Optional[QualityTypeList] = field(
+    quantity_quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "name": "quantity.quality",
@@ -320,7 +321,7 @@ class MonitoredRegisteredResource(BaseModel):
         name = "Monitored_RegisteredResource"
 
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[ResourceIdString] = field(
+    m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -328,7 +329,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -343,7 +344,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    in_domain: Optional[Domain] = field(
+    in_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "In_Domain",
@@ -351,7 +352,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_domain: Optional[Domain] = field(
+    out_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Out_Domain",
@@ -359,7 +360,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    in_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    in_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "in_AggregateNode.mRID",
@@ -367,7 +368,7 @@ class MonitoredRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_aggregate_node_m_rid: Optional[MeasurementPointIdString] = field(
+    out_aggregate_node_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "out_AggregateNode.mRID",
@@ -390,14 +391,14 @@ class OutageRegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_domain: Optional[Domain] = field(
+    out_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Out_Domain",
@@ -405,7 +406,7 @@ class OutageRegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    in_domain: Optional[Domain] = field(
+    in_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "In_Domain",
@@ -425,7 +426,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -440,7 +441,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    in_domain: Optional[Domain] = field(
+    in_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "In_Domain",
@@ -448,7 +449,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_domain: Optional[Domain] = field(
+    out_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Out_Domain",
@@ -473,7 +474,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    resource_capacity_capacity_type: Optional[BusinessTypeList] = field(
+    resource_capacity_capacity_type: None | BusinessTypeList = field(
         default=None,
         metadata={
             "name": "resourceCapacity.capacityType",
@@ -481,7 +482,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    resource_capacity_maximum_capacity: Optional[str] = field(
+    resource_capacity_maximum_capacity: None | str = field(
         default=None,
         metadata={
             "name": "resourceCapacity.maximumCapacity",
@@ -490,7 +491,7 @@ class RegisteredResource(BaseModel):
             "pattern": r"([0-9]*\.?[0-9]*)",
         },
     )
-    resource_capacity_minimum_capacity: Optional[str] = field(
+    resource_capacity_minimum_capacity: None | str = field(
         default=None,
         metadata={
             "name": "resourceCapacity.minimumCapacity",
@@ -499,7 +500,7 @@ class RegisteredResource(BaseModel):
             "pattern": r"([0-9]*\.?[0-9]*)",
         },
     )
-    resource_capacity_default_capacity: Optional[str] = field(
+    resource_capacity_default_capacity: None | str = field(
         default=None,
         metadata={
             "name": "resourceCapacity.defaultCapacity",
@@ -524,14 +525,14 @@ class RemedialActionSeries(BaseModel):
             "max_length": 35,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    in_domain: Optional[Domain] = field(
+    in_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "In_Domain",
@@ -539,7 +540,7 @@ class RemedialActionSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_domain: Optional[Domain] = field(
+    out_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Out_Domain",
@@ -547,7 +548,7 @@ class RemedialActionSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    quantity_quantity: Optional[Decimal] = field(
+    quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "quantity.quantity",
@@ -555,7 +556,7 @@ class RemedialActionSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    quantity_quality: Optional[QualityTypeList] = field(
+    quantity_quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "name": "quantity.quality",
@@ -604,7 +605,7 @@ class ConstraintSeries(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -741,7 +742,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain: Optional[Domain] = field(
+    in_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "In_Domain",
@@ -749,7 +750,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:constraintnetworkelementdocument:1:0",
         },
     )
-    out_domain: Optional[Domain] = field(
+    out_domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Out_Domain",
@@ -863,7 +864,7 @@ class ConstraintNetworkElementMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain: Optional[Domain] = field(
+    domain: None | Domain = field(
         default=None,
         metadata={
             "name": "Domain",

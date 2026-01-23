@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -97,7 +98,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -146,7 +147,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -155,7 +156,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    secondary_quantity: Optional[Decimal] = field(
+    secondary_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "secondaryQuantity",
@@ -163,7 +164,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    bid_price_amount: Optional[Decimal] = field(
+    bid_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "bid_Price.amount",
@@ -172,7 +173,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    bid_energy_price_amount: Optional[Decimal] = field(
+    bid_energy_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "bidEnergy_Price.amount",
@@ -181,7 +182,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    energy_price_amount: Optional[Decimal] = field(
+    energy_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "energy_Price.amount",
@@ -327,7 +328,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    market_agreement_created_date_time: Optional[str] = field(
+    market_agreement_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.createdDateTime",
@@ -344,7 +345,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -352,7 +353,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -360,7 +361,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    energy_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    energy_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "energy_Measurement_Unit.name",
@@ -368,7 +369,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -384,7 +385,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    minimum_activation_quantity_quantity: Optional[Decimal] = field(
+    minimum_activation_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumActivation_Quantity.quantity",
@@ -392,7 +393,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    step_increment_quantity_quantity: Optional[Decimal] = field(
+    step_increment_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "stepIncrement_Quantity.quantity",
@@ -400,7 +401,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    order_number_attribute_instance_component_position: Optional[int] = field(
+    order_number_attribute_instance_component_position: None | int = field(
         default=None,
         metadata={
             "name": "orderNumber_AttributeInstanceComponent.position",
@@ -410,7 +411,7 @@ class TimeSeries(BaseModel):
             "max_inclusive": 999999,
         },
     )
-    activation_constraint_duration_duration: Optional[XmlDuration] = field(
+    activation_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "activation_ConstraintDuration.duration",
@@ -418,7 +419,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    resting_constraint_duration_duration: Optional[XmlDuration] = field(
+    resting_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "resting_ConstraintDuration.duration",
@@ -426,7 +427,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    minimum_constraint_duration_duration: Optional[XmlDuration] = field(
+    minimum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "minimum_ConstraintDuration.duration",
@@ -434,7 +435,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservationallocationresultdocument:6:0",
         },
     )
-    maximum_constraint_duration_duration: Optional[XmlDuration] = field(
+    maximum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "maximum_ConstraintDuration.duration",
@@ -490,7 +491,7 @@ class ReserveAllocationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",

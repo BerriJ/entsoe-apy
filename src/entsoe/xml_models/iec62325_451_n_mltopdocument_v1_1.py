@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -117,7 +118,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -195,7 +196,7 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    p_srtype_psr_type: Optional[AssetTypeList] = field(
+    p_srtype_psr_type: None | AssetTypeList = field(
         default=None,
         metadata={
             "name": "pSRType.psrType",
@@ -203,25 +204,25 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    p_srtype_power_system_resources_high_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
-        default=None,
-        metadata={
-            "name": "pSRType.powerSystemResources.highVoltageLimit",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-        },
+    p_srtype_power_system_resources_high_voltage_limit: None | EsmpVoltage = (
+        field(
+            default=None,
+            metadata={
+                "name": "pSRType.powerSystemResources.highVoltageLimit",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+            },
+        )
     )
-    p_srtype_power_system_resources_low_voltage_limit: Optional[
-        EsmpVoltage
-    ] = field(
-        default=None,
-        metadata={
-            "name": "pSRType.powerSystemResources.lowVoltageLimit",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-        },
+    p_srtype_power_system_resources_low_voltage_limit: None | EsmpVoltage = (
+        field(
+            default=None,
+            metadata={
+                "name": "pSRType.powerSystemResources.lowVoltageLimit",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+            },
+        )
     )
 
 
@@ -236,7 +237,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -251,7 +252,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    project_names_name: Optional[str] = field(
+    project_names_name: None | str = field(
         default=None,
         metadata={
             "name": "project_Names.name",
@@ -259,7 +260,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    case_reference_names_name: Optional[str] = field(
+    case_reference_names_name: None | str = field(
         default=None,
         metadata={
             "name": "caseReference_Names.name",
@@ -284,27 +285,23 @@ class TimeSeries(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    positive_offset_constraint_duration_duration: Optional[XmlDuration] = (
-        field(
-            default=None,
-            metadata={
-                "name": "positiveOffset_ConstraintDuration.duration",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-            },
-        )
+    positive_offset_constraint_duration_duration: None | XmlDuration = field(
+        default=None,
+        metadata={
+            "name": "positiveOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+        },
     )
-    negative_offset_constraint_duration_duration: Optional[XmlDuration] = (
-        field(
-            default=None,
-            metadata={
-                "name": "negativeOffset_ConstraintDuration.duration",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-            },
-        )
+    negative_offset_constraint_duration_duration: None | XmlDuration = field(
+        default=None,
+        metadata={
+            "name": "negativeOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+        },
     )
-    no_restitution_constraint_duration_type: Optional[str] = field(
+    no_restitution_constraint_duration_type: None | str = field(
         default=None,
         metadata={
             "name": "noRestitution_ConstraintDuration.type",
@@ -312,7 +309,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    maximum_restitution_constraint_duration_duration: Optional[XmlDuration] = (
+    maximum_restitution_constraint_duration_duration: None | XmlDuration = (
         field(
             default=None,
             metadata={
@@ -322,35 +319,35 @@ class TimeSeries(BaseModel):
             },
         )
     )
-    day_time_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
-        default=None,
-        metadata={
-            "name": "dayTimeRestitution_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-        },
+    day_time_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "dayTimeRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+            },
+        )
     )
-    night_time_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
-        default=None,
-        metadata={
-            "name": "nightTimeRestitution_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-        },
+    night_time_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "nightTimeRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+            },
+        )
     )
-    week_end_restitution_constraint_duration_duration: Optional[
-        XmlDuration
-    ] = field(
-        default=None,
-        metadata={
-            "name": "weekEndRestitution_ConstraintDuration.duration",
-            "type": "Element",
-            "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
-        },
+    week_end_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "weekEndRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
+            },
+        )
     )
     market_object_status_status: StatusTypeList = field(
         metadata={
@@ -360,7 +357,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    coordination_market_object_status_status: Optional[StatusTypeList] = field(
+    coordination_market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "coordination_MarketObjectStatus.status",
@@ -368,7 +365,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
@@ -376,7 +373,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    unavailable_capacity_quantity_quantity: Optional[Decimal] = field(
+    unavailable_capacity_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "unavailableCapacity_Quantity.quantity",
@@ -392,7 +389,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    week_market_object_status_status: Optional[StatusTypeList] = field(
+    week_market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "week_MarketObjectStatus.status",
@@ -400,7 +397,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    saturday_market_object_status_status: Optional[StatusTypeList] = field(
+    saturday_market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "saturday_MarketObjectStatus.status",
@@ -408,7 +405,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:mltopdocument:1:1",
         },
     )
-    sunday_market_object_status_status: Optional[StatusTypeList] = field(
+    sunday_market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "sunday_MarketObjectStatus.status",
@@ -525,7 +522,7 @@ class OutageScheduleMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    schedule_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    schedule_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "schedule_Period.timeInterval",

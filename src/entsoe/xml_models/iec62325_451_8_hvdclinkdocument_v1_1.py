@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -57,14 +58,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    minimum_quantity_quantity: Optional[Decimal] = field(
+    minimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimum_Quantity.quantity",
@@ -72,7 +73,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    maximum_quantity_quantity: Optional[Decimal] = field(
+    maximum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximum_Quantity.quantity",
@@ -80,7 +81,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    optimum_quantity_quantity: Optional[Decimal] = field(
+    optimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "optimum_Quantity.quantity",
@@ -155,7 +156,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -251,19 +252,17 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
+        },
     )
-    h_vdcmode_attribute_instance_component_attribute: Optional[
-        HvdcmodeTypeList
-    ] = field(
+    h_vdcmode_attribute_instance_component_attribute: (
+        None | HvdcmodeTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "hVDCMode_AttributeInstanceComponent.attribute",
@@ -295,7 +294,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -303,7 +302,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    minimum_exchange_quantity_quantity: Optional[Decimal] = field(
+    minimum_exchange_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumExchange_Quantity.quantity",
@@ -311,7 +310,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    maximum_exchange_quantity_quantity: Optional[Decimal] = field(
+    maximum_exchange_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximumExchange_Quantity.quantity",
@@ -319,7 +318,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    start_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    start_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "start_DateAndOrTime.dateTime",
@@ -327,7 +326,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:1",
         },
     )
-    end_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    end_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.dateTime",
@@ -425,7 +424,7 @@ class HvdclinkMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    schedule_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    schedule_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "schedule_Period.timeInterval",
