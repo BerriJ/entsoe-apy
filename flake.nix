@@ -12,7 +12,7 @@
       pkgs = import nixpkgs {
         inherit system;
       };
-      pypkgs = pkgs.python313Packages;
+      pypkgs = pkgs.python314Packages;
       pyproject = fromTOML (builtins.readFile ./pyproject.toml);
     in
     {
