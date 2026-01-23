@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -66,7 +67,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    minimum_quantity_quantity: Optional[Decimal] = field(
+    minimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimum_Quantity.quantity",
@@ -74,7 +75,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -83,7 +84,7 @@ class Point(BaseModel):
             "total_digits": 17,
         },
     )
-    energy_price_amount: Optional[Decimal] = field(
+    energy_price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "energy_Price.amount",
@@ -159,7 +160,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -234,7 +235,7 @@ class BiddingZoneDomain(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -257,7 +258,7 @@ class LinkedBidTimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    status: Optional[ActionStatus] = field(
+    status: None | ActionStatus = field(
         default=None,
         metadata={
             "type": "Element",
@@ -292,7 +293,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -325,7 +326,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    provider_market_participant_m_rid: Optional[PartyIdString] = field(
+    provider_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "provider_MarketParticipant.mRID",
@@ -341,7 +342,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -349,7 +350,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measurement_Unit.name",
@@ -364,7 +365,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    linked_bids_identification: Optional[str] = field(
+    linked_bids_identification: None | str = field(
         default=None,
         metadata={
             "name": "linkedBidsIdentification",
@@ -373,7 +374,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    multipart_bid_identification: Optional[str] = field(
+    multipart_bid_identification: None | str = field(
         default=None,
         metadata={
             "name": "multipartBidIdentification",
@@ -382,7 +383,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    exclusive_bids_identification: Optional[str] = field(
+    exclusive_bids_identification: None | str = field(
         default=None,
         metadata={
             "name": "exclusiveBidsIdentification",
@@ -391,7 +392,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    block_bid: Optional[IndicatorTypeList] = field(
+    block_bid: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "blockBid",
@@ -399,21 +400,21 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    status: Optional[ActionStatus] = field(
+    status: None | ActionStatus = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    priority: Optional[int] = field(
+    priority: None | int = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -429,7 +430,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    step_increment_quantity: Optional[Decimal] = field(
+    step_increment_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "stepIncrementQuantity",
@@ -437,17 +438,15 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    energy_price_measurement_unit_name: Optional[UnitOfMeasureTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "energyPrice_Measurement_Unit.name",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
-            },
-        )
+    energy_price_measurement_unit_name: None | UnitOfMeasureTypeList = field(
+        default=None,
+        metadata={
+            "name": "energyPrice_Measurement_Unit.name",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
+        },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -455,7 +454,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -464,7 +463,7 @@ class BidTimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    market_agreement_created_date_time: Optional[str] = field(
+    market_agreement_created_date_time: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.createdDateTime",
@@ -473,7 +472,7 @@ class BidTimeSeries(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    activation_constraint_duration_duration: Optional[XmlDuration] = field(
+    activation_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "activation_ConstraintDuration.duration",
@@ -481,7 +480,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    resting_constraint_duration_duration: Optional[XmlDuration] = field(
+    resting_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "resting_ConstraintDuration.duration",
@@ -489,7 +488,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    minimum_constraint_duration_duration: Optional[XmlDuration] = field(
+    minimum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "minimum_ConstraintDuration.duration",
@@ -497,7 +496,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    maximum_constraint_duration_duration: Optional[XmlDuration] = field(
+    maximum_constraint_duration_duration: None | XmlDuration = field(
         default=None,
         metadata={
             "name": "maximum_ConstraintDuration.duration",
@@ -505,9 +504,9 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    standard_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
+    standard_market_product_market_product_type: (
+        None | MarketProductTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "standard_MarketProduct.marketProductType",
@@ -515,9 +514,9 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    original_market_product_market_product_type: Optional[
-        MarketProductTypeList
-    ] = field(
+    original_market_product_market_product_type: (
+        None | MarketProductTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "original_MarketProduct.marketProductType",
@@ -525,7 +524,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    validity_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    validity_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "validity_Period.timeInterval",
@@ -566,7 +565,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:reservebiddocument:7:3",
         },
     )
-    procured_for_market_participant: Optional[OriginMarketParticipant] = field(
+    procured_for_market_participant: None | OriginMarketParticipant = field(
         default=None,
         metadata={
             "name": "ProcuredFor_MarketParticipant",
@@ -621,7 +620,7 @@ class ReserveBidMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",
@@ -678,21 +677,19 @@ class ReserveBidMarketDocument(BaseModel):
             "required": True,
         }
     )
-    subject_market_participant_m_rid: Optional[PartyIdString] = field(
+    subject_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "subject_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     bid_time_series: list[BidTimeSeries] = field(
         default_factory=list,

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -95,7 +96,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -235,7 +236,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -244,7 +245,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    auction_category: Optional[CategoryTypeList] = field(
+    auction_category: None | CategoryTypeList = field(
         default=None,
         metadata={
             "name": "auction.category",
@@ -252,7 +253,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:capacitydocument:7:0",
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",

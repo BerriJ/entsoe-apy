@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate
@@ -43,7 +43,7 @@ class FunctionName(BaseModel):
 
 class StreetDetail(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    address_general: Optional[str] = field(
+    address_general: None | str = field(
         default=None,
         metadata={
             "name": "addressGeneral",
@@ -52,7 +52,7 @@ class StreetDetail(BaseModel):
             "max_length": 70,
         },
     )
-    address_general2: Optional[str] = field(
+    address_general2: None | str = field(
         default=None,
         metadata={
             "name": "addressGeneral2",
@@ -61,7 +61,7 @@ class StreetDetail(BaseModel):
             "max_length": 70,
         },
     )
-    address_general3: Optional[str] = field(
+    address_general3: None | str = field(
         default=None,
         metadata={
             "name": "addressGeneral3",
@@ -70,7 +70,7 @@ class StreetDetail(BaseModel):
             "max_length": 70,
         },
     )
-    floor_identification: Optional[str] = field(
+    floor_identification: None | str = field(
         default=None,
         metadata={
             "name": "floorIdentification",
@@ -176,7 +176,7 @@ class StreetAddress(BaseModel):
             "required": True,
         }
     )
-    language: Optional[str] = field(
+    language: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -190,7 +190,7 @@ class EiccodeMarketDocument(BaseModel):
         name = "EICCode_MarketDocument"
 
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[str] = field(
+    m_rid: None | str = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -200,14 +200,14 @@ class EiccodeMarketDocument(BaseModel):
             "pattern": r"([A-Z0-9]{2}(([A-Z0-9]|[-]){13})[A-Z0-9])",
         },
     )
-    status: Optional[ActionStatus] = field(
+    status: None | ActionStatus = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",
@@ -215,7 +215,7 @@ class EiccodeMarketDocument(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    attribute_instance_component_attribute: Optional[str] = field(
+    attribute_instance_component_attribute: None | str = field(
         default=None,
         metadata={
             "name": "attributeInstanceComponent.attribute",
@@ -250,7 +250,7 @@ class EiccodeMarketDocument(BaseModel):
             "required": True,
         }
     )
-    deactivation_requested_date_and_or_time_date: Optional[XmlDate] = field(
+    deactivation_requested_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "deactivationRequested_DateAndOrTime.date",
@@ -258,7 +258,7 @@ class EiccodeMarketDocument(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    e_iccontact_market_participant_name: Optional[str] = field(
+    e_iccontact_market_participant_name: None | str = field(
         default=None,
         metadata={
             "name": "eICContact_MarketParticipant.name",
@@ -267,7 +267,7 @@ class EiccodeMarketDocument(BaseModel):
             "max_length": 70,
         },
     )
-    e_iccontact_market_participant_phone1: Optional[TelephoneNumber] = field(
+    e_iccontact_market_participant_phone1: None | TelephoneNumber = field(
         default=None,
         metadata={
             "name": "eICContact_MarketParticipant.phone1",
@@ -275,9 +275,9 @@ class EiccodeMarketDocument(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    e_iccontact_market_participant_electronic_address: Optional[
-        ElectronicAddress
-    ] = field(
+    e_iccontact_market_participant_electronic_address: (
+        None | ElectronicAddress
+    ) = field(
         default=None,
         metadata={
             "name": "eICContact_MarketParticipant.electronicAddress",
@@ -285,17 +285,15 @@ class EiccodeMarketDocument(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
         },
     )
-    e_iccode_market_participant_street_address: Optional[StreetAddress] = (
-        field(
-            default=None,
-            metadata={
-                "name": "eICCode_MarketParticipant.streetAddress",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
-            },
-        )
+    e_iccode_market_participant_street_address: None | StreetAddress = field(
+        default=None,
+        metadata={
+            "name": "eICCode_MarketParticipant.streetAddress",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:eicdocument:1:2",
+        },
     )
-    e_iccode_market_participant_a_cercode_names_name: Optional[str] = field(
+    e_iccode_market_participant_a_cercode_names_name: None | str = field(
         default=None,
         metadata={
             "name": "eICCode_MarketParticipant.aCERCode_Names.name",
@@ -305,7 +303,7 @@ class EiccodeMarketDocument(BaseModel):
             "pattern": r"([A-Za-z0-9_]+\.[A-Z][A-Z])",
         },
     )
-    e_iccode_market_participant_v_atcode_names_name: Optional[str] = field(
+    e_iccode_market_participant_v_atcode_names_name: None | str = field(
         default=None,
         metadata={
             "name": "eICCode_MarketParticipant.vATCode_Names.name",
@@ -315,7 +313,7 @@ class EiccodeMarketDocument(BaseModel):
             "pattern": r"([A-Z0-9]+)",
         },
     )
-    e_icparent_market_document_m_rid: Optional[str] = field(
+    e_icparent_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "eICParent_MarketDocument.mRID",
@@ -325,7 +323,7 @@ class EiccodeMarketDocument(BaseModel):
             "pattern": r"([A-Z0-9]{2}(([A-Z0-9]|[-]){13})[A-Z0-9])",
         },
     )
-    e_icresponsible_market_participant_m_rid: Optional[str] = field(
+    e_icresponsible_market_participant_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "eICResponsible_MarketParticipant.mRID",
@@ -335,7 +333,7 @@ class EiccodeMarketDocument(BaseModel):
             "pattern": r"([A-Z0-9]{2}(([A-Z0-9]|[-]){13})[A-Z0-9])",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -383,35 +381,33 @@ class EicMarketDocument(BaseModel):
             "required": True,
         }
     )
-    sender_market_participant_m_rid: Optional[PartyIdString] = field(
+    sender_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    sender_market_participant_market_role_type: Optional[RoleTypeList] = field(
+    sender_market_participant_market_role_type: None | RoleTypeList = field(
         default=None,
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
         },
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
+    receiver_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: str = field(
         metadata={

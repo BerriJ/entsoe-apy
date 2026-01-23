@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -98,7 +99,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -210,7 +211,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "required": True,
         }
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -233,7 +234,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -249,7 +250,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "required": True,
         }
     )
-    acquiring_domain_m_rid: Optional[AreaIdString] = field(
+    acquiring_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "acquiring_Domain.mRID",
@@ -257,7 +258,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:plannedresourcescheduledocument:6:0",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -265,7 +266,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:plannedresourcescheduledocument:6:0",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -282,7 +283,7 @@ class PlannedResourceTimeSeries(BaseModel):
             "required": True,
         }
     )
-    object_aggregation: Optional[ObjectAggregationTypeList] = field(
+    object_aggregation: None | ObjectAggregationTypeList = field(
         default=None,
         metadata={
             "name": "objectAggregation",
@@ -323,7 +324,7 @@ class UnavailableReserveTimeSeries(BaseModel):
             "required": True,
         }
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -354,9 +355,9 @@ class UnavailableReserveTimeSeries(BaseModel):
             "required": True,
         }
     )
-    substitute_resource_provider_market_participant_m_rid: Optional[
-        PartyIdString
-    ] = field(
+    substitute_resource_provider_market_participant_m_rid: (
+        None | PartyIdString
+    ) = field(
         default=None,
         metadata={
             "name": "substituteResourceProvider_MarketParticipant.mRID",
@@ -372,7 +373,7 @@ class UnavailableReserveTimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -380,7 +381,7 @@ class UnavailableReserveTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:plannedresourcescheduledocument:6:0",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -487,28 +488,26 @@ class PlannedResourceScheduleMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_m_rid: Optional[PartyIdString] = field(
+    subject_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "subject_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     planned_resource_time_series: list[PlannedResourceTimeSeries] = field(
         default_factory=list,

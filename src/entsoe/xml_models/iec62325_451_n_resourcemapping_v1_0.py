@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate, XmlTime
@@ -66,14 +66,14 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:0",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -93,14 +93,14 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:0",
         },
     )
-    cancelled_ts: Optional[IndicatorTypeList] = field(
+    cancelled_ts: None | IndicatorTypeList = field(
         default=None,
         metadata={
             "name": "cancelledTS",
@@ -116,7 +116,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    start_date_and_or_time_time: Optional[XmlTime] = field(
+    start_date_and_or_time_time: None | XmlTime = field(
         default=None,
         metadata={
             "name": "start_DateAndOrTime.time",
@@ -124,7 +124,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:0",
         },
     )
-    end_date_and_or_time_date: Optional[XmlDate] = field(
+    end_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.date",
@@ -132,7 +132,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:0",
         },
     )
-    end_date_and_or_time_time: Optional[XmlTime] = field(
+    end_date_and_or_time_time: None | XmlTime = field(
         default=None,
         metadata={
             "name": "end_DateAndOrTime.time",
@@ -148,7 +148,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_registered_resource_name: Optional[str] = field(
+    market_registered_resource_name: None | str = field(
         default=None,
         metadata={
             "name": "market_RegisteredResource.name",
@@ -156,7 +156,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:resourcemappingdocument:1:0",
         },
     )
-    market_registered_resource_description: Optional[str] = field(
+    market_registered_resource_description: None | str = field(
         default=None,
         metadata={
             "name": "market_RegisteredResource.description",

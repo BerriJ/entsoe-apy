@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -117,7 +118,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -231,7 +232,7 @@ class ConfirmedTimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -239,7 +240,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -247,7 +248,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",
@@ -255,7 +256,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    in_market_participant_m_rid: Optional[PartyIdString] = field(
+    in_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "in_MarketParticipant.mRID",
@@ -263,7 +264,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    out_market_participant_m_rid: Optional[PartyIdString] = field(
+    out_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "out_MarketParticipant.mRID",
@@ -271,7 +272,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -279,7 +280,7 @@ class ConfirmedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -296,7 +297,7 @@ class ConfirmedTimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -367,7 +368,7 @@ class ImposedTimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -375,7 +376,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -383,7 +384,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",
@@ -391,7 +392,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    in_market_participant_m_rid: Optional[PartyIdString] = field(
+    in_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "in_MarketParticipant.mRID",
@@ -399,7 +400,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    out_market_participant_m_rid: Optional[PartyIdString] = field(
+    out_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "out_MarketParticipant.mRID",
@@ -407,7 +408,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -415,7 +416,7 @@ class ImposedTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-2:confirmationdocument:5:0",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -432,7 +433,7 @@ class ImposedTimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -524,7 +525,7 @@ class ConfirmationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    confirmed_market_document_m_rid: Optional[str] = field(
+    confirmed_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "confirmed_MarketDocument.mRID",
@@ -532,7 +533,7 @@ class ConfirmationMarketDocument(BaseModel):
             "max_length": 35,
         },
     )
-    confirmed_market_document_revision_number: Optional[str] = field(
+    confirmed_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "confirmed_MarketDocument.revisionNumber",
@@ -547,23 +548,21 @@ class ConfirmationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    subject_market_participant_m_rid: Optional[PartyIdString] = field(
+    subject_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "subject_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",

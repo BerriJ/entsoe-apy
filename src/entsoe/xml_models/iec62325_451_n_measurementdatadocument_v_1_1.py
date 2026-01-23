@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDateTime, XmlDuration
@@ -50,21 +51,21 @@ class EsmpDateTimeInterval(BaseModel):
 
 class Reading(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    position: Optional[int] = field(
+    position: None | int = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    value: Optional[Decimal] = field(
+    value: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    time_stamp: Optional[str] = field(
+    time_stamp: None | str = field(
         default=None,
         metadata={
             "name": "timeStamp",
@@ -73,7 +74,7 @@ class Reading(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         },
     )
-    tou_tier_name: Optional[str] = field(
+    tou_tier_name: None | str = field(
         default=None,
         metadata={
             "name": "touTierName",
@@ -81,7 +82,7 @@ class Reading(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    value_missing: Optional[bool] = field(
+    value_missing: None | bool = field(
         default=None,
         metadata={
             "name": "valueMissing",
@@ -163,7 +164,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -211,7 +212,7 @@ class TimePeriod(BaseModel):
 
 class AccountingPoint(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -219,7 +220,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    flow_commodity_option: Optional[FlowCommodityOptionTypeList] = field(
+    flow_commodity_option: None | FlowCommodityOptionTypeList = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",
@@ -227,7 +228,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    connection_category: Optional[str] = field(
+    connection_category: None | str = field(
         default=None,
         metadata={
             "name": "connectionCategory",
@@ -235,7 +236,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    usage_point_location_geo_info_reference: Optional[str] = field(
+    usage_point_location_geo_info_reference: None | str = field(
         default=None,
         metadata={
             "name": "usagePointLocation.geoInfoReference",
@@ -247,7 +248,7 @@ class AccountingPoint(BaseModel):
 
 class ExchangePoint(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[MeasurementPointIdString] = field(
+    m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -279,7 +280,7 @@ class MarketParticipant(BaseModel):
 
 class MeterReading(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[ResourceIdString] = field(
+    m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -315,14 +316,14 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    quality: Optional[QualityTypeList] = field(
+    quality: None | QualityTypeList = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    delta_quantity_quantity: Optional[Decimal] = field(
+    delta_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "delta_Quantity.quantity",
@@ -394,7 +395,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         }
     )
-    original_market_document_m_rid: Optional[str] = field(
+    original_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "original_MarketDocument.mRID",
@@ -403,7 +404,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    original_transaction_series_m_rid: Optional[str] = field(
+    original_transaction_series_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "originalTransaction_Series.mRID",
@@ -420,7 +421,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    object_aggregation: Optional[ObjectAggregationTypeList] = field(
+    object_aggregation: None | ObjectAggregationTypeList = field(
         default=None,
         metadata={
             "name": "objectAggregation",
@@ -451,7 +452,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
@@ -459,7 +460,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -467,7 +468,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -475,7 +476,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    market_agreement_m_rid: Optional[str] = field(
+    market_agreement_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "marketAgreement.mRID",
@@ -484,7 +485,7 @@ class TimeSeries(BaseModel):
             "max_length": 60,
         },
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -508,7 +509,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    registration_date_and_or_time_date_time: Optional[XmlDateTime] = field(
+    registration_date_and_or_time_date_time: None | XmlDateTime = field(
         default=None,
         metadata={
             "name": "registration_DateAndOrTime.dateTime",
@@ -516,7 +517,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -524,7 +525,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:1",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
@@ -583,7 +584,7 @@ class MeasurementDataMarketDocument(BaseModel):
             "max_length": 60,
         }
     )
-    revision_number: Optional[str] = field(
+    revision_number: None | str = field(
         default=None,
         metadata={
             "name": "revisionNumber",
@@ -627,7 +628,7 @@ class MeasurementDataMarketDocument(BaseModel):
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

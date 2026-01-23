@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -111,7 +112,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -132,14 +133,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -215,7 +216,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -224,7 +225,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    auction_type: Optional[AuctionTypeList] = field(
+    auction_type: None | AuctionTypeList = field(
         default=None,
         metadata={
             "name": "auction.type",
@@ -232,7 +233,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    auction_category: Optional[CategoryTypeList] = field(
+    auction_category: None | CategoryTypeList = field(
         default=None,
         metadata={
             "name": "auction.category",
@@ -264,7 +265,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    contract_market_agreement_type: Optional[ContractTypeList] = field(
+    contract_market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "contract_MarketAgreement.type",
@@ -272,7 +273,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    quantity_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    quantity_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "quantity_Measure_Unit.name",
@@ -280,7 +281,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -288,7 +289,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -296,9 +297,9 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:publicationdocument:7:1",
         },
     )
-    classification_sequence_attribute_instance_component_position: Optional[
-        int
-    ] = field(
+    classification_sequence_attribute_instance_component_position: (
+        None | int
+    ) = field(
         default=None,
         metadata={
             "name": "classificationSequence_AttributeInstanceComponent.position",
@@ -308,7 +309,7 @@ class TimeSeries(BaseModel):
             "max_inclusive": 999999,
         },
     )
-    participant_number_attribute_instance_component_position: Optional[int] = (
+    participant_number_attribute_instance_component_position: None | int = (
         field(
             default=None,
             metadata={
@@ -320,9 +321,9 @@ class TimeSeries(BaseModel):
             },
         )
     )
-    winner_participant_number_attribute_instance_component_position: Optional[
-        int
-    ] = field(
+    winner_participant_number_attribute_instance_component_position: (
+        None | int
+    ) = field(
         default=None,
         metadata={
             "name": "winnerParticipantNumber_AttributeInstanceComponent.position",
@@ -332,7 +333,7 @@ class TimeSeries(BaseModel):
             "max_inclusive": 999999,
         },
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -409,21 +410,19 @@ class PublicationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    receiver_market_participant_m_rid: Optional[PartyIdString] = field(
+    receiver_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    receiver_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "receiver_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    receiver_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
     created_date_time: str = field(
         metadata={
@@ -440,14 +439,14 @@ class PublicationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
             "type": "Element",
         },
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",

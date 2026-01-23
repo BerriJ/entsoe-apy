@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -95,7 +96,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -128,7 +129,7 @@ class ResourceIdString(BaseModel):
 
 class AccountingPoint(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    activation_market_participant_m_rid: Optional[PartyIdString] = field(
+    activation_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "activation_MarketParticipant.mRID",
@@ -136,7 +137,7 @@ class AccountingPoint(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:activationdocument:6:4",
         },
     )
-    activation_market_participant_market_role_type: Optional[RoleTypeList] = (
+    activation_market_participant_market_role_type: None | RoleTypeList = (
         field(
             default=None,
             metadata={
@@ -146,7 +147,7 @@ class AccountingPoint(BaseModel):
             },
         )
     )
-    flow_commodity_option: Optional[FlowCommodityOptionTypeList] = field(
+    flow_commodity_option: None | FlowCommodityOptionTypeList = field(
         default=None,
         metadata={
             "name": "flowCommodityOption",
@@ -266,7 +267,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    related_market_participant_m_rid: Optional[PartyIdString] = field(
+    related_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "related_MarketParticipant.mRID",
@@ -274,15 +275,13 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:activationdocument:6:4",
         },
     )
-    related_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "related_MarketParticipant.marketRole.type",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-7:activationdocument:6:4",
-            },
-        )
+    related_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "related_MarketParticipant.marketRole.type",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-7:activationdocument:6:4",
+        },
     )
     flow_direction_direction: DirectionTypeList = field(
         metadata={
@@ -300,7 +299,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    registered_resource_m_rid: Optional[ResourceIdString] = field(
+    registered_resource_m_rid: None | ResourceIdString = field(
         default=None,
         metadata={
             "name": "registeredResource.mRID",
@@ -308,7 +307,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-7:activationdocument:6:4",
         },
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -372,7 +371,7 @@ class ActivationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",
@@ -422,30 +421,28 @@ class ActivationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_m_rid: Optional[PartyIdString] = field(
+    subject_market_participant_m_rid: None | PartyIdString = field(
         default=None,
         metadata={
             "name": "subject_MarketParticipant.mRID",
             "type": "Element",
         },
     )
-    subject_market_participant_market_role_type: Optional[RoleTypeList] = (
-        field(
-            default=None,
-            metadata={
-                "name": "subject_MarketParticipant.marketRole.type",
-                "type": "Element",
-            },
-        )
+    subject_market_participant_market_role_type: None | RoleTypeList = field(
+        default=None,
+        metadata={
+            "name": "subject_MarketParticipant.marketRole.type",
+            "type": "Element",
+        },
     )
-    order_market_document_m_rid: Optional[str] = field(
+    order_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "order_MarketDocument.mRID",
@@ -453,7 +450,7 @@ class ActivationMarketDocument(BaseModel):
             "max_length": 60,
         },
     )
-    order_market_document_revision_number: Optional[str] = field(
+    order_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "order_MarketDocument.revisionNumber",

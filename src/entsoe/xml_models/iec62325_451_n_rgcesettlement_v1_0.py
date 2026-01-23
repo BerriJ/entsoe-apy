@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -92,7 +93,7 @@ class DomainAccountAceTariffType(BaseModel):
             "required": True,
         }
     )
-    compensation_point_quantity: Optional[Decimal] = field(
+    compensation_point_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "compensation_Point.quantity",
@@ -178,7 +179,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    ace_tariff_type_type: Optional[TarifTypeTypeList] = field(
+    ace_tariff_type_type: None | TarifTypeTypeList = field(
         default=None,
         metadata={
             "name": "aceTariffType.type",
@@ -261,7 +262,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_evaluation_point_m_rid: Optional[MeasurementPointIdString] = field(
+    market_evaluation_point_m_rid: None | MeasurementPointIdString = field(
         default=None,
         metadata={
             "name": "marketEvaluationPoint.mRID",
@@ -369,7 +370,7 @@ class RgcesettlementMarketDocument(BaseModel):
             "required": True,
         }
     )
-    compensation_period_time_interval: Optional[EsmpDateTimeInterval] = field(
+    compensation_period_time_interval: None | EsmpDateTimeInterval = field(
         default=None,
         metadata={
             "name": "compensation_Period.timeInterval",

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -59,7 +60,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    price_amount: Optional[Decimal] = field(
+    price_amount: None | Decimal = field(
         default=None,
         metadata={
             "name": "price.amount",
@@ -195,7 +196,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    currency_unit_name: Optional[CurrencyTypeList] = field(
+    currency_unit_name: None | CurrencyTypeList = field(
         default=None,
         metadata={
             "name": "currency_Unit.name",
@@ -203,7 +204,7 @@ class BidTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-3:biddocument:7:0",
         },
     )
-    price_measure_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    price_measure_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "price_Measure_Unit.name",
@@ -218,7 +219,7 @@ class BidTimeSeries(BaseModel):
             "required": True,
         }
     )
-    linked_bids_identification: Optional[str] = field(
+    linked_bids_identification: None | str = field(
         default=None,
         metadata={
             "name": "linkedBidsIdentification",

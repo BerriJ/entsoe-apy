@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -56,14 +57,14 @@ class Point(BaseModel):
             "max_inclusive": 999999,
         }
     )
-    quantity: Optional[Decimal] = field(
+    quantity: None | Decimal = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
         },
     )
-    minimum_quantity_quantity: Optional[Decimal] = field(
+    minimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimum_Quantity.quantity",
@@ -71,7 +72,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
         },
     )
-    maximum_quantity_quantity: Optional[Decimal] = field(
+    maximum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximum_Quantity.quantity",
@@ -79,7 +80,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
         },
     )
-    optimum_quantity_quantity: Optional[Decimal] = field(
+    optimum_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "optimum_Quantity.quantity",
@@ -239,9 +240,9 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    h_vdcmode_attribute_instance_component_attribute: Optional[
-        HvdcmodeTypeList
-    ] = field(
+    h_vdcmode_attribute_instance_component_attribute: (
+        None | HvdcmodeTypeList
+    ) = field(
         default=None,
         metadata={
             "name": "hVDCMode_AttributeInstanceComponent.attribute",
@@ -273,7 +274,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -281,7 +282,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
         },
     )
-    minimum_exchange_quantity_quantity: Optional[Decimal] = field(
+    minimum_exchange_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "minimumExchange_Quantity.quantity",
@@ -289,7 +290,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-8:hvdclinkdocument:1:0",
         },
     )
-    maximum_exchange_quantity_quantity: Optional[Decimal] = field(
+    maximum_exchange_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "maximumExchange_Quantity.quantity",

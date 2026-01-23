@@ -4,11 +4,11 @@ authors = [
   {name="Jonathan Berrisch", email="jonathan.berrisch@uni-due.de"},
   {name="Jie Xu", email="jie.xu@uni-due.de"}
 ]
-version = "0.8.1"
+version = "0.9.0"
 description = "A Python library for accessing ENTSO-E Transparency Platform API endpoints"
 readme = "README.md"
 license = "GPL-3.0-or-later"
-requires-python = ">=3.11.0,<3.14.0"
+requires-python = ">=3.11.0,<3.15.0"
 keywords = ["entsoe", "energy", "electricity", "api", "transparency", "platform"]
 classifiers = [
   "Development Status :: 4 - Beta",

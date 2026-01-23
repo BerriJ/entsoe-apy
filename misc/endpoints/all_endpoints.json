@@ -12,6 +12,7 @@
       "12.1.A Explicit Allocations - Auction Revenue",
       "12.1.E Implicit Auction — Net Positions",
       "11.1.B Flow Based Allocations",
+      "11.1.B Flow Based Allocations Archives",
       "11.1 Continuous Allocations - Offered Transfer Capacity",
       "12.1.D Energy Prices"
     ]
@@ -20,6 +21,7 @@
     "name": "Load",
     "items": [
       "6.1.A Actual Total Load",
+      "6.1.A Actual Total Load - SECURITY_TOKEN in header",
       "6.1.B Day-ahead Total Load Forecast",
       "6.1.C Week-ahead Total Load Forecast",
       "6.1.D Month-ahead Total Load Forecast",

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -94,7 +95,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -135,14 +136,14 @@ class RegisteredResource(BaseModel):
             "required": True,
         }
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    s_k_resource_capacity_default_capacity: Optional[Decimal] = field(
+    s_k_resource_capacity_default_capacity: None | Decimal = field(
         default=None,
         metadata={
             "name": "sK_ResourceCapacity.defaultCapacity",
@@ -150,7 +151,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    resource_capacity_maximum_capacity: Optional[Decimal] = field(
+    resource_capacity_maximum_capacity: None | Decimal = field(
         default=None,
         metadata={
             "name": "resourceCapacity.maximumCapacity",
@@ -158,7 +159,7 @@ class RegisteredResource(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    resource_capacity_minimum_capacity: Optional[Decimal] = field(
+    resource_capacity_minimum_capacity: None | Decimal = field(
         default=None,
         metadata={
             "name": "resourceCapacity.minimumCapacity",
@@ -189,7 +190,7 @@ class SkblockTimeSeries(BaseModel):
             "required": True,
         }
     )
-    quantity_quantity: Optional[Decimal] = field(
+    quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "quantity.quantity",
@@ -197,7 +198,7 @@ class SkblockTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    flow_direction_direction: Optional[DirectionTypeList] = field(
+    flow_direction_direction: None | DirectionTypeList = field(
         default=None,
         metadata={
             "name": "flowDirection.direction",
@@ -205,7 +206,7 @@ class SkblockTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    measurement_unit_name: Optional[UnitOfMeasureTypeList] = field(
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
         default=None,
         metadata={
             "name": "measurement_Unit.name",
@@ -213,7 +214,7 @@ class SkblockTimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:glskdocument:1:0",
         },
     )
-    attribute_instance_component_position: Optional[int] = field(
+    attribute_instance_component_position: None | int = field(
         default=None,
         metadata={
             "name": "attributeInstanceComponent.position",
@@ -288,7 +289,7 @@ class SeriesPeriod(BaseModel):
 
 class TimeSeries(BaseModel):
     model_config = ConfigDict(defer_build=True)
-    m_rid: Optional[str] = field(
+    m_rid: None | str = field(
         default=None,
         metadata={
             "name": "mRID",
@@ -297,7 +298,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    name: Optional[str] = field(
+    name: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -352,7 +353,7 @@ class GlskMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_process_type: Optional[ProcessTypeList] = field(
+    process_process_type: None | ProcessTypeList = field(
         default=None,
         metadata={
             "name": "process.processType",

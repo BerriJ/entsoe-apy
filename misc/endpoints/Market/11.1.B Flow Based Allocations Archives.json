@@ -1,0 +1,41 @@
+{
+  "name": "11.1.B Flow Based Allocations Archives",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "B09",
+      "description": "[M] B09 = Flow Based Domain Publication"
+    },
+    {
+      "key": "processType",
+      "value": "A32",
+      "description": "[M] A43 = Day ahead; A44 = Intraday; A32 = Month-ahead; A33 = Year-ahead"
+    },
+    {
+      "key": "out_Domain",
+      "value": "10YDOM-REGION-1V",
+      "description": "[M] EIC code of a Region"
+    },
+    {
+      "key": "in_Domain",
+      "value": "10YDOM-REGION-1V",
+      "description": "[M] EIC code of a Region"
+    },
+    {
+      "key": "periodStart",
+      "value": "201812302300",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "201812312200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "StorageType",
+      "value": "archive",
+      "description": "[M] archive"
+    }
+  ]
+}

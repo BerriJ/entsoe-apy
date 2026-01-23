@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate, XmlDuration, XmlTime
@@ -111,7 +112,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -243,15 +244,13 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:1:0",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:1:0",
+        },
     )
     measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
@@ -369,14 +368,14 @@ class ReportingInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
             "type": "Element",
         },
     )
-    dataset_market_document_m_rid: Optional[str] = field(
+    dataset_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "dataset_MarketDocument.mRID",
@@ -391,14 +390,14 @@ class ReportingInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    referenced_date_and_or_time_date: Optional[XmlDate] = field(
+    referenced_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "referenced_DateAndOrTime.date",
             "type": "Element",
         },
     )
-    referenced_date_and_or_time_time: Optional[XmlTime] = field(
+    referenced_date_and_or_time_time: None | XmlTime = field(
         default=None,
         metadata={
             "name": "referenced_DateAndOrTime.time",

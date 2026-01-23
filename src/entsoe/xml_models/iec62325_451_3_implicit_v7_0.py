@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDuration
@@ -124,7 +125,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -176,7 +177,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         }
     )
-    auction_m_rid: Optional[str] = field(
+    auction_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "auction.mRID",
@@ -185,7 +186,7 @@ class TimeSeries(BaseModel):
             "max_length": 35,
         },
     )
-    auction_type: Optional[AuctionTypeList] = field(
+    auction_type: None | AuctionTypeList = field(
         default=None,
         metadata={
             "name": "auction.type",
@@ -217,7 +218,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_agreement_type: Optional[ContractTypeList] = field(
+    market_agreement_type: None | ContractTypeList = field(
         default=None,
         metadata={
             "name": "marketAgreement.type",
@@ -249,7 +250,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    curve_type: Optional[CurveTypeList] = field(
+    curve_type: None | CurveTypeList = field(
         default=None,
         metadata={
             "name": "curveType",
@@ -350,7 +351,7 @@ class ImplicitAuctionResultMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import Optional
 
 from pydantic import BaseModel, ConfigDict
 from xsdata.models.datatype import XmlDate, XmlDuration, XmlTime
@@ -112,7 +113,7 @@ class Reason(BaseModel):
             "required": True,
         }
     )
-    text: Optional[str] = field(
+    text: None | str = field(
         default=None,
         metadata={
             "type": "Element",
@@ -161,7 +162,7 @@ class Point(BaseModel):
             "required": True,
         }
     )
-    pos_fr_quantity_quantity: Optional[Decimal] = field(
+    pos_fr_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "posFR_Quantity.quantity",
@@ -169,7 +170,7 @@ class Point(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
         },
     )
-    neg_fr_quantity_quantity: Optional[Decimal] = field(
+    neg_fr_quantity_quantity: None | Decimal = field(
         default=None,
         metadata={
             "name": "negFR_Quantity.quantity",
@@ -244,7 +245,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    in_domain_m_rid: Optional[AreaIdString] = field(
+    in_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "in_Domain.mRID",
@@ -252,7 +253,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
         },
     )
-    out_domain_m_rid: Optional[AreaIdString] = field(
+    out_domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "out_Domain.mRID",
@@ -260,15 +261,13 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
         },
     )
-    connecting_line_registered_resource_m_rid: Optional[ResourceIdString] = (
-        field(
-            default=None,
-            metadata={
-                "name": "connectingLine_RegisteredResource.mRID",
-                "type": "Element",
-                "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
-            },
-        )
+    connecting_line_registered_resource_m_rid: None | ResourceIdString = field(
+        default=None,
+        metadata={
+            "name": "connectingLine_RegisteredResource.mRID",
+            "type": "Element",
+            "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
+        },
     )
     measurement_unit_name: UnitOfMeasureTypeList = field(
         metadata={
@@ -286,7 +285,7 @@ class TimeSeries(BaseModel):
             "required": True,
         }
     )
-    market_object_status_status: Optional[StatusTypeList] = field(
+    market_object_status_status: None | StatusTypeList = field(
         default=None,
         metadata={
             "name": "marketObjectStatus.status",
@@ -294,7 +293,7 @@ class TimeSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:reportinginformationdocument:2:3",
         },
     )
-    energy_market_timeframe: Optional[TimeframeTypeList] = field(
+    energy_market_timeframe: None | TimeframeTypeList = field(
         default=None,
         metadata={
             "name": "energyMarket.timeframe",
@@ -359,7 +358,7 @@ class ReportingInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    process_energy_market_timeframe: Optional[TimeframeTypeList] = field(
+    process_energy_market_timeframe: None | TimeframeTypeList = field(
         default=None,
         metadata={
             "name": "process.energyMarket.timeframe",
@@ -409,14 +408,14 @@ class ReportingInformationMarketDocument(BaseModel):
             "required": True,
         }
     )
-    domain_m_rid: Optional[AreaIdString] = field(
+    domain_m_rid: None | AreaIdString = field(
         default=None,
         metadata={
             "name": "domain.mRID",
             "type": "Element",
         },
     )
-    dataset_market_document_m_rid: Optional[str] = field(
+    dataset_market_document_m_rid: None | str = field(
         default=None,
         metadata={
             "name": "dataset_MarketDocument.mRID",
@@ -424,7 +423,7 @@ class ReportingInformationMarketDocument(BaseModel):
             "max_length": 60,
         },
     )
-    dataset_market_document_revision_number: Optional[str] = field(
+    dataset_market_document_revision_number: None | str = field(
         default=None,
         metadata={
             "name": "dataset_MarketDocument.revisionNumber",
@@ -432,21 +431,21 @@ class ReportingInformationMarketDocument(BaseModel):
             "pattern": r"[1-9]([0-9]){0,2}",
         },
     )
-    doc_status: Optional[ActionStatus] = field(
+    doc_status: None | ActionStatus = field(
         default=None,
         metadata={
             "name": "docStatus",
             "type": "Element",
         },
     )
-    referenced_date_and_or_time_date: Optional[XmlDate] = field(
+    referenced_date_and_or_time_date: None | XmlDate = field(
         default=None,
         metadata={
             "name": "referenced_DateAndOrTime.date",
             "type": "Element",
         },
     )
-    referenced_date_and_or_time_time: Optional[XmlTime] = field(
+    referenced_date_and_or_time_time: None | XmlTime = field(
         default=None,
         metadata={
             "name": "referenced_DateAndOrTime.time",
@@ -467,7 +466,7 @@ class ReportingInformationMarketDocument(BaseModel):
             "type": "Element",
         },
     )
-    description: Optional[str] = field(
+    description: None | str = field(
         default=None,
         metadata={
             "type": "Element",
