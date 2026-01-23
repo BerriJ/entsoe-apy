@@ -12,38 +12,14 @@
       pkgs = import nixpkgs {
         inherit system;
       };
-      pypkgs = pkgs.python314Packages;
       pyproject = fromTOML (builtins.readFile ./pyproject.toml);
     in
     {
       packages.${system} = rec {
-        default = pypkgs.buildPythonPackage {
-          pname = pyproject.project.name;
-          version = pyproject.project.version;
-          pyproject = true;
-
-          src = self;
-
-          build-system = [ pypkgs.setuptools ];
-
-          dependencies = with pypkgs; [
-            httpx
-            loguru
-            xsdata-pydantic
-            isodate
-          ];
-
-          nativeCheckInputs = [ pypkgs.pytestCheckHook ];
-
-          pythonImportsCheck = [ "entsoe" ];
-
-          meta = with pkgs.lib; {
-            description = pyproject.project.description;
-            homepage = pyproject.project.urls.Homepage;
-            license = licenses.gpl3Only;
-            maintainers = with lib.maintainers; [ berrij ];
-            platforms = platforms.all;
-          };
+        default = pkgs.python3.pkgs.callPackage (./default.nix) {
+          self = self;
+          lib = pkgs.lib;
+          pyproject = pyproject;
         };
         entsoe-apy = default;
       };
@@ -51,30 +27,32 @@
       devShells.${system}.default = pkgs.mkShell {
         name = "Python";
         venvDir = "./.venv";
-        buildInputs = [
-          # Stuff needed for technical reasons
-          pypkgs.ipykernel
-          pypkgs.jupyterlab
-          pypkgs.pyzmq # Adding pyzmq explicitly
-          pypkgs.pip
-          pypkgs.notebook
-          pypkgs.jupyter
-          pypkgs.jupyter-client
-          pypkgs.venvShellHook
-          pypkgs.ruff
+        buildInputs =
+          with pkgs.python3.pkgs;
+          [
+            # Stuff needed for technical reasons
+            ipykernel
+            jupyterlab
+            pyzmq # Adding pyzmq explicitly
+            pip
+            notebook
+            jupyter
+            jupyter-client
+            venvShellHook
+            ruff
 
-          # Project specific
-          pypkgs.numpy
-          pypkgs.pandas
-          pkgs.mkdocs
-          pypkgs.mkdocs-material
-          pypkgs.mkdocstrings
-          pypkgs.mkdocstrings-python
-          pypkgs.pytest
-          pypkgs.build
-          pypkgs.twine
+            # Project specific
+            numpy
+            pandas
+            mkdocs-material
+            mkdocstrings
+            mkdocstrings-python
+            pytest
+            build
+            twine
 
-        ];
+          ]
+          ++ [ pkgs.mkdocs ];
 
         env = {
           NIX_LD = nixpkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
