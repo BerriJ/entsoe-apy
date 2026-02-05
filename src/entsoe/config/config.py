@@ -138,13 +138,6 @@ class EntsoEConfig:
             security_token = env_token
             logger.success("Security token loaded from environment.")
 
-        if security_token is None:
-            logger.warning(
-                "Security token not provided. Please provide it explicitly using "
-                'entsoe.set_config("<security_token>") or set '
-                "the ENTSOE_API environment variable."
-            )
-
         # Validate security token format (UUID)
         if security_token is not None:
             try:
