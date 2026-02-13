@@ -57,21 +57,53 @@ class Base:
         if offset is not None:
             self.add_optional_param("offset", offset)
 
-    def validate_eic_code(self, eic_code: Optional[str], parameter_name: str) -> None:
+    def validate_eic_code(
+        self,
+        eic_code: Optional[str],
+        parameter_name: str = "EIC",
+        is_mapcode: bool = True,
+    ) -> None:
         """
         Validate EIC code against the mappings dictionary.
 
         Args:
             eic_code: The EIC code to validate
             parameter_name: Name of the parameter for error messages
+            is_mapcode: Whether the EIC code is a mapcode (i.e., a domain code)
 
         Raises:
             ValidationError: If the EIC code is not found in mappings
         """
         if eic_code is None:
-            return
+            return  # Skip validation if parameter is not provided
 
-        if eic_code not in mappings:
+        if len(eic_code) != 16:
+            raise ValidationError(
+                f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
+                f"EIC code must be 16 characters long."
+            )
+
+        chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
+
+        # Check if all characters are valid before computing checksum
+        for i, c in enumerate(eic_code[:15]):
+            if c not in chars:
+                raise ValidationError(
+                    f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
+                    f"Character '{c}' at position {i} is not valid."
+                )
+
+        total_sum = sum(
+            chars.index(c) * w for c, w in zip(eic_code[:15], range(16, 1, -1))
+        )
+
+        expected_char = chars[(36 - (total_sum - 1) % 37)]
+        if eic_code[15] != expected_char:
+            raise ValidationError(
+                f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
+                f"Check character does not match expected value."
+            )
+        if is_mapcode and eic_code not in mappings:
             raise ValidationError(
                 f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
                 f"EIC code not found in mappings."
@@ -256,8 +288,14 @@ class Base:
             subject_party_market_role: Subject party market role
         """
         # Validate EIC code for registered_resource
-        self.validate_eic_code(registered_resource, "registered_resource")
-        self.validate_eic_code(asset_registered_resource, "asset_registered_resource")
+        self.validate_eic_code(
+            registered_resource, parameter_name="registered_resource", is_mapcode=False
+        )
+        self.validate_eic_code(
+            asset_registered_resource,
+            parameter_name="asset_registered_resource",
+            is_mapcode=False,
+        )
 
         self.add_optional_param("registeredResource", registered_resource)
         self.add_optional_param(
