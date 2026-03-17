@@ -191,6 +191,7 @@ def unzip(func):
                         headers={
                             **response.headers,
                             "Content-Type": "text/xml; charset=utf-8",
+                            "X-Filename": file_name,
                         },
                         content=xml_content.encode("utf-8"),
                         request=response.request,
