@@ -556,6 +556,8 @@ def handle_parse_error(func):
             context = f" ({', '.join(context_parts)})" if context_parts else ""
 
             logger.error(f"Parse error: {e}{context}")
+            if response.text is not None:
+                logger.trace(f"Raw XML content:\n{response.text}")
             return None
 
     return parse_error_wrapper
