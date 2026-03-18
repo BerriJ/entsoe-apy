@@ -7,6 +7,7 @@ from itertools import chain
 import re
 import threading
 from time import sleep, time
+from xml.etree.ElementTree import ParseError
 import zipfile
 
 from httpx import RequestError, Response
@@ -533,16 +534,28 @@ def handle_parse_error(func):
             result = func(*args, **kwargs)
             logger.trace("handle_parse_error wrapper: Exit")
             return result
-        except Exception as e:
-            # Try to extract filename from the response argument
+        except ParseError as e:
+            # Try to extract filename and params from the response argument
             response = args[0] if args else kwargs.get("response")
             filename = None
+            params = None
             if response is not None:
                 filename = response.headers.get("X-Filename")
+                if hasattr(response, "request") and response.request is not None:
+                    params = {
+                        k: v
+                        for k, v in response.request.url.params.items()
+                        if k != "securityToken"
+                    }
+
+            context_parts = []
             if filename:
-                logger.error(f"Parse error in {filename}: {e}")
-            else:
-                logger.error(f"Parse error: {e}")
+                context_parts.append(f"file={filename}")
+            if params:
+                context_parts.append(f"params={params}")
+            context = f" ({', '.join(context_parts)})" if context_parts else ""
+
+            logger.error(f"Parse error: {e}{context}")
             return None
 
     return parse_error_wrapper
