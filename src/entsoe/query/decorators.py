@@ -517,14 +517,14 @@ def retry(func):
 
 def handle_parse_error(func):
     """
-    Decorator that catches parse errors during XML response parsing.
+    Decorator that catches XML parse errors during response parsing.
 
-    If any exception occurs during parsing, it is logged and None is returned
-    instead of raising the error. This allows the caller to gracefully skip
-    unparseable responses.
+    If an ``xml.etree.ElementTree.ParseError`` occurs during parsing, it is
+    logged and ``None`` is returned instead of raising the error. This allows
+    the caller to gracefully skip responses that cannot be parsed.
 
     Returns:
-        The original return value, or None if a parse error occurred.
+        The original return value, or ``None`` if a ``ParseError`` occurred.
     """
 
     @wraps(func)
