@@ -36,6 +36,11 @@
       "key": "periodEnd",
       "value": "202112310000",
       "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "offset",
+      "value": "0",
+      "description": "[O] Integer: Zero‑based index of the first TimeSeries to return. The offset parameter paginates the response in batches of 100 TimeSeries (e.g., offset = n returns the TimeSeries in the range n+1 to n+100)."
     }
   ]
 }
