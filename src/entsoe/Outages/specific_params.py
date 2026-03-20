@@ -333,6 +333,9 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
 class Fallbacks(Outages):
     """Parameters for Fall-backs [IFs IN 7.2, mFRR 3.11, aFRR 3.10].
 
+    Note: Unlike other Outages endpoints that paginate in batches of 200,
+    Fall-backs paginates in batches of 100.
+
     Data view:
     https://transparency.entsoe.eu/outage-domain/r2/unavailabilityInTransmissionGrid/show
 
@@ -355,6 +358,7 @@ class Fallbacks(Outages):
     """
 
     code = "Fall-backs"
+    offset_increment: int = 100
 
     def __init__(
         self,

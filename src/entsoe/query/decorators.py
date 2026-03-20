@@ -375,10 +375,9 @@ def pagination(func):
         logger.info(f"Starting pagination with increment={offset_increment}")
 
         merged_result = []
+        offset = 0
 
-        for offset in range(
-            0, 4801, offset_increment
-        ):  # 0 to 4800 in increments of offset_increment
+        while True:
             params["offset"] = offset
             logger.trace(f"Fetching page at offset {offset}")
 
@@ -391,6 +390,7 @@ def pagination(func):
             # Add results to accumulated list
             merged_result.extend(result)
             logger.trace(f"Retrieved {len(result)} results at offset {offset}")
+            offset += offset_increment
 
         logger.debug(f"Pagination completed with {len(merged_result)} total results")
         logger.trace("pagination wrapper: Exit")
