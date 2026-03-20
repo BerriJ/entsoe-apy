@@ -9,6 +9,7 @@ from .decorators import (
     check_response_type,
     check_service_unavailable,
     handle_acknowledgement,
+    handle_parse_error,
     pagination,
     rate_limit,
     retry,
@@ -81,6 +82,7 @@ def fetch_responses(params: dict) -> list[Response]:
     return [response]
 
 
+@handle_parse_error
 @handle_acknowledgement
 def parse_response(response: Response) -> BaseModel | None:
     """
