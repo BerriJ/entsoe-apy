@@ -9,6 +9,7 @@ class OMI(Base):
 
     # OMI paginates in batches of 200 XML documents
     offset_increment: int = 200
+
     def __init__(
         self,
         control_area_domain: str,  # Required - EIC code of Scheduling Area
