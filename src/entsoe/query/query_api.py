@@ -9,6 +9,7 @@ from .decorators import (
     check_response_type,
     check_service_unavailable,
     handle_acknowledgement,
+    handle_parse_error,
     pagination,
     rate_limit,
     retry,
@@ -81,6 +82,7 @@ def fetch_responses(params: dict) -> list[Response]:
     return [response]
 
 
+@handle_parse_error
 @handle_acknowledgement
 def parse_response(response: Response) -> BaseModel | None:
     """
@@ -101,10 +103,11 @@ def parse_response(response: Response) -> BaseModel | None:
     logger.trace("parse_response: Enter")
     logger.debug(f"Parsing response with status {response.status_code}")
 
-    name, matching_class = extract_namespace_and_find_classes(response)
+    _filename = response.headers.get("X-Filename")
+    if _filename:
+        logger.debug(f"File: {_filename}")
 
-    class_name = matching_class.__name__ if matching_class else None
-    logger.debug(f"Extracted namespace: {name}, matching class: {class_name}")
+    _, matching_class = extract_namespace_and_find_classes(response)
 
     xml_model = XmlParser().from_string(response.text, matching_class)
 

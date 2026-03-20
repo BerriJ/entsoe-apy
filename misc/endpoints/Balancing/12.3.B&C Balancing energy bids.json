@@ -35,7 +35,7 @@
     {
       "key": "offset",
       "value": "1000",
-      "description": "[O] Integer (allows downloading more than 100 documents. The offset ∈ [0,4800] so that paging is restricted to query for 4900 documents max., offset=n returns files in sequence between n+1 and n+100)",
+      "description": "[O] Integer: Zero‑based index of the first TimeSeries to return. The offset parameter paginates the response in batches of 100 TimeSeries (e.g., offset = n returns the TimeSeries in the range n+1 to n+100).",
       "disabled": true
     },
     {

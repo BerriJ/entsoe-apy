@@ -7,6 +7,7 @@ from itertools import chain
 import re
 import threading
 from time import sleep, time
+from xml.etree.ElementTree import ParseError
 import zipfile
 
 from httpx import RequestError, Response
@@ -191,6 +192,7 @@ def unzip(func):
                         headers={
                             **response.headers,
                             "Content-Type": "text/xml; charset=utf-8",
+                            "X-Filename": file_name,
                         },
                         content=xml_content.encode("utf-8"),
                         request=response.request,
@@ -373,10 +375,9 @@ def pagination(func):
         logger.info(f"Starting pagination with increment={offset_increment}")
 
         merged_result = []
+        offset = 0
 
-        for offset in range(
-            0, 4801, offset_increment
-        ):  # 0 to 4800 in increments of offset_increment
+        while True:
             params["offset"] = offset
             logger.trace(f"Fetching page at offset {offset}")
 
@@ -389,6 +390,7 @@ def pagination(func):
             # Add results to accumulated list
             merged_result.extend(result)
             logger.trace(f"Retrieved {len(result)} results at offset {offset}")
+            offset += offset_increment
 
         logger.debug(f"Pagination completed with {len(merged_result)} total results")
         logger.trace("pagination wrapper: Exit")
@@ -511,6 +513,54 @@ def retry(func):
             )
 
     return retry_wrapper
+
+
+def handle_parse_error(func):
+    """
+    Decorator that catches XML parse errors during response parsing.
+
+    If an ``xml.etree.ElementTree.ParseError`` occurs during parsing, it is
+    logged and ``None`` is returned instead of raising the error. This allows
+    the caller to gracefully skip responses that cannot be parsed.
+
+    Returns:
+        The original return value, or ``None`` if a ``ParseError`` occurred.
+    """
+
+    @wraps(func)
+    def parse_error_wrapper(*args, **kwargs):
+        logger.trace("handle_parse_error wrapper: Enter")
+        try:
+            result = func(*args, **kwargs)
+            logger.trace("handle_parse_error wrapper: Exit")
+            return result
+        except ParseError as e:
+            # Try to extract filename and params from the response argument
+            response = args[0] if args else kwargs.get("response")
+            filename = None
+            params = None
+            if response is not None:
+                filename = response.headers.get("X-Filename")
+                if hasattr(response, "request") and response.request is not None:
+                    params = {
+                        k: v
+                        for k, v in response.request.url.params.items()
+                        if k != "securityToken"
+                    }
+
+            context_parts = []
+            if filename:
+                context_parts.append(f"file={filename}")
+            if params:
+                context_parts.append(f"params={params}")
+            context = f" ({', '.join(context_parts)})" if context_parts else ""
+
+            logger.error(f"Parse error: {e}{context}")
+            if response.text is not None:
+                logger.trace(f"Raw XML content:\n{response.text}")
+            return None
+
+    return parse_error_wrapper
 
 
 def rate_limit(max_calls: int, period: float | int):

@@ -185,44 +185,66 @@ class TestPaginationOffsetIncrement:
             # The function should have been called
             assert mock_query_parse.called
 
-    def test_pagination_respects_max_offset_with_increment_100(self):
-        """Test that pagination respects max offset of 4800 with increment 100."""
-        mock_func = MagicMock(return_value=[{"data": "test"}])
+    def test_pagination_continues_until_empty_with_increment_100(self):
+        """Test that pagination continues until no results with increment 100."""
+        mock_func = MagicMock()
         decorated_func = pagination(mock_func)
 
         params = {"offset": 0, "documentType": "A25"}
 
-        # Mock to always return data (to test we stop at 4800)
-        mock_func.return_value = [{"data": "test"}]
+        # Return data for 50 pages (offsets 0..4900), then empty
+        total_pages = 50
+        call_count = 0
+
+        def side_effect(p, *args, **kwargs):
+            nonlocal call_count
+            call_count += 1
+            if call_count <= total_pages:
+                return [{"data": f"result_{p['offset']}"}]
+            return []
+
+        mock_func.side_effect = side_effect
 
         token = decorators.offset_increment_ctx.set(100)
         try:
-            decorated_func(params)
+            result = decorated_func(params)
         finally:
             decorators.offset_increment_ctx.reset(token)
 
-        # Should have been called 49 times (0, 100, 200, ..., 4700, 4800)
-        assert mock_func.call_count == 49
-        # Last call should have offset 4800
-        assert mock_func.call_args_list[-1][0][0]["offset"] == 4800
+        # Should have been called 51 times (50 with data + 1 empty)
+        assert mock_func.call_count == 51
+        assert len(result) == 50
+        # Last call should have offset 5000, beyond the old 4800 limit
+        assert mock_func.call_args_list[-1][0][0]["offset"] == 5000
 
-    def test_pagination_respects_max_offset_with_increment_200(self):
-        """Test that pagination respects max offset of 4800 with increment 200."""
-        mock_func = MagicMock(return_value=[{"data": "test"}])
+    def test_pagination_continues_until_empty_with_increment_200(self):
+        """Test that pagination continues until no results with increment 200."""
+        mock_func = MagicMock()
         decorated_func = pagination(mock_func)
 
         params = {"offset": 0, "documentType": "A77"}
 
-        # Mock to always return data (to test we stop at 4800)
-        mock_func.return_value = [{"data": "test"}]
+        # Return data for 30 pages (offsets 0..5800), then empty
+        total_pages = 30
+        call_count = 0
+
+        def side_effect(p, *args, **kwargs):
+            nonlocal call_count
+            call_count += 1
+            if call_count <= total_pages:
+                return [{"data": f"result_{p['offset']}"}]
+            return []
+
+        mock_func.side_effect = side_effect
 
         token = decorators.offset_increment_ctx.set(200)
         try:
-            decorated_func(params)
+            result = decorated_func(params)
         finally:
             decorators.offset_increment_ctx.reset(token)
 
-        # Should have been called 25 times (0, 200, 400, ..., 4600, 4800)
-        assert mock_func.call_count == 25
-        # Last call should have offset 4800
-        assert mock_func.call_args_list[-1][0][0]["offset"] == 4800
+        # Should have been called 31 times (30 with data + 1 empty)
+        assert mock_func.call_count == 31
+        assert len(result) == 30
+        # Last call should have offset 6000, beyond the old 4800 limit
+        assert mock_func.call_args_list[-1][0][0]["offset"] == 6000

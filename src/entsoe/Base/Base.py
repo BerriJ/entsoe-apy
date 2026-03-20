@@ -77,6 +77,9 @@ class Base:
         if eic_code is None:
             return  # Skip validation if parameter is not provided
 
+        if eic_code in mappings:
+            return  # Known codes from mappings are always valid
+
         if len(eic_code) != 16:
             raise ValidationError(
                 f"Invalid EIC code '{eic_code}' for parameter '{parameter_name}'. "
