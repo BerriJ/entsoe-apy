@@ -30,7 +30,7 @@
     },
     {
       "key": "Asset_RegisteredResource.mRID",
-      "value": null,
+      "value": "",
       "description": "[O] EIC code of a Transmission Asset",
       "disabled": true
     },
@@ -61,7 +61,7 @@
     {
       "key": "offset",
       "value": "0",
-      "description": "[O] Integer (allows downloading more than 200 documents. The offset ∈ [0,4800] so that pagging is restricted to query for 5000 documents max., offset=n returns files in sequence between n+1 and n+200)",
+      "description": "[O] Integer: Zero‑based index of the first XML document to return. The offset parameter paginates the response in batches of 200 XML documents (e.g., offset = n returns the XMLs in the range n+1 to n+200).",
       "disabled": true
     }
   ]
