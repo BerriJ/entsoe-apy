@@ -8,5 +8,5 @@ __all__ = [
     "extract_records",
     "add_timestamps",
     "calculate_timestamp",
-    "format_entsoe_datetime"
+    "format_entsoe_datetime",
 ]

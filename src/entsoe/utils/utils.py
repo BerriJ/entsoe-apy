@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import inspect
 from xml.etree import ElementTree as ET
 
@@ -38,11 +38,11 @@ def format_entsoe_datetime(dt: datetime) -> int:
         Date in YYYYMMDDHHMM format as integer
     """
     if dt.tzinfo is not None:
-        utc_timestamp = dt - dt.tzinfo.utcoffset(dt)
+        utc_timestamp = dt.astimezone(timezone.utc)
         return int(utc_timestamp.strftime("%Y%m%d%H%M"))
     else:
         # Assume naive timestamps are in UTC
-        return int(dt.strftime("%Y%m%d%H%M"))       
+        return int(dt.strftime("%Y%m%d%H%M"))
 
 
 def check_date_range_limit(
