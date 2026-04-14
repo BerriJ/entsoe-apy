@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Berrisch"
+  given-names: "Jonathan"
+  orcid: "https://orcid.org/0000-0002-4944-9074"
+- family-names: "Xu"
+  given-names: "Jie"
+  orcid: "https://orcid.org/0009-0002-1518-8010"
+title: "entsoe-apy: Python Package to Query the ENTSO-E API"
+version: 1.0.0
+date-released: 2026-03-20
+url: "https://github.com/BerriJ/entsoe-apy/releases/tag/v1.0.0"
