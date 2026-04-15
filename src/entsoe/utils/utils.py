@@ -31,10 +31,10 @@ def format_entsoe_datetime(dt: datetime) -> int:
     """
     Format datetime object to ENTSOE datetime format (YYYYMMDDHHMM).
 
-    Convert a (tz-aware) datetime to UTC and format it as an integer in the 
-    ENTSOE format. If the datetime is naive, it is assumed to be in UTC.This 
-    function can be used to convert pd.Timestamp and pl.Datetime objects to the 
-    required format for ENTSOE API calls. Please have a look at the 
+    Convert a (tz-aware) datetime to UTC and format it as an integer in the
+    ENTSOE format. If the datetime is naive, it is assumed to be in UTC.This
+    function can be used to convert pd.Timestamp and pl.Datetime objects to the
+    required format for ENTSOE API calls. Please have a look at the
     documentation for more details and examples.
 
     Args:
