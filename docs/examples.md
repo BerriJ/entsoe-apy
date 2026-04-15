@@ -30,7 +30,7 @@ df = DataFrame(records)
 ```
 
 !!! note
-    The [`extract_records`](utilities.md#entsoe.utils.extract_records) function can automatically parse pydantic `Decimal` data types to `float` values. Using `decimal_to_float=False` will not parse these types and give you raw `pydantic.BaseModel.model_dump(mode="json")` output.
+    The [`extract_records`](utilities.md#entsoe.utils.extract_records) function can automatically parse pydantic `Decimal` data types to `float` values. Be aware that converting `Decimal` to `float` may introduce precision loss, especially for high-precision quantities. Use `decimal_to_float=False` when exact decimal precision must be preserved; this will not parse these types and will give you raw `pydantic.BaseModel.model_dump(mode="json")` output.
 
 !!! note
     The [`extract_records`](utilities.md#entsoe.utils.extract_records) function automatically removes `m_rid` and `time_series.m_rid` metadata fields. This mitigates duplicates due to internal splitting of queries, see [#68](https://github.com/BerriJ/entsoe-apy/issues/68). You may extend the `ignore_fields` parameter as needed (for exampe with `"created_date_time", "time_period_time_interval.start","time_period_time_interval.end"`).
