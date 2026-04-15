@@ -1,8 +1,12 @@
+from decimal import Decimal
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
 
 from ..config.config import logger
+
+
+_ANY_ADAPTER = TypeAdapter(Any)
 
 
 def _deduplicate_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -15,6 +19,17 @@ def _deduplicate_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             seen.add(record_key)
             unique_records.append(record)
     return unique_records
+
+
+def _coerce_decimals_to_float(value: Any) -> Any:
+    """Recursively convert Decimal values to float for downstream processing."""
+    if isinstance(value, Decimal):
+        return float(value)
+    if isinstance(value, dict):
+        return {k: _coerce_decimals_to_float(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_coerce_decimals_to_float(item) for item in value]
+    return value
 
 
 def normalize_to_records(
@@ -117,6 +132,7 @@ def extract_records(
         "time_series.m_rid",
     ],
     deduplicate: bool = True,
+    decimal_to_float: bool = True,
 ) -> List[Dict[str, int | float | str | None]]:
     """
     Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
@@ -138,6 +154,9 @@ def extract_records(
                       Defaults to ["m_rid", "time_series.m_rid"].
                       Pass None to disable field filtering.
         deduplicate: Whether to remove duplicate records while preserving order. Defaults to True.
+        decimal_to_float: Whether to convert Decimal values to float in the returned
+                 records. If False, uses JSON serialization semantics where
+                 Decimal values are represented as strings. Defaults to True.
 
     Returns:
         List of flattened dictionaries (records) from all BaseModel instances.
@@ -179,7 +198,14 @@ def extract_records(
             f"Expected data to be a BaseModel or list of BaseModel instances, got {type(data)}"
         )
 
-    data_dict = [item.model_dump(mode="json") for item in data_list]
+    if decimal_to_float:
+        # Keep Decimal values typed, coerce them, then normalize to JSON-compatible
+        # values so the output structure stays aligned with mode="json".
+        data_dict = [item.model_dump(mode="python") for item in data_list]
+        data_dict = [_coerce_decimals_to_float(item_dict) for item_dict in data_dict]
+        data_dict = [_ANY_ADAPTER.dump_python(item_dict, mode="json") for item_dict in data_dict]
+    else:
+        data_dict = [item.model_dump(mode="json") for item in data_list]
     all_records = []
 
     if domain:
