@@ -132,7 +132,7 @@ def extract_records(
         "time_series.m_rid",
     ],
     deduplicate: bool = True,
-    decimal_to_float: bool = True,
+    decimal_to_float: bool = False,
 ) -> List[Dict[str, int | float | str | None]]:
     """
     Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
@@ -156,7 +156,7 @@ def extract_records(
         deduplicate: Whether to remove duplicate records while preserving order. Defaults to True.
         decimal_to_float: Whether to convert Decimal values to float in the returned
                  records. If False, uses JSON serialization semantics where
-                 Decimal values are represented as strings. Defaults to True.
+                 Decimal values are represented as strings. Defaults to False.
 
     Returns:
         List of flattened dictionaries (records) from all BaseModel instances.
