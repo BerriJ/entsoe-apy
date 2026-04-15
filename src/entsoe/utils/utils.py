@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import inspect
 from xml.etree import ElementTree as ET
 
@@ -31,13 +31,24 @@ def format_entsoe_datetime(dt: datetime) -> int:
     """
     Format datetime object to ENTSOE datetime format (YYYYMMDDHHMM).
 
+    Convert a (tz-aware) datetime to UTC and format it as an integer in the 
+    ENTSOE format. If the datetime is naive, it is assumed to be in UTC.This 
+    function can be used to convert pd.Timestamp and pl.Datetime objects to the 
+    required format for ENTSOE API calls. Please have a look at the 
+    documentation for more details and examples.
+
     Args:
         dt: datetime object
 
     Returns:
         Date in YYYYMMDDHHMM format as integer
     """
-    return int(dt.strftime("%Y%m%d%H%M"))
+    if dt.tzinfo is not None:
+        utc_timestamp = dt.astimezone(timezone.utc)
+        return int(utc_timestamp.strftime("%Y%m%d%H%M"))
+    else:
+        # Assume naive timestamps are in UTC
+        return int(dt.strftime("%Y%m%d%H%M"))
 
 
 def check_date_range_limit(
