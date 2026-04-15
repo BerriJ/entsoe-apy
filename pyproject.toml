@@ -26,6 +26,7 @@ dependencies = [
   "httpx~=0.28.1",
   "loguru~=0.7.2",
   "xsdata-pydantic>=24.5",
+  "pydantic>=2.0.0",
   "isodate>=0.7.2",
 ]
 
