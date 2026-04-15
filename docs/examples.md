@@ -35,6 +35,37 @@ df = DataFrame(records)
 
 See also [Utilities](./utilities.md) for more details on the utility functions.
 
+### Working with datetime and timezones
+
+The ENTSO-E API is (usually) expecting UTC timestamps but the European power markets operate on a Europe/Berlin basis. We can use the `parse_entsoe_datetime` function to convert `datetime` and `pandas` timestamps in the API interface. The function handles time zone information and parses `datetime` derived types to the respective integer. Timezone-naive timestamps are assumed to be in UTC.
+
+```python
+import pandas as pd
+from entsoe.Market import EnergyPrices
+from entsoe.utils import (
+    extract_records, 
+    add_timestamps, 
+    format_entsoe_datetime
+)
+
+period_start = pd.Timestamp("2024-02-01", tz="Europe/Berlin")
+period_end = pd.Timestamp("2024-02-02", tz="Europe/Berlin")
+
+# Query energy prices
+result = EnergyPrices(
+    in_domain="10YNL----------L", # Netherlands
+    out_domain="10YNL----------L",
+    period_start=format_entsoe_datetime(period_start),
+    period_end=format_entsoe_datetime(period_end),
+).query_api()
+
+records = extract_records(result)
+records = add_timestamps(records)
+df = pd.DataFrame(records)
+df = df.convert_dtypes()
+```
+
+
 ### Extracting Specific Domains
 
 You can extract specific parts of the result by specifying a domain:
