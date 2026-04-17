@@ -203,7 +203,9 @@ def extract_records(
         # values so the output structure stays aligned with mode="json".
         data_dict = [item.model_dump(mode="python") for item in data_list]
         data_dict = [_coerce_decimals_to_float(item_dict) for item_dict in data_dict]
-        data_dict = [_ANY_ADAPTER.dump_python(item_dict, mode="json") for item_dict in data_dict]
+        data_dict = [
+            _ANY_ADAPTER.dump_python(item_dict, mode="json") for item_dict in data_dict
+        ]
     else:
         data_dict = [item.model_dump(mode="json") for item in data_list]
     all_records = []
