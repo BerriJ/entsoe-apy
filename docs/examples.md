@@ -37,7 +37,7 @@ See also [Utilities](./utilities.md) for more details on the utility functions.
 
 ### Working with datetime and timezones
 
-The ENTSO-E API is (usually) expecting UTC timestamps but the European power markets operate on a Europe/Berlin basis. We can use the `parse_entsoe_datetime` function to convert `datetime` and `pandas` timestamps in the API interface. The function handles time zone information and parses `datetime` derived types to the respective integer. Timezone-naive timestamps are assumed to be in UTC.
+The ENTSO-E API is (usually) expecting UTC timestamps but the European power markets operate on a Europe/Berlin basis. We can use the `format_entsoe_datetime` function to convert `datetime` and `pandas` timestamps in the API interface. The function handles time zone information and parses `datetime` derived types to the respective integer. Timezone-naive timestamps are assumed to be in UTC.
 
 ```python
 import pandas as pd
