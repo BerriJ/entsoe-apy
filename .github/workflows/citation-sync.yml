@@ -18,6 +18,6 @@ jobs:
 
       - uses: Adamtaranto/citation-sync-action@v1
         with:
+          update-mode: match
           use-pull-request: true
-          target-branch: develop
           token: ${{ secrets.GITHUB_TOKEN }}
