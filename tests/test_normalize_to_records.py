@@ -1,7 +1,5 @@
 """Unit tests for the normalize_to_records function."""
 
-import pytest
-
 from entsoe.utils.records import normalize_to_records
 
 
@@ -78,9 +76,7 @@ def test_nested_dict_containing_list_produces_sub_records():
         },
     }
     result = normalize_to_records(data)
-    assert len(result) == 2, (
-        "Expected one record per element in the nested dict's list"
-    )
+    assert len(result) == 2, "Expected one record per element in the nested dict's list"
     assert {"ts_id": "ts-1", "group.label": "g1", "group.items.id": "a"} in result
     assert {"ts_id": "ts-1", "group.label": "g1", "group.items.id": "b"} in result
 
