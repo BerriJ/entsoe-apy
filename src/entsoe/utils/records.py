@@ -69,14 +69,18 @@ def normalize_to_records(
         return {k: v for k, v in record.items() if k not in ignore_fields}
 
     if isinstance(data, dict):
-        items = {}
+        items: Dict[str, Any] = {}
+        expansions: List[List[Dict[str, Any]]] = []
         for k, v in data.items():
             new_key = f"{parent_key}{sep}{k}" if parent_key else k
             if isinstance(v, dict):
                 sub_records = normalize_to_records(
                     v, new_key, sep=sep, ignore_fields=ignore_fields
                 )
-                items.update(sub_records[0])  # merge dict
+                if len(sub_records) == 1:
+                    items.update(sub_records[0])
+                elif len(sub_records) > 1:
+                    expansions.append(sub_records)
             elif isinstance(v, list):
                 # Expand list elements into multiple records
                 list_records = []
@@ -88,14 +92,15 @@ def normalize_to_records(
                         list_records.extend(sub_records)
                     else:
                         list_records.append({new_key: elem})
-                # Cross join if multiple records, else just keep one
                 if list_records:
-                    return [
-                        _filter_ignored_fields(dict(items, **lr)) for lr in list_records
-                    ]
+                    expansions.append(list_records)
             else:
                 items[new_key] = v
-        return [_filter_ignored_fields(items)]
+        # Cross-join base items with all collected expansions
+        result: List[Dict[str, Any]] = [items]
+        for expansion in expansions:
+            result = [dict(r, **e) for r in result for e in expansion]
+        return [_filter_ignored_fields(r) for r in result]
     elif isinstance(data, list):
         records = []
         for elem in data:

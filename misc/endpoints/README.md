@@ -21,8 +21,8 @@ To regenerate this list, run:
 - [12.1.D Energy Prices](Market/12.1.D%20Energy%20Prices.json)
 
 ## [Load](Load)
-- [6.1.A Actual Total Load](Load/6.1.A%20Actual%20Total%20Load.json)
 - [6.1.A Actual Total Load - SECURITY_TOKEN in header](Load/6.1.A%20Actual%20Total%20Load%20-%20SECURITY_TOKEN%20in%20header.json)
+- [6.1.A Actual Total Load](Load/6.1.A%20Actual%20Total%20Load.json)
 - [6.1.B Day-ahead Total Load Forecast](Load/6.1.B%20Day-ahead%20Total%20Load%20Forecast.json)
 - [6.1.C Week-ahead Total Load Forecast](Load/6.1.C%20Week-ahead%20Total%20Load%20Forecast.json)
 - [6.1.D Month-ahead Total Load Forecast](Load/6.1.D%20Month-ahead%20Total%20Load%20Forecast.json)
@@ -66,6 +66,7 @@ To regenerate this list, run:
 - [12.3.B&C Balancing energy bids](Balancing/12.3.B%26C%20Balancing%20energy%20bids.json)
 - [12.3.B&C Balancing energy bids archives](Balancing/12.3.B%26C%20Balancing%20energy%20bids%20archives.json)
 - [IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability](Balancing/IFs%20mFRR%209.9%2C%20aFRR%209.6%269.8%20Changes%20to%20Bid%20Availability.json)
+- [IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability Archives](Balancing/IFs%20mFRR%209.9%2C%20aFRR%209.6%269.8%20Changes%20to%20Bid%20Availability%20Archives.json)
 - [12.3.E Aggregated Balancing Energy Bids (GL EB)](Balancing/12.3.E%20Aggregated%20Balancing%20Energy%20Bids%20%28GL%20EB%29.json)
 - [IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes](Balancing/IFs%203.10%2C%203.16%20%26%203.17%20Netted%20and%20Exchanged%20Volumes.json)
 - [IFs 3.10, 3.16 & 3.17 Netted and Exchanged Volumes per Border](Balancing/IFs%203.10%2C%203.16%20%26%203.17%20Netted%20and%20Exchanged%20Volumes%20per%20Border.json)

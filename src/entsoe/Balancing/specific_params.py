@@ -1183,6 +1183,68 @@ class ChangesToBidAvailability(Balancing):
         )
 
 
+class ChangesToBidAvailabilityArchives(Balancing):
+    """Parameters for IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability Archives.
+
+    Data view:
+    https://transparency.entsoe.eu/balancing/r2/changesToBidAvailability/show
+
+    Fixed parameters:
+
+    - documentType: B45 (Bid Availability Document)
+    - processType: A47 (Manual frequency restoration reserve)
+    - storageType: archive
+
+    Optional parameters:
+    - businessType: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
+                   C43=Voltage limit, C44=Current limit,
+                   C45=Short-circuit current limits,
+                   C46=Dynamic stability limit
+
+    Notes:
+    - This is the archived version of changes to bid availability
+    - The offset parameter paginates the response in batches of 100 archives
+    """
+
+    code = "IF_mFRR_aFRR_9.6_9.8_9.9_Archives"
+
+    def __init__(
+        self,
+        period_start: int,
+        period_end: int,
+        domain: str,
+        # Optional balancing-specific parameters
+        business_type: Optional[str] = None,
+        # Additional common parameters
+        offset: int = 0,
+    ):
+        """
+        Initialize changes to bid availability archives parameters.
+
+        Args:
+            period_start: Start period (YYYYMMDDHHMM format)
+            period_end: End period (YYYYMMDDHHMM format)
+            domain: EIC code of Scheduling Area or LFA
+            business_type: C40=Conditional bid, C41=Thermal limit, C42=Frequency limit,
+                          C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
+                          C46=Dynamic stability limit
+            offset: Zero-based index of the first archive to return (batches of 100)
+        """
+        # Initialize with preset and user parameters
+        super().__init__(
+            document_type="B45",
+            period_start=period_start,
+            period_end=period_end,
+            domain=domain,
+            process_type="A47",
+            business_type=business_type,
+            offset=offset,
+        )
+
+        # Add the storageType parameter specific to archives endpoint
+        self.add_optional_param("storageType", "archive")
+
+
 class BalancingBorderCapacityLimitations(Balancing):
     """Parameters for IFs 4.3 & 4.4 Balancing Border Capacity Limitations.
 

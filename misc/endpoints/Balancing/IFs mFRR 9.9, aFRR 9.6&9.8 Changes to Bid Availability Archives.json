@@ -1,0 +1,48 @@
+{
+  "name": "IFs mFRR 9.9, aFRR 9.6&9.8 Changes to Bid Availability Archives",
+  "method": "GET",
+  "query": [
+    {
+      "key": "documentType",
+      "value": "B45",
+      "description": "[M] B45 = Bid Availability Document"
+    },
+    {
+      "key": "processType",
+      "value": "A47",
+      "description": "[M] A47"
+    },
+    {
+      "key": "Domain",
+      "value": "10YDE-VE-------2",
+      "description": "[M] EIC code of a Scheduling Area or LFA"
+    },
+    {
+      "key": "periodStart",
+      "value": "202309232200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "periodEnd",
+      "value": "202309242200",
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "storageType",
+      "value": "archive",
+      "description": "[M] Used to request archives"
+    },
+    {
+      "key": "businessType",
+      "value": "C46",
+      "description": "[O] C40 = Conditional bid; C41 = Thermal limit; C42 = Frequency limit; C43 = Voltage limit; C44 = Current limit; C45 = Short-circuit current limits; C46 = Dynamic stability limit",
+      "disabled": true
+    },
+    {
+      "key": "offset",
+      "value": "100",
+      "description": "[O] Integer: Zero‑based index of the first archive to return. The offset parameter paginates the response in batches of 100 archives (e.g., offset = n returns the archives in the range n+1 to n+100).",
+      "disabled": true
+    }
+  ]
+}
