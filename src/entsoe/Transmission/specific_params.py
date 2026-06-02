@@ -177,6 +177,7 @@ class CommercialSchedulesNetPositions(Transmission):
     Fixed parameters:
 
     - documentType: A09 (Finalised schedule)
+    - businessType: B09 (Net position)
 
     Request Limits:
     - One year range limit applies
@@ -205,6 +206,7 @@ class CommercialSchedulesNetPositions(Transmission):
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A09",
+            business_type="B09",  # Fixed: Net position
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,

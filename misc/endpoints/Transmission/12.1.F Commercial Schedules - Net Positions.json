@@ -8,6 +8,11 @@
       "description": "[M] A09 = Finalised schedule"
     },
     {
+      "key": "businessType",
+      "value": "B09",
+      "description": "[M] B09 = Net position"
+    },
+    {
       "key": "out_Domain",
       "value": "10YAT-APG------L",
       "description": "[M] EIC code of a Control Area, Bidding Zone or a Country"
