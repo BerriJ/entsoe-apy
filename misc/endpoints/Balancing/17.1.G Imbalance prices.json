@@ -27,6 +27,12 @@
       "value": "A04",
       "description": "[O] A04 = Generation; A05 = Load",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

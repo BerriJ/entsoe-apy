@@ -32,6 +32,12 @@
       "value": "B16",
       "description": "[O] B16 = Solar; B18 = Wind Offshore; B19 = Wind Onshore;",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

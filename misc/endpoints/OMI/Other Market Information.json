@@ -51,6 +51,12 @@
       "value": "NDE5ODBiYjFkM2ExMTljYTM5Mzk2ODcxNDFkZDE4MzU=",
       "description": "[O] If mRID is included, individual versions of the particular event are queried using the rest of the parameters",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

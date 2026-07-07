@@ -41,6 +41,12 @@
       "key": "registeredResource",
       "value": "10T-DK-NL-000012",
       "description": "[O] EIC of interconnector (If used, data for the given Transmission Asset is returned, otherwise, data for IC not specified is returned.)"
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

@@ -42,6 +42,12 @@
       "value": "22T201903146---W",
       "description": "[O] EIC code of a Transmission Asset: If used, data for the given Transmission Asset is returned, otherwise, data for IC not specified is returned.",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }
