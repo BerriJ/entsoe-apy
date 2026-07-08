@@ -386,6 +386,8 @@ class Fallbacks(Outages):
         # Optional filtering parameters
         doc_status: Optional[str] = None,
         m_rid: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize fall-backs parameters.
@@ -407,6 +409,8 @@ class Fallbacks(Outages):
             doc_status: Document status (A13=Withdrawn, by default withdrawn
                        publications not returned)
             m_rid: Message ID for specific publication versions
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         super().__init__(
             document_type="A53",
@@ -418,6 +422,7 @@ class Fallbacks(Outages):
             business_type=business_type,
             doc_status=doc_status,
             m_rid=m_rid,
+            curve_type=curve_type,
         )
 
         # Add process type parameter specific to this endpoint

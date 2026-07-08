@@ -1469,6 +1469,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize results of criteria application process parameters.
@@ -1479,6 +1480,8 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A64=Instantaneous frequency criteria,
                          A65=Frequency restoration criteria
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1487,6 +1490,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 

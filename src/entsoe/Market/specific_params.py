@@ -762,6 +762,7 @@ class ImplicitAuctionNetPositions(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize implicit auction net positions parameters.
@@ -773,6 +774,8 @@ class ImplicitAuctionNetPositions(Market):
             out_domain: EIC code of a Bidding Zone or Control Area
                 (must be same as in_domain)
             contract_market_agreement_type: A01=Daily; A05=Total; A07=Intraday
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -783,6 +786,7 @@ class ImplicitAuctionNetPositions(Market):
             out_domain=out_domain,
             business_type="B09",  # Fixed: Net position
             contract_market_agreement_type=contract_market_agreement_type,
+            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
