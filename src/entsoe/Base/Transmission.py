@@ -20,6 +20,7 @@ class Transmission(Base):
         process_type: Optional[str] = None,
         # Additional common parameters
         offset: int | None = None,
+        curve_type: str = "A01",
     ):
         """
         Initialize transmission data parameters for ENTSO-E Transparency Platform.
@@ -38,6 +39,8 @@ class Transmission(Base):
             process_type: Process type (e.g., A01, A02, A16, A18, A31, A32, A33,
                          A39, A40, A44, A46)
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
 
         Raises:
             ValidationError: If any input parameter is invalid
@@ -59,6 +62,7 @@ class Transmission(Base):
             period_start=period_start,
             period_end=period_end,
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Add domain parameters

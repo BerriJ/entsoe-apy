@@ -30,6 +30,7 @@ class Base:
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
         offset: int | None = None,
+        curve_type: str = "A01",
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.
@@ -39,6 +40,8 @@ class Base:
             period_start: Start period (YYYYMMDDHHMM format, optional)
             period_end: End period (YYYYMMDDHHMM format, optional)
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
 
         Raises:
             ValidationError: If any input parameter is invalid
@@ -49,6 +52,7 @@ class Base:
         # Initialize the base parameters dictionary
         self.params: Dict[str, Any] = {
             "documentType": document_type,
+            "curveType": curve_type,
         }
 
         # Add period parameters using the proper method
