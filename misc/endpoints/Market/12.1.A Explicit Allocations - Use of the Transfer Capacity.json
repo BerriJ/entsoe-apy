@@ -48,6 +48,12 @@
       "value": "1",
       "description": "[O] Integer",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block (available only for contract_MarketAgreement.Type = A01 and A07); A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }
