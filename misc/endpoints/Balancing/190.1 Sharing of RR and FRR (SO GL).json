@@ -5,48 +5,37 @@
     {
       "key": "documentType",
       "value": "A26",
-      "description": "A26 = Capacity document"
-    },
-    {
-      "key": "processType",
-      "value": "A56",
-      "description": "A56 = Frequency restoration reserve"
+      "description": "[M] A26 = Capacity document"
     },
     {
       "key": "BusinessType",
       "value": "C22",
-      "description": "C22 = Shared balancing reserve capacity"
+      "description": "[M] C22 = Shared balancing reserve capacity"
     },
     {
-      "key": "Acquiring_Domain",
+      "key": "processType",
+      "value": "A51",
+      "description": "[M] A51 = Automatic Frequency Restoration Reserve; A47 = Manual Frequency Restoration Reserve; A46 = Replacement Reserve"
+    },
+    {
+      "key": "Area_Domain",
       "value": "10YAT-APG------L",
-      "description": "Load Frequency Control Block"
-    },
-    {
-      "key": "Connecting_Domain",
-      "value": "10YCB-GERMANY--8",
-      "description": "Load Frequency Control Block"
+      "description": "[M] Load Frequency Control Block"
     },
     {
       "key": "periodStart",
       "value": "202101010000",
-      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
     },
     {
       "key": "periodEnd",
       "value": "202112310000",
-      "description": "Pattern yyyyMMddHHmm e.g. 201601010000"
-    },
-    {
-      "key": "offset",
-      "value": "0",
-      "description": "[O] Integer: Zero‑based index of the first TimeSeries to return. The offset parameter paginates the response in batches of 100 TimeSeries (e.g., offset = n returns the TimeSeries in the range n+1 to n+100)."
+      "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
     },
     {
       "key": "curveType",
-      "value": "A03",
-      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
-      "disabled": true
+      "value": "A01",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)"
     }
   ]
 }
