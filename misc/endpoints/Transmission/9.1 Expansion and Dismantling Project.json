@@ -38,6 +38,12 @@
       "value": "A01",
       "description": "[O] A01 = Intermediate; A02 = Final; A05 = Active; A09 = Cancelled; A13 = Withdrawn; X01 = Estimated",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

@@ -26,6 +26,11 @@
       "key": "periodEnd",
       "value": "202309032200",
       "description": "[M] Pattern yyyyMMddHHmm e.g. 201601010000"
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)"
     }
   ]
 }
