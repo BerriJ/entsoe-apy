@@ -27,7 +27,7 @@ class Outages(Base):
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: str = "A01",
+        curve_type: Optional[str] = None,
     ):
         """
         Initialize outage data parameters for ENTSO-E Transparency Platform.
@@ -54,8 +54,7 @@ class Outages(Base):
             m_rid: Message ID - older versions of outage returned only when used
             offset: Offset for pagination (allows downloading more than 200 docs,
                    offset ∈ [0,4800] so paging restricted to 5000 docs max)
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
+            curve_type: Curve type (default None, "A01" = Sequential fixed block; "A03" = Variable sized blocks))
 
         Raises:
             ValidationError: If any input parameter is invalid

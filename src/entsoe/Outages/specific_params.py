@@ -44,7 +44,6 @@ class UnavailabilityOfProductionUnits(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize unavailability of production units parameters.
@@ -61,8 +60,8 @@ class UnavailabilityOfProductionUnits(Outages):
                        A13=Withdrawn)
             registered_resource: EIC Code of Production Unit
             m_rid: Message ID for specific outage versions
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)"""
+        """
+
         super().__init__(
             document_type="A77",
             period_start=period_start,
@@ -75,7 +74,6 @@ class UnavailabilityOfProductionUnits(Outages):
             registered_resource=registered_resource,
             m_rid=m_rid,
             offset=offset,
-            curve_type=curve_type,
         )
 
 
@@ -113,7 +111,6 @@ class UnavailabilityOfGenerationUnits(Outages):
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize unavailability of generation units parameters.
@@ -130,8 +127,8 @@ class UnavailabilityOfGenerationUnits(Outages):
                        A13=Withdrawn)
             registered_resource: EIC Code of Generation Unit
             m_rid: Message ID for specific outage versions
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)"""
+        """
+
         super().__init__(
             document_type="A80",
             period_start=period_start,
@@ -144,7 +141,6 @@ class UnavailabilityOfGenerationUnits(Outages):
             registered_resource=registered_resource,
             m_rid=m_rid,
             offset=offset,
-            curve_type=curve_type,
         )
 
 
