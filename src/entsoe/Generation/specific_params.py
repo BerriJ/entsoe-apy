@@ -39,6 +39,8 @@ class InstalledCapacityPerProductionType(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize installed capacity per production type parameters.
@@ -48,6 +50,8 @@ class InstalledCapacityPerProductionType(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             psr_type: Power system resource type (B01-B25)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -57,6 +61,7 @@ class InstalledCapacityPerProductionType(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
+            curve_type=curve_type,
         )
 
 
@@ -83,6 +88,8 @@ class WaterReservoirsAndHydroStorage(Generation):
         period_start: int,
         period_end: int,
         in_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
@@ -91,6 +98,8 @@ class WaterReservoirsAndHydroStorage(Generation):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area, Bidding Zone or Country
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -98,6 +107,7 @@ class WaterReservoirsAndHydroStorage(Generation):
             process_type="A16",
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
             in_domain=in_domain,
         )
 
@@ -130,6 +140,8 @@ class ActualGenerationPerProductionType(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize actual generation per production type parameters.
@@ -139,6 +151,8 @@ class ActualGenerationPerProductionType(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
             psr_type: Power system resource type (B01-B25)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -148,6 +162,7 @@ class ActualGenerationPerProductionType(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
+            curve_type=curve_type,
         )
 
 
@@ -182,6 +197,8 @@ class ActualGenerationPerGenerationUnit(Generation):
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
         registered_resource: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize actual generation per generation unit parameters.
@@ -192,6 +209,8 @@ class ActualGenerationPerGenerationUnit(Generation):
             in_domain: EIC code of a Control Area
             psr_type: Power system resource type (B01-B25)
             registered_resource: EIC Code of a specific Generation Unit
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -202,6 +221,7 @@ class ActualGenerationPerGenerationUnit(Generation):
             in_domain=in_domain,
             psr_type=psr_type,
             registered_resource=registered_resource,
+            curve_type=curve_type,
         )
 
 
@@ -229,6 +249,8 @@ class GenerationForecastDayAhead(Generation):
         period_start: int,
         period_end: int,
         in_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize generation forecast day ahead parameters.
@@ -237,6 +259,8 @@ class GenerationForecastDayAhead(Generation):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: Control Area, Bidding Zone, Country
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -245,6 +269,7 @@ class GenerationForecastDayAhead(Generation):
             period_start=period_start,
             period_end=period_end,
             in_domain=in_domain,
+            curve_type=curve_type,
         )
 
 
@@ -275,6 +300,8 @@ class GenerationForecastWindAndSolar(Generation):
         # Optional generation-specific parameters
         process_type: str = "A01",  # Default to Day ahead
         psr_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize generation forecast wind and solar parameters.
@@ -285,6 +312,8 @@ class GenerationForecastWindAndSolar(Generation):
             in_domain: EIC code of a Control Area, Bidding Zone or Country
             process_type: A01=Day ahead, A18=Current, A40=Intraday
             psr_type: B16=Solar, B18=Wind Offshore, B19=Wind Onshore
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -294,6 +323,7 @@ class GenerationForecastWindAndSolar(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
+            curve_type=curve_type,
         )
 
 
@@ -324,6 +354,8 @@ class InstalledCapacityPerProductionUnit(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         psr_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize installed capacity per production unit parameters.
@@ -333,6 +365,8 @@ class InstalledCapacityPerProductionUnit(Generation):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area or Bidding Zone
             psr_type: Power system resource type (B01-B25)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -342,4 +376,5 @@ class InstalledCapacityPerProductionUnit(Generation):
             period_end=period_end,
             in_domain=in_domain,
             psr_type=psr_type,
+            curve_type=curve_type,
         )

@@ -29,7 +29,8 @@ class Base:
         document_type: str,
         period_start: Optional[int] = None,
         period_end: Optional[int] = None,
-        offset: int | None = None,
+        offset: Optional[int] = None,
+        curve_type: Optional[str] = None,
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.
@@ -39,6 +40,7 @@ class Base:
             period_start: Start period (YYYYMMDDHHMM format, optional)
             period_end: End period (YYYYMMDDHHMM format, optional)
             offset: Offset for pagination
+            curve_type: Curve type (default None, can be set to "A01" or "A03" for specific queries)
 
         Raises:
             ValidationError: If any input parameter is invalid
@@ -56,6 +58,9 @@ class Base:
 
         if offset is not None:
             self.add_optional_param("offset", offset)
+
+        if curve_type is not None:
+            self.add_optional_param("curveType", curve_type)
 
     def validate_eic_code(
         self,

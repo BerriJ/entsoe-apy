@@ -37,6 +37,12 @@
       "value": "A01",
       "description": "[O] A01 = Day Ahead Commercial Schedules; A05 = Total Commercial Schedules",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

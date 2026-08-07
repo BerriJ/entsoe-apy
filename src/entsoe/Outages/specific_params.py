@@ -59,7 +59,9 @@ class UnavailabilityOfProductionUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Production Unit
-            m_rid: Message ID for specific outage versions"""
+            m_rid: Message ID for specific outage versions
+        """
+
         super().__init__(
             document_type="A77",
             period_start=period_start,
@@ -124,7 +126,9 @@ class UnavailabilityOfGenerationUnits(Outages):
             doc_status: Document status (A05=Active, A09=Cancelled,
                        A13=Withdrawn)
             registered_resource: EIC Code of Generation Unit
-            m_rid: Message ID for specific outage versions"""
+            m_rid: Message ID for specific outage versions
+        """
+
         super().__init__(
             document_type="A80",
             period_start=period_start,
@@ -170,6 +174,8 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
         period_end_update: Optional[int] = None,
         # Optional filtering parameters
         business_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize aggregated unavailability of consumption units parameters.
@@ -184,6 +190,8 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
             period_end_update: End of update period (YYYYMMDDHHMM format)
             business_type: Business type (A53=Planned maintenance,
                          A54=Forced unavailability)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         super().__init__(
             document_type="A76",
@@ -193,6 +201,7 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
             period_start_update=period_start_update,
             period_end_update=period_end_update,
             business_type=business_type,
+            curve_type=curve_type,
         )
 
 

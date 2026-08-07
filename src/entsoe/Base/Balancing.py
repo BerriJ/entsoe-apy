@@ -31,6 +31,7 @@ class Balancing(Base):
         registered_resource: Optional[str] = None,
         # Additional common parameters
         offset: int | None = None,
+        curve_type: Optional[str] = None,
     ):
         """
         Initialize balancing data parameters for ENTSO-E Transparency Platform.
@@ -61,6 +62,7 @@ class Balancing(Base):
             direction: Direction (A01=Up, A02=Down)
             registered_resource: EIC code of registered resource/transmission asset
             offset: Offset for pagination
+            curve_type: Curve type (default None, can be set to "A01" or "A03" for specific queries)
 
         Raises:
             ValidationError: If any input parameter is invalid
@@ -82,6 +84,7 @@ class Balancing(Base):
             period_start=period_start,
             period_end=period_end,
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Add domain parameters

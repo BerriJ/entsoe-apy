@@ -4,7 +4,7 @@ authors = [
   {name="Jonathan Berrisch", email="jonathan.berrisch@uni-due.de"},
   {name="Jie Xu", email="jie.xu@uni-due.de"}
 ]
-version = "1.1.1"
+version = "1.2.0"
 description = "A Python library for accessing ENTSO-E Transparency Platform API endpoints"
 readme = "README.md"
 license = "GPL-3.0-or-later"
@@ -77,3 +77,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+entsoe = ["py.typed"]

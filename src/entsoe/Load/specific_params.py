@@ -30,6 +30,8 @@ class ActualTotalLoad(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize actual total load parameters.
@@ -38,6 +40,8 @@ class ActualTotalLoad(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -46,6 +50,7 @@ class ActualTotalLoad(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
 
 
@@ -72,6 +77,8 @@ class DayAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize day-ahead total load forecast parameters.
@@ -80,6 +87,8 @@ class DayAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -88,6 +97,7 @@ class DayAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
 
 
@@ -114,6 +124,8 @@ class WeekAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize week-ahead total load forecast parameters.
@@ -122,6 +134,8 @@ class WeekAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -130,6 +144,7 @@ class WeekAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
 
 
@@ -156,6 +171,8 @@ class MonthAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize month-ahead total load forecast parameters.
@@ -164,6 +181,8 @@ class MonthAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -172,6 +191,7 @@ class MonthAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
 
 
@@ -198,6 +218,8 @@ class YearAheadTotalLoadForecast(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize year-ahead total load forecast parameters.
@@ -206,6 +228,8 @@ class YearAheadTotalLoadForecast(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -214,6 +238,7 @@ class YearAheadTotalLoadForecast(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
 
 
@@ -240,6 +265,8 @@ class YearAheadForecastMargin(Load):
         out_bidding_zone_domain: str,
         period_start: int,
         period_end: int,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize year-ahead forecast margin parameters.
@@ -248,6 +275,8 @@ class YearAheadForecastMargin(Load):
             out_bidding_zone_domain: EIC code of a Control Area, Bidding Zone or Country
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -256,4 +285,5 @@ class YearAheadForecastMargin(Load):
             out_bidding_zone_domain=out_bidding_zone_domain,
             period_start=period_start,
             period_end=period_end,
+            curve_type=curve_type,
         )
