@@ -38,6 +38,12 @@
       "value": "100",
       "description": "[O] Integer: Zero‑based index of the first TimeSeries to return. The offset parameter paginates the response in batches of 100 TimeSeries (e.g., offset = n returns the TimeSeries in the range n+1 to n+100).",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

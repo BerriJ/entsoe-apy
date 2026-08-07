@@ -21,6 +21,7 @@ class Generation(Base):
         registered_resource: Optional[str] = None,
         # Additional common parameters
         offset: int | None = None,
+        curve_type: str = "A01",
     ):
         """
         Initialize generation data parameters for ENTSO-E Transparency Platform.
@@ -40,6 +41,8 @@ class Generation(Base):
                      types like Biomass, Nuclear, Wind, Solar, etc.)
             registered_resource: EIC Code of specific production unit or resource
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
 
         Raises:
             ValidationError: If any input parameter is invalid
@@ -63,6 +66,7 @@ class Generation(Base):
             period_start=period_start,
             period_end=period_end,
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Add domain parameters
