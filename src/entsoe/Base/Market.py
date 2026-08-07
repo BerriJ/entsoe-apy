@@ -26,7 +26,7 @@ class Market(Base):
         ] = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: str = "A01",
+        curve_type: Optional[str] = None,
     ):
         """
         Initialize market data parameters for ENTSO-E Transparency Platform.
@@ -48,8 +48,7 @@ class Market(Base):
             classification_sequence_attribute_instance_component_position: Position
                 for classification
             offset: Offset for pagination
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
+            curve_type: Curve type (default None, can be set to "A01" or "A03" for specific queries)
 
         Raises:
             ValidationError: If any input parameter is invalid

@@ -40,7 +40,6 @@ class OtherMarketInformation(OMI):
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize other market information parameters.
@@ -58,8 +57,6 @@ class OtherMarketInformation(OMI):
                              mandatory if period_start and period_end not defined)
             m_rid: Message ID for specific information versions
             offset: Offset for pagination
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
 
         Note:
             Either (period_start, period_end) or
@@ -75,7 +72,6 @@ class OtherMarketInformation(OMI):
             doc_status=doc_status,
             m_rid=m_rid,
             offset=offset,
-            curve_type=curve_type,
         )
 
         # Set the fixed document type for Other Market Information

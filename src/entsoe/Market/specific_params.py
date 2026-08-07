@@ -389,8 +389,6 @@ class FlowBasedAllocations(Market):
         in_domain: str,
         out_domain: str,
         process_type: str,
-        # Additional common parameters
-        curve_type: str = "A01",
     ):
         """
         Initialize flow based allocations parameters.
@@ -402,8 +400,6 @@ class FlowBasedAllocations(Market):
             out_domain: EIC code of a Region
             process_type: Process type (A43=Day ahead, A44=Intraday,
                 A32=Month-ahead, A33=Year-ahead)
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -413,7 +409,6 @@ class FlowBasedAllocations(Market):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
-            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
