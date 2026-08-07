@@ -48,6 +48,12 @@
       "value": "1",
       "description": "[O] Integer",
       "disabled": true
+    },
+    {
+      "key": "curveType",
+      "value": "A03",
+      "description": "[O] A01 = Sequential fixed block; A03 = Variable sized blocks (default)",
+      "disabled": true
     }
   ]
 }

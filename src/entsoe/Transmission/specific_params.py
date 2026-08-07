@@ -33,6 +33,8 @@ class CrossBorderPhysicalFlows(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize cross-border physical flows parameters.
@@ -41,7 +43,9 @@ class CrossBorderPhysicalFlows(Transmission):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             out_domain: EIC code of output domain/bidding zone
-            in_domain: EIC code of input domain/bidding zone"""
+            in_domain: EIC code of input domain/bidding zone
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)"""
         # Initialize with preset and user parameters
         super().__init__(
             document_type="A11",
@@ -49,6 +53,7 @@ class CrossBorderPhysicalFlows(Transmission):
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -82,6 +87,8 @@ class CommercialSchedules(Transmission):
         out_domain: str,
         in_domain: str,
         contract_market_agreement_type: Optional[Literal["A01", "A05"]] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize commercial schedules parameters.
@@ -93,6 +100,8 @@ class CommercialSchedules(Transmission):
             in_domain: EIC code of input domain/bidding zone
             contract_market_agreement_type: A01=Day Ahead Commercial Schedules,
                                            A05=Total Commercial Schedules (optional)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -101,6 +110,7 @@ class CommercialSchedules(Transmission):
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -140,6 +150,8 @@ class ForecastedTransferCapacities(Transmission):
         out_domain: str,
         in_domain: str,
         contract_market_agreement_type: Literal["A01", "A02", "A03", "A04"],
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize forecasted transfer capacities parameters.
@@ -151,6 +163,8 @@ class ForecastedTransferCapacities(Transmission):
             in_domain: EIC code of input domain/bidding zone
             contract_market_agreement_type: A01=Day ahead, A02=Week ahead,
                                            A03=Month ahead, A04=Year ahead
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -159,6 +173,7 @@ class ForecastedTransferCapacities(Transmission):
             period_end=period_end,
             out_domain=out_domain,
             in_domain=in_domain,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -192,6 +207,8 @@ class CommercialSchedulesNetPositions(Transmission):
         period_end: int,
         in_domain: str,
         contract_market_agreement_type: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize commercial schedules net positions parameters.
@@ -202,6 +219,8 @@ class CommercialSchedulesNetPositions(Transmission):
             in_domain: EIC code of Control Area, Bidding Zone or Country
                 (in_domain and out_domain must be the same)
             contract_market_agreement_type: A01=Day Ahead; A05=Total (optional)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -211,6 +230,7 @@ class CommercialSchedulesNetPositions(Transmission):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=in_domain,  # Same as in_domain for net positions
+            curve_type=curve_type,
         )
 
         # Add optional contract type
@@ -243,6 +263,8 @@ class CrossBorderCapacityDCLinks(Transmission):
         period_end: int,
         in_domain: str,
         out_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize DC link capacity parameters.
@@ -252,6 +274,8 @@ class CrossBorderCapacityDCLinks(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Bidding Zone, Control Area or Country
             out_domain: EIC code of Bidding Zone, Control Area or Country
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -260,6 +284,7 @@ class CrossBorderCapacityDCLinks(Transmission):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -289,6 +314,8 @@ class RedispatchingCrossBorder(Transmission):
         period_end: int,
         in_domain: str,
         out_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize cross border redispatching parameters.
@@ -298,6 +325,8 @@ class RedispatchingCrossBorder(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Control Area
             out_domain: EIC code of Control Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -307,6 +336,7 @@ class RedispatchingCrossBorder(Transmission):
             in_domain=in_domain,
             out_domain=out_domain,
             business_type="A46",  # Fixed: System Operator re-dispatching
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -335,6 +365,8 @@ class RedispatchingInternal(Transmission):
         period_start: int,
         period_end: int,
         in_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize internal redispatching parameters.
@@ -344,6 +376,8 @@ class RedispatchingInternal(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Control Area (in_domain and out_domain
                 must be the same for internal)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -353,6 +387,7 @@ class RedispatchingInternal(Transmission):
             in_domain=in_domain,
             out_domain=in_domain,  # Same as in_domain for internal
             business_type="A85",  # Fixed: Internal requirements
+            curve_type=curve_type,
         )
 
 
@@ -379,6 +414,8 @@ class Countertrading(Transmission):
         period_end: int,
         in_domain: str,
         out_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize countertrading parameters.
@@ -388,6 +425,8 @@ class Countertrading(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Control Area or Bidding Zone
             out_domain: EIC code of Control Area or Bidding Zone
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -396,6 +435,7 @@ class Countertrading(Transmission):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -423,6 +463,8 @@ class CostsOfCongestionManagement(Transmission):
         period_start: int,
         period_end: int,
         in_domain: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize congestion management costs parameters.
@@ -432,6 +474,8 @@ class CostsOfCongestionManagement(Transmission):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of Control Area (in_domain and out_domain
                 must be the same)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -440,6 +484,7 @@ class CostsOfCongestionManagement(Transmission):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=in_domain,  # Same as in_domain
+            curve_type=curve_type,
         )
 
 
@@ -468,6 +513,8 @@ class ExpansionAndDismantlingProject(Transmission):
         out_domain: str,
         business_type: Optional[str] = None,
         doc_status: Optional[str] = None,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize expansion and dismantling project parameters.
@@ -481,6 +528,8 @@ class ExpansionAndDismantlingProject(Transmission):
                 B02=interconnector network dismantling (optional)
             doc_status: A01=Intermediate; A02=Final; A05=Active; A09=Cancelled;
                 A13=Withdrawn; X01=Estimated (optional)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -490,6 +539,7 @@ class ExpansionAndDismantlingProject(Transmission):
             in_domain=in_domain,
             out_domain=out_domain,
             business_type=business_type,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)

@@ -43,6 +43,7 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         original_market_product: Optional[str] = None,
         export_type: Optional[str] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize prices of activated balancing energy parameters.
@@ -58,6 +59,8 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             standard_market_product: A01=Standard
             original_market_product: A02=Specific, A04=Local
             export_type: zip (planned to be discontinued)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -70,6 +73,7 @@ class PricesOfActivatedBalancingEnergy(Balancing):
             psr_type=psr_type,
             standard_market_product=standard_market_product,
             original_market_product=original_market_product,
+            curve_type=curve_type,
         )
 
 
@@ -108,6 +112,7 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         psr_type: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize volumes and prices of contracted reserves parameters.
@@ -121,6 +126,8 @@ class VolumesAndPricesOfContractedReserves(Balancing):
             process_type: A51=aFRR, A52=FCR, A47=mFRR, A46=RR (optional)
             psr_type: A03=Mixed, A04=Generation, A05=Load (optional)
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -133,6 +140,7 @@ class VolumesAndPricesOfContractedReserves(Balancing):
             process_type=process_type,
             psr_type=psr_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -161,6 +169,7 @@ class ImbalancePrices(Balancing):
         # Optional parameters
         psr_type: Optional[str] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize imbalance prices parameters.
@@ -170,6 +179,8 @@ class ImbalancePrices(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balancing Area
             psr_type: A04=Generation, A05=Load
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -178,6 +189,7 @@ class ImbalancePrices(Balancing):
             period_end=period_end,
             control_area_domain=control_area_domain,
             psr_type=psr_type,
+            curve_type=curve_type,
         )
 
 
@@ -205,6 +217,7 @@ class TotalImbalanceVolumes(Balancing):
         # Optional balancing-specific parameters
         business_type: Optional[str] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize total imbalance volumes parameters.
@@ -214,6 +227,8 @@ class TotalImbalanceVolumes(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of Scheduling Area or Market Balance Area
             business_type: A19=Balance Energy Deviation
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -222,6 +237,7 @@ class TotalImbalanceVolumes(Balancing):
             period_end=period_end,
             control_area_domain=control_area_domain,
             business_type=business_type,
+            curve_type=curve_type,
         )
 
 
@@ -248,6 +264,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
         period_end: int,
         control_area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize financial expenses and income for balancing parameters.
@@ -256,6 +273,8 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of a Control Area or a Market Balance Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -263,6 +282,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
             period_start=period_start,
             period_end=period_end,
             control_area_domain=control_area_domain,
+            curve_type=curve_type,
         )
 
 
@@ -296,6 +316,7 @@ class BalancingEnergyBids(Balancing):
         direction: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize balancing energy bids parameters.
@@ -310,6 +331,8 @@ class BalancingEnergyBids(Balancing):
             original_market_product: A02=Specific, A03=Integrated Process, A04=Local
             direction: A01=Up, A02=Down
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -323,6 +346,7 @@ class BalancingEnergyBids(Balancing):
             original_market_product=original_market_product,
             direction=direction,
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -351,6 +375,7 @@ class AggregatedBalancingEnergyBids(Balancing):
         area_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize aggregated balancing energy bids parameters.
@@ -361,6 +386,8 @@ class AggregatedBalancingEnergyBids(Balancing):
             area_domain: EIC code of Scheduling Area
             process_type: A51=aFRR, A46=RR, A47=mFRR, A60=Scheduled mFRR,
                          A61=Direct mFRR, A67=Central aFRR, A68=Local aFRR
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -369,6 +396,7 @@ class AggregatedBalancingEnergyBids(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 
@@ -398,6 +426,7 @@ class ProcuredBalancingCapacity(Balancing):
         process_type: str,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize procured balancing capacity parameters.
@@ -408,6 +437,8 @@ class ProcuredBalancingCapacity(Balancing):
             area_domain: EIC code of Scheduling Area
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -417,6 +448,7 @@ class ProcuredBalancingCapacity(Balancing):
             area_domain=area_domain,
             process_type=process_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -451,6 +483,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         # Optional parameters
         type_marketagreement_type: Optional[str] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize allocation and use of cross-zonal balancing capacity parameters.
@@ -462,6 +495,8 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
             acquiring_domain: EIC code of a Bidding Zone
             process_type: A46=RR, A47=mFRR, A51=aFRR, A52=FCR
             type_marketagreement_type: A01=Daily, A02=Weekly, A06=Long term (optional)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -472,6 +507,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
             acquiring_domain=acquiring_domain,
             process_type=process_type,
             type_marketagreement_type=type_marketagreement_type,
+            curve_type=curve_type,
         )
 
 
@@ -499,6 +535,7 @@ class CurrentBalancingState(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize current balancing state parameters.
@@ -507,6 +544,8 @@ class CurrentBalancingState(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -515,6 +554,7 @@ class CurrentBalancingState(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             business_type="B33",
+            curve_type=curve_type,
         )
 
 
@@ -542,6 +582,7 @@ class FCRTotalCapacity(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize FCR total capacity parameters.
@@ -550,6 +591,8 @@ class FCRTotalCapacity(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Synchronous Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -558,6 +601,7 @@ class FCRTotalCapacity(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             business_type="A25",
+            curve_type=curve_type,
         )
 
 
@@ -585,6 +629,7 @@ class SharesOfFCRCapacity(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize shares of FCR capacity parameters.
@@ -593,6 +638,8 @@ class SharesOfFCRCapacity(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Synchronous Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -601,6 +648,7 @@ class SharesOfFCRCapacity(Balancing):
             period_end=period_end,
             area_domain=area_domain,
             business_type="C23",
+            curve_type=curve_type,
         )
 
 
@@ -629,6 +677,7 @@ class SharingOfFCRBetweenSAs(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize sharing of FCR between SAs parameters.
@@ -637,6 +686,8 @@ class SharingOfFCRBetweenSAs(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -646,6 +697,7 @@ class SharingOfFCRBetweenSAs(Balancing):
             area_domain=area_domain,
             process_type="A52",
             business_type="C22",
+            curve_type=curve_type,
         )
 
 
@@ -673,6 +725,7 @@ class FRRAndRRCapacityOutlook(Balancing):
         area_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize FRR and RR capacity outlook parameters.
@@ -682,6 +735,8 @@ class FRRAndRRCapacityOutlook(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of LFB Area
             process_type: A46=Replacement Reserve, A56=Frequency Restoration Reserve
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -691,6 +746,7 @@ class FRRAndRRCapacityOutlook(Balancing):
             area_domain=area_domain,
             process_type=process_type,
             business_type="C76",
+            curve_type=curve_type,
         )
 
 
@@ -719,6 +775,7 @@ class FRRAndRRActualCapacity(Balancing):
         process_type: str,
         business_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize FRR and RR actual capacity parameters.
@@ -729,6 +786,8 @@ class FRRAndRRActualCapacity(Balancing):
             area_domain: EIC code of LFB Area
             process_type: A46=Replacement reserve, A56=Frequency restoration reserve
             business_type: C77=Min, C78=Avg, C79=Max
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -738,6 +797,7 @@ class FRRAndRRActualCapacity(Balancing):
             area_domain=area_domain,
             process_type=process_type,
             business_type=business_type,
+            curve_type=curve_type,
         )
 
 
@@ -767,6 +827,7 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
         area_domain: str,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize outlook of reserve capacities on RR parameters.
@@ -776,6 +837,8 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -786,6 +849,7 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
             process_type="A46",
             business_type="C76",
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -815,6 +879,7 @@ class RRActualCapacity(Balancing):
         area_domain: str,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize RR actual capacity parameters.
@@ -824,6 +889,8 @@ class RRActualCapacity(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             area_domain: EIC code of Scheduling Area
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -834,6 +901,7 @@ class RRActualCapacity(Balancing):
             process_type="A46",
             business_type="C77",
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -863,6 +931,7 @@ class SharingOfRRAndFRR(Balancing):
         acquiring_domain: str,
         connecting_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize sharing of RR and FRR parameters.
@@ -872,6 +941,8 @@ class SharingOfRRAndFRR(Balancing):
             period_end: End period (YYYYMMDDHHMM format)
             acquiring_domain: EIC code of Load Frequency Control Block
             connecting_domain: EIC code of Load Frequency Control Block
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -882,6 +953,7 @@ class SharingOfRRAndFRR(Balancing):
             connecting_domain=connecting_domain,
             process_type="A56",
             business_type="C22",
+            curve_type=curve_type,
         )
 
 
@@ -912,6 +984,7 @@ class ExchangedReserveCapacity(Balancing):
         connecting_domain: str,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize exchanged reserve capacity parameters.
@@ -922,6 +995,8 @@ class ExchangedReserveCapacity(Balancing):
             acquiring_domain: EIC code of Load Frequency Control Block
             connecting_domain: EIC code of Load Frequency Control Block
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -933,6 +1008,7 @@ class ExchangedReserveCapacity(Balancing):
             process_type="A46",
             business_type="C21",
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -963,6 +1039,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
         period_end: int,
         control_area_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize cross border marginal prices for aFRR parameters.
@@ -971,6 +1048,8 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
             period_start: Start period (YYYYMMDDHHMM format)
             period_end: End period (YYYYMMDDHHMM format)
             control_area_domain: EIC code of a LFA, SCA, IPA
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -981,6 +1060,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
             process_type="A67",
             business_type="A96",
             standard_market_product="A01",
+            curve_type=curve_type,
         )
 
 
@@ -1009,6 +1089,7 @@ class NettedAndExchangedVolumes(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize netted and exchanged volumes parameters.
@@ -1029,6 +1110,7 @@ class NettedAndExchangedVolumes(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 
@@ -1057,6 +1139,7 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize netted and exchanged volumes per border parameters.
@@ -1077,6 +1160,7 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 
@@ -1106,6 +1190,7 @@ class ElasticDemands(Balancing):
         process_type: str,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize elastic demands parameters.
@@ -1116,6 +1201,8 @@ class ElasticDemands(Balancing):
             acquiring_domain: EIC code of a Scheduling Area
             process_type: A51=aFRR, A47=mFRR
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1126,6 +1213,7 @@ class ElasticDemands(Balancing):
             business_type="B75",
             process_type=process_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -1158,6 +1246,7 @@ class ChangesToBidAvailability(Balancing):
         business_type: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize changes to bid availability parameters.
@@ -1170,6 +1259,8 @@ class ChangesToBidAvailability(Balancing):
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1180,6 +1271,7 @@ class ChangesToBidAvailability(Balancing):
             process_type="A47",
             business_type=business_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
 
@@ -1217,6 +1309,7 @@ class ChangesToBidAvailabilityArchives(Balancing):
         business_type: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize changes to bid availability archives parameters.
@@ -1229,6 +1322,8 @@ class ChangesToBidAvailabilityArchives(Balancing):
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
             offset: Zero-based index of the first archive to return (batches of 100)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1239,6 +1334,7 @@ class ChangesToBidAvailabilityArchives(Balancing):
             process_type="A47",
             business_type=business_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Add the storageType parameter specific to archives endpoint
@@ -1270,6 +1366,7 @@ class BalancingBorderCapacityLimitations(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize balancing border capacity limitations parameters.
@@ -1280,6 +1377,8 @@ class BalancingBorderCapacityLimitations(Balancing):
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1289,6 +1388,7 @@ class BalancingBorderCapacityLimitations(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 
@@ -1318,6 +1418,7 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize permanent allocation limitations to HVDC lines parameters.
@@ -1328,6 +1429,8 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
             acquiring_domain: EIC code of Market Balancing Area (acquiring area)
             connecting_domain: EIC code of Market Balancing Area (connecting area)
             process_type: A51=aFRR, A63=Imbalance Netting, A47=mFRR
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1337,6 +1440,7 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 
@@ -1365,6 +1469,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize results of criteria application process parameters.
@@ -1375,6 +1480,8 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             bidding_zone_domain: EIC code of Bidding Zone or Market Balancing Area
             process_type: A64=Instantaneous frequency criteria,
                          A65=Frequency restoration criteria
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1383,6 +1490,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
             period_end=period_end,
             bidding_zone_domain=bidding_zone_domain,
             process_type=process_type,
+            curve_type=curve_type,
         )
 
 

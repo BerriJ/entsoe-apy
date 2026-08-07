@@ -32,6 +32,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize congestion income parameters.
@@ -42,6 +43,8 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
             in_domain: EIC code of a Border or Bidding Zone
             out_domain: EIC code of a Border or Bidding Zone
             contract_market_agreement_type: A01=Daily; A07=Intraday
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
 
 
         """
@@ -54,6 +57,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
             out_domain=out_domain,
             business_type="B10",  # Fixed: Congestion income
             contract_market_agreement_type=contract_market_agreement_type,
+            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
@@ -81,6 +85,7 @@ class TotalNominatedCapacity(Market):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize total nominated capacity parameters.
@@ -90,6 +95,8 @@ class TotalNominatedCapacity(Market):
             period_end: End period (YYYYMMDDHHMM format)
             in_domain: EIC code of a Control Area or Bidding Zone
             out_domain: EIC code of a Control Area or Bidding Zone
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -99,6 +106,7 @@ class TotalNominatedCapacity(Market):
             in_domain=in_domain,
             out_domain=out_domain,
             business_type="B08",  # Fixed: Total nominated capacity
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -129,6 +137,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
         update_date_and_or_time: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize implicit allocations offered transfer capacity parameters.
@@ -141,6 +150,8 @@ class ImplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type: A01=Day ahead; A07=Intraday
             update_date_and_or_time: For Offered Capacity Evolution
             classification_sequence_position: Integer for classification
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -151,6 +162,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A01",  # Fixed: Implicit
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -190,6 +202,7 @@ class EnergyPrices(Market):
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize energy prices parameters.
@@ -202,6 +215,8 @@ class EnergyPrices(Market):
             contract_market_agreement_type: A01=Day-ahead; A07=Intraday
             classification_sequence_position: Integer for classification
             offset: Offset for pagination (max 4800, allows max 4900 documents)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -212,6 +227,7 @@ class EnergyPrices(Market):
             out_domain=out_domain,
             contract_market_agreement_type=contract_market_agreement_type,
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
@@ -256,6 +272,7 @@ class TotalCapacityAllocated(Market):
         # Optional parameters
         auction_category: Optional[Literal["A01", "A02", "A03", "A04"]] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize total capacity already allocated parameters.
@@ -269,6 +286,8 @@ class TotalCapacityAllocated(Market):
                                            A04=Yearly, A06=Long Term, A07=Intraday,
                                            A08=Quarterly
             auction_category: A01=Base, A02=Peak, A03=Off Peak, A04=Hourly (optional)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -280,6 +299,7 @@ class TotalCapacityAllocated(Market):
             business_type="A29",  # Fixed: Already Allocated Capacity
             contract_market_agreement_type=contract_market_agreement_type,
             auction_category=auction_category,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -309,6 +329,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize explicit allocations offered transfer capacity parameters.
@@ -321,6 +342,8 @@ class ExplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type: A01=Day ahead; A07=Intraday
             auction_category: Auction category (e.g., A04)
             classification_sequence_position: Integer for classification
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -332,6 +355,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -365,6 +389,8 @@ class FlowBasedAllocations(Market):
         in_domain: str,
         out_domain: str,
         process_type: str,
+        # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize flow based allocations parameters.
@@ -376,6 +402,8 @@ class FlowBasedAllocations(Market):
             out_domain: EIC code of a Region
             process_type: Process type (A43=Day ahead, A44=Intraday,
                 A32=Month-ahead, A33=Year-ahead)
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -385,6 +413,7 @@ class FlowBasedAllocations(Market):
             period_end=period_end,
             in_domain=in_domain,
             out_domain=out_domain,
+            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
@@ -481,6 +510,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
         update_date_and_or_time: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
+        curve_type: str = "A01",
     ):
         """
         Initialize continuous allocations offered transfer capacity parameters.
@@ -495,6 +525,8 @@ class ContinuousAllocationsOfferedCapacity(Market):
             business_type: Business type (e.g., A31)
             update_date_and_or_time: Update date and time filter
             offset: Offset for pagination
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -507,6 +539,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A08",
             offset=offset,
+            curve_type=curve_type,
         )
 
         # Add optional update parameter
@@ -545,6 +578,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize explicit allocations use of transfer capacity parameters.
@@ -563,6 +597,8 @@ class ExplicitAllocationsUseTransferCapacity(Market):
                           B05=Capacity allocated (including price)
             auction_category: Auction category (e.g., A04=Hourly)
             classification_sequence_position: Integer for classification
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -574,6 +610,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             business_type=business_type,
             contract_market_agreement_type=contract_market_agreement_type,
             auction_category=auction_category,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -607,6 +644,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ] = "A01",
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize explicit allocations auction revenue parameters.
@@ -621,6 +659,8 @@ class ExplicitAllocationsAuctionRevenue(Market):
             contract_market_agreement_type: A01=Daily; A02=Weekly;
                 A03=Monthly; A04=Yearly; A06=Long Term; A07=Intraday;
                 A08=Quarterly
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -631,6 +671,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
             out_domain=out_domain,
             business_type="B07",  # Fixed: Auction Revenue
             contract_market_agreement_type=contract_market_agreement_type,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -662,6 +703,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         auction_category: Optional[str] = None,
         classification_sequence_position: Optional[int] = None,
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -678,6 +720,8 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
                 A08=Quarterly
             auction_category: Auction category (e.g., A04=Hourly)
             classification_sequence_position: Integer for classification
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -689,6 +733,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
             contract_market_agreement_type=contract_market_agreement_type,
             auction_type="A02",  # Fixed: Explicit
             auction_category=auction_category,
+            curve_type=curve_type,
         )
 
         self.validate_eic_equality(in_domain, out_domain, must_be_equal=False)
@@ -717,6 +762,7 @@ class ImplicitAuctionNetPositions(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
+        curve_type: str = "A01",
     ):
         """
         Initialize implicit auction net positions parameters.
@@ -728,6 +774,8 @@ class ImplicitAuctionNetPositions(Market):
             out_domain: EIC code of a Bidding Zone or Control Area
                 (must be same as in_domain)
             contract_market_agreement_type: A01=Daily; A05=Total; A07=Intraday
+            curve_type: Curve type (default "A01" = Sequential fixed block;
+                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -738,6 +786,7 @@ class ImplicitAuctionNetPositions(Market):
             out_domain=out_domain,
             business_type="B09",  # Fixed: Net position
             contract_market_agreement_type=contract_market_agreement_type,
+            curve_type=curve_type,
         )
 
         # Validate that in_domain and out_domain are the same
