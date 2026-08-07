@@ -316,7 +316,6 @@ class BalancingEnergyBids(Balancing):
         direction: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize balancing energy bids parameters.
@@ -331,8 +330,6 @@ class BalancingEnergyBids(Balancing):
             original_market_product: A02=Specific, A03=Integrated Process, A04=Local
             direction: A01=Up, A02=Down
             offset: Offset for pagination
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -346,7 +343,6 @@ class BalancingEnergyBids(Balancing):
             original_market_product=original_market_product,
             direction=direction,
             offset=offset,
-            curve_type=curve_type,
         )
 
 
@@ -1088,8 +1084,6 @@ class NettedAndExchangedVolumes(Balancing):
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
-        # Additional common parameters
-        curve_type: str = "A01",
     ):
         """
         Initialize netted and exchanged volumes parameters.
@@ -1110,7 +1104,6 @@ class NettedAndExchangedVolumes(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            curve_type=curve_type,
         )
 
 
@@ -1138,8 +1131,6 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
         acquiring_domain: str,
         connecting_domain: str,
         process_type: str,
-        # Additional common parameters
-        curve_type: str = "A01",
     ):
         """
         Initialize netted and exchanged volumes per border parameters.
@@ -1160,7 +1151,6 @@ class NettedAndExchangedVolumesPerBorder(Balancing):
             acquiring_domain=acquiring_domain,
             connecting_domain=connecting_domain,
             process_type=process_type,
-            curve_type=curve_type,
         )
 
 
@@ -1190,7 +1180,6 @@ class ElasticDemands(Balancing):
         process_type: str,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize elastic demands parameters.
@@ -1201,8 +1190,6 @@ class ElasticDemands(Balancing):
             acquiring_domain: EIC code of a Scheduling Area
             process_type: A51=aFRR, A47=mFRR
             offset: Offset for pagination
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1213,7 +1200,6 @@ class ElasticDemands(Balancing):
             business_type="B75",
             process_type=process_type,
             offset=offset,
-            curve_type=curve_type,
         )
 
 
@@ -1246,7 +1232,6 @@ class ChangesToBidAvailability(Balancing):
         business_type: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize changes to bid availability parameters.
@@ -1259,8 +1244,6 @@ class ChangesToBidAvailability(Balancing):
                           C43=Voltage limit, C44=Current limit, C45=Short-circuit limit,
                           C46=Dynamic stability limit
             offset: Offset for pagination
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
         """
         # Initialize with preset and user parameters
         super().__init__(
@@ -1271,7 +1254,6 @@ class ChangesToBidAvailability(Balancing):
             process_type="A47",
             business_type=business_type,
             offset=offset,
-            curve_type=curve_type,
         )
 
 

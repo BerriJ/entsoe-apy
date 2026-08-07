@@ -23,7 +23,6 @@ class OMI(Base):
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
     ):
         """
         Initialize Other Market Information parameters for ENTSO-E Transparency
@@ -44,8 +43,6 @@ class OMI(Base):
                   event are queried using rest of parameters
             offset: Offset for pagination (allows downloading more than 200 docs,
                    offset ∈ [0,4800] so paging restricted to 5000 docs max)
-            curve_type: Curve type (default "A01" = Sequential fixed block;
-                       "A03" = Variable sized blocks)
 
         Raises:
             ValueError: If doc_status is not one of A05, A09, A13
@@ -90,7 +87,6 @@ class OMI(Base):
             period_start=period_start,
             period_end=period_end,
             offset=0,  # Don't pass offset to base, we'll handle it with correct name
-            curve_type=curve_type,
         )
 
         # Add OMI-specific parameters using exact JSON parameter names
