@@ -34,7 +34,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -42,7 +41,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -57,7 +55,6 @@ class ActionStatus(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
 
@@ -69,7 +66,6 @@ class Analog(BaseModel):
             "name": "measurementType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     unit_symbol: UnitSymbol = field(
@@ -77,7 +73,6 @@ class Analog(BaseModel):
             "name": "unitSymbol",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     positive_flow_in: None | IndicatorTypeList = field(
@@ -93,7 +88,6 @@ class Analog(BaseModel):
             "name": "analogValues.value",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "pattern": r"([0-9]*\.?[0-9]*)",
         }
     )
@@ -115,7 +109,6 @@ class AreaIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 18,
         },
     )
@@ -123,7 +116,6 @@ class AreaIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -136,7 +128,6 @@ class MeasurementPointIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 35,
         },
     )
@@ -144,7 +135,6 @@ class MeasurementPointIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -157,7 +147,6 @@ class PartyIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 16,
         },
     )
@@ -165,7 +154,6 @@ class PartyIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -176,7 +164,6 @@ class Reason(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     text: None | str = field(
@@ -198,7 +185,6 @@ class RegisteredResourceReason(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     text: None | str = field(
@@ -219,7 +205,6 @@ class ResourceIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 60,
         },
     )
@@ -227,7 +212,6 @@ class ResourceIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -241,7 +225,6 @@ class SeriesReason(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     text: None | str = field(
@@ -264,7 +247,6 @@ class AdditionalConstraintRegisteredResource(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -310,7 +292,6 @@ class ContingencyRegisteredResource(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -356,7 +337,6 @@ class MonitoredRegisteredResource(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -426,7 +406,6 @@ class PartyMarketParticipant(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
 
@@ -438,7 +417,6 @@ class RegisteredResource(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -453,7 +431,6 @@ class RegisteredResource(BaseModel):
             "name": "pSRType.psrType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     in_domain_m_rid: None | AreaIdString = field(
@@ -477,7 +454,6 @@ class RegisteredResource(BaseModel):
             "name": "marketObjectStatus.status",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     resource_capacity_maximum_capacity: None | Decimal = field(
@@ -532,7 +508,6 @@ class SharedDomain(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
 
@@ -547,7 +522,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -556,7 +530,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -571,7 +544,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "in_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     out_domain_m_rid: AreaIdString = field(
@@ -579,7 +551,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "out_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     measurement_unit_name: UnitOfMeasureTypeList = field(
@@ -587,7 +558,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "measurement_Unit.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     quantity_quantity: Decimal = field(
@@ -595,7 +565,6 @@ class AdditionalConstraintSeries(BaseModel):
             "name": "quantity.quantity",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     registered_resource: list[AdditionalConstraintRegisteredResource] = field(
@@ -626,7 +595,6 @@ class ContingencySeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -665,7 +633,6 @@ class RemedialActionSeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -767,7 +734,6 @@ class Series(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -776,7 +742,6 @@ class Series(BaseModel):
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -842,7 +807,6 @@ class Point(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
         }
@@ -876,14 +840,12 @@ class SeriesPeriod(BaseModel):
             "name": "timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     resolution: XmlDuration = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     point: list[Point] = field(
@@ -904,7 +866,6 @@ class TimeSeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -913,7 +874,6 @@ class TimeSeries(BaseModel):
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     curve_type: CurveTypeList = field(
@@ -921,7 +881,6 @@ class TimeSeries(BaseModel):
             "name": "curveType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:cracdocument:2:0",
-            "required": True,
         }
     )
     in_domain_m_rid: None | AreaIdString = field(
@@ -969,7 +928,6 @@ class CracMarketDocument(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -977,7 +935,6 @@ class CracMarketDocument(BaseModel):
         metadata={
             "name": "revisionNumber",
             "type": "Element",
-            "required": True,
             "pattern": r"[1-9]([0-9]){0,2}",
         }
     )
@@ -985,49 +942,42 @@ class CracMarketDocument(BaseModel):
         metadata={
             "name": "type",
             "type": "Element",
-            "required": True,
         }
     )
     process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
@@ -1064,14 +1014,12 @@ class CracMarketDocument(BaseModel):
         metadata={
             "name": "time_Period.timeInterval",
             "type": "Element",
-            "required": True,
         }
     )
     domain_m_rid: AreaIdString = field(
         metadata={
             "name": "domain.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     time_series: list[TimeSeries] = field(

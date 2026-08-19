@@ -1,0 +1,608 @@
+from __future__ import annotations
+
+from decimal import Decimal
+
+from pydantic import BaseModel, ConfigDict
+from xsdata.models.datatype import XmlDuration
+from xsdata_pydantic.fields import field
+
+from .urn_entsoe_eu_wgedi_codelists import (
+    AssetTypeList,
+    BusinessTypeList,
+    CodingSchemeTypeList,
+    MessageTypeList,
+    ProcessTypeList,
+    ReasonCodeTypeList,
+    RoleTypeList,
+    StatusTypeList,
+    UnitOfMeasureTypeList,
+    UnitSymbol,
+)
+
+__NAMESPACE__ = "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4"
+
+
+class EsmpDateTimeInterval(BaseModel):
+    class Meta:
+        name = "ESMP_DateTimeInterval"
+
+    model_config = ConfigDict(defer_build=True)
+    start: str = field(
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
+        }
+    )
+    end: str = field(
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
+        }
+    )
+
+
+class Name(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    name: str = field(
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+
+
+class AreaIdString(BaseModel):
+    class Meta:
+        name = "AreaID_String"
+
+    model_config = ConfigDict(defer_build=True)
+    value: str = field(
+        default="",
+        metadata={
+            "max_length": 18,
+        },
+    )
+    coding_scheme: CodingSchemeTypeList = field(
+        metadata={
+            "name": "codingScheme",
+            "type": "Attribute",
+        }
+    )
+
+
+class EsmpVoltage(BaseModel):
+    class Meta:
+        name = "ESMP_Voltage"
+
+    model_config = ConfigDict(defer_build=True)
+    value: str = field(
+        default="",
+        metadata={
+            "pattern": r"([0-9]*\.?[0-9]*)",
+        },
+    )
+    unit: UnitSymbol = field(
+        const=True,
+        default=UnitSymbol.KVT,
+        metadata={
+            "type": "Attribute",
+            "required": True,
+        },
+    )
+
+
+class PartyIdString(BaseModel):
+    class Meta:
+        name = "PartyID_String"
+
+    model_config = ConfigDict(defer_build=True)
+    value: str = field(
+        default="",
+        metadata={
+            "max_length": 16,
+        },
+    )
+    coding_scheme: CodingSchemeTypeList = field(
+        metadata={
+            "name": "codingScheme",
+            "type": "Attribute",
+        }
+    )
+
+
+class Reason(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    code: ReasonCodeTypeList = field(
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    text: None | str = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "max_length": 512,
+        },
+    )
+
+
+class ResourceIdString(BaseModel):
+    class Meta:
+        name = "ResourceID_String"
+
+    model_config = ConfigDict(defer_build=True)
+    value: str = field(
+        default="",
+        metadata={
+            "max_length": 60,
+        },
+    )
+    coding_scheme: CodingSchemeTypeList = field(
+        metadata={
+            "name": "codingScheme",
+            "type": "Attribute",
+        }
+    )
+
+
+class SwitchedBackTimePeriod(BaseModel):
+    class Meta:
+        name = "SwitchedBack_Time_Period"
+
+    model_config = ConfigDict(defer_build=True)
+    time_interval: EsmpDateTimeInterval = field(
+        metadata={
+            "name": "timeInterval",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+
+
+class AlternativeRegisteredResource(BaseModel):
+    class Meta:
+        name = "Alternative_RegisteredResource"
+
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+
+
+class ConnectedRegisteredResource(BaseModel):
+    class Meta:
+        name = "Connected_RegisteredResource"
+
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+
+
+class RegisteredResource(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: ResourceIdString = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    name: None | str = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    p_srtype_psr_type: None | AssetTypeList = field(
+        default=None,
+        metadata={
+            "name": "pSRType.psrType",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    p_srtype_power_system_resources_high_voltage_limit: None | EsmpVoltage = (
+        field(
+            default=None,
+            metadata={
+                "name": "pSRType.powerSystemResources.highVoltageLimit",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    p_srtype_power_system_resources_low_voltage_limit: None | EsmpVoltage = (
+        field(
+            default=None,
+            metadata={
+                "name": "pSRType.powerSystemResources.lowVoltageLimit",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    connected_registered_resource: list[ConnectedRegisteredResource] = field(
+        default_factory=list,
+        metadata={
+            "name": "Connected_RegisteredResource",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+
+
+class TimeSeries(BaseModel):
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "max_length": 60,
+        }
+    )
+    description: None | str = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    business_type: BusinessTypeList = field(
+        metadata={
+            "name": "businessType",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    measurement_unit_name: None | UnitOfMeasureTypeList = field(
+        default=None,
+        metadata={
+            "name": "measurement_Unit.name",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    coordination_market_object_status_status: None | StatusTypeList = field(
+        default=None,
+        metadata={
+            "name": "coordination_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    market_object_status_status: StatusTypeList = field(
+        metadata={
+            "name": "marketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    unavailable_capacity_quantity_quantity: None | Decimal = field(
+        default=None,
+        metadata={
+            "name": "unavailableCapacity_Quantity.quantity",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    last_change_market_agreement_created_date_time: str = field(
+        metadata={
+            "name": "lastChange_MarketAgreement.createdDateTime",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
+        }
+    )
+    day_market_object_status_status: StatusTypeList = field(
+        metadata={
+            "name": "day_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    saturday_market_object_status_status: None | StatusTypeList = field(
+        default=None,
+        metadata={
+            "name": "saturday_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    sunday_market_object_status_status: None | StatusTypeList = field(
+        default=None,
+        metadata={
+            "name": "sunday_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    week_market_object_status_status: None | StatusTypeList = field(
+        default=None,
+        metadata={
+            "name": "week_MarketObjectStatus.status",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    outage_period_time_interval: EsmpDateTimeInterval = field(
+        metadata={
+            "name": "outage_Period.timeInterval",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        }
+    )
+    alternative_registered_resource: list[AlternativeRegisteredResource] = (
+        field(
+            default_factory=list,
+            metadata={
+                "name": "Alternative_RegisteredResource",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    registered_resource: list[RegisteredResource] = field(
+        default_factory=list,
+        metadata={
+            "name": "RegisteredResource",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            "min_occurs": 1,
+        },
+    )
+    no_restitution_constraint_duration_type: None | str = field(
+        default=None,
+        metadata={
+            "name": "noRestitution_ConstraintDuration.type",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    switched_back_period: list[SwitchedBackTimePeriod] = field(
+        default_factory=list,
+        metadata={
+            "name": "SwitchedBack_Period",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    negative_offset_constraint_duration_duration: None | XmlDuration = field(
+        default=None,
+        metadata={
+            "name": "negativeOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    maximum_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "maximumRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    positive_offset_constraint_duration_duration: None | XmlDuration = field(
+        default=None,
+        metadata={
+            "name": "positiveOffset_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    day_time_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "dayTimeRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    night_time_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "nightTimeRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    week_end_restitution_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "weekEndRestitution_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    partner_case_reference_names: list[Name] = field(
+        default_factory=list,
+        metadata={
+            "name": "PartnerCaseReference_Names",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    case_reference_names: None | Name = field(
+        default=None,
+        metadata={
+            "name": "CaseReference_Names",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    project_names: None | Name = field(
+        default=None,
+        metadata={
+            "name": "Project_Names",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    reason: list[Reason] = field(
+        default_factory=list,
+        metadata={
+            "name": "Reason",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    maximum_switching_constraint_duration_duration: None | XmlDuration = field(
+        default=None,
+        metadata={
+            "name": "maximumSwitching_ConstraintDuration.duration",
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    day_time_switching_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "dayTimeSwitching_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    night_time_switching_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "nightTimeSwitching_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    week_end_switching_constraint_duration_duration: None | XmlDuration = (
+        field(
+            default=None,
+            metadata={
+                "name": "weekEndSwitching_ConstraintDuration.duration",
+                "type": "Element",
+                "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+            },
+        )
+    )
+    earthing: None | bool = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+    sectioning: None | bool = field(
+        default=None,
+        metadata={
+            "type": "Element",
+            "namespace": "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4",
+        },
+    )
+
+
+class OutageScheduleMarketDocument(BaseModel):
+    class Meta:
+        name = "OutageSchedule_MarketDocument"
+        namespace = "https://cim4.eu/esmp/ns/outagescheduledocumen/1-4"
+
+    model_config = ConfigDict(defer_build=True)
+    m_rid: str = field(
+        metadata={
+            "name": "mRID",
+            "type": "Element",
+            "max_length": 60,
+        }
+    )
+    revision_number: str = field(
+        metadata={
+            "name": "revisionNumber",
+            "type": "Element",
+            "pattern": r"[1-9]([0-9]){0,2}",
+        }
+    )
+    type_value: MessageTypeList = field(
+        metadata={
+            "name": "type",
+            "type": "Element",
+        }
+    )
+    process_process_type: ProcessTypeList = field(
+        metadata={
+            "name": "process.processType",
+            "type": "Element",
+        }
+    )
+    sender_market_participant_m_rid: PartyIdString = field(
+        metadata={
+            "name": "sender_MarketParticipant.mRID",
+            "type": "Element",
+        }
+    )
+    sender_market_participant_market_role_type: RoleTypeList = field(
+        metadata={
+            "name": "sender_MarketParticipant.marketRole.type",
+            "type": "Element",
+        }
+    )
+    receiver_market_participant_m_rid: PartyIdString = field(
+        metadata={
+            "name": "receiver_MarketParticipant.mRID",
+            "type": "Element",
+        }
+    )
+    receiver_market_participant_market_role_type: RoleTypeList = field(
+        metadata={
+            "name": "receiver_MarketParticipant.marketRole.type",
+            "type": "Element",
+        }
+    )
+    created_date_time: str = field(
+        metadata={
+            "name": "createdDateTime",
+            "type": "Element",
+            "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
+        }
+    )
+    schedule_period_time_interval: None | EsmpDateTimeInterval = field(
+        default=None,
+        metadata={
+            "name": "schedule_Period.timeInterval",
+            "type": "Element",
+        },
+    )
+    domain_m_rid: AreaIdString = field(
+        metadata={
+            "name": "domain.mRID",
+            "type": "Element",
+        }
+    )
+    time_series: list[TimeSeries] = field(
+        default_factory=list,
+        metadata={
+            "name": "TimeSeries",
+            "type": "Element",
+        },
+    )

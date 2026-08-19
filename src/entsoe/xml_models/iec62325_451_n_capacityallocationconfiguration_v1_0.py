@@ -28,7 +28,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -36,7 +35,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -50,7 +48,6 @@ class AreaIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 18,
         },
     )
@@ -58,7 +55,6 @@ class AreaIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -71,7 +67,6 @@ class PartyIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 16,
         },
     )
@@ -79,7 +74,6 @@ class PartyIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -90,7 +84,6 @@ class Point(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
         }
@@ -100,7 +93,6 @@ class Point(BaseModel):
             "name": "timeSeries.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     time_series_in_domain_m_rid: AreaIdString = field(
@@ -108,7 +100,6 @@ class Point(BaseModel):
             "name": "timeSeries.in_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     time_series_out_domain_m_rid: AreaIdString = field(
@@ -116,7 +107,6 @@ class Point(BaseModel):
             "name": "timeSeries.out_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     time_series_currency_unit_name: CurrencyTypeList = field(
@@ -124,7 +114,6 @@ class Point(BaseModel):
             "name": "timeSeries.currency_Unit.name",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     time_series_auction_category: None | CategoryTypeList = field(
@@ -146,7 +135,6 @@ class AllocationTimeSeries(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
             "max_length": 20,
         }
     )
@@ -171,7 +159,6 @@ class AllocationTimeSeries(BaseModel):
             "name": "auction.type",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     sub_type_auction_type: None | AuctionTypeList = field(
@@ -195,7 +182,6 @@ class AllocationTimeSeries(BaseModel):
             "name": "marketAgreement.type",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     time_zone_attribute_instance_component_attribute: str = field(
@@ -203,7 +189,6 @@ class AllocationTimeSeries(BaseModel):
             "name": "timeZone_AttributeInstanceComponent.attribute",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     delivery_period_time_interval: EsmpDateTimeInterval = field(
@@ -211,7 +196,6 @@ class AllocationTimeSeries(BaseModel):
             "name": "delivery_Period.timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     allocation_period_time_interval: EsmpDateTimeInterval = field(
@@ -219,7 +203,6 @@ class AllocationTimeSeries(BaseModel):
             "name": "allocation_Period.timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:capacityallocationconfigurationdocument:1:0",
-            "required": True,
         }
     )
     bidding_period_time_interval: None | EsmpDateTimeInterval = field(
@@ -317,7 +300,6 @@ class CapacityAllocationConfigurationMarketDocument(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "required": True,
             "max_length": 35,
         }
     )
@@ -325,49 +307,42 @@ class CapacityAllocationConfigurationMarketDocument(BaseModel):
         metadata={
             "name": "type",
             "type": "Element",
-            "required": True,
         }
     )
     process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )

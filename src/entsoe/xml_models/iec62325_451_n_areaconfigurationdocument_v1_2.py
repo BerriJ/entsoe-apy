@@ -5,12 +5,14 @@ from xsdata.models.datatype import XmlDateTime
 from xsdata_pydantic.fields import field
 
 from .urn_entsoe_eu_wgedi_codelists import (
+    AreaTypeList,
     AssetTypeList,
     CodingSchemeTypeList,
     MessageTypeList,
     ObjectAggregationTypeList,
     ProcessTypeList,
     RoleTypeList,
+    SubAreaTypeList,
 )
 
 __NAMESPACE__ = "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2"
@@ -24,7 +26,6 @@ class AreaIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 18,
         },
     )
@@ -32,7 +33,6 @@ class AreaIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -45,7 +45,6 @@ class PartyIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 16,
         },
     )
@@ -53,7 +52,6 @@ class PartyIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -66,7 +64,6 @@ class ResourceIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 60,
         },
     )
@@ -74,7 +71,6 @@ class ResourceIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -89,7 +85,6 @@ class ConnectedDomain(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -99,7 +94,7 @@ class ConnectedDomain(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    area_object_type_type: None | str = field(
+    area_object_type_type: None | AreaTypeList = field(
         default=None,
         metadata={
             "name": "area_ObjectType.type",
@@ -107,7 +102,7 @@ class ConnectedDomain(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    sub_area_object_type_type: None | str = field(
+    sub_area_object_type_type: None | SubAreaTypeList = field(
         default=None,
         metadata={
             "name": "subArea_ObjectType.type",
@@ -127,7 +122,6 @@ class ConnectionDetailRegisteredResource(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     area_identification_domain_m_rid: None | AreaIdString = field(
@@ -158,7 +152,6 @@ class ConsistOfDomain(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     name: None | str = field(
@@ -168,7 +161,7 @@ class ConsistOfDomain(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    area_object_type_type: None | str = field(
+    area_object_type_type: None | AreaTypeList = field(
         default=None,
         metadata={
             "name": "area_ObjectType.type",
@@ -176,7 +169,7 @@ class ConsistOfDomain(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    sub_area_object_type_type: None | str = field(
+    sub_area_object_type_type: None | SubAreaTypeList = field(
         default=None,
         metadata={
             "name": "subArea_ObjectType.type",
@@ -205,7 +198,6 @@ class BorderConnectionSeries(BaseModel):
             "name": "borderConnection_RegisteredResource.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     border_component_type_mkt_psrtype_psr_type: AssetTypeList = field(
@@ -213,7 +205,6 @@ class BorderConnectionSeries(BaseModel):
             "name": "borderComponentType_MktPSRType.psrType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     connection_detail_registered_resource: list[
@@ -239,7 +230,6 @@ class AreaSpecificationSeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
             "max_length": 60,
         }
     )
@@ -264,7 +254,6 @@ class AreaSpecificationSeries(BaseModel):
             "name": "area_Domain.mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     area_domain_name: None | str = field(
@@ -275,7 +264,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    area_domain_area_object_type_type: None | str = field(
+    area_domain_area_object_type_type: None | AreaTypeList = field(
         default=None,
         metadata={
             "name": "area_Domain.area_ObjectType.type",
@@ -283,7 +272,7 @@ class AreaSpecificationSeries(BaseModel):
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
         },
     )
-    area_domain_sub_area_object_type_type: None | str = field(
+    area_domain_sub_area_object_type_type: None | SubAreaTypeList = field(
         default=None,
         metadata={
             "name": "area_Domain.subArea_ObjectType.type",
@@ -320,7 +309,6 @@ class AreaSpecificationSeries(BaseModel):
             "name": "validityStart_DateAndOrTime.dateTime",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:areaconfigurationdocument:1:2",
-            "required": True,
         }
     )
     validity_end_date_and_or_time_date_time: None | XmlDateTime = field(
@@ -379,7 +367,6 @@ class AreaConfigurationMarketDocument(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "required": True,
             "max_length": 60,
         }
     )
@@ -387,49 +374,42 @@ class AreaConfigurationMarketDocument(BaseModel):
         metadata={
             "name": "type",
             "type": "Element",
-            "required": True,
         }
     )
     process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )

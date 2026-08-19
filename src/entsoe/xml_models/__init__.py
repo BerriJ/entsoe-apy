@@ -1,20 +1,254 @@
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    AccountingPoint as Activationdocument65AccountingPoint,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    ActivationMarketDocument as Cim4EuEsmpNs65ActivationMarketDocument,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    AreaIdString as Activationdocument5AreaIdString,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    EsmpDateTimeInterval as Activationdocument5EsmpDateTimeInterval,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    PartyIdString as Activationdocument5PartyIdString,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    Point as Activationdocument5Point,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    Reason as Activationdocument5Reason,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    ResourceIdString as Activationdocument5ResourceIdString,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    SeriesPeriod as Activationdocument5SeriesPeriod,
+)
+from .cim4eu_esmp_ns_activationdocument_6_5 import (
+    TimeSeries as Activationdocument5TimeSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    ActionStatus as Cim4EuEsmpNsCnedocument26ActionStatus,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    AdditionalConstraintRegisteredResource as Cim4EuEsmpNsCnedocument26AdditionalConstraintRegisteredResource,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    AdditionalConstraintSeries as Cim4EuEsmpNsCnedocument26AdditionalConstraintSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    Analog as Cim4EuEsmpNsCnedocumentAnalog,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    AreaIdString as Cnedocument2AreaIdString,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    BorderSeries as Cim4EuEsmpNsCnedocument26BorderSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    ConstraintSeries as Cim4EuEsmpNsCnedocument26ConstraintSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    ContingencyRegisteredResource as Cim4EuEsmpNsCnedocument26ContingencyRegisteredResource,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    ContingencySeries as Cim4EuEsmpNsCnedocument26ContingencySeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    CriticalNetworkElementMarketDocument as Cim4EuEsmpNsCnedocument26CriticalNetworkElementMarketDocument,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    EsmpDateTimeInterval as Cnedocument2EsmpDateTimeInterval,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    MarketDocument as Cim4EuEsmpNsCnedocument26MarketDocument,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    MonitoredRegisteredResource as Cim4EuEsmpNsCnedocument26MonitoredRegisteredResource,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    MonitoredSeries as Cim4EuEsmpNsCnedocument26MonitoredSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    PartyIdString as Cnedocument2PartyIdString,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    PartyMarketParticipant as Cim4EuEsmpNsCnedocument6PartyMarketParticipant,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    Point as Cnedocument2Point,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    PtdfDomain as Cim4EuEsmpNsCnedocument26PtdfDomain,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    Reason as Cnedocument2Reason,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    RegisteredResourceReason as Cim4EuEsmpNsCnedocument26RegisteredResourceReason,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    RemedialActionRegisteredResource as Cim4EuEsmpNsCnedocument26RemedialActionRegisteredResource,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    RemedialActionSeries as Cim4EuEsmpNsCnedocument26RemedialActionSeries,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    ResourceIdString as Cnedocument2ResourceIdString,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    SeriesPeriod as Cnedocument2SeriesPeriod,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    SeriesReason as Cim4EuEsmpNsCnedocument26SeriesReason,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    SharedDomain as Cim4EuEsmpNsCnedocument26SharedDomain,
+)
+from .cim4eu_esmp_ns_cnedocument_2_6 import (
+    TimeSeries as Cnedocument2TimeSeries,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    AccountingPoint as Measurementdatadocument12AccountingPoint,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    AreaIdString as Measurementdatadocument1AreaIdString,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    EsmpDateTimeInterval as Measurementdatadocument1EsmpDateTimeInterval,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    ExchangePoint as Cim4EuEsmpNs2ExchangePoint,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    MarketParticipant as Cim4EuEsmpNsMeasurementdatadocument2MarketParticipant,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    MeasurementDataMarketDocument as Cim4EuEsmpNs2MeasurementDataMarketDocument,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    MeasurementPointIdString as Cim4EuEsmpNsMeasurementdatadocument1MeasurementPointIdString,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    MeterReading as Cim4EuEsmpNs2MeterReading,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    PartyIdString as Measurementdatadocument1PartyIdString,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    Point as Measurementdatadocument1Point,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    Reading as Cim4EuEsmpNs2Reading,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    Reason as Measurementdatadocument1Reason,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    RegisteredResource as Measurementdatadocument2RegisteredResource,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    ResourceIdString as Measurementdatadocument1ResourceIdString,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    SeriesPeriod as Measurementdatadocument1SeriesPeriod,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    TimePeriod as Cim4EuEsmpNsMeasurementdatadocument2TimePeriod,
+)
+from .cim4eu_esmp_ns_measurementdatadocument_1_2 import (
+    TimeSeries as Measurementdatadocument1TimeSeries,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    AreaIdString as Outageconfigurationdocument4AreaIdString,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    ConnectedRegisteredResource as OutageconfigurationdocumentConnectedRegisteredResource,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    Domain as Cim4EuEsmpNsOutageconfigurationdocument4Domain,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    EsmpVoltage as OutageconfigurationdocumentEsmpVoltage,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    OtherMarketParticipant as Cim4EuEsmpNsOutageconfigurationdocument14OtherMarketParticipant,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    OutageConfigurationMarketDocument as Cim4EuEsmpNs14OutageConfigurationMarketDocument,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    PartyIdString as Outageconfigurationdocument4PartyIdString,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    RegisteredResource as Outageconfigurationdocument4RegisteredResource,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    ResourceIdString as Outageconfigurationdocument4ResourceIdString,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    SpecificRegisteredResource as Cim4EuEsmpNsOutageconfigurationdocument14SpecificRegisteredResource,
+)
+from .cim4eu_esmp_ns_outageconfigurationdocument_1_4 import (
+    TimeSeries as Outageconfigurationdocument4TimeSeries,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    AlternativeRegisteredResource as Cim4EuEsmpNsOutagescheduledocument14AlternativeRegisteredResource,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    AreaIdString as OutagescheduledocumentAreaIdString,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    ConnectedRegisteredResource as OutagescheduledocumentConnectedRegisteredResource,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    EsmpDateTimeInterval as Outagescheduledocument4EsmpDateTimeInterval,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    EsmpVoltage as OutagescheduledocumentEsmpVoltage,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    Name as Cim4EuEsmpNsOutagescheduledocument14Name,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    OutageScheduleMarketDocument as Cim4EuEsmpNsOutagescheduledocument14OutageScheduleMarketDocument,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    PartyIdString as OutagescheduledocumentPartyIdString,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    Reason as Outagescheduledocument4Reason,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    RegisteredResource as OutagescheduledocumentRegisteredResource,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    ResourceIdString as OutagescheduledocumentResourceIdString,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    SwitchedBackTimePeriod as Cim4EuEsmpNsOutagescheduledocument14SwitchedBackTimePeriod,
+)
+from .cim4eu_esmp_ns_outagescheduledocument_1_4 import (
+    TimeSeries as OutagescheduledocumentTimeSeries,
+)
 from .iec62325_451_1_acknowledgement_v7_0 import (
     AcknowledgementMarketDocument as V7AcknowledgementMarketDocument,
 )
 from .iec62325_451_1_acknowledgement_v7_0 import (
-    EsmpDateTimeInterval as V7EsmpDateTimeInterval,
+    EsmpDateTimeInterval as Iec62325451AcknowledgementV70EsmpDateTimeInterval,
 )
 from .iec62325_451_1_acknowledgement_v7_0 import (
-    PartyIdString as V7PartyIdString,
+    PartyIdString as Iec62325451AcknowledgementV70PartyIdString,
 )
 from .iec62325_451_1_acknowledgement_v7_0 import (
-    Reason as V7Reason,
+    Reason as Iec62325451AcknowledgementV70Reason,
 )
 from .iec62325_451_1_acknowledgement_v7_0 import (
-    TimePeriod as V7TimePeriod,
+    TimePeriod as Iec62325451AcknowledgementV70TimePeriod,
 )
 from .iec62325_451_1_acknowledgement_v7_0 import (
-    TimeSeries as V7TimeSeries,
+    TimeSeries as Iec62325451AcknowledgementV70TimeSeries,
 )
 from .iec62325_451_1_acknowledgement_v8_0 import (
     AcknowledgementMarketDocument as V8AcknowledgementMarketDocument,
@@ -83,13 +317,13 @@ from .iec62325_451_2_anomaly_v5_0 import (
     AnomalyTimeSeries as Type0AnomalyTimeSeries,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
-    AreaIdString as Type0AreaIdString,
+    AreaIdString as Iec623254512AnomalyV50AreaIdString,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
     EsmpDateTimeInterval as Type2AnomalyV5EsmpDateTimeInterval,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
-    MeasurementPointIdString as Type0MeasurementPointIdString,
+    MeasurementPointIdString as Iec62325451AnomalyV50MeasurementPointIdString,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
     OriginalMarketDocument as Type0OriginalMarketDocument,
@@ -98,13 +332,13 @@ from .iec62325_451_2_anomaly_v5_0 import (
     PartyIdString as Type2AnomalyV5PartyIdString,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
-    Point as Type0Point,
+    Point as Iec62325451AnomalyV50Point,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
     Reason as Type2AnomalyV5Reason,
 )
 from .iec62325_451_2_anomaly_v5_0 import (
-    SeriesPeriod as Type0SeriesPeriod,
+    SeriesPeriod as Iec62325451AnomalyV50SeriesPeriod,
 )
 from .iec62325_451_2_anomaly_v5_1 import (
     AnomalyReportMarketDocument as Type1AnomalyReportMarketDocument,
@@ -164,7 +398,7 @@ from .iec62325_451_2_anomaly_v5_2 import (
     Reason as Reason,
 )
 from .iec62325_451_2_anomaly_v5_2 import (
-    ResourceIdString as ResourceIdString,
+    ResourceIdString as Iec623254512AnomalyV52ResourceIdString,
 )
 from .iec62325_451_2_anomaly_v5_2 import (
     SeriesPeriod as SeriesPeriod,
@@ -719,7 +953,7 @@ from .iec62325_451_3_capacity_v7_1 import (
     TimeSeries as Type1TimeSeries,
 )
 from .iec62325_451_3_capacity_v8_0 import (
-    ActionStatus as Type0ActionStatus,
+    ActionStatus as Iec623254513CapacityV80ActionStatus,
 )
 from .iec62325_451_3_capacity_v8_0 import (
     AreaIdString as V80AreaIdString,
@@ -1286,7 +1520,7 @@ from .iec62325_451_4_settlement_v4_2 import (
     PartyIdString as Type2PartyIdString,
 )
 from .iec62325_451_4_settlement_v4_2 import (
-    PartyMarketParticipant as Type4SettlementV42PartyMarketParticipant,
+    PartyMarketParticipant as Iec623254514SettlementV4PartyMarketParticipant,
 )
 from .iec62325_451_4_settlement_v4_2 import (
     Point as Type2Point,
@@ -1667,7 +1901,7 @@ from .iec62325_451_6_configuration_v3_0 import (
     EsmpActivePower as Type0EsmpActivePower,
 )
 from .iec62325_451_6_configuration_v3_0 import (
-    EsmpVoltage as Type0EsmpVoltage,
+    EsmpVoltage as Iec623254516ConfigurationV30EsmpVoltage,
 )
 from .iec62325_451_6_configuration_v3_0 import (
     MktGeneratingUnit as Type0MktGeneratingUnit,
@@ -1721,7 +1955,7 @@ from .iec62325_451_6_configuration_v3_1 import (
     TimeSeries as Type1TimeSeries,
 )
 from .iec62325_451_6_configuration_v3_2 import (
-    Analog as Type2Analog,
+    Analog as Iec62325451ConfigurationV3Analog,
 )
 from .iec62325_451_6_configuration_v3_2 import (
     AreaIdString as Type2AreaIdString,
@@ -1751,7 +1985,7 @@ from .iec62325_451_6_configuration_v3_2 import (
     ProviderMarketParticipant as Type2ProviderMarketParticipant,
 )
 from .iec62325_451_6_configuration_v3_2 import (
-    RegisteredResource as Type2RegisteredResource,
+    RegisteredResource as Iec623254516ConfigurationV32RegisteredResource,
 )
 from .iec62325_451_6_configuration_v3_2 import (
     ResourceIdString as Type2ResourceIdString,
@@ -2050,6 +2284,45 @@ from .iec62325_451_6_outage_v4_1 import (
 from .iec62325_451_6_outage_v4_1 import (
     UnavailabilityMarketDocument as Type1UnavailabilityMarketDocument,
 )
+from .iec62325_451_6_outage_v4_2 import (
+    ActionStatus as Type2ActionStatus,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    AreaIdString as Type2AreaIdString,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    AssetRegisteredResource as Type2AssetRegisteredResource,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    EsmpActivePower as Type2EsmpActivePower,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    EsmpDateTimeInterval as Type2EsmpDateTimeInterval,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    PartyIdString as Type2PartyIdString,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    Point as Type2Point,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    PtdfdomainSeries,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    Reason as Type2Reason,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    ResourceIdString as Type2ResourceIdString,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    SeriesPeriod as Type2SeriesPeriod,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    TimeSeries as Type2TimeSeries,
+)
+from .iec62325_451_6_outage_v4_2 import (
+    UnavailabilityMarketDocument as Type2UnavailabilityMarketDocument,
+)
 from .iec62325_451_6_transmissionnetwork_v3_0 import (
     ActionStatus as TransmissionnetworkV30ActionStatus,
 )
@@ -2201,7 +2474,7 @@ from .iec62325_451_6a_capacityallocationconfiguration_v1_0 import (
     Point as Type6ACapacityallocationconfigurationV10Point,
 )
 from .iec62325_451_7_activationdocument_v6_0 import (
-    ActivationMarketDocument as Type0ActivationMarketDocument,
+    ActivationMarketDocument as Iec623254517V60ActivationMarketDocument,
 )
 from .iec62325_451_7_activationdocument_v6_0 import (
     AreaIdString as ActivationdocumentV6AreaIdString,
@@ -2309,7 +2582,7 @@ from .iec62325_451_7_activationdocument_v6_3 import (
     TimeSeries as Type3TimeSeries,
 )
 from .iec62325_451_7_activationdocument_v6_4 import (
-    AccountingPoint as Type7ActivationdocumentV64AccountingPoint,
+    AccountingPoint as Iec623254517ActivationdocumentV64AccountingPoint,
 )
 from .iec62325_451_7_activationdocument_v6_4 import (
     ActivationMarketDocument as Type4ActivationMarketDocument,
@@ -2723,13 +2996,13 @@ from .iec62325_451_7_reservationallocationresult_v6_1 import (
     BidTimeSeries as ReservationallocationresultV61BidTimeSeries,
 )
 from .iec62325_451_7_reservationallocationresult_v6_1 import (
-    Domain as Type7ReservationallocationresultV61Domain,
+    Domain as Iec623254517ReservationallocationresultV6Domain,
 )
 from .iec62325_451_7_reservationallocationresult_v6_1 import (
     EsmpDateTimeInterval as Type1EsmpDateTimeInterval,
 )
 from .iec62325_451_7_reservationallocationresult_v6_1 import (
-    MarketParticipant as Type7ReservationallocationresultV6MarketParticipant,
+    MarketParticipant as Iec623254517ReservationallocationresultV6MarketParticipant,
 )
 from .iec62325_451_7_reservationallocationresult_v6_1 import (
     OriginalMarketDocument as Type7ReservationallocationresultV61OriginalMarketDocument,
@@ -3599,10 +3872,10 @@ from .iec62325_451_n_cne_v2_0 import (
     ActionStatus as CneV20ActionStatus,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    AdditionalConstraintRegisteredResource as Type0AdditionalConstraintRegisteredResource,
+    AdditionalConstraintRegisteredResource as Iec62325451NCneV20AdditionalConstraintRegisteredResource,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    AdditionalConstraintSeries as Type0AdditionalConstraintSeries,
+    AdditionalConstraintSeries as Iec62325451NCneV20AdditionalConstraintSeries,
 )
 from .iec62325_451_n_cne_v2_0 import (
     Analog as NCneV20Analog,
@@ -3611,28 +3884,28 @@ from .iec62325_451_n_cne_v2_0 import (
     AreaIdString as CneV2AreaIdString,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    BorderSeries as Type0BorderSeries,
+    BorderSeries as Iec62325451NCneV20BorderSeries,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    ConstraintSeries as Type0ConstraintSeries,
+    ConstraintSeries as Iec62325451NCneV20ConstraintSeries,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    ContingencyRegisteredResource as Type0ContingencyRegisteredResource,
+    ContingencyRegisteredResource as Iec62325451NCneV20ContingencyRegisteredResource,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    ContingencySeries as Type0ContingencySeries,
+    ContingencySeries as Iec62325451NCneV20ContingencySeries,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    CriticalNetworkElementMarketDocument as Type0CriticalNetworkElementMarketDocument,
+    CriticalNetworkElementMarketDocument as Iec62325451NCneV20CriticalNetworkElementMarketDocument,
 )
 from .iec62325_451_n_cne_v2_0 import (
     EsmpDateTimeInterval as CneV2EsmpDateTimeInterval,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    MarketDocument as Type0MarketDocument,
+    MarketDocument as Iec62325451NCneV20MarketDocument,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    MonitoredRegisteredResource as Type0MonitoredRegisteredResource,
+    MonitoredRegisteredResource as Iec62325451NCneV20MonitoredRegisteredResource,
 )
 from .iec62325_451_n_cne_v2_0 import (
     PartyIdString as CneV2PartyIdString,
@@ -3644,19 +3917,19 @@ from .iec62325_451_n_cne_v2_0 import (
     Point as CneV2Point,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    PtdfDomain as Type0PtdfDomain,
+    PtdfDomain as Iec62325451NCneV20PtdfDomain,
 )
 from .iec62325_451_n_cne_v2_0 import (
     Reason as CneV20Reason,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    RegisteredResourceReason as Type0RegisteredResourceReason,
+    RegisteredResourceReason as Iec62325451NCneV20RegisteredResourceReason,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    RemedialActionRegisteredResource as Type0RemedialActionRegisteredResource,
+    RemedialActionRegisteredResource as Iec62325451NCneV20RemedialActionRegisteredResource,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    RemedialActionSeries as Type0RemedialActionSeries,
+    RemedialActionSeries as Iec62325451NCneV20RemedialActionSeries,
 )
 from .iec62325_451_n_cne_v2_0 import (
     ResourceIdString as CneV20ResourceIdString,
@@ -3665,10 +3938,10 @@ from .iec62325_451_n_cne_v2_0 import (
     SeriesPeriod as NCneV20SeriesPeriod,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    SeriesReason as Type0SeriesReason,
+    SeriesReason as Iec62325451NCneV20SeriesReason,
 )
 from .iec62325_451_n_cne_v2_0 import (
-    SharedDomain as Type0SharedDomain,
+    SharedDomain as Iec62325451NCneV20SharedDomain,
 )
 from .iec62325_451_n_cne_v2_0 import (
     TimeSeries as NCneV20TimeSeries,
@@ -3716,7 +3989,7 @@ from .iec62325_451_n_cne_v2_1 import (
     MonitoredRegisteredResource as Type1MonitoredRegisteredResource,
 )
 from .iec62325_451_n_cne_v2_1 import (
-    MonitoredSeries as Type1MonitoredSeries,
+    MonitoredSeries as Iec62325451NCneV21MonitoredSeries,
 )
 from .iec62325_451_n_cne_v2_1 import (
     PartyIdString as Type1PartyIdString,
@@ -5100,7 +5373,7 @@ from .iec62325_451_n_measurementdatadocument_v_1_0 import (
     EsmpDateTimeInterval as MeasurementdatadocumentV10EsmpDateTimeInterval,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_0 import (
-    MeasurementDataMarketDocument as Type0MeasurementDataMarketDocument,
+    MeasurementDataMarketDocument as Iec62325451NV0MeasurementDataMarketDocument,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_0 import (
     MeasurementPointIdString as MeasurementdatadocumentV0MeasurementPointIdString,
@@ -5127,9 +5400,7 @@ from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     EsmpDateTimeInterval as EsmpDateTimeInterval,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_1 import (
-    ExchangePoint,
-    MeterReading,
-    Reading,
+    ExchangePoint as Iec62325451NVExchangePoint,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     MarketParticipant as NMeasurementdatadocumentVMarketParticipant,
@@ -5141,10 +5412,16 @@ from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     MeasurementPointIdString as MeasurementPointIdString,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_1 import (
+    MeterReading as Iec62325451NVMeterReading,
+)
+from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     PartyIdString as PartyIdString,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     Point as Point,
+)
+from .iec62325_451_n_measurementdatadocument_v_1_1 import (
+    Reading as Iec62325451NVReading,
 )
 from .iec62325_451_n_measurementdatadocument_v_1_1 import (
     Reason as MeasurementdatadocumentV11Reason,
@@ -5273,7 +5550,7 @@ from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
     EsmpVoltage as NMltopconfigurationdocumentV10EsmpVoltage,
 )
 from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
-    OtherMarketParticipant as Type0OtherMarketParticipant,
+    OtherMarketParticipant as Iec62325451NMltopconfigurationdocumentV10OtherMarketParticipant,
 )
 from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
     PartyIdString as MltopconfigurationdocumentV10PartyIdString,
@@ -5285,7 +5562,7 @@ from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
     ResourceIdString as MltopconfigurationdocumentV10ResourceIdString,
 )
 from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
-    SpecificRegisteredResource as Type0SpecificRegisteredResource,
+    SpecificRegisteredResource as Iec62325451NMltopconfigurationdocumentV10SpecificRegisteredResource,
 )
 from .iec62325_451_n_mltopconfigurationdocument_v1_0 import (
     TimeSeries as Mltopconfigurationdocument0TimeSeries,
@@ -5351,7 +5628,7 @@ from .iec62325_451_n_mltopconfigurationdocument_v1_2 import (
     TimeSeries as Type2TimeSeries,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
-    AlternativeRegisteredResource as Type0AlternativeRegisteredResource,
+    AlternativeRegisteredResource as Iec62325451NMltopdocumentV10AlternativeRegisteredResource,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
     AreaIdString as Mltopdocument0AreaIdString,
@@ -5363,7 +5640,7 @@ from .iec62325_451_n_mltopdocument_v1_0 import (
     EsmpVoltage as Mltopdocument0EsmpVoltage,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
-    OutageScheduleMarketDocument as Type0OutageScheduleMarketDocument,
+    OutageScheduleMarketDocument as Iec62325451NMltopdocumentV10OutageScheduleMarketDocument,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
     PartyIdString as Mltopdocument0PartyIdString,
@@ -5378,7 +5655,7 @@ from .iec62325_451_n_mltopdocument_v1_0 import (
     ResourceIdString as Mltopdocument0ResourceIdString,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
-    SwitchedBackTimePeriod as Type0SwitchedBackTimePeriod,
+    SwitchedBackTimePeriod as Iec62325451NMltopdocumentV10SwitchedBackTimePeriod,
 )
 from .iec62325_451_n_mltopdocument_v1_0 import (
     TimeSeries as Mltopdocument0TimeSeries,
@@ -5429,7 +5706,7 @@ from .iec62325_451_n_mltopdocument_v1_2 import (
     EsmpVoltage as Type2EsmpVoltage,
 )
 from .iec62325_451_n_mltopdocument_v1_2 import (
-    Name as Mltopdocument2Name,
+    Name as Iec62325451NMltopdocumentV12Name,
 )
 from .iec62325_451_n_mltopdocument_v1_2 import (
     OutageScheduleMarketDocument as Type2OutageScheduleMarketDocument,
@@ -5474,7 +5751,7 @@ from .iec62325_451_n_outageconfigurationdocument_v1_3 import (
     OtherMarketParticipant as Outageconfigurationdocument3OtherMarketParticipant,
 )
 from .iec62325_451_n_outageconfigurationdocument_v1_3 import (
-    OutageConfigurationMarketDocument,
+    OutageConfigurationMarketDocument as Iec62325451NV13OutageConfigurationMarketDocument,
 )
 from .iec62325_451_n_outageconfigurationdocument_v1_3 import (
     PartyIdString as Outageconfigurationdocument3PartyIdString,
@@ -6371,20 +6648,18 @@ from .iec62325_451_n_weatherprognosisdocument_v1_0 import (
 from .urn_entsoe_eu_wgedi_codelists import (
     AllocationModeTypeList,
     AnalogTypeList,
+    AreaTypeList,
     AssetTypeList,
     AuctionTypeList,
     BusinessTypeList,
     CategoryTypeList,
     ClassificationTypeList,
-    CodingSchemeType,
     CodingSchemeTypeList,
     ContractTypeList,
     CoordinateSystemTypeList,
     CurrencyTypeList,
     CurveTypeList,
     DirectionTypeList,
-    DocumentTypeList,
-    EicTypeList,
     EnergyProductTypeList,
     FlowCommodityOptionTypeList,
     FuelTypeList,
@@ -6404,6 +6679,7 @@ from .urn_entsoe_eu_wgedi_codelists import (
     RoleTypeList,
     SettlementMethodTypeList,
     StatusTypeList,
+    SubAreaTypeList,
     TarifTypeTypeList,
     TimeframeTypeList,
     UnitOfMeasureTypeList,
@@ -6411,65 +6687,92 @@ from .urn_entsoe_eu_wgedi_codelists import (
 from .urn_entsoe_eu_wgedi_codelists import (
     UnitSymbol as UrnEntsoeEuWgediCodelistsUnitSymbol,
 )
-from .urn_entsoe_eu_wgedi_components import (
-    AllocationModeType,
-    AmountType,
-    AreaType,
-    AssetType,
-    AuctionType,
-    BusinessType,
-    CategoryType,
-    ClassificationType,
-    CodeType,
-    ComponentNameType,
-    ComponentValueType,
-    ContractType,
-    CurrencyType,
-    CurveType,
-    DateTimeType,
-    DateType,
-    DirectionType,
-    DocumentDateTimeType,
-    DocumentType,
-    EicType,
-    EnergyProductType,
-    IdentificationType,
-    IndicatorType,
-    LineType,
-    LongIdentificationType,
-    MessageType,
-    MeteringPointType,
-    ObjectAggregationType,
-    PartyType,
-    PaymentTermsType,
-    PositionType,
-    PriceCategory,
-    PriceDirection,
-    ProcessType,
-    QualityType,
-    QuantityType,
-    ReasonCodeType,
-    ReasonTextType,
-    ResolutionType,
-    ResourceObjectType,
-    RightsType,
-    RoleType,
-    StatusType,
-    TarifTypeType,
-    TextType,
-    TimeIntervalType,
-    TimeType,
-    UnitOfMeasureType,
-    VersionType,
-)
 
 __all__ = [
+    "Activationdocument65AccountingPoint",
+    "Cim4EuEsmpNs65ActivationMarketDocument",
+    "Activationdocument5AreaIdString",
+    "Activationdocument5EsmpDateTimeInterval",
+    "Activationdocument5PartyIdString",
+    "Activationdocument5Point",
+    "Activationdocument5Reason",
+    "Activationdocument5ResourceIdString",
+    "Activationdocument5SeriesPeriod",
+    "Activationdocument5TimeSeries",
+    "Cim4EuEsmpNsCnedocument26ActionStatus",
+    "Cim4EuEsmpNsCnedocument26AdditionalConstraintRegisteredResource",
+    "Cim4EuEsmpNsCnedocument26AdditionalConstraintSeries",
+    "Cim4EuEsmpNsCnedocumentAnalog",
+    "Cnedocument2AreaIdString",
+    "Cim4EuEsmpNsCnedocument26BorderSeries",
+    "Cim4EuEsmpNsCnedocument26ConstraintSeries",
+    "Cim4EuEsmpNsCnedocument26ContingencyRegisteredResource",
+    "Cim4EuEsmpNsCnedocument26ContingencySeries",
+    "Cim4EuEsmpNsCnedocument26CriticalNetworkElementMarketDocument",
+    "Cnedocument2EsmpDateTimeInterval",
+    "Cim4EuEsmpNsCnedocument26MarketDocument",
+    "Cim4EuEsmpNsCnedocument26MonitoredRegisteredResource",
+    "Cim4EuEsmpNsCnedocument26MonitoredSeries",
+    "Cim4EuEsmpNsCnedocument26PtdfDomain",
+    "Cnedocument2PartyIdString",
+    "Cim4EuEsmpNsCnedocument6PartyMarketParticipant",
+    "Cnedocument2Point",
+    "Cnedocument2Reason",
+    "Cim4EuEsmpNsCnedocument26RegisteredResourceReason",
+    "Cim4EuEsmpNsCnedocument26RemedialActionRegisteredResource",
+    "Cim4EuEsmpNsCnedocument26RemedialActionSeries",
+    "Cnedocument2ResourceIdString",
+    "Cnedocument2SeriesPeriod",
+    "Cim4EuEsmpNsCnedocument26SeriesReason",
+    "Cim4EuEsmpNsCnedocument26SharedDomain",
+    "Cnedocument2TimeSeries",
+    "Measurementdatadocument12AccountingPoint",
+    "Measurementdatadocument1AreaIdString",
+    "Measurementdatadocument1EsmpDateTimeInterval",
+    "Cim4EuEsmpNs2ExchangePoint",
+    "Cim4EuEsmpNsMeasurementdatadocument2MarketParticipant",
+    "Cim4EuEsmpNs2MeasurementDataMarketDocument",
+    "Cim4EuEsmpNsMeasurementdatadocument1MeasurementPointIdString",
+    "Cim4EuEsmpNs2MeterReading",
+    "Measurementdatadocument1PartyIdString",
+    "Measurementdatadocument1Point",
+    "Cim4EuEsmpNs2Reading",
+    "Measurementdatadocument1Reason",
+    "Measurementdatadocument2RegisteredResource",
+    "Measurementdatadocument1ResourceIdString",
+    "Measurementdatadocument1SeriesPeriod",
+    "Measurementdatadocument1TimeSeries",
+    "Cim4EuEsmpNsMeasurementdatadocument2TimePeriod",
+    "Outageconfigurationdocument4AreaIdString",
+    "OutageconfigurationdocumentConnectedRegisteredResource",
+    "Cim4EuEsmpNsOutageconfigurationdocument4Domain",
+    "OutageconfigurationdocumentEsmpVoltage",
+    "Cim4EuEsmpNsOutageconfigurationdocument14OtherMarketParticipant",
+    "Cim4EuEsmpNs14OutageConfigurationMarketDocument",
+    "Outageconfigurationdocument4PartyIdString",
+    "Outageconfigurationdocument4RegisteredResource",
+    "Outageconfigurationdocument4ResourceIdString",
+    "Cim4EuEsmpNsOutageconfigurationdocument14SpecificRegisteredResource",
+    "Outageconfigurationdocument4TimeSeries",
+    "Cim4EuEsmpNsOutagescheduledocument14AlternativeRegisteredResource",
+    "OutagescheduledocumentAreaIdString",
+    "OutagescheduledocumentConnectedRegisteredResource",
+    "Outagescheduledocument4EsmpDateTimeInterval",
+    "OutagescheduledocumentEsmpVoltage",
+    "Cim4EuEsmpNsOutagescheduledocument14Name",
+    "Cim4EuEsmpNsOutagescheduledocument14OutageScheduleMarketDocument",
+    "OutagescheduledocumentPartyIdString",
+    "Outagescheduledocument4Reason",
+    "OutagescheduledocumentRegisteredResource",
+    "OutagescheduledocumentResourceIdString",
+    "Cim4EuEsmpNsOutagescheduledocument14SwitchedBackTimePeriod",
+    "OutagescheduledocumentTimeSeries",
     "V7AcknowledgementMarketDocument",
-    "V7EsmpDateTimeInterval",
-    "V7PartyIdString",
-    "V7Reason",
-    "V7TimeSeries",
-    "V7TimePeriod",
+    "Iec62325451AcknowledgementV70EsmpDateTimeInterval",
+    "Iec62325451AcknowledgementV70PartyIdString",
+    "Iec62325451AcknowledgementV70Reason",
+    "Iec62325451AcknowledgementV70TimeSeries",
+    "Iec62325451AcknowledgementV70TimePeriod",
     "V8AcknowledgementMarketDocument",
     "V8EsmpDateTimeInterval",
     "V8PartyIdString",
@@ -6492,14 +6795,14 @@ __all__ = [
     "V90TimePeriod",
     "Type0AnomalyReportMarketDocument",
     "Type0AnomalyTimeSeries",
-    "Type0AreaIdString",
+    "Iec623254512AnomalyV50AreaIdString",
     "Type2AnomalyV5EsmpDateTimeInterval",
-    "Type0MeasurementPointIdString",
+    "Iec62325451AnomalyV50MeasurementPointIdString",
     "Type0OriginalMarketDocument",
     "Type2AnomalyV5PartyIdString",
-    "Type0Point",
+    "Iec62325451AnomalyV50Point",
     "Type2AnomalyV5Reason",
-    "Type0SeriesPeriod",
+    "Iec62325451AnomalyV50SeriesPeriod",
     "Type1AnomalyReportMarketDocument",
     "Type1AnomalyTimeSeries",
     "Type1AreaIdString",
@@ -6519,7 +6822,7 @@ __all__ = [
     "PartyIdString",
     "Point",
     "Reason",
-    "ResourceIdString",
+    "Iec623254512AnomalyV52ResourceIdString",
     "SeriesPeriod",
     "Type3AnomalyReportMarketDocument",
     "Type3AnomalyTimeSeries",
@@ -6704,7 +7007,7 @@ __all__ = [
     "Type1ResourceIdString",
     "Type1SeriesPeriod",
     "Type1TimeSeries",
-    "Type0ActionStatus",
+    "Iec623254513CapacityV80ActionStatus",
     "V80AreaIdString",
     "V80CapacityMarketDocument",
     "V80EsmpDateTimeInterval",
@@ -6893,7 +7196,7 @@ __all__ = [
     "Type2EnergyAccountMarketDocument",
     "Type2MeasurementPointIdString",
     "Type2PartyIdString",
-    "Type4SettlementV42PartyMarketParticipant",
+    "Iec623254514SettlementV4PartyMarketParticipant",
     "Type2Point",
     "Type2Reason",
     "Type2SeriesPeriod",
@@ -7020,7 +7323,7 @@ __all__ = [
     "Type0ConfigurationMarketDocument",
     "Type0ControlAreaDomain",
     "Type0EsmpActivePower",
-    "Type0EsmpVoltage",
+    "Iec623254516ConfigurationV30EsmpVoltage",
     "Type0MktGeneratingUnit",
     "Type0MktPsrtype",
     "ConfigurationV30PartyIdString",
@@ -7038,7 +7341,7 @@ __all__ = [
     "Type1ProviderMarketParticipant",
     "Type1ResourceIdString",
     "Type1TimeSeries",
-    "Type2Analog",
+    "Iec62325451ConfigurationV3Analog",
     "Type2AreaIdString",
     "Type2ConfigurationMarketDocument",
     "Type2ControlAreaDomain",
@@ -7048,7 +7351,7 @@ __all__ = [
     "Type2MktPsrtype",
     "Type2PartyIdString",
     "Type2ProviderMarketParticipant",
-    "Type2RegisteredResource",
+    "Iec623254516ConfigurationV32RegisteredResource",
     "Type2ResourceIdString",
     "Type2TimeSeries",
     "Type3Analog",
@@ -7148,6 +7451,19 @@ __all__ = [
     "Type1SeriesPeriod",
     "Type1TimeSeries",
     "Type1UnavailabilityMarketDocument",
+    "Type2ActionStatus",
+    "Type2AreaIdString",
+    "Type2AssetRegisteredResource",
+    "Type2EsmpActivePower",
+    "Type2EsmpDateTimeInterval",
+    "PtdfdomainSeries",
+    "Type2PartyIdString",
+    "Type2Point",
+    "Type2Reason",
+    "Type2ResourceIdString",
+    "Type2SeriesPeriod",
+    "Type2TimeSeries",
+    "Type2UnavailabilityMarketDocument",
     "TransmissionnetworkV30ActionStatus",
     "TransmissionnetworkV30AreaIdString",
     "TransmissionnetworkV30AssetRegisteredResource",
@@ -7198,7 +7514,7 @@ __all__ = [
     "Type6ACapacityallocationconfigurationV10EsmpDateTimeInterval",
     "Type6ACapacityallocationconfigurationV10PartyIdString",
     "Type6ACapacityallocationconfigurationV10Point",
-    "Type0ActivationMarketDocument",
+    "Iec623254517V60ActivationMarketDocument",
     "ActivationdocumentV6AreaIdString",
     "ActivationdocumentV6EsmpDateTimeInterval",
     "ActivationdocumentV6PartyIdString",
@@ -7234,7 +7550,7 @@ __all__ = [
     "Type3ResourceIdString",
     "Type3SeriesPeriod",
     "Type3TimeSeries",
-    "Type7ActivationdocumentV64AccountingPoint",
+    "Iec623254517ActivationdocumentV64AccountingPoint",
     "Type4ActivationMarketDocument",
     "Type4AreaIdString",
     "Type4EsmpDateTimeInterval",
@@ -7372,10 +7688,10 @@ __all__ = [
     "ConstraintDuration",
     "ContractMarketAgreement",
     "CurrencyUnit",
-    "Type7ReservationallocationresultV61Domain",
+    "Iec623254517ReservationallocationresultV6Domain",
     "Type1EsmpDateTimeInterval",
     "FlowDirection",
-    "Type7ReservationallocationresultV6MarketParticipant",
+    "Iec623254517ReservationallocationresultV6MarketParticipant",
     "MarketRole",
     "MeasureUnit",
     "Type7ReservationallocationresultV61OriginalMarketDocument",
@@ -7670,30 +7986,30 @@ __all__ = [
     "Capacityallocationconfiguration0PartyIdString",
     "NCapacityallocationconfiguration0Point",
     "CneV20ActionStatus",
-    "Type0AdditionalConstraintRegisteredResource",
-    "Type0AdditionalConstraintSeries",
+    "Iec62325451NCneV20AdditionalConstraintRegisteredResource",
+    "Iec62325451NCneV20AdditionalConstraintSeries",
     "NCneV20Analog",
     "CneV2AreaIdString",
-    "Type0BorderSeries",
-    "Type0ConstraintSeries",
-    "Type0ContingencyRegisteredResource",
-    "Type0ContingencySeries",
-    "Type0CriticalNetworkElementMarketDocument",
+    "Iec62325451NCneV20BorderSeries",
+    "Iec62325451NCneV20ConstraintSeries",
+    "Iec62325451NCneV20ContingencyRegisteredResource",
+    "Iec62325451NCneV20ContingencySeries",
+    "Iec62325451NCneV20CriticalNetworkElementMarketDocument",
     "CneV2EsmpDateTimeInterval",
-    "Type0MarketDocument",
-    "Type0MonitoredRegisteredResource",
-    "Type0PtdfDomain",
+    "Iec62325451NCneV20MarketDocument",
+    "Iec62325451NCneV20MonitoredRegisteredResource",
+    "Iec62325451NCneV20PtdfDomain",
     "CneV2PartyIdString",
     "NCneV20PartyMarketParticipant",
     "CneV2Point",
     "CneV20Reason",
-    "Type0RegisteredResourceReason",
-    "Type0RemedialActionRegisteredResource",
-    "Type0RemedialActionSeries",
+    "Iec62325451NCneV20RegisteredResourceReason",
+    "Iec62325451NCneV20RemedialActionRegisteredResource",
+    "Iec62325451NCneV20RemedialActionSeries",
     "CneV20ResourceIdString",
     "NCneV20SeriesPeriod",
-    "Type0SeriesReason",
-    "Type0SharedDomain",
+    "Iec62325451NCneV20SeriesReason",
+    "Iec62325451NCneV20SharedDomain",
     "NCneV20TimeSeries",
     "Type1ActionStatus",
     "Type1AdditionalConstraintRegisteredResource",
@@ -7709,7 +8025,7 @@ __all__ = [
     "Type1MarketDocument",
     "NCneV21MeasurementPointIdString",
     "Type1MonitoredRegisteredResource",
-    "Type1MonitoredSeries",
+    "Iec62325451NCneV21MonitoredSeries",
     "Type1PtdfDomain",
     "Type1PartyIdString",
     "Type1PartyMarketParticipant",
@@ -8171,7 +8487,7 @@ __all__ = [
     "NMeasurementdatadocumentV10AccountingPoint",
     "MeasurementdatadocumentV10AreaIdString",
     "MeasurementdatadocumentV10EsmpDateTimeInterval",
-    "Type0MeasurementDataMarketDocument",
+    "Iec62325451NV0MeasurementDataMarketDocument",
     "MeasurementdatadocumentV0MeasurementPointIdString",
     "MeasurementdatadocumentV10PartyIdString",
     "MeasurementdatadocumentV10Point",
@@ -8180,14 +8496,14 @@ __all__ = [
     "AccountingPoint",
     "AreaIdString",
     "EsmpDateTimeInterval",
-    "ExchangePoint",
+    "Iec62325451NVExchangePoint",
     "NMeasurementdatadocumentVMarketParticipant",
     "MeasurementDataMarketDocument",
     "MeasurementPointIdString",
-    "MeterReading",
+    "Iec62325451NVMeterReading",
     "PartyIdString",
     "Point",
-    "Reading",
+    "Iec62325451NVReading",
     "MeasurementdatadocumentV11Reason",
     "MeasurementdatadocumentV11RegisteredResource",
     "MeasurementdatadocumentV11ResourceIdString",
@@ -8230,11 +8546,11 @@ __all__ = [
     "MltopconfigurationdocumentV10AreaIdString",
     "MltopconfigurationdocumentDomain",
     "NMltopconfigurationdocumentV10EsmpVoltage",
-    "Type0OtherMarketParticipant",
+    "Iec62325451NMltopconfigurationdocumentV10OtherMarketParticipant",
     "MltopconfigurationdocumentV10PartyIdString",
     "Type0RefMarketDocument",
     "MltopconfigurationdocumentV10ResourceIdString",
-    "Type0SpecificRegisteredResource",
+    "Iec62325451NMltopconfigurationdocumentV10SpecificRegisteredResource",
     "Mltopconfigurationdocument0TimeSeries",
     "Type1AreaIdString",
     "Type1Domain",
@@ -8256,16 +8572,16 @@ __all__ = [
     "Type2ResourceIdString",
     "Type2SpecificRegisteredResource",
     "Type2TimeSeries",
-    "Type0AlternativeRegisteredResource",
+    "Iec62325451NMltopdocumentV10AlternativeRegisteredResource",
     "Mltopdocument0AreaIdString",
     "MltopdocumentV10EsmpDateTimeInterval",
     "Mltopdocument0EsmpVoltage",
-    "Type0OutageScheduleMarketDocument",
+    "Iec62325451NMltopdocumentV10OutageScheduleMarketDocument",
     "Mltopdocument0PartyIdString",
     "MltopdocumentV10Reason",
     "Mltopdocument0RegisteredResource",
     "Mltopdocument0ResourceIdString",
-    "Type0SwitchedBackTimePeriod",
+    "Iec62325451NMltopdocumentV10SwitchedBackTimePeriod",
     "Mltopdocument0TimeSeries",
     "Type1AlternativeRegisteredResource",
     "Type1AreaIdString",
@@ -8282,7 +8598,7 @@ __all__ = [
     "Type2AreaIdString",
     "Type2EsmpDateTimeInterval",
     "Type2EsmpVoltage",
-    "Mltopdocument2Name",
+    "Iec62325451NMltopdocumentV12Name",
     "Type2OutageScheduleMarketDocument",
     "Type2PartyIdString",
     "Type2Reason",
@@ -8297,7 +8613,7 @@ __all__ = [
     "Outageconfigurationdocument3Domain",
     "Outageconfigurationdocument3EsmpVoltage",
     "Outageconfigurationdocument3OtherMarketParticipant",
-    "OutageConfigurationMarketDocument",
+    "Iec62325451NV13OutageConfigurationMarketDocument",
     "Outageconfigurationdocument3PartyIdString",
     "Outageconfigurationdocument3RegisteredResource",
     "Outageconfigurationdocument3ResourceIdString",
@@ -8598,20 +8914,18 @@ __all__ = [
     "Weatherprognosisdocument0UncertaintyPercentageQuantity",
     "AllocationModeTypeList",
     "AnalogTypeList",
+    "AreaTypeList",
     "AssetTypeList",
     "AuctionTypeList",
     "BusinessTypeList",
     "CategoryTypeList",
     "ClassificationTypeList",
-    "CodingSchemeType",
     "CodingSchemeTypeList",
     "ContractTypeList",
     "CoordinateSystemTypeList",
     "CurrencyTypeList",
     "CurveTypeList",
     "DirectionTypeList",
-    "DocumentTypeList",
-    "EicTypeList",
     "EnergyProductTypeList",
     "FlowCommodityOptionTypeList",
     "FuelTypeList",
@@ -8631,57 +8945,9 @@ __all__ = [
     "RoleTypeList",
     "SettlementMethodTypeList",
     "StatusTypeList",
+    "SubAreaTypeList",
     "TarifTypeTypeList",
     "TimeframeTypeList",
     "UnitOfMeasureTypeList",
     "UrnEntsoeEuWgediCodelistsUnitSymbol",
-    "AllocationModeType",
-    "AmountType",
-    "AreaType",
-    "AssetType",
-    "AuctionType",
-    "BusinessType",
-    "CategoryType",
-    "ClassificationType",
-    "CodeType",
-    "ComponentNameType",
-    "ComponentValueType",
-    "ContractType",
-    "CurrencyType",
-    "CurveType",
-    "DateTimeType",
-    "DateType",
-    "DirectionType",
-    "DocumentDateTimeType",
-    "DocumentType",
-    "EicType",
-    "EnergyProductType",
-    "IdentificationType",
-    "IndicatorType",
-    "LineType",
-    "LongIdentificationType",
-    "MessageType",
-    "MeteringPointType",
-    "ObjectAggregationType",
-    "PartyType",
-    "PaymentTermsType",
-    "PositionType",
-    "PriceCategory",
-    "PriceDirection",
-    "ProcessType",
-    "QualityType",
-    "QuantityType",
-    "ReasonCodeType",
-    "ReasonTextType",
-    "ResolutionType",
-    "ResourceObjectType",
-    "RightsType",
-    "RoleType",
-    "StatusType",
-    "TarifTypeType",
-    "TextType",
-    "TimeIntervalType",
-    "TimeType",
-    "UnitOfMeasureType",
-    "VersionType",
 ]
