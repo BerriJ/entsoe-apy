@@ -29,7 +29,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -37,7 +36,6 @@ class EsmpDateTimeInterval(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9])Z)",
         }
     )
@@ -51,7 +49,6 @@ class AreaIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 18,
         },
     )
@@ -59,7 +56,6 @@ class AreaIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -72,7 +68,6 @@ class MeasurementPointIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 60,
         },
     )
@@ -80,7 +75,6 @@ class MeasurementPointIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -93,7 +87,6 @@ class PartyIdString(BaseModel):
     value: str = field(
         default="",
         metadata={
-            "required": True,
             "max_length": 16,
         },
     )
@@ -101,7 +94,6 @@ class PartyIdString(BaseModel):
         metadata={
             "name": "codingScheme",
             "type": "Attribute",
-            "required": True,
         }
     )
 
@@ -112,7 +104,6 @@ class Point(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
             "min_inclusive": 1,
             "max_inclusive": 999999,
         }
@@ -121,14 +112,12 @@ class Point(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
     quality: QualityTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
 
@@ -162,7 +151,6 @@ class SeriesPeriod(BaseModel):
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
     time_interval: EsmpDateTimeInterval = field(
@@ -170,7 +158,6 @@ class SeriesPeriod(BaseModel):
             "name": "timeInterval",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
     point: list[Point] = field(
@@ -191,7 +178,6 @@ class TimeSeries(BaseModel):
             "name": "mRID",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
             "max_length": 60,
         }
     )
@@ -200,14 +186,12 @@ class TimeSeries(BaseModel):
             "name": "businessType",
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
     product: EnergyProductTypeList = field(
         metadata={
             "type": "Element",
             "namespace": "urn:iec62325.351:tc57wg16:451-n:measurementdatadocument:1:0",
-            "required": True,
         }
     )
     reading_period_time_interval: None | EsmpDateTimeInterval = field(
@@ -285,7 +269,6 @@ class MeasurementDataMarketDocument(BaseModel):
         metadata={
             "name": "mRID",
             "type": "Element",
-            "required": True,
             "max_length": 60,
         }
     )
@@ -293,49 +276,42 @@ class MeasurementDataMarketDocument(BaseModel):
         metadata={
             "name": "type",
             "type": "Element",
-            "required": True,
         }
     )
     process_process_type: ProcessTypeList = field(
         metadata={
             "name": "process.processType",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "sender_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     sender_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "sender_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_m_rid: PartyIdString = field(
         metadata={
             "name": "receiver_MarketParticipant.mRID",
             "type": "Element",
-            "required": True,
         }
     )
     receiver_market_participant_market_role_type: RoleTypeList = field(
         metadata={
             "name": "receiver_MarketParticipant.marketRole.type",
             "type": "Element",
-            "required": True,
         }
     )
     created_date_time: str = field(
         metadata={
             "name": "createdDateTime",
             "type": "Element",
-            "required": True,
             "pattern": r"((([0-9]{4})[\-](0[13578]|1[02])[\-](0[1-9]|[12][0-9]|3[01])|([0-9]{4})[\-]((0[469])|(11))[\-](0[1-9]|[12][0-9]|30))T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][048]|[13579][01345789](0)[48]|[13579][01345789][2468][048]|[02468][048][02468][048]|[02468][1235679](0)[48]|[02468][1235679][2468][048]|[0-9][0-9][13579][26])[\-](02)[\-](0[1-9]|1[0-9]|2[0-9])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)|(([13579][26][02468][1235679]|[13579][01345789](0)[01235679]|[13579][01345789][2468][1235679]|[02468][048][02468][1235679]|[02468][1235679](0)[01235679]|[02468][1235679][2468][1235679]|[0-9][0-9][13579][01345789])[\-](02)[\-](0[1-9]|1[0-9]|2[0-8])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9])Z)",
         }
     )
@@ -343,7 +319,6 @@ class MeasurementDataMarketDocument(BaseModel):
         metadata={
             "name": "period.timeInterval",
             "type": "Element",
-            "required": True,
         }
     )
     time_series: list[TimeSeries] = field(

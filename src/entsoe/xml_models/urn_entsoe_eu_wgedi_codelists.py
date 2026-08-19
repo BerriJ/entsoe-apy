@@ -263,6 +263,288 @@ class AnalogTypeList(Enum):
     A42 = "A42"
 
 
+class AreaTypeList(Enum):
+    """
+    :cvar A01: <CodeDescription xmlns=""> <Title>Bidding Zone</Title>
+        <Definition>A Bidding Zone (BZ) is the largest geographical area
+        within which market participants are able to exchange energy
+        without capacity allocation.</Definition> </CodeDescription>
+    :cvar A02: <CodeDescription xmlns=""> <Title>Metering Grid
+        Area</Title> <Definition>A Metering Grid Area (MGA) is a
+        physical area where consumption, production and exchange can be
+        measured. It is delimited by the placement of meters for
+        continuous measurement for input to, and withdrawal from the
+        area. &lt;b&gt;Additional information:&lt;/b&gt; It can be used
+        to establish volumes that cannot be measured such as network
+        losses.</Definition> </CodeDescription>
+    :cvar A03: <CodeDescription xmlns=""> <Title>Capacity Calculation
+        Region</Title> <Definition>HEMRM definition: The Capacity
+        Calculation Region is the geographic area in which coordinated
+        capacity calculation is applied. Based on: Consolidated text:
+        Commission Regulation (EU) 2015/1222. &lt;b&gt;Additional
+        information:&lt;/b&gt; The transmission capacity between Bidding
+        Zones, included in the Capacity Calculation Region, is given to
+        the Balance Responsible Parties through an implicit capacity
+        allocation process or through an explicit allocation
+        auction.</Definition> </CodeDescription>
+    :cvar A04: <CodeDescription xmlns=""> <Title>Control Area</Title>
+        <Definition>HEMRM definition: A coherent part of the
+        interconnected system, operated by a single System Operator and
+        shall include connected physical loads and/or generation units
+        if any. Source: Consolidated text: Commission Regulation (EU) No
+        543/2013.</Definition> </CodeDescription>
+    :cvar A05: <CodeDescription xmlns=""> <Title>Coordination Center
+        Zone</Title> <Definition>HEMRM definition: The composition of a
+        number of LFC Blocks under the responsibility of the same
+        Coordination Centre Operator. </Definition> </CodeDescription>
+    :cvar A06: <CodeDescription xmlns=""> <Title>FRR Sharing
+        Region</Title> <Definition>HEMRM definition: A set of LFC Areas
+        of the same synchronous area, but not necessarily the same
+        Bidding Zone. All LFC Areas of a FRR Sharing Region share a
+        certain amount of FRR with each other. Based on: Consolidated
+        text: Commission Regulation (EU) 2017/1485, Article
+        168.</Definition> </CodeDescription>
+    :cvar A07: <CodeDescription xmlns=""> <Title>ITC</Title>
+        <Definition>EIC definition: A cross border tariff market is
+        composed of a group of System Operators that accept a common set
+        of rules for the invoicing of energy flows over the border.
+        </Definition> </CodeDescription>
+    :cvar A08: <CodeDescription xmlns=""> <Title>LFC Area</Title>
+        <Definition>HEMRM definition: A part of a synchronous area or an
+        entire synchronous area, physically demarcated by points of
+        measurement at interconnectors to other LFC Areas, operated by
+        one or more TSOs fulfilling the obligations of load-frequency
+        control. Source: Consolidated text: Commission Regulation (EU)
+        2017/1485. </Definition> </CodeDescription>
+    :cvar A09: <CodeDescription xmlns=""> <Title>LFC Block</Title>
+        <Definition>HEMRM definition: A part of a synchronous area or an
+        entire synchronous area, physically demarcated by points of
+        measurement at interconnectors to other LFC Blocks, consisting
+        of one or more LFC Areas, operated by one or more TSOs
+        fulfilling the obligations of load-frequency control. Source:
+        Consolidated text: Commission Regulation (EU) 2017/1485
+        </Definition> </CodeDescription>
+    :cvar A10: <CodeDescription xmlns=""> <Title>Local Market
+        Area</Title> <Definition>EIC definition: A Market Area where
+        there is no transmission capacity restrictions between the
+        Market Balance Areas. </Definition> </CodeDescription>
+    :cvar A11: <CodeDescription xmlns=""> <Title>Market Area</Title>
+        <Definition>EIC definition: An area made up of several Market
+        Balance Areas interconnected through AC or DC links. Trade is
+        allowed between different Market Balance Areas with common
+        market rules for trading across the interconnection.
+        </Definition> </CodeDescription>
+    :cvar A12: <CodeDescription xmlns=""> <Title>Outage Coordination
+        Region</Title> <Definition>EIC definition: A combination of
+        Control Areas for which all the System Operators directly
+        involved define procedures to monitor and where necessary,
+        coordinate the availability status of relevant assets in all
+        timeframes. </Definition> </CodeDescription>
+    :cvar A13: <CodeDescription xmlns=""> <Title>R G C E Interconnected
+        Group</Title> <Definition>HEMRM definition: The composition of a
+        number of Coordination Centre Zones, operating under RGCE
+        (Regional Group Continental Europe) rules, where the exchange
+        and compensation programmes within the zone must sum up to zero.
+        </Definition> </CodeDescription>
+    :cvar A14: <CodeDescription xmlns=""> <Title>Regional Outage
+        Area</Title> <Definition>EIC definition: A combination of
+        control areas for which TSOs implement outage coordination
+        procedure. </Definition> </CodeDescription>
+    :cvar A15: <CodeDescription xmlns=""> <Title>Scheduling Area</Title>
+        <Definition>HEMRM definition: An area within which the TSOs'
+        obligations regarding scheduling apply due to operational or
+        organisational needs. Source: Consolidated text: Commission
+        Regulation (EU) 2017/1485. &lt;b&gt;Additional information:
+        &lt;/b&gt; This area consists of one or more Metering Grid Areas
+        with common market rules for which the settlement responsible
+        party carries out an imbalance settlement and which has the same
+        price for imbalance. This covers both Imbalance Area and
+        Imbalance Price Area from the Consolidated text: Commission
+        Regulation (EU) 2017/2195. </Definition> </CodeDescription>
+    :cvar A16: <CodeDescription xmlns=""> <Title>Synchronous
+        Area</Title> <Definition>HEMRM definition: An area covered by
+        synchronously interconnected LFC blocks. Based on: Commission
+        Regulation (EU) 2016/631, Art. 2 - Definitions.
+        &lt;b&gt;Additional information&lt;/b&gt;: Examples of
+        Synchronous Areas are Continental Europe, Great Britain,
+        Ireland-Northern Ireland, Nordic and the power systems of
+        Lithuania, Latvia and Estonia, together referred to as ‘Baltic’
+        which are part of a wider synchronous area (IPS/UPS).
+        </Definition> </CodeDescription>
+    :cvar A17: <CodeDescription xmlns=""> <Title>Accounting
+        Point</Title> <Definition>HEMRM definition: A domain under
+        balance responsibility where Energy Supplier change can take
+        place and for which commercial business processes are defined.
+        &lt;b&gt;Additional information: &lt;/b&gt; This is a type of
+        Metering Point. </Definition> </CodeDescription>
+    :cvar A18: <CodeDescription xmlns=""> <Title>Connection
+        Point</Title> <Definition>EIC definition: The interface at which
+        the power generating module, demand facility, distribution
+        system or HVDC system is connected to a transmission system,
+        offshore network, distribution system, including closed
+        distribution systems, or HVDC system, as identified in the
+        connection agreement. </Definition> </CodeDescription>
+    :cvar A19: <CodeDescription xmlns=""> <Title>Exchange Point</Title>
+        <Definition>HEMRM definition: A domain for establishing energy
+        exchange between two Metering Grid Areas. &lt;b&gt;Additional
+        information: &lt;/b&gt; This is a type of Metering
+        Point.</Definition> </CodeDescription>
+    :cvar A20: <CodeDescription xmlns=""> <Title>Metering Point</Title>
+        <Definition>HEMRM definition: An entity where energy products
+        are measured or computed. </Definition> </CodeDescription>
+    :cvar A21: <CodeDescription xmlns=""> <Title>Virtual Interconnection
+        Points</Title> <Definition>EIC definition: Two or more
+        interconnection points which connect the same two adjacent
+        entry-exit systems, integrated together for the purposes of
+        providing a single capacity service. </Definition>
+        </CodeDescription>
+    :cvar A22: <CodeDescription xmlns=""> <Title>Virtual Trading
+        Points</Title> <Definition>EIC definition: Virtual Trading
+        Point: Trading location where (gas) energy can be traded between
+        network users (Shippers) themselves and/or with traders.
+        </Definition> </CodeDescription>
+    :cvar A23: <CodeDescription xmlns=""> <Title>AC/DC Convertor</Title>
+        <Definition>EIC definition: AC/DC converters are electrical
+        circuits that transform alternating current (AC) into direct
+        current (DC) and vice versa. </Definition> </CodeDescription>
+    :cvar A24: <CodeDescription xmlns=""> <Title>Busbar Coupler</Title>
+        <Definition>EIC definition: Bus coupler is a device which is
+        used to couple one bus to the other without any interruption in
+        power supply and without creating hazardous arcs. Bus coupler is
+        a breaker used to couple two busbars in order to perform
+        maintenance on other circuit breakers associated with that
+        busbar. </Definition> </CodeDescription>
+    :cvar A25: <CodeDescription xmlns=""> <Title>Compressor
+        Station</Title> <Definition>EIC definition: Facility in the gas
+        transmission system that allows the control of the gas flow and
+        to increase the pressure in the high pressure pipe lines.
+        </Definition> </CodeDescription>
+    :cvar A26: <CodeDescription xmlns=""> <Title>Corridor</Title>
+        <Definition>EIC definition: Set of two or more tielines,
+        describing a multi-circuit connection. </Definition>
+        </CodeDescription>
+    :cvar A27: <CodeDescription xmlns=""> <Title>Flow Control
+        Station</Title> <Definition>EIC definition: Facility in the gas
+        transmission system that allows the regulation of pressure and
+        the gas flow in the high pressure pipe lines. </Definition>
+        </CodeDescription>
+    :cvar A28: <CodeDescription xmlns=""> <Title>Gas Treatment
+        Facility</Title> <Definition>EIC definition: Facility in the gas
+        transmission system that allows processing of the gas in order
+        to meet the required physical and chemical specifications.
+        </Definition> </CodeDescription>
+    :cvar A29: <CodeDescription xmlns=""> <Title>Internal Line</Title>
+        <Definition>EIC definition: A transmission line that does not
+        cross different areas. </Definition> </CodeDescription>
+    :cvar A30: <CodeDescription xmlns=""> <Title>Internal Tie-
+        Line</Title> <Definition>EIC definition: Line is a line between
+        two scheduling areas within the same bidding zone. </Definition>
+        </CodeDescription>
+    :cvar A31: <CodeDescription xmlns=""> <Title>Odorization
+        Facility</Title> <Definition>EIC definition: Facility in the gas
+        transmission system that allows the addition of odorant to
+        natural gas for leak detection awareness. </Definition>
+        </CodeDescription>
+    :cvar A32: <CodeDescription xmlns=""> <Title>Transformer</Title>
+        <Definition>EIC definition: A Static piece of apparatus with two
+        or more windings which, by electromagnetic induction, transforms
+        a system of alternating voltage and current into another system
+        of voltage and current usually of different values and at the
+        same frequency for the purpose of transmitting electrical power.
+        </Definition> </CodeDescription>
+    :cvar A33: <CodeDescription xmlns=""> <Title>Endpoint</Title>
+        <Definition>EIC definition: Unique identification of Endpoint
+        within single ECP network. </Definition> </CodeDescription>
+    :cvar A34: <CodeDescription xmlns=""> <Title>IT-system</Title>
+        <Definition>EIC definition: Common IT system for market parties.
+        </Definition> </CodeDescription>
+    :cvar A35: <CodeDescription xmlns=""> <Title>IT-topic</Title>
+        <Definition>EIC definition: An IT-topic is a functional address,
+        which allows a sender to address multiple recipients at the same
+        time. </Definition> </CodeDescription>
+    :cvar A36: <CodeDescription xmlns=""> <Title>Location</Title>
+        <Definition>EIC definition: An endpoint, or IT-system.
+        </Definition> </CodeDescription>
+    :cvar A37: <CodeDescription xmlns=""> <Title>Busbar</Title>
+        <Definition>EIC definition: A busbar is a system of electrical
+        conductors in a generating or receiving substation on which
+        power is concentrated for distribution. </Definition>
+        </CodeDescription>
+    :cvar A38: <CodeDescription xmlns=""> <Title>Dynamic reactive power
+        device</Title> <Definition>EIC definition: A dynamic reactive
+        power device is an equipment capable of measuring the reactive
+        power consumed in the phase in which it is installed and
+        providing the reactive power required in a gradual way, from
+        zero to maximum capacitive and/or from zero to the maximum
+        inductive. </Definition> </CodeDescription>
+    :cvar A39: <CodeDescription xmlns=""> <Title>Harmonic Filter</Title>
+        <Definition>EIC definition: A harmonic filter reduces the
+        harmonic currents flowing in the power system from the source
+        and thereby reduce the harmonic voltage distortion in the
+        system. </Definition> </CodeDescription>
+    :cvar A40: <CodeDescription xmlns=""> <Title>Substation</Title>
+        <Definition>EIC definition: Facility equipment that steps up or
+        steps down the voltage in utility power lines. Voltage is
+        stepped up where power is sent through long distance
+        transmission lines, and stepped down where the power is to enter
+        local distribution lines. They can be classified as normal
+        outside substation, armoured substation and underground
+        substation. </Definition> </CodeDescription>
+    :cvar A41: <CodeDescription xmlns=""> <Title>Bidding Zone
+        Border</Title> <Definition>HEMRM definition: Defines the
+        aggregated connection capacity between two Bidding Zones. A
+        market area (Which defines the aggregated connection capacity
+        between two Bidding Zones) where the transmission capacity
+        between the Bidding Zones is given to the Balance Responsible
+        Parties according to rules carried out by a Transmission
+        Capacity Allocator. Trade between Bidding Zones is carried out
+        on a bilateral or unilateral basis. </Definition>
+        </CodeDescription>
+    """
+
+    A01 = "A01"
+    A02 = "A02"
+    A03 = "A03"
+    A04 = "A04"
+    A05 = "A05"
+    A06 = "A06"
+    A07 = "A07"
+    A08 = "A08"
+    A09 = "A09"
+    A10 = "A10"
+    A11 = "A11"
+    A12 = "A12"
+    A13 = "A13"
+    A14 = "A14"
+    A15 = "A15"
+    A16 = "A16"
+    A17 = "A17"
+    A18 = "A18"
+    A19 = "A19"
+    A20 = "A20"
+    A21 = "A21"
+    A22 = "A22"
+    A23 = "A23"
+    A24 = "A24"
+    A25 = "A25"
+    A26 = "A26"
+    A27 = "A27"
+    A28 = "A28"
+    A29 = "A29"
+    A30 = "A30"
+    A31 = "A31"
+    A32 = "A32"
+    A33 = "A33"
+    A34 = "A34"
+    A35 = "A35"
+    A36 = "A36"
+    A37 = "A37"
+    A38 = "A38"
+    A39 = "A39"
+    A40 = "A40"
+    A41 = "A41"
+
+
 class AssetTypeList(Enum):
     """
     :cvar A01: <CodeDescription xmlns=""> <Title>Tie line</Title>
@@ -1492,9 +1774,9 @@ class BusinessTypeList(Enum):
         radiation</Title> <Definition>Radiation resulting from direct
         sunlight</Definition> </CodeDescription>
     :cvar B81: <CodeDescription xmlns=""> <Title>Outage (OUT)</Title>
-        <Definition>Outage process: Element is out of operation due to
-        planned maintenance or due to an unplanned/forced outage. Outage
-        may be used as a synonym for unavailability. </Definition>
+        <Definition>Outage process where the element is out of operation
+        due to planned maintenance or an unplanned outage. Outage may be
+        used as a synonym for unavailability.</Definition>
         </CodeDescription>
     :cvar B82: <CodeDescription xmlns=""> <Title>Special switching state
         (SSS)</Title> <Definition>Outage Process: This state applies to
@@ -1952,6 +2234,10 @@ class BusinessTypeList(Enum):
         of AC border flow</Title> <Definition>Initial flow on an AC
         border between two areas (forecast)</Definition>
         </CodeDescription>
+    :cvar C96: <CodeDescription xmlns=""> <Title>Forced outage
+        (FO)</Title> <Definition>Outage process where the element is out
+        of operation due to a forced outage. </Definition>
+        </CodeDescription>
     """
 
     A01 = "A01"
@@ -2246,6 +2532,7 @@ class BusinessTypeList(Enum):
     C93 = "C93"
     C94 = "C94"
     C95 = "C95"
+    C96 = "C96"
 
 
 class CategoryTypeList(Enum):
@@ -2282,224 +2569,6 @@ class ClassificationTypeList(Enum):
 
     A01 = "A01"
     A02 = "A02"
-
-
-class CodingSchemeType(Enum):
-    """
-    :cvar A01: <CodeDescription xmlns=""> <Title>EIC</Title>
-        <Definition>The coding scheme is the Energy Identification
-        Coding Scheme (EIC), maintained by ENTSO-E.</Definition>
-        </CodeDescription>
-    :cvar A02: <CodeDescription xmlns=""> <Title>CGM</Title>
-        <Definition>The coding scheme used for Common Grid Model
-        Exchange Standard (CGMES).</Definition> </CodeDescription>
-    :cvar A03: <CodeDescription xmlns=""> <Title>ISO</Title>
-        <Definition>The coding scheme for the preceding attribute is a
-        code maintained by International Organization for
-        Standardization (ISO), such as “ISO 3166
-        &lt;i&gt;English&lt;/i&gt; &lt;i&gt;country names and code
-        elements&lt;/i&gt;”.</Definition> </CodeDescription>
-    :cvar A10: <CodeDescription xmlns=""> <Title>Coding scheme which are
-        part of GS1 system</Title> <Definition>The coding schemes
-        maintained by GS1.</Definition> </CodeDescription>
-    :cvar NAD: <CodeDescription xmlns=""> <Title>Andorra National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NAL: <CodeDescription xmlns=""> <Title>Albania National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NAM: <CodeDescription xmlns=""> <Title>Armenia National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NAT: <CodeDescription xmlns=""> <Title>Austria National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NAZ: <CodeDescription xmlns=""> <Title>Azerbaijan National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NBA: <CodeDescription xmlns=""> <Title>Bosnia and Herzegovina
-        National coding scheme</Title> <Definition>The National coding
-        scheme of the country in question.</Definition>
-        </CodeDescription>
-    :cvar NBE: <CodeDescription xmlns=""> <Title>Belgium National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NBG: <CodeDescription xmlns=""> <Title>Bulgaria National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NCH: <CodeDescription xmlns=""> <Title>Switzerland National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NCS: <CodeDescription xmlns=""> <Title>Serbia and Montenegro
-        National coding scheme</Title> <Definition>The National coding
-        scheme of the country in question.</Definition>
-        </CodeDescription>
-    :cvar NCY: <CodeDescription xmlns=""> <Title>Cyprus National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NCZ: <CodeDescription xmlns=""> <Title>Czech Republic National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NDE: <CodeDescription xmlns=""> <Title>Germany National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NDK: <CodeDescription xmlns=""> <Title>Denmark National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NEE: <CodeDescription xmlns=""> <Title>Estonia National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NES: <CodeDescription xmlns=""> <Title>Spain National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NFI: <CodeDescription xmlns=""> <Title>Finland National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NFR: <CodeDescription xmlns=""> <Title>France National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NGB: <CodeDescription xmlns=""> <Title>United Kingdom National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NGE: <CodeDescription xmlns=""> <Title>Georgia National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NGI: <CodeDescription xmlns=""> <Title>Gibraltar National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NGR: <CodeDescription xmlns=""> <Title>Greece National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NHR: <CodeDescription xmlns=""> <Title>Croatia National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NHU: <CodeDescription xmlns=""> <Title>Hungary National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NIE: <CodeDescription xmlns=""> <Title>Ireland National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NIT: <CodeDescription xmlns=""> <Title>Italy National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NKG: <CodeDescription xmlns=""> <Title>Kyrgyzstan National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NKZ: <CodeDescription xmlns=""> <Title>Kazakhstan National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NLI: <CodeDescription xmlns=""> <Title>Liechtenstein National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NLT: <CodeDescription xmlns=""> <Title>Lithuania National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NLU: <CodeDescription xmlns=""> <Title>Luxembourg National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NLV: <CodeDescription xmlns=""> <Title>Latvia National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NMA: <CodeDescription xmlns=""> <Title>Morocco National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NMD: <CodeDescription xmlns=""> <Title>Moldavia National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NMK: <CodeDescription xmlns=""> <Title>Macedonia National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NNL: <CodeDescription xmlns=""> <Title>Netherlands National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NNN: <CodeDescription xmlns=""> <Title>Nordic Regional coding
-        scheme</Title> <Definition>The coding scheme of the Nordic
-        region which covers Denmark, Finland, Norway and
-        Sweden.</Definition> </CodeDescription>
-    :cvar NNO: <CodeDescription xmlns=""> <Title>Norway National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NPL: <CodeDescription xmlns=""> <Title>Poland National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NPT: <CodeDescription xmlns=""> <Title>Portugal National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NRO: <CodeDescription xmlns=""> <Title>Romania National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NRU: <CodeDescription xmlns=""> <Title>Russian Federation
-        National coding scheme</Title> <Definition>The National coding
-        scheme of the country in question.</Definition>
-        </CodeDescription>
-    :cvar NSE: <CodeDescription xmlns=""> <Title>Sweden National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NSI: <CodeDescription xmlns=""> <Title>Slovenia National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NSK: <CodeDescription xmlns=""> <Title>Slovakia National
-        coding scheme</Title> <Definition>The National coding scheme of
-        the country in question.</Definition> </CodeDescription>
-    :cvar NTR: <CodeDescription xmlns=""> <Title>Turkey National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    :cvar NUA: <CodeDescription xmlns=""> <Title>Ukraine National coding
-        scheme</Title> <Definition>The National coding scheme of the
-        country in question.</Definition> </CodeDescription>
-    """
-
-    A01 = "A01"
-    A02 = "A02"
-    A03 = "A03"
-    A10 = "A10"
-    NAD = "NAD"
-    NAL = "NAL"
-    NAM = "NAM"
-    NAT = "NAT"
-    NAZ = "NAZ"
-    NBA = "NBA"
-    NBE = "NBE"
-    NBG = "NBG"
-    NCH = "NCH"
-    NCS = "NCS"
-    NCY = "NCY"
-    NCZ = "NCZ"
-    NDE = "NDE"
-    NDK = "NDK"
-    NEE = "NEE"
-    NES = "NES"
-    NFI = "NFI"
-    NFR = "NFR"
-    NGB = "NGB"
-    NGE = "NGE"
-    NGI = "NGI"
-    NGR = "NGR"
-    NHR = "NHR"
-    NHU = "NHU"
-    NIE = "NIE"
-    NIT = "NIT"
-    NKG = "NKG"
-    NKZ = "NKZ"
-    NLI = "NLI"
-    NLT = "NLT"
-    NLU = "NLU"
-    NLV = "NLV"
-    NMA = "NMA"
-    NMD = "NMD"
-    NMK = "NMK"
-    NNL = "NNL"
-    NNN = "NNN"
-    NNO = "NNO"
-    NPL = "NPL"
-    NPT = "NPT"
-    NRO = "NRO"
-    NRU = "NRU"
-    NSE = "NSE"
-    NSI = "NSI"
-    NSK = "NSK"
-    NTR = "NTR"
-    NUA = "NUA"
 
 
 class CodingSchemeTypeList(Enum):
@@ -2995,524 +3064,6 @@ class DirectionTypeList(Enum):
     A04 = "A04"
 
 
-class DocumentTypeList(Enum):
-    """
-    :cvar A01: <CodeDescription xmlns=""> <Title>Balance responsible
-        schedule</Title> <Definition>A schedule which has been prepared
-        by a balance responsible party providing planned schedule
-        information.</Definition> </CodeDescription>
-    :cvar A02: <CodeDescription xmlns=""> <Title>Allocated capacity
-        schedule</Title> <Definition>A schedule which has been prepared
-        by a capacity allocator providing allocated
-        capacity.</Definition> </CodeDescription>
-    :cvar A03: <CodeDescription xmlns=""> <Title>Balance area
-        schedule</Title> <Definition>A schedule that provides the
-        planned schedule information for a balance area.</Definition>
-        </CodeDescription>
-    :cvar A04: <CodeDescription xmlns=""> <Title>System Operator area
-        schedule</Title> <Definition>A compilation of all external
-        schedules concerning two System Operator areas of all balance
-        responsible parties.</Definition> </CodeDescription>
-    :cvar A05: <CodeDescription xmlns=""> <Title>Control block area
-        schedule</Title> <Definition>A compilation of all the exchange
-        programs of all control areas for one control block with all
-        neighbouring control areas of a neighbouring control
-        block.</Definition> </CodeDescription>
-    :cvar A06: <CodeDescription xmlns=""> <Title>Coordination center
-        area schedule</Title> <Definition>A compilation of the exchange
-        programs of all exchange blocks divided into UCTE south and
-        north.</Definition> </CodeDescription>
-    :cvar A07: <CodeDescription xmlns=""> <Title>Intermediate
-        confirmation report</Title> <Definition>An intermediate
-        confirmation report that may be produced between final
-        cutoffs.</Definition> </CodeDescription>
-    :cvar A08: <CodeDescription xmlns=""> <Title>Final confirmation
-        report</Title> <Definition>A final confirmation report that is
-        produced after a final cutoff.</Definition> </CodeDescription>
-    :cvar A09: <CodeDescription xmlns=""> <Title>Finalised
-        schedule</Title> <Definition>A compilation of a set of schedules
-        that have been finalized after a given cutoff.</Definition>
-        </CodeDescription>
-    :cvar A10: <CodeDescription xmlns=""> <Title>Regulation data
-        report</Title> <Definition>A compilation of the time series
-        employed on a given day to ensure the balance of the
-        system.</Definition> </CodeDescription>
-    :cvar A11: <CodeDescription xmlns=""> <Title>Aggregated energy data
-        report</Title> <Definition>A compilation of the time series of
-        all the meter readings or their equivalent for a given
-        period.</Definition> </CodeDescription>
-    :cvar A12: <CodeDescription xmlns=""> <Title>Imbalance
-        report</Title> <Definition>The report containing the complete
-        situation of a given period for a party and including the
-        schedules, regulation data and actual or calculated
-        readings.</Definition> </CodeDescription>
-    :cvar A13: <CodeDescription xmlns=""> <Title>Interconnection
-        Capacity</Title> <Definition>Document for cross-border capacity
-        exchanges.</Definition> </CodeDescription>
-    :cvar A14: <CodeDescription xmlns=""> <Title>Resource Provider
-        Resource Schedule</Title> <Definition>A document providing the
-        schedules for resource objects submitted by a resource
-        provider.</Definition> </CodeDescription>
-    :cvar A15: <CodeDescription xmlns=""> <Title>Acquiring System
-        Operator Reserve Schedule</Title> <Definition>A document
-        providing reserve purchases submitted by an Acquiring System
-        Operator.</Definition> </CodeDescription>
-    :cvar A16: <CodeDescription xmlns=""> <Title>Anomaly Report</Title>
-        <Definition>A document providing anomaly information for the
-        receiving party to correct.</Definition> </CodeDescription>
-    :cvar A17: <CodeDescription xmlns=""> <Title>Acknowledgement
-        Document</Title> <Definition>A document providing
-        acknowledgement information.</Definition> </CodeDescription>
-    :cvar A18: <CodeDescription xmlns=""> <Title>Confirmation
-        report</Title> <Definition>A document providing confirmation
-        information.</Definition> </CodeDescription>
-    :cvar A19: <CodeDescription xmlns=""> <Title>Capacity for
-        Resale</Title> <Definition>A document providing information
-        about capacity for resale.</Definition> </CodeDescription>
-    :cvar A20: <CodeDescription xmlns=""> <Title>Approved Capacity
-        Transfer</Title> <Definition>A document to approve a capacity
-        transfer.</Definition> </CodeDescription>
-    :cvar A21: <CodeDescription xmlns=""> <Title>Capacity transfer
-        notification</Title> <Definition>A document notifying a capacity
-        transfer.</Definition> </CodeDescription>
-    :cvar A22: <CodeDescription xmlns=""> <Title>Transmission rights
-        portfolio</Title> <Definition>A document providing the portfolio
-        of the transmission capacity rights of a market
-        participant.</Definition> </CodeDescription>
-    :cvar A23: <CodeDescription xmlns=""> <Title>Allocations</Title>
-        <Definition>A document providing the capacity allocations for a
-        border.</Definition> </CodeDescription>
-    :cvar A24: <CodeDescription xmlns=""> <Title>Bid document</Title>
-        <Definition>A document providing bid information.</Definition>
-        </CodeDescription>
-    :cvar A25: <CodeDescription xmlns=""> <Title>Allocation result
-        document</Title> <Definition>A document providing the allocation
-        results of an auction.</Definition> </CodeDescription>
-    :cvar A26: <CodeDescription xmlns=""> <Title>Capacity
-        document</Title> <Definition>A document providing capacity
-        information.</Definition> </CodeDescription>
-    :cvar A27: <CodeDescription xmlns=""> <Title>Rights document</Title>
-        <Definition>A document providing transmission capacity rights
-        information.</Definition> </CodeDescription>
-    :cvar A28: <CodeDescription xmlns=""> <Title>Generation availability
-        schedule</Title> <Definition>This document contains information
-        related to energy availability.</Definition> </CodeDescription>
-    :cvar A30: <CodeDescription xmlns=""> <Title>Cross border
-        schedule</Title> <Definition>This document contains the cross
-        border schedules for all the borders of a given country where
-        energy is exchanged.</Definition> </CodeDescription>
-    :cvar A31: <CodeDescription xmlns=""> <Title>Agreed capacity</Title>
-        <Definition>The capacity agreed between parties.</Definition>
-        </CodeDescription>
-    :cvar A32: <CodeDescription xmlns=""> <Title>Proposed
-        capacity</Title> <Definition>The capacity proposed for agreement
-        between parties.</Definition> </CodeDescription>
-    :cvar A33: <CodeDescription xmlns=""> <Title>System vertical
-        load</Title> <Definition>The sum of all flows out of the
-        transmission grid via directly connected transformers and lines
-        to distribution grids and end consumers as known by the System
-        Operator.</Definition> </CodeDescription>
-    :cvar A34: <CodeDescription xmlns=""> <Title>Escalation
-        document</Title> <Definition>A document which requesting the
-        escalation of a situation.</Definition> </CodeDescription>
-    :cvar A35: <CodeDescription xmlns=""> <Title>Trouble shooting
-        document</Title> <Definition>A document providing trouble
-        shooting information for the resolution of a
-        problem.</Definition> </CodeDescription>
-    :cvar A36: <CodeDescription xmlns=""> <Title>Deactivation
-        document</Title> <Definition>The capacity proposed for agreement
-        between parties.</Definition> </CodeDescription>
-    :cvar A37: <CodeDescription xmlns=""> <Title>Reserve tender
-        document</Title> <Definition>The document that is used for the
-        tendering for reserves within the ERRP process.</Definition>
-        </CodeDescription>
-    :cvar A38: <CodeDescription xmlns=""> <Title>Reserve Allocation
-        Result Document</Title> <Definition>The document used to provide
-        the results of a Reserve auction.</Definition>
-        </CodeDescription>
-    :cvar A39: <CodeDescription xmlns=""> <Title>SATCR
-        activation</Title> <Definition>The document is used to provide
-        the activation of reserves through the SATCR
-        process.</Definition> </CodeDescription>
-    :cvar A40: <CodeDescription xmlns=""> <Title>DATCR
-        activation</Title> <Definition>The document is used to provide
-        the activation of reserves through the DATCR
-        process.</Definition> </CodeDescription>
-    :cvar A41: <CodeDescription xmlns=""> <Title>Activation
-        response</Title> <Definition>The document is used to provide a
-        response to a request to activate reserves.</Definition>
-        </CodeDescription>
-    :cvar A42: <CodeDescription xmlns=""> <Title>Tender
-        reduction</Title> <Definition>The document is used to provide
-        information concerning the reduction of a previously submitted
-        tender.</Definition> </CodeDescription>
-    :cvar A43: <CodeDescription xmlns=""> <Title>MOL Document</Title>
-        <Definition>The document is used to provide Merit Order List
-        information.</Definition> </CodeDescription>
-    :cvar A44: <CodeDescription xmlns=""> <Title>Price Document</Title>
-        <Definition>The document is used to provide market spot price
-        information.</Definition> </CodeDescription>
-    :cvar A45: <CodeDescription xmlns=""> <Title>Measurement Value
-        Document</Title> <Definition>The document is used to provide
-        measurement information from measurement devices.</Definition>
-        </CodeDescription>
-    :cvar A46: <CodeDescription xmlns=""> <Title>SOAM Document</Title>
-        <Definition>The document is used to provide system operator
-        accounting data for matching.</Definition> </CodeDescription>
-    :cvar A47: <CodeDescription xmlns=""> <Title>SOVA Document</Title>
-        <Definition>The document is used to provide system operator
-        validated accounting data.</Definition> </CodeDescription>
-    :cvar A48: <CodeDescription xmlns=""> <Title>CCVA Document</Title>
-        <Definition>The document is used to provide coordination center
-        validated accounting data.</Definition> </CodeDescription>
-    :cvar A49: <CodeDescription xmlns=""> <Title>Daily settlement
-        document</Title> <Definition>The document is used to provide
-        daily settlement information.</Definition> </CodeDescription>
-    :cvar A50: <CodeDescription xmlns=""> <Title>Weekly settlement
-        document</Title> <Definition>The document is used to provide
-        weekly settlement information.</Definition> </CodeDescription>
-    :cvar A51: <CodeDescription xmlns=""> <Title>Capacity Auction
-        Specification Document</Title> <Definition>The document is used
-        to provide capacity auction specification
-        information.</Definition> </CodeDescription>
-    :cvar A52: <CodeDescription xmlns=""> <Title>Market Coupling Results
-        Document</Title> <Definition>The document is used to provide the
-        results of a market coupling auction.</Definition>
-        </CodeDescription>
-    :cvar A53: <CodeDescription xmlns=""> <Title>Outage publication
-        Document</Title> <Definition>The document is used to provide the
-        outage information for publication.</Definition>
-        </CodeDescription>
-    :cvar A54: <CodeDescription xmlns=""> <Title>Forced generation
-        outage Document</Title> <Definition>A document providing
-        information on forced generation outages.</Definition>
-        </CodeDescription>
-    :cvar A55: <CodeDescription xmlns=""> <Title>Summarised Market
-        Schedule</Title> <Definition>A compilation of all external
-        schedules concerning two Market Balance Areas of all balance
-        responsible parties.</Definition> </CodeDescription>
-    :cvar A56: <CodeDescription xmlns=""> <Title>Compensation Program
-        Schedule</Title> <Definition>A schedule that provides the
-        schedule information for the compensation of unintended
-        deviation.</Definition> </CodeDescription>
-    :cvar A57: <CodeDescription xmlns=""> <Title>Load Frequency Control
-        Program Schedule</Title> <Definition>A schedule that provides
-        the schedule information for the Load Frequency Control Program
-        of a Control Area or a Control Block.</Definition>
-        </CodeDescription>
-    :cvar A58: <CodeDescription xmlns=""> <Title>Timeframe Independent
-        Schedule</Title> <Definition>A compilation of all external
-        Timeframe Independent Schedules concerning two System
-        Operators.</Definition> </CodeDescription>
-    :cvar A59: <CodeDescription xmlns=""> <Title>Status request for a
-        status within a process</Title> <Definition>A status request
-        being made concerning the status of information within the
-        context of a specific ongoing process.</Definition>
-        </CodeDescription>
-    :cvar A60: <CodeDescription xmlns=""> <Title>status request for a
-        position independently from a specific process</Title>
-        <Definition>A status request concerning the position of an
-        object independently of any ongoing processes.</Definition>
-        </CodeDescription>
-    :cvar A61: <CodeDescription xmlns=""> <Title>Estimated Net Transfer
-        Capacity</Title> <Definition>The estimated net transfer capacity
-        for a given border.</Definition> </CodeDescription>
-    :cvar A62: <CodeDescription xmlns=""> <Title>Compensation
-        rights</Title> <Definition>The capacity rights that have been
-        allocated as compensation.</Definition> </CodeDescription>
-    :cvar A63: <CodeDescription xmlns=""> <Title>Redispatch
-        notice</Title> <Definition>A notice to confirm the actions
-        agreed between System Operators to resolve a congestion
-        situation through redispatch.</Definition> </CodeDescription>
-    :cvar A64: <CodeDescription xmlns=""> <Title>Tender reduction
-        response</Title> <Definition>A response to a tender reduction
-        request that provides  corrections to the initial
-        document.</Definition> </CodeDescription>
-    :cvar A65: <CodeDescription xmlns=""> <Title>System total
-        load</Title> <Definition>Total load', including losses without
-        power used for energy storage, is equal to generation deducted
-        with exports, added with imports and deducted with power used
-        for energy storage.</Definition> </CodeDescription>
-    :cvar A66: <CodeDescription xmlns=""> <Title>Final MOL</Title>
-        <Definition>A document providing the information concerning the
-        situation of the MOL at the end of an activation
-        period.</Definition> </CodeDescription>
-    :cvar A67: <CodeDescription xmlns=""> <Title>Resource Provider
-        Schedule for production/consumption</Title> <Definition>A
-        document providing the schedules for production/consumption for
-        resource objects submitted by a resource provider.</Definition>
-        </CodeDescription>
-    :cvar A68: <CodeDescription xmlns=""> <Title>Installed generation
-        per type</Title> <Definition>A document providing the installed
-        generation per generation type.</Definition> </CodeDescription>
-    :cvar A69: <CodeDescription xmlns=""> <Title>Wind and solar
-        forecast</Title> <Definition>A document providing the forecast
-        of wind and solar generation.</Definition> </CodeDescription>
-    :cvar A70: <CodeDescription xmlns=""> <Title>Load forecast
-        margin</Title> <Definition>A document providing the load
-        forecast margin for a period.</Definition> </CodeDescription>
-    :cvar A71: <CodeDescription xmlns=""> <Title>Generation
-        forecast</Title> <Definition>A document providing the generation
-        forecast for a period.</Definition> </CodeDescription>
-    :cvar A72: <CodeDescription xmlns=""> <Title>Reservoir filling
-        information</Title> <Definition>A document providing information
-        concerning the filling of reservoirs.</Definition>
-        </CodeDescription>
-    :cvar A73: <CodeDescription xmlns=""> <Title>Actual
-        generation</Title> <Definition>A document providing the actual
-        generation for a period.</Definition> </CodeDescription>
-    :cvar A74: <CodeDescription xmlns=""> <Title>Wind and solar
-        generation</Title> <Definition>A document providing the
-        generation of wind and solar energy for a period.</Definition>
-        </CodeDescription>
-    :cvar A75: <CodeDescription xmlns=""> <Title>Actual generation per
-        type</Title> <Definition>A document providing the actual
-        generation per generation type for a period.</Definition>
-        </CodeDescription>
-    :cvar A76: <CodeDescription xmlns=""> <Title>Load
-        unavailability</Title> <Definition>A document providing the
-        unavailability of units providing load on the
-        network.</Definition> </CodeDescription>
-    :cvar A77: <CodeDescription xmlns=""> <Title>Production
-        unavailability</Title> <Definition>A document providing the
-        unavailability of production units providing energy to the
-        network.</Definition> </CodeDescription>
-    :cvar A78: <CodeDescription xmlns=""> <Title>Transmission
-        unavailability</Title> <Definition>A document providing the
-        unavailability of transmission capacity on the
-        network.</Definition> </CodeDescription>
-    :cvar A79: <CodeDescription xmlns=""> <Title>Offshore grid
-        infrastructure unavailability</Title> <Definition>A document
-        providing the unavailability of an offshore grid infrastructure
-        to the network.</Definition> </CodeDescription>
-    :cvar A80: <CodeDescription xmlns=""> <Title>Generation
-        unavailability</Title> <Definition>A document providing the
-        unavailability of generation units providing energy to the
-        network.</Definition> </CodeDescription>
-    :cvar A81: <CodeDescription xmlns=""> <Title>Contracted
-        reserves</Title> <Definition>A document providing the reserves
-        contracted for a period.</Definition> </CodeDescription>
-    :cvar A82: <CodeDescription xmlns=""> <Title>Accepted offers</Title>
-        <Definition>A document providing the offers of reserves that
-        have been accepted for a period.</Definition> </CodeDescription>
-    :cvar A83: <CodeDescription xmlns=""> <Title>Activated balancing
-        quantities</Title> <Definition>A document providing the
-        quantities of reserves that have been activated for
-        balancing.</Definition> </CodeDescription>
-    :cvar A84: <CodeDescription xmlns=""> <Title>Activated balancing
-        prices</Title> <Definition>A document providing the prices of
-        the reserves that have been activated for
-        balancing.</Definition> </CodeDescription>
-    :cvar A85: <CodeDescription xmlns=""> <Title>Imbalance
-        prices</Title> <Definition>A document providing the prices of
-        reserves due to imbalance for a period.</Definition>
-        </CodeDescription>
-    :cvar A86: <CodeDescription xmlns=""> <Title>Imbalance
-        volume</Title> <Definition>A document providing the volume of
-        the imbalance for a period.</Definition> </CodeDescription>
-    :cvar A87: <CodeDescription xmlns=""> <Title>Financial
-        situation</Title> <Definition>A document providing the financial
-        situation for reserves.</Definition> </CodeDescription>
-    :cvar A88: <CodeDescription xmlns=""> <Title>Cross border
-        balancing</Title> <Definition>A document providing the cross
-        border balancing requirements for a period.</Definition>
-        </CodeDescription>
-    :cvar A89: <CodeDescription xmlns=""> <Title>Contracted reserve
-        prices</Title> <Definition>A document providing the price of
-        reserves contracted for a period.</Definition>
-        </CodeDescription>
-    :cvar A90: <CodeDescription xmlns=""> <Title>Interconnection network
-        expansion</Title> <Definition>A document providing information
-        on the expansion of the interconnection network.</Definition>
-        </CodeDescription>
-    :cvar A91: <CodeDescription xmlns=""> <Title>Counter trade
-        notice</Title> <Definition>A document providing information on
-        counter trades for a period.</Definition> </CodeDescription>
-    :cvar A92: <CodeDescription xmlns=""> <Title>Congestion
-        costs</Title> <Definition>A document providing the cost of
-        congestion for a period.</Definition> </CodeDescription>
-    :cvar A93: <CodeDescription xmlns=""> <Title>DC link
-        capacity</Title> <Definition>A document providing the DC links
-        for a period.</Definition> </CodeDescription>
-    :cvar A94: <CodeDescription xmlns=""> <Title>Non EU
-        allocations</Title> <Definition>A document providing allocations
-        made to non EU member states.</Definition> </CodeDescription>
-    :cvar A95: <CodeDescription xmlns=""> <Title>Configuration
-        document</Title> <Definition>A document providing configuration
-        information for the network.</Definition> </CodeDescription>
-    :cvar A96: <CodeDescription xmlns=""> <Title>Redispatch activation
-        document</Title> <Definition>A document enabling the activation
-        of a redispatch notice.</Definition> </CodeDescription>
-    :cvar A97: <CodeDescription xmlns=""> <Title>Detailed activation
-        history document</Title> <Definition>A document enabling a
-        detailed history of activations.</Definition> </CodeDescription>
-    :cvar A98: <CodeDescription xmlns=""> <Title>Aggregated activation
-        history document</Title> <Definition>A document enabling an
-        aggregated history of activations.</Definition>
-        </CodeDescription>
-    :cvar A99: <CodeDescription xmlns=""> <Title>HVDC Link
-        constraints</Title> <Definition>A document providing the
-        information concerning the maximum and minimum active power flow
-        through each link can limited.</Definition> </CodeDescription>
-    :cvar B01: <CodeDescription xmlns=""> <Title>HVDC
-        Configuration</Title> <Definition>A document providing the
-        information concerning the power set point. The mode in which
-        the  HVDC is managed.</Definition> </CodeDescription>
-    :cvar B02: <CodeDescription xmlns=""> <Title>HVDC Schedule</Title>
-        <Definition>A document providing the information for operating
-        DC links.</Definition> </CodeDescription>
-    :cvar B03: <CodeDescription xmlns=""> <Title>EIC code
-        request</Title> <Definition>A document providing the information
-        requesting a new EIC code.</Definition> </CodeDescription>
-    :cvar B04: <CodeDescription xmlns=""> <Title>EIC code
-        information</Title> <Definition>A document providing EIC
-        information  in a central registry exchange or information to an
-        EIC participant.</Definition> </CodeDescription>
-    :cvar B05: <CodeDescription xmlns=""> <Title>EIC code
-        publication</Title> <Definition>A document providing EIC
-        publication information in a web site publication of a limited
-        set of information.</Definition> </CodeDescription>
-    """
-
-    A01 = "A01"
-    A02 = "A02"
-    A03 = "A03"
-    A04 = "A04"
-    A05 = "A05"
-    A06 = "A06"
-    A07 = "A07"
-    A08 = "A08"
-    A09 = "A09"
-    A10 = "A10"
-    A11 = "A11"
-    A12 = "A12"
-    A13 = "A13"
-    A14 = "A14"
-    A15 = "A15"
-    A16 = "A16"
-    A17 = "A17"
-    A18 = "A18"
-    A19 = "A19"
-    A20 = "A20"
-    A21 = "A21"
-    A22 = "A22"
-    A23 = "A23"
-    A24 = "A24"
-    A25 = "A25"
-    A26 = "A26"
-    A27 = "A27"
-    A28 = "A28"
-    A30 = "A30"
-    A31 = "A31"
-    A32 = "A32"
-    A33 = "A33"
-    A34 = "A34"
-    A35 = "A35"
-    A36 = "A36"
-    A37 = "A37"
-    A38 = "A38"
-    A39 = "A39"
-    A40 = "A40"
-    A41 = "A41"
-    A42 = "A42"
-    A43 = "A43"
-    A44 = "A44"
-    A45 = "A45"
-    A46 = "A46"
-    A47 = "A47"
-    A48 = "A48"
-    A49 = "A49"
-    A50 = "A50"
-    A51 = "A51"
-    A52 = "A52"
-    A53 = "A53"
-    A54 = "A54"
-    A55 = "A55"
-    A56 = "A56"
-    A57 = "A57"
-    A58 = "A58"
-    A59 = "A59"
-    A60 = "A60"
-    A61 = "A61"
-    A62 = "A62"
-    A63 = "A63"
-    A64 = "A64"
-    A65 = "A65"
-    A66 = "A66"
-    A67 = "A67"
-    A68 = "A68"
-    A69 = "A69"
-    A70 = "A70"
-    A71 = "A71"
-    A72 = "A72"
-    A73 = "A73"
-    A74 = "A74"
-    A75 = "A75"
-    A76 = "A76"
-    A77 = "A77"
-    A78 = "A78"
-    A79 = "A79"
-    A80 = "A80"
-    A81 = "A81"
-    A82 = "A82"
-    A83 = "A83"
-    A84 = "A84"
-    A85 = "A85"
-    A86 = "A86"
-    A87 = "A87"
-    A88 = "A88"
-    A89 = "A89"
-    A90 = "A90"
-    A91 = "A91"
-    A92 = "A92"
-    A93 = "A93"
-    A94 = "A94"
-    A95 = "A95"
-    A96 = "A96"
-    A97 = "A97"
-    A98 = "A98"
-    A99 = "A99"
-    B01 = "B01"
-    B02 = "B02"
-    B03 = "B03"
-    B04 = "B04"
-    B05 = "B05"
-
-
-class EicTypeList(Enum):
-    """
-    :cvar A: <CodeDescription xmlns=""> <Title>Substation</Title>
-        <Definition>An EIC code to substations.</Definition>
-        </CodeDescription>
-    :cvar T: <CodeDescription xmlns=""> <Title>Tieline</Title>
-        <Definition>An EIC code to identify tielines.</Definition>
-        </CodeDescription>
-    :cvar V: <CodeDescription xmlns=""> <Title>Location</Title>
-        <Definition>An EIC code to identify locations.</Definition>
-        </CodeDescription>
-    :cvar W: <CodeDescription xmlns=""> <Title>Resource Object</Title>
-        <Definition>An EIC code to identify resource
-        objects.</Definition> </CodeDescription>
-    :cvar X: <CodeDescription xmlns=""> <Title>Party</Title>
-        <Definition>An EIC code to identify parties.</Definition>
-        </CodeDescription>
-    :cvar Y: <CodeDescription xmlns=""> <Title>Area or Domain</Title>
-        <Definition>An EIC code to identify areas or
-        domains.</Definition> </CodeDescription>
-    :cvar Z: <CodeDescription xmlns=""> <Title>Measurement point</Title>
-        <Definition>An EIC code to identify measurement
-        points.</Definition> </CodeDescription>
-    """
-
-    A = "A"
-    T = "T"
-    V = "V"
-    W = "W"
-    X = "X"
-    Y = "Y"
-    Z = "Z"
-
-
 class EnergyProductTypeList(Enum):
     """
     :cvar VALUE_8716867000016: <CodeDescription xmlns=""> <Title>Active
@@ -3960,6 +3511,12 @@ class MarketProductTypeList(Enum):
         Frequency Containment Reserve (FCR) market for entities that can
         provide continuous response and comply with dynamic
         requirements.</Definition> </CodeDescription>
+    :cvar A15: <CodeDescription xmlns=""> <Title>RedispatchA15)</Title>
+        <Definition>Indicates the redispatch product.</Definition>
+        </CodeDescription>
+    :cvar A16: <CodeDescription xmlns=""> <Title>Capacity
+        Steering</Title> <Definition>Indicates the capacity steering
+        product.</Definition> </CodeDescription>
     """
 
     A01 = "A01"
@@ -3976,6 +3533,8 @@ class MarketProductTypeList(Enum):
     A12 = "A12"
     A13 = "A13"
     A14 = "A14"
+    A15 = "A15"
+    A16 = "A16"
 
 
 class MessageTypeList(Enum):
@@ -4990,9 +4549,10 @@ class ProcessTypeList(Enum):
     :cvar A35: <CodeDescription xmlns=""> <Title>Network
         information</Title> <Definition>The process being described is
         for network information.</Definition> </CodeDescription>
-    :cvar A36: <CodeDescription xmlns=""> <Title>Creation</Title>
-        <Definition>The process being described is for the creation of
-        information.</Definition> </CodeDescription>
+    :cvar A36: <CodeDescription xmlns=""> <Title>Congestion Management
+        Settlement</Title> <Definition>The information provided concerns
+        the Financial Settlement of congestion management for a given
+        period.</Definition> </CodeDescription>
     :cvar A37: <CodeDescription xmlns=""> <Title>Modification</Title>
         <Definition>The process being described is for the modification
         of information.</Definition> </CodeDescription>
@@ -5902,6 +5462,15 @@ class ReasonCodeTypeList(Enum):
     :cvar B82: <CodeDescription xmlns=""> <Title>Customer move-
         out</Title> <Definition>A customer has moved out. </Definition>
         </CodeDescription>
+    :cvar B83: <CodeDescription xmlns=""> <Title>Capacity increased by
+        TSO</Title> <Definition>Describes a capacity that was increased
+        by a TSO</Definition> </CodeDescription>
+    :cvar B84: <CodeDescription xmlns=""> <Title>Reference values
+        applied</Title> <Definition>Reference values applied on time
+        series through reconciliation</Definition> </CodeDescription>
+    :cvar B85: <CodeDescription xmlns=""> <Title>Reference missing or
+        outdated</Title> <Definition>Reference values missing or
+        outdated.</Definition> </CodeDescription>
     """
 
     VALUE_999 = "999"
@@ -6067,6 +5636,9 @@ class ReasonCodeTypeList(Enum):
     B80 = "B80"
     B81 = "B81"
     B82 = "B82"
+    B83 = "B83"
+    B84 = "B84"
+    B85 = "B85"
 
 
 class RightsTypeList(Enum):
@@ -6347,6 +5919,14 @@ class RoleTypeList(Enum):
         of metering points, making this information available to final
         customers and eligible parties in the sector, on
         request.</Definition> </CodeDescription>
+    :cvar A60: <CodeDescription xmlns=""> <Title>Data Provider</Title>
+        <Definition>A party that has a mandate to provide information to
+        other parties in the energy market.</Definition>
+        </CodeDescription>
+    :cvar WK: <CodeDescription xmlns=""> <Title>Value added network
+        provider</Title> <Definition>A party that provides
+        interconnectivity services in an electronic data interchange
+        environment.</Definition> </CodeDescription>
     """
 
     A01 = "A01"
@@ -6408,6 +5988,8 @@ class RoleTypeList(Enum):
     A57 = "A57"
     A58 = "A58"
     A59 = "A59"
+    A60 = "A60"
+    WK = "WK"
 
 
 class SettlementMethodTypeList(Enum):
@@ -6762,6 +6344,42 @@ class StatusTypeList(Enum):
     A74 = "A74"
     A75 = "A75"
     A76 = "A76"
+
+
+class SubAreaTypeList(Enum):
+    """
+    :cvar A01: <CodeDescription xmlns=""> <Title>Regional</Title>
+        <Definition>The domain represents a regional grid.</Definition>
+        </CodeDescription>
+    :cvar A02: <CodeDescription xmlns=""> <Title>Industrial</Title>
+        <Definition>The domain represents an industrial
+        grid.</Definition> </CodeDescription>
+    :cvar A03: <CodeDescription xmlns=""> <Title>Distribution</Title>
+        <Definition>The domain represents a distribution
+        grid.</Definition> </CodeDescription>
+    :cvar A04: <CodeDescription xmlns=""> <Title>Non-
+        concessional</Title> <Definition>The domain represents a non-
+        concessional grid.</Definition> </CodeDescription>
+    :cvar A05: <CodeDescription xmlns=""> <Title>Production</Title>
+        <Definition>The domain represents the production in a
+        grid.</Definition> </CodeDescription>
+    :cvar A06: <CodeDescription xmlns=""> <Title>Transmission
+        (main/central grid)</Title> <Definition>The domain represents a
+        transmission (main/central grid).</Definition>
+        </CodeDescription>
+    :cvar A07: <CodeDescription xmlns=""> <Title>Sub-Grid Area</Title>
+        <Definition>The domain represent a sub-gid area, i.e. a domain
+        that is not part of the imbalance settlement, but where a
+        supplier change can take place.</Definition> </CodeDescription>
+    """
+
+    A01 = "A01"
+    A02 = "A02"
+    A03 = "A03"
+    A04 = "A04"
+    A05 = "A05"
+    A06 = "A06"
+    A07 = "A07"
 
 
 class TarifTypeTypeList(Enum):
