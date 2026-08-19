@@ -19,7 +19,7 @@ class OMI(Base):
         period_start_update: Optional[int] = None,
         period_end_update: Optional[int] = None,
         # Optional parameters for OMI queries
-        doc_status: Optional[Literal["A05", "A09", "A13"]] = None,
+        doc_status: Optional[Literal["A02", "A05", "A09", "A13"]] = None,
         m_rid: Optional[str] = None,
         # Additional common parameters
         offset: int = 0,
@@ -38,7 +38,7 @@ class OMI(Base):
                                mandatory if period_start and period_end not defined)
             period_end_update: End of update period (YYYYMMDDHHMM format,
                              mandatory if period_start and period_end not defined)
-            doc_status: Document status (A05=Active, A09=Cancelled, A13=Withdrawn)
+            doc_status: Document status (A02: Final, A05=Active, A09=Cancelled, A13=Withdrawn)
             m_rid: Message ID - if included, individual versions of particular
                   event are queried using rest of parameters
             offset: Offset for pagination (allows downloading more than 200 docs,
