@@ -25,7 +25,7 @@
     {
       "key": "DocStatus",
       "value": "A05",
-      "description": "[O] A05: Active; A09: Cancelled; A13: Withdrawn",
+      "description": "[O] A02: Final; A05: Active; A09: Cancelled; A13: Withdrawn",
       "disabled": true
     },
     {
