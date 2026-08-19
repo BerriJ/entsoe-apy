@@ -1,40 +1,30 @@
 import os
 import shutil
-import zipfile
+import tempfile
+
+import py7zr
 
 # Configuration
-zip_file_path = "xsd_schema.zip"  # The file you downloaded in step 1
+archive_path = "xsd_schema.7z"  # The file you downloaded in step 1
 output_folder = "xsd"
 
 # 1. Create the output folder if it doesn't exist
 os.makedirs(output_folder, exist_ok=True)
 
-print(f"Opening {zip_file_path}...")
+print(f"Opening {archive_path}...")
 
-# 2. Open the ZIP file
-with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
-    # Loop through every item inside the zip
-    for member in zip_ref.infolist():
-        # Skip directories, we only want files
-        if member.is_dir():
-            continue
+# 2. Extract the 7z archive to a temporary directory, then flatten it into output_folder
+with tempfile.TemporaryDirectory() as tmp_dir:
+    with py7zr.SevenZipFile(archive_path, mode="r") as archive:
+        archive.extractall(path=tmp_dir)
 
-        # 3. Get the filename only (stripping away the folder path)
-        # e.g., "nested/folder/report.pdf" becomes just "report.pdf"
-        filename = os.path.basename(member.filename)
+    for root, _, files in os.walk(tmp_dir):
+        for filename in files:
+            source_path = os.path.join(root, filename)
+            target_path = os.path.join(output_folder, filename)
 
-        # Skip system files or empty names if any exist
-        if not filename:
-            continue
+            shutil.copyfile(source_path, target_path)
 
-        # 4. Define the final path (flattened)
-        target_path = os.path.join(output_folder, filename)
-
-        # 5. Extract the file content and write it to the new location
-        # We use shutil.copyfileobj for efficiency with large files
-        with zip_ref.open(member) as source, open(target_path, "wb") as target:
-            shutil.copyfileobj(source, target)
-
-        print(f"Extracted: {filename}")
+            print(f"Extracted: {filename}")
 
 print("All files extracted successfully!")

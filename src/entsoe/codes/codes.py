@@ -1,12 +1,10 @@
 from enum import Enum
 
-
 class StandardAllocationModeTypeList(Enum):
     A01 = "Order by price with pro rata"
     A02 = "Order by price with first come - first served"
     A03 = "First come - First served"
     A04 = "Pro rata"
-
 
 class StandardAnalogTypeList(Enum):
     A01 = "Flow"
@@ -52,6 +50,48 @@ class StandardAnalogTypeList(Enum):
     A41 = "Negative reference flow"
     A42 = "Negative flow due to non-costly remedial actions"
 
+class StandardAreaTypeList(Enum):
+    A01 = "Bidding Zone"
+    A02 = "Metering Grid Area"
+    A03 = "Capacity Calculation Region"
+    A04 = "Control Area"
+    A05 = "Coordination Center Zone"
+    A06 = "FRR Sharing Region"
+    A07 = "ITC"
+    A08 = "LFC Area"
+    A09 = "LFC Block"
+    A10 = "Local Market Area"
+    A11 = "Market Area"
+    A12 = "Outage Coordination Region"
+    A13 = "R G C E Interconnected Group"
+    A14 = "Regional Outage Area"
+    A15 = "Scheduling Area"
+    A16 = "Synchronous Area"
+    A17 = "Accounting Point"
+    A18 = "Connection Point"
+    A19 = "Exchange Point"
+    A20 = "Metering Point"
+    A21 = "Virtual Interconnection Points"
+    A22 = "Virtual Trading Points"
+    A23 = "AC/DC Convertor"
+    A24 = "Busbar Coupler"
+    A25 = "Compressor Station"
+    A26 = "Corridor"
+    A27 = "Flow Control Station"
+    A28 = "Gas Treatment Facility"
+    A29 = "Internal Line"
+    A30 = "Internal Tie-Line"
+    A31 = "Odorization Facility"
+    A32 = "Transformer"
+    A33 = "Endpoint"
+    A34 = "IT-system"
+    A35 = "IT-topic"
+    A36 = "Location"
+    A37 = "Busbar"
+    A38 = "Dynamic reactive power device"
+    A39 = "Harmonic Filter"
+    A40 = "Substation"
+    A41 = "Bidding Zone Border"
 
 class StandardAssetTypeList(Enum):
     A01 = "Tie line"
@@ -145,7 +185,6 @@ class StandardAssetTypeList(Enum):
     B75 = "ACDC converter"
     B76 = "Converter"
 
-
 class StandardAuctionTypeList(Enum):
     A01 = "Implicit"
     A02 = "Explicit"
@@ -155,7 +194,6 @@ class StandardAuctionTypeList(Enum):
     A06 = "Shadow auction"
     A07 = "Flow-based"
     A08 = "Continuous"
-
 
 class StandardBusinessTypeList(Enum):
     A01 = "Production"
@@ -450,7 +488,7 @@ class StandardBusinessTypeList(Enum):
     C93 = "Permission administration details"
     C94 = "Maximum capacity value of AC border flow"
     C95 = "Initial forecast value of AC border flow"
-
+    C96 = "Forced outage (FO)"
 
 class StandardCategoryTypeList(Enum):
     A01 = "Base"
@@ -458,11 +496,9 @@ class StandardCategoryTypeList(Enum):
     A03 = "Off peak"
     A04 = "Hourly"
 
-
 class StandardClassificationTypeList(Enum):
     A01 = "Detail type"
     A02 = "Summary type"
-
 
 class StandardCodingSchemeTypeList(Enum):
     A01 = "EIC"
@@ -517,13 +553,29 @@ class StandardCodingSchemeTypeList(Enum):
     NTR = "Turkey National coding scheme"
     NUA = "Ukraine National coding scheme"
 
+class StandardconnectionCategoryTypeList(Enum):
+    E03 = "Maximum voltage"
+    E04 = "High voltage"
+    E05 = "Medium voltage"
+    E06 = "Low voltage"
+    E07 = "High voltage / transformation"
+    E08 = "Medium voltage / transformation"
+    E09 = "Low voltage / transformation"
+    E10 = "Low pressure"
+    E11 = "High pressure"
+    E12 = "Medium pressure"
+
+class StandardCustomerTypeList(Enum):
+    A01 = "Household customer"
+    A02 = "Deceased household customer"
+    A03 = "Company customer"
+    A04 = "Estate company customer"
 
 class StandardCoordinateSystemTypeList(Enum):
     A01 = "ED50"
     A02 = "OSGB36"
     A03 = "WGS84"
     A04 = "GTRF"
-
 
 class StandardContractTypeList(Enum):
     A01 = "Daily contract"
@@ -542,7 +594,6 @@ class StandardContractTypeList(Enum):
     A14 = "First intraday auction contract"
     A15 = "Second intraday auction contract"
     A16 = "Third intraday auction contract"
-
 
 class StandardCurrencyTypeList(Enum):
     BAM = "Bosnian convertible marka"
@@ -569,7 +620,6 @@ class StandardCurrencyTypeList(Enum):
     UAH = "Ukrainian hryvnia"
     USD = "US Dollar"
 
-
 class StandardCurveTypeList(Enum):
     A01 = "Sequential fixed size block"
     A02 = "Point"
@@ -577,13 +627,11 @@ class StandardCurveTypeList(Enum):
     A04 = "Overlapping breakpoint"
     A05 = "Non-overlapping breakpoint"
 
-
 class StandardDirectionTypeList(Enum):
     A01 = "UP"
     A02 = "DOWN"
     A03 = "UP and DOWN"
     A04 = "Stable"
-
 
 class StandardEicTypeList(Enum):
     A = "Substation"
@@ -593,7 +641,6 @@ class StandardEicTypeList(Enum):
     X = "Party"
     Y = "Area or Domain"
     Z = "Measurement point"
-
 
 class StandardEnergyProductTypeList(Enum):
     _8716867000016 = "Active power"
@@ -606,13 +653,11 @@ class StandardEnergyProductTypeList(Enum):
     _8716867000146 = "Inductive Reactive energy"
     _8716867009911 = "Water"
 
-
 class StandardFlowCommodityOptionTypeList(Enum):
     E17 = "Consumption"
     E18 = "Production"
     E19 = "Combined"
     E20 = "Exchange"
-
 
 class StandardFuelTypeList(Enum):
     A01 = "Unspecified"
@@ -671,26 +716,20 @@ class StandardFuelTypeList(Enum):
     A54 = "Waste heat and cold By-product in tertiary sector"
     A55 = "Hydrogen"
 
-
 class StandardGridAgreementTypeList(Enum):
     E01 = "Grid usage contract directly between Grid Access Provider and Customer"
-    E02 = (
-        "Grid usage contract  directly between Energy Supplier and Grid Access Provider"
-    )
+    E02 = "Grid usage contract  directly between Energy Supplier and Grid Access Provider"
     E03 = "Grid usage contract  between Grid Access Provider and Customer through Energy Supplier"
     E04 = "No grid usage contract"
-
 
 class StandardHVDCModeTypeList(Enum):
     A01 = "Setpoint schedule"
     A02 = "Proportional external signal"
     A03 = "AC emulation"
 
-
 class StandardIndicatorTypeList(Enum):
     A01 = "YES"
     A02 = "NO"
-
 
 class StandardMessageTypeList(Enum):
     A01 = "Balance responsible schedule"
@@ -844,7 +883,6 @@ class StandardMessageTypeList(Enum):
     B51 = "Transmission inventory document"
     B52 = "Transmission inventory"
 
-
 class StandardMarketProductTypeList(Enum):
     A01 = "Standard balancing product"
     A02 = "Specific balancing product"
@@ -860,7 +898,8 @@ class StandardMarketProductTypeList(Enum):
     A12 = "Remedial Action Cost Sharing Polluter Pays"
     A13 = "Static product"
     A14 = "Dynamic product"
-
+    A15 = "RedispatchA15)"
+    A16 = "Capacity Steering"
 
 class StandardObjectAggregationTypeList(Enum):
     A01 = "Area"
@@ -880,12 +919,10 @@ class StandardObjectAggregationTypeList(Enum):
     A15 = "Scheduling area"
     A16 = "Exchange point"
 
-
 class StandardPaymentTermsTypeList(Enum):
     A01 = "Pay as bid"
     A02 = "Pay as cleared"
     A03 = "No payment terms"
-
 
 class StandardPriceCategoryTypeList(Enum):
     A01 = "Category 1"
@@ -897,17 +934,14 @@ class StandardPriceCategoryTypeList(Enum):
     A07 = "Single marginal bid price"
     A08 = "Cross-border marginal price"
 
-
 class StandardPriceComponentTypeList(Enum):
     A01 = "Scarcity"
     A02 = "Incentive"
     A03 = "Financial neutrality"
 
-
 class StandardPriceDirectionTypeList(Enum):
     A01 = "Expenditure."
     A02 = "Income."
-
 
 class StandardProcessTypeList(Enum):
     A01 = "Day ahead"
@@ -945,6 +979,7 @@ class StandardProcessTypeList(Enum):
     A33 = "Year ahead"
     A34 = "Contracted"
     A35 = "Network information"
+    A36 = "Congestion Management Settlement"
     A36 = "Creation"
     A37 = "Modification"
     A38 = "Deactivation process"
@@ -986,7 +1021,6 @@ class StandardProcessTypeList(Enum):
     A74 = "Access to metered data"
     A75 = "Permission administration"
 
-
 class StandardQualityTypeList(Enum):
     A01 = "Adjusted"
     A02 = "Not available"
@@ -995,7 +1029,6 @@ class StandardQualityTypeList(Enum):
     A05 = "Incomplete"
     A06 = "Calculated"
     A07 = "Temporary"
-
 
 class StandardReasonCodeTypeList(Enum):
     _999 = "Errors not specifically identified"
@@ -1064,18 +1097,14 @@ class StandardReasonCodeTypeList(Enum):
     A82 = "In/Out area inconsistent with domain"
     A83 = "Disagree with matching results"
     A84 = "Confirmation ignored due to higher version already received"
-    A85 = (
-        "Confirmation without adjustment (time series have been matched without change)"
-    )
+    A85 = "Confirmation without adjustment (time series have been matched without change)"
     A86 = "Confirmation with adjustment (time series have been modified)"
     A87 = "For action (only in intermediate confirmation - time series need mutual agreement and action)"
     A88 = "Time series matched"
     A89 = "Time series ignored (note: this can only apply to time series that are set to zero - see matching principles)"
     A90 = "Modification proposal (intermediate confirmation)"
     A91 = "Expected document not received"
-    A92 = (
-        "Not possible to send document on time, but estimated delivery time is provided"
-    )
+    A92 = "Not possible to send document on time, but estimated delivery time is provided"
     A93 = "Not possible to send document on time, and furthermore no expected time of return to normal situation"
     A94 = "Document cannot be processed by receiving system"
     A95 = "Complementary information"
@@ -1165,7 +1194,9 @@ class StandardReasonCodeTypeList(Enum):
     B80 = "Termination"
     B81 = "No valid grid access contract"
     B82 = "Customer move-out"
-
+    B83 = "Capacity increased by TSO"
+    B84 = "Reference values applied"
+    B85 = "Reference missing or outdated"
 
 class StandardRightsTypeList(Enum):
     A01 = "Use It Or Lose It"
@@ -1174,7 +1205,6 @@ class StandardRightsTypeList(Enum):
     A04 = "Nomination curtailment possible"
     A05 = "Resale possible"
     A06 = "Transfer possible"
-
 
 class StandardRoleTypeList(Enum):
     A01 = "Trade responsible party"
@@ -1236,12 +1266,12 @@ class StandardRoleTypeList(Enum):
     A57 = "Data access provider"
     A58 = "Metered data administrator"
     A59 = "Permission administrator"
-
+    A60 = "Data Provider"
+    WK = "Value added network provider"
 
 class StandardSettlementMethodTypeList(Enum):
     E01 = "Profiled"
     E02 = "Non-profiled"
-
 
 class StandardStatusTypeList(Enum):
     A01 = "Intermediate"
@@ -1321,6 +1351,14 @@ class StandardStatusTypeList(Enum):
     A75 = "Invalid"
     A76 = "Timed out"
 
+class StandardSubAreaTypeList(Enum):
+    A01 = "Regional"
+    A02 = "Industrial"
+    A03 = "Distribution"
+    A04 = "Non-concessional"
+    A05 = "Production"
+    A06 = "Transmission (main/central grid)"
+    A07 = "Sub-Grid Area"
 
 class StandardTarifTypeTypeList(Enum):
     A01 = "Winter HT"
@@ -1330,7 +1368,6 @@ class StandardTarifTypeTypeList(Enum):
     A05 = "Summer HHT1"
     A06 = "Summer HHT2"
     A07 = "Summer NT"
-
 
 class StandardTimeframeTypeList(Enum):
     A01 = "Real time"
@@ -1380,10 +1417,8 @@ class StandardTimeframeTypeList(Enum):
     A45 = "Year ahead"
     A46 = "Year-10"
 
-
 class StandardUnitMultiplier(Enum):
     _1 = "none"
-
 
 class StandardUnitOfMeasureTypeList(Enum):
     A59 = "OKTA unit"
@@ -1420,7 +1455,6 @@ class StandardUnitOfMeasureTypeList(Enum):
     SEC = "second"
     WTT = "watt"
 
-
 class StandardUnitSymbol(Enum):
     AMP = "Ampere"
     C62 = "One"
@@ -1433,7 +1467,6 @@ class StandardUnitSymbol(Enum):
     MVA = "megavolt-ampere"
     OHM = "Ohm"
     P1 = "Percent"
-
 
 class StandardDocumentTypeList(Enum):
     A01 = "Balance responsible schedule"

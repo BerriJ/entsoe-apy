@@ -14,7 +14,7 @@ echo "Cleaning up..."
 rm -R xml_models
 
 echo "Regenerating code dictionaries..."
-python3 misc/generate-code-dicts.py
+python3 misc/generate_code_dicts.py
 echo "Regenerating codes __init__.py ..."
 python3 misc/generate_codes_init.py
 

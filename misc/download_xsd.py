@@ -24,7 +24,7 @@ if link:
 
     # Optional: Code to actually download the file
     file_content = requests.get(download_url).content
-    with open("xsd_schema.zip", "wb") as f:
+    with open("xsd_schema.7z", "wb") as f:
         f.write(file_content)
 else:
     print("Link with that text not found.")

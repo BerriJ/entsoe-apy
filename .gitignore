@@ -211,4 +211,5 @@ pyrightconfig.json
 misc/TransparencyPlatformRestfulAPI.postman_collection.json
 
 *.zip
+*.7z
 result
