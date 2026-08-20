@@ -14,7 +14,6 @@ from .codes import (
     StandardCategoryTypeList,
     StandardClassificationTypeList,
     StandardCodingSchemeTypeList,
-    StandardconnectionCategoryTypeList,
     StandardContractTypeList,
     StandardCoordinateSystemTypeList,
     StandardCurrencyTypeList,
@@ -49,6 +48,7 @@ from .codes import (
     StandardUnitMultiplier,
     StandardUnitOfMeasureTypeList,
     StandardUnitSymbol,
+    StandardconnectionCategoryTypeList,
 )
 
 __all__ = [
