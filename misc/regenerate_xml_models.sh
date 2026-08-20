@@ -18,4 +18,7 @@ python3 misc/generate_code_dicts.py
 echo "Regenerating codes __init__.py ..."
 python3 misc/generate_codes_init.py
 
+# Ruff
+ruff format src/
+
 echo "Regeneration complete."
