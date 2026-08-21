@@ -19,6 +19,7 @@ echo "Regenerating codes __init__.py ..."
 python3 misc/generate_codes_init.py
 
 # Ruff
+ruff check --fix src/
 ruff format src/
 
 echo "Regeneration complete."
