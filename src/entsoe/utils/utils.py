@@ -22,7 +22,7 @@ def parse_entsoe_datetime(date_int: int) -> datetime:
         datetime object
     """
     date_str = str(date_int)
-    return datetime.strptime(date_str, "%Y%m%d%H%M")
+    return datetime.strptime(date_str, "%Y%m%d%H%M").replace(tzinfo=UTC)
 
 
 def format_entsoe_datetime(dt: datetime) -> int:
@@ -145,9 +145,12 @@ def extract_namespace_and_find_classes(response) -> tuple[str, type]:
 
     # Get all classes from the xml_models module
     for name, obj in inspect.getmembers(xml_models, inspect.isclass):
-        if hasattr(obj, "Meta") and hasattr(obj.Meta, "namespace"):
-            if obj.Meta.namespace == namespace:
-                matching_classes.append((name, obj))
+        if (
+            hasattr(obj, "Meta")
+            and hasattr(obj.Meta, "namespace")
+            and obj.Meta.namespace == namespace
+        ):
+            matching_classes.append((name, obj))
 
     logger.trace(f"Found {len(matching_classes)} matching classes for namespace")
 

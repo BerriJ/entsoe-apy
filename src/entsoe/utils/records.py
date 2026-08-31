@@ -4,6 +4,9 @@ from pydantic import BaseModel
 
 from ..config.config import logger
 
+_DEFAULT_IGNORE_FIELDS = ["m_rid", "time_series.m_rid"]
+_UNSET = object()
+
 
 def _deduplicate_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Remove duplicate records while preserving order."""
@@ -117,10 +120,7 @@ def normalize_to_records(
 def extract_records(
     data: BaseModel | list[BaseModel],
     domain: str | None = None,
-    ignore_fields: list[str] | None = [
-        "m_rid",
-        "time_series.m_rid",
-    ],
+    ignore_fields: list[str] | None = _UNSET,  # type: ignore[assignment]
     deduplicate: bool = True,
 ) -> list[dict[str, int | float | str | None]]:
     """
@@ -155,6 +155,8 @@ def extract_records(
         If mixed BaseModel types are detected in a list, a warning is logged
         as this may result in inconsistent record structures.
     """
+    if ignore_fields is _UNSET:
+        ignore_fields = _DEFAULT_IGNORE_FIELDS
 
     # Convert single BaseModel to list for uniform processing
     if isinstance(data, BaseModel):
@@ -174,7 +176,7 @@ def extract_records(
                 type(item) for item in data_list if type(item) is not first_type
             ]
             if different_types:
-                unique_types = set([type(item).__name__ for item in data_list])
+                unique_types = {type(item).__name__ for item in data_list}
                 logger.warning(
                     f"Mixed BaseModel types detected in list: {sorted(unique_types)}. "
                     "This may result in inconsistent record structures."

@@ -3,7 +3,7 @@
 import pytest
 
 from entsoe.Base.Outages import Outages
-from entsoe.OMI.OMI import OMI
+from entsoe.OMI.omi import OMI
 
 
 class TestEncapsulation:

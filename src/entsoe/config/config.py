@@ -205,7 +205,6 @@ def get_config() -> EntsoEConfig:
     Raises:
         RuntimeError: If no global configuration has been set
     """
-    global _global_config
     if _global_config is None:
         raise RuntimeError(
             "No global configuration set. Please call set_config() first or "

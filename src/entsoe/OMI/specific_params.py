@@ -5,7 +5,7 @@ endpoints, each inheriting from OMI and providing preset values for
 fixed parameters based on the ENTSO-E Transparency Platform API specification.
 """
 
-from .OMI import OMI
+from .omi import OMI
 
 
 class OtherMarketInformation(OMI):

@@ -5,7 +5,7 @@ endpoints, each inheriting from Base and providing preset values for fixed
 parameters.
 """
 
-from typing import Literal, Optional
+from typing import Literal
 
 from ..Base.Base import Base
 
@@ -54,30 +54,29 @@ class ProductionandGenerationUnits(Base):
         self,
         bidding_zone_domain: str,
         implementation_date_and_or_time: str,
-        psr_type: Optional[
-            Literal[
-                "B01",  # Biomass
-                "B02",  # Fossil Brown coal/Lignite
-                "B03",  # Fossil Coal-derived gas
-                "B04",  # Fossil Gas
-                "B05",  # Fossil Hard coal
-                "B06",  # Fossil Oil
-                "B07",  # Fossil Oil shale
-                "B08",  # Fossil Peat
-                "B09",  # Geothermal
-                "B10",  # Hydro Pumped Storage
-                "B11",  # Hydro Run-of-river and poundage
-                "B12",  # Hydro Water Reservoir
-                "B13",  # Marine
-                "B14",  # Nuclear
-                "B15",  # Other renewable
-                "B16",  # Solar
-                "B17",  # Waste
-                "B18",  # Wind Offshore
-                "B19",  # Wind Onshore
-                "B20",  # Other
-            ]
-        ] = None,
+        psr_type: Literal[
+            "B01",  # Biomass
+            "B02",  # Fossil Brown coal/Lignite
+            "B03",  # Fossil Coal-derived gas
+            "B04",  # Fossil Gas
+            "B05",  # Fossil Hard coal
+            "B06",  # Fossil Oil
+            "B07",  # Fossil Oil shale
+            "B08",  # Fossil Peat
+            "B09",  # Geothermal
+            "B10",  # Hydro Pumped Storage
+            "B11",  # Hydro Run-of-river and poundage
+            "B12",  # Hydro Water Reservoir
+            "B13",  # Marine
+            "B14",  # Nuclear
+            "B15",  # Other renewable
+            "B16",  # Solar
+            "B17",  # Waste
+            "B18",  # Wind Offshore
+            "B19",  # Wind Onshore
+            "B20",  # Other
+        ]
+        | None = None,
     ):
         """
         Initialize configuration document parameters.
