@@ -3,4 +3,4 @@ from .config import (
     set_config,
 )
 
-__all__ = ["set_config", "get_config"]
+__all__ = ["get_config", "set_config"]

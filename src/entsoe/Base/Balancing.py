@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -12,26 +10,26 @@ class Balancing(Base):
         period_start: int,
         period_end: int,
         # Domain parameters - required based on query type
-        acquiring_domain: Optional[str] = None,
-        connecting_domain: Optional[str] = None,
-        control_area_domain: Optional[str] = None,
-        bidding_zone_domain: Optional[str] = None,
-        in_domain: Optional[str] = None,
-        out_domain: Optional[str] = None,
-        area_domain: Optional[str] = None,
-        domain: Optional[str] = None,
+        acquiring_domain: str | None = None,
+        connecting_domain: str | None = None,
+        control_area_domain: str | None = None,
+        bidding_zone_domain: str | None = None,
+        in_domain: str | None = None,
+        out_domain: str | None = None,
+        area_domain: str | None = None,
+        domain: str | None = None,
         # Optional parameters for balancing queries
-        business_type: Optional[str] = None,
-        process_type: Optional[str] = None,
-        psr_type: Optional[str] = None,
-        type_marketagreement_type: Optional[str] = None,
-        standard_market_product: Optional[str] = None,
-        original_market_product: Optional[str] = None,
-        direction: Optional[str] = None,
-        registered_resource: Optional[str] = None,
+        business_type: str | None = None,
+        process_type: str | None = None,
+        psr_type: str | None = None,
+        type_marketagreement_type: str | None = None,
+        standard_market_product: str | None = None,
+        original_market_product: str | None = None,
+        direction: str | None = None,
+        registered_resource: str | None = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: Optional[str] = None,
+        curve_type: str | None = None,
     ):
         """
         Initialize balancing data parameters for ENTSO-E Transparency Platform.

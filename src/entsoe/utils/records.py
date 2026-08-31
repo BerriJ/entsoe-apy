@@ -1,11 +1,11 @@
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
 from ..config.config import logger
 
 
-def _deduplicate_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def _deduplicate_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Remove duplicate records while preserving order."""
     seen = set()
     unique_records = []
@@ -18,11 +18,11 @@ def _deduplicate_records(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 def normalize_to_records(
-    data: Dict[str, Any] | List[Any] | Any,
+    data: dict[str, Any] | list[Any] | Any,
     parent_key: str = "",
     sep: str = ".",
-    ignore_fields: Optional[List[str]] = None,
-) -> List[Dict[str, Any]]:
+    ignore_fields: list[str] | None = None,
+) -> list[dict[str, Any]]:
     """
     Recursively flattens nested JSON/dictionary structures into a list of records suitable for pandas DataFrames.
 
@@ -64,13 +64,13 @@ def normalize_to_records(
     if ignore_fields is None:
         ignore_fields = []
 
-    def _filter_ignored_fields(record: Dict[str, Any]) -> Dict[str, Any]:
+    def _filter_ignored_fields(record: dict[str, Any]) -> dict[str, Any]:
         """Filter out ignored fields from a record."""
         return {k: v for k, v in record.items() if k not in ignore_fields}
 
     if isinstance(data, dict):
-        items: Dict[str, Any] = {}
-        expansions: List[List[Dict[str, Any]]] = []
+        items: dict[str, Any] = {}
+        expansions: list[list[dict[str, Any]]] = []
         for k, v in data.items():
             new_key = f"{parent_key}{sep}{k}" if parent_key else k
             if isinstance(v, dict):
@@ -97,7 +97,7 @@ def normalize_to_records(
             else:
                 items[new_key] = v
         # Cross-join base items with all collected expansions
-        result: List[Dict[str, Any]] = [items]
+        result: list[dict[str, Any]] = [items]
         for expansion in expansions:
             result = [dict(r, **e) for r in result for e in expansion]
         return [_filter_ignored_fields(r) for r in result]
@@ -116,13 +116,13 @@ def normalize_to_records(
 
 def extract_records(
     data: BaseModel | list[BaseModel],
-    domain: Optional[str] = None,
-    ignore_fields: Optional[List[str]] = [
+    domain: str | None = None,
+    ignore_fields: list[str] | None = [
         "m_rid",
         "time_series.m_rid",
     ],
     deduplicate: bool = True,
-) -> List[Dict[str, int | float | str | None]]:
+) -> list[dict[str, int | float | str | None]]:
     """
     Convert a Pydantic model or list of Pydantic models to a list of flattened records suitable for pandas DataFrame.
 

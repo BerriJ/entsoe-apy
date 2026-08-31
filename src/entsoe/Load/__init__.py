@@ -12,8 +12,8 @@ from .specific_params import (
 __all__ = [
     "ActualTotalLoad",
     "DayAheadTotalLoadForecast",
-    "WeekAheadTotalLoadForecast",
     "MonthAheadTotalLoadForecast",
-    "YearAheadTotalLoadForecast",
+    "WeekAheadTotalLoadForecast",
     "YearAheadForecastMargin",
+    "YearAheadTotalLoadForecast",
 ]

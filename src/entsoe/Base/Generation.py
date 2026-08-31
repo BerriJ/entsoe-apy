@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -12,13 +10,13 @@ class Generation(Base):
         period_start: int,
         period_end: int,
         # Domain parameters - typically required
-        in_domain: Optional[str] = None,
-        bidding_zone_domain: Optional[str] = None,
+        in_domain: str | None = None,
+        bidding_zone_domain: str | None = None,
         # Optional parameters for generation queries
-        process_type: Optional[str] = None,
-        business_type: Optional[str] = None,
-        psr_type: Optional[str] = None,
-        registered_resource: Optional[str] = None,
+        process_type: str | None = None,
+        business_type: str | None = None,
+        psr_type: str | None = None,
+        registered_resource: str | None = None,
         # Additional common parameters
         offset: int | None = None,
         curve_type: str = "A01",

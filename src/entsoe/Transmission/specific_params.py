@@ -5,7 +5,7 @@ endpoints, each inheriting from TransmissionParams and providing preset values f
 fixed parameters.
 """
 
-from typing import Literal, Optional
+from typing import Literal
 
 from ..Base.Transmission import Transmission
 
@@ -86,7 +86,7 @@ class CommercialSchedules(Transmission):
         period_end: int,
         out_domain: str,
         in_domain: str,
-        contract_market_agreement_type: Optional[Literal["A01", "A05"]] = None,
+        contract_market_agreement_type: Literal["A01", "A05"] | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -206,7 +206,7 @@ class CommercialSchedulesNetPositions(Transmission):
         period_start: int,
         period_end: int,
         in_domain: str,
-        contract_market_agreement_type: Optional[str] = None,
+        contract_market_agreement_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -511,8 +511,8 @@ class ExpansionAndDismantlingProject(Transmission):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        business_type: Optional[str] = None,
-        doc_status: Optional[str] = None,
+        business_type: str | None = None,
+        doc_status: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):

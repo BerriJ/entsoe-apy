@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -12,22 +10,22 @@ class Outages(Base):
     def __init__(
         self,
         document_type: str,
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
         # Domain parameters - typically required
-        bidding_zone_domain: Optional[str] = None,
+        bidding_zone_domain: str | None = None,
         # Alternative period parameters for update-based queries
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
-        time_interval_update: Optional[str] = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
+        time_interval_update: str | None = None,
         # Optional parameters for outage queries
-        business_type: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        registered_resource: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        doc_status: str | None = None,
+        registered_resource: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: Optional[str] = None,
+        curve_type: str | None = None,
     ):
         """
         Initialize outage data parameters for ENTSO-E Transparency Platform.
