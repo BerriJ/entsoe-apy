@@ -1,6 +1,6 @@
 """Base parameter classes for ENTSO-E Transparency Platform API."""
 
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel
 
@@ -11,8 +11,6 @@ from ..utils.mappings_dict import mappings
 
 class ValidationError(ValueError):
     """Custom exception for parameter validation errors."""
-
-    pass
 
 
 class Base:
@@ -27,10 +25,10 @@ class Base:
     def __init__(
         self,
         document_type: str,
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        offset: Optional[int] = None,
-        curve_type: Optional[str] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        offset: int | None = None,
+        curve_type: str | None = None,
     ):
         """
         Initialize base parameters for ENTSO-E Transparency Platform queries.
@@ -49,7 +47,7 @@ class Base:
         """
 
         # Initialize the base parameters dictionary
-        self.params: Dict[str, Any] = {
+        self.params: dict[str, Any] = {
             "documentType": document_type,
         }
 
@@ -64,7 +62,7 @@ class Base:
 
     def validate_eic_code(
         self,
-        eic_code: Optional[str],
+        eic_code: str | None,
         parameter_name: str = "EIC",
         is_mapcode: bool = True,
     ) -> None:
@@ -119,8 +117,8 @@ class Base:
 
     def validate_eic_equality(
         self,
-        in_domain: Optional[str],
-        out_domain: Optional[str],
+        in_domain: str | None,
+        out_domain: str | None,
         must_be_equal: bool,
     ) -> None:
         """
@@ -164,17 +162,17 @@ class Base:
 
     def add_domain_params(
         self,
-        in_domain: Optional[str] = None,
-        out_domain: Optional[str] = None,
-        domain_mrid: Optional[str] = None,
-        bidding_zone_domain: Optional[str] = None,
-        out_bidding_zone_domain: Optional[str] = None,
-        acquiring_domain: Optional[str] = None,
-        connecting_domain: Optional[str] = None,
-        control_area_domain: Optional[str] = None,
-        ptdf_domain: Optional[str] = None,
-        area_domain: Optional[str] = None,
-        domain: Optional[str] = None,
+        in_domain: str | None = None,
+        out_domain: str | None = None,
+        domain_mrid: str | None = None,
+        bidding_zone_domain: str | None = None,
+        out_bidding_zone_domain: str | None = None,
+        acquiring_domain: str | None = None,
+        connecting_domain: str | None = None,
+        control_area_domain: str | None = None,
+        ptdf_domain: str | None = None,
+        area_domain: str | None = None,
+        domain: str | None = None,
     ) -> None:
         """
         Add domain-related parameters to the params dictionary.
@@ -219,9 +217,9 @@ class Base:
 
     def add_business_params(
         self,
-        business_type: Optional[str] = None,
-        process_type: Optional[str] = None,
-        psr_type: Optional[str] = None,
+        business_type: str | None = None,
+        process_type: str | None = None,
+        psr_type: str | None = None,
     ) -> None:
         """
         Add business-related parameters to the params dictionary.
@@ -237,10 +235,10 @@ class Base:
 
     def add_market_params(
         self,
-        contract_market_agreement_type: Optional[str] = None,
-        auction_type: Optional[str] = None,
-        auction_category: Optional[str] = None,
-        type_marketagreement_type: Optional[str] = None,
+        contract_market_agreement_type: str | None = None,
+        auction_type: str | None = None,
+        auction_category: str | None = None,
+        type_marketagreement_type: str | None = None,
     ) -> None:
         """
         Add market-related parameters to the params dictionary.
@@ -260,10 +258,10 @@ class Base:
 
     def add_balancing_params(
         self,
-        standard_market_product: Optional[str] = None,
-        original_market_product: Optional[str] = None,
-        direction: Optional[str] = None,
-        export_type: Optional[str] = None,
+        standard_market_product: str | None = None,
+        original_market_product: str | None = None,
+        direction: str | None = None,
+        export_type: str | None = None,
     ) -> None:
         """
         Add balancing-specific parameters to the params dictionary.
@@ -281,10 +279,10 @@ class Base:
 
     def add_resource_params(
         self,
-        registered_resource: Optional[str] = None,
-        asset_registered_resource: Optional[str] = None,
-        subject_party_name: Optional[str] = None,
-        subject_party_market_role: Optional[str] = None,
+        registered_resource: str | None = None,
+        asset_registered_resource: str | None = None,
+        subject_party_name: str | None = None,
+        subject_party_market_role: str | None = None,
     ) -> None:
         """
         Add resource-related parameters to the params dictionary.
@@ -316,8 +314,8 @@ class Base:
 
     def add_period_params(
         self,
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
     ) -> None:
         """
         Add period parameters to the params dictionary.
@@ -331,11 +329,11 @@ class Base:
 
     def add_update_params(
         self,
-        updated_date_and_or_time: Optional[str] = None,
-        implementation_date_and_or_time: Optional[str] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
-        time_interval_update: Optional[str] = None,
+        updated_date_and_or_time: str | None = None,
+        implementation_date_and_or_time: str | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
+        time_interval_update: str | None = None,
     ) -> None:
         """
         Add update-related parameters to the params dictionary.

@@ -26,37 +26,25 @@ offset_increment_ctx: ContextVar[int] = ContextVar("offset_increment")
 class AcknowledgementDocumentError(Exception):
     """Raised when the API returns an acknowledgement document indicating an error."""
 
-    pass
-
 
 class ServiceUnavailableError(Exception):
     """Raised when the ENTSO-E API returns a 503 Service Unavailable status."""
-
-    pass
 
 
 class BadGatewayError(Exception):
     """Raised when the ENTSO-E API returns a 502 Bad Gateway status."""
 
-    pass
-
 
 class GotBannedError(Exception):
     """Raised when the ENTSO-E API returns a 429 requester banned status."""
-
-    pass
 
 
 class UnexpectedError(Exception):
     """Raised when the ENTSO-E API returns an unexpected error."""
 
-    pass
-
 
 class UnknownResponseTypeError(Exception):
     """Raised when the return type of a function is not as expected."""
-
-    pass
 
 
 class ContextPropagatingThreadPoolExecutor(ThreadPoolExecutor):
@@ -563,7 +551,7 @@ def handle_parse_error(func):
     return parse_error_wrapper
 
 
-def rate_limit(max_calls: int, period: float | int):
+def rate_limit(max_calls: int, period: float):
     """
     Decorator that enforces a rate limit on function calls.
 

@@ -5,8 +5,6 @@ endpoints, each inheriting from GenerationParams and providing preset values for
 fixed parameters.
 """
 
-from typing import Optional
-
 from ..Base.Generation import Generation
 
 
@@ -38,7 +36,7 @@ class InstalledCapacityPerProductionType(Generation):
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -139,7 +137,7 @@ class ActualGenerationPerProductionType(Generation):
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -195,8 +193,8 @@ class ActualGenerationPerGenerationUnit(Generation):
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
-        psr_type: Optional[str] = None,
-        registered_resource: Optional[str] = None,
+        psr_type: str | None = None,
+        registered_resource: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -299,7 +297,7 @@ class GenerationForecastWindAndSolar(Generation):
         in_domain: str,
         # Optional generation-specific parameters
         process_type: str = "A01",  # Default to Day ahead
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -353,7 +351,7 @@ class InstalledCapacityPerProductionUnit(Generation):
         period_end: int,
         in_domain: str,
         # Optional generation-specific parameters
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):

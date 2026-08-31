@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -12,21 +10,20 @@ class Market(Base):
         period_start: int,
         period_end: int,
         # Domain parameters - at least one required
-        in_domain: Optional[str] = None,
-        out_domain: Optional[str] = None,
-        domain_mrid: Optional[str] = None,
+        in_domain: str | None = None,
+        out_domain: str | None = None,
+        domain_mrid: str | None = None,
         # Optional parameters based on Postman collection
-        business_type: Optional[str] = None,
-        process_type: Optional[str] = None,
-        contract_market_agreement_type: Optional[str] = None,
-        auction_type: Optional[str] = None,
-        auction_category: Optional[str] = None,
-        classification_sequence_attribute_instance_component_position: Optional[
-            int
-        ] = None,
+        business_type: str | None = None,
+        process_type: str | None = None,
+        contract_market_agreement_type: str | None = None,
+        auction_type: str | None = None,
+        auction_category: str | None = None,
+        classification_sequence_attribute_instance_component_position: int
+        | None = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: Optional[str] = None,
+        curve_type: str | None = None,
     ):
         """
         Initialize market data parameters for ENTSO-E Transparency Platform.

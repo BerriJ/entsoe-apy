@@ -5,8 +5,6 @@ endpoints, each inheriting from BalancingParams and providing preset values for
 fixed parameters.
 """
 
-from typing import Optional
-
 from ..Base.Balancing import Balancing
 
 
@@ -37,11 +35,11 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         control_area_domain: str,
         process_type: str,
         # Optional balancing-specific parameters
-        business_type: Optional[str] = None,
-        psr_type: Optional[str] = None,
-        standard_market_product: Optional[str] = None,
-        original_market_product: Optional[str] = None,
-        export_type: Optional[str] = None,
+        business_type: str | None = None,
+        psr_type: str | None = None,
+        standard_market_product: str | None = None,
+        original_market_product: str | None = None,
+        export_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -107,9 +105,9 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         period_end: int,
         control_area_domain: str,
         type_marketagreement_type: str,
-        process_type: Optional[str] = None,
+        process_type: str | None = None,
         # Optional parameters
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         offset: int = 0,
         curve_type: str = "A01",
@@ -167,7 +165,7 @@ class ImbalancePrices(Balancing):
         period_end: int,
         control_area_domain: str,
         # Optional parameters
-        psr_type: Optional[str] = None,
+        psr_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -215,7 +213,7 @@ class TotalImbalanceVolumes(Balancing):
         period_end: int,
         control_area_domain: str,
         # Optional balancing-specific parameters
-        business_type: Optional[str] = None,
+        business_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -311,9 +309,9 @@ class BalancingEnergyBids(Balancing):
         connecting_domain: str,
         process_type: str,
         # Optional parameters
-        standard_market_product: Optional[str] = None,
-        original_market_product: Optional[str] = None,
-        direction: Optional[str] = None,
+        standard_market_product: str | None = None,
+        original_market_product: str | None = None,
+        direction: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -477,7 +475,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         acquiring_domain: str,
         process_type: str,
         # Optional parameters
-        type_marketagreement_type: Optional[str] = None,
+        type_marketagreement_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -1229,7 +1227,7 @@ class ChangesToBidAvailability(Balancing):
         period_end: int,
         domain: str,
         # Optional balancing-specific parameters
-        business_type: Optional[str] = None,
+        business_type: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -1288,7 +1286,7 @@ class ChangesToBidAvailabilityArchives(Balancing):
         period_end: int,
         domain: str,
         # Optional balancing-specific parameters
-        business_type: Optional[str] = None,
+        business_type: str | None = None,
         # Additional common parameters
         offset: int = 0,
         curve_type: str = "A01",

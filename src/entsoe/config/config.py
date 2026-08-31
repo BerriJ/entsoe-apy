@@ -1,8 +1,9 @@
 """Configuration management for ENTSO-E API Python client."""
 
+from collections.abc import Callable
 import os
 import sys
-from typing import Callable, Literal, Optional, Union, get_args
+from typing import Literal, get_args
 from uuid import UUID
 
 from loguru._logger import Core as _Core, Logger as _Logger
@@ -34,7 +35,7 @@ logger = _Logger(
 )
 
 # No default sink - will be added by set_log_level() when set_config() is called
-_handler_id: Optional[int] = None
+_handler_id: int | None = None
 
 
 def set_log_level(level: LogLevel) -> None:
@@ -86,11 +87,11 @@ class EntsoEConfig:
 
     def __init__(
         self,
-        security_token: Optional[str] = None,
-        endpoint_url: Optional[str] = None,
+        security_token: str | None = None,
+        endpoint_url: str | None = None,
         timeout: int = 20,
         retries: int = 5,
-        retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
+        retry_delay: int | Callable[[int], int] = lambda attempt: 2**attempt,
         max_workers: int = 4,
         log_level: LogLevel = "SUCCESS",
     ):
@@ -191,7 +192,7 @@ class EntsoEConfig:
 
 
 # Global configuration instance
-_global_config: Optional[EntsoEConfig] = None
+_global_config: EntsoEConfig | None = None
 
 
 def get_config() -> EntsoEConfig:
@@ -214,11 +215,11 @@ def get_config() -> EntsoEConfig:
 
 
 def set_config(
-    security_token: Optional[str] = None,
-    endpoint_url: Optional[str] = None,
+    security_token: str | None = None,
+    endpoint_url: str | None = None,
     timeout: int = 20,
     retries: int = 5,
-    retry_delay: Union[int, Callable[[int], int]] = lambda attempt: 2**attempt,
+    retry_delay: int | Callable[[int], int] = lambda attempt: 2**attempt,
     max_workers: int = 4,
     log_level: LogLevel = "SUCCESS",
 ) -> None:

@@ -1,4 +1,4 @@
-from typing import Literal, Optional
+from typing import Literal
 
 from ..Base.Base import Base
 
@@ -13,14 +13,14 @@ class OMI(Base):
     def __init__(
         self,
         control_area_domain: str,  # Required - EIC code of Scheduling Area
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
         # Alternative period parameters for update-based queries
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional parameters for OMI queries
-        doc_status: Optional[Literal["A02", "A05", "A09", "A13"]] = None,
-        m_rid: Optional[str] = None,
+        doc_status: Literal["A02", "A05", "A09", "A13"] | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):

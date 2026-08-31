@@ -4,7 +4,7 @@ This module contains specialized parameter classes for different Market data end
 each inheriting from MarketParams and providing preset values for fixed parameters.
 """
 
-from typing import Literal, Optional
+from typing import Literal
 
 from ..Base.Market import Market
 
@@ -134,8 +134,8 @@ class ImplicitAllocationsOfferedCapacity(Market):
         in_domain: str,
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
-        update_date_and_or_time: Optional[str] = None,
-        classification_sequence_position: Optional[int] = None,
+        update_date_and_or_time: str | None = None,
+        classification_sequence_position: int | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -198,8 +198,8 @@ class EnergyPrices(Market):
         period_end: int,
         in_domain: str,
         out_domain: str,
-        contract_market_agreement_type: Optional[Literal["A01", "A07"]] = None,
-        classification_sequence_position: Optional[int] = None,
+        contract_market_agreement_type: Literal["A01", "A07"] | None = None,
+        classification_sequence_position: int | None = None,
         # Additional common parameters
         offset: int = 0,
         curve_type: str = "A01",
@@ -270,7 +270,7 @@ class TotalCapacityAllocated(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ],
         # Optional parameters
-        auction_category: Optional[Literal["A01", "A02", "A03", "A04"]] = None,
+        auction_category: Literal["A01", "A02", "A03", "A04"] | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -326,8 +326,8 @@ class ExplicitAllocationsOfferedCapacity(Market):
         in_domain: str,
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
-        auction_category: Optional[str] = None,
-        classification_sequence_position: Optional[int] = None,
+        auction_category: str | None = None,
+        classification_sequence_position: int | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -501,8 +501,8 @@ class ContinuousAllocationsOfferedCapacity(Market):
         document_type: Literal["A31", "B33"],
         # Continuous is typically intraday
         contract_market_agreement_type: Literal["A07"] = "A07",
-        business_type: Optional[str] = None,
-        update_date_and_or_time: Optional[str] = None,
+        business_type: str | None = None,
+        update_date_and_or_time: str | None = None,
         # Additional common parameters
         offset: int = 0,
         curve_type: str = "A01",
@@ -570,8 +570,8 @@ class ExplicitAllocationsUseTransferCapacity(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ],
         business_type: Literal["A43", "B05"],
-        auction_category: Optional[str] = None,
-        classification_sequence_position: Optional[int] = None,
+        auction_category: str | None = None,
+        classification_sequence_position: int | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -695,8 +695,8 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         contract_market_agreement_type: Literal[
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ] = "A07",
-        auction_category: Optional[str] = None,
-        classification_sequence_position: Optional[int] = None,
+        auction_category: str | None = None,
+        classification_sequence_position: int | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):

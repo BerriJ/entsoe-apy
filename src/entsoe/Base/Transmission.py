@@ -1,5 +1,3 @@
-from typing import Optional
-
 from .Base import Base
 
 
@@ -12,12 +10,12 @@ class Transmission(Base):
         period_start: int,
         period_end: int,
         # Domain parameters - typically required
-        in_domain: Optional[str] = None,
-        out_domain: Optional[str] = None,
-        bidding_zone_domain: Optional[str] = None,
+        in_domain: str | None = None,
+        out_domain: str | None = None,
+        bidding_zone_domain: str | None = None,
         # Optional parameters for transmission queries
-        business_type: Optional[str] = None,
-        process_type: Optional[str] = None,
+        business_type: str | None = None,
+        process_type: str | None = None,
         # Additional common parameters
         offset: int | None = None,
         curve_type: str = "A01",

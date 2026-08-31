@@ -5,8 +5,6 @@ endpoints, each inheriting from Outages and providing preset values for
 fixed parameters based on the ENTSO-E Transparency Platform API specification.
 """
 
-from typing import Optional
-
 from ..Base.Outages import Outages
 
 
@@ -33,15 +31,15 @@ class UnavailabilityOfProductionUnits(Outages):
         self,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        registered_resource: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        doc_status: str | None = None,
+        registered_resource: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -100,15 +98,15 @@ class UnavailabilityOfGenerationUnits(Outages):
         self,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        registered_resource: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        doc_status: str | None = None,
+        registered_resource: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -168,12 +166,12 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
         self,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
+        business_type: str | None = None,
         # Additional common parameters
         curve_type: str = "A01",
     ):
@@ -231,15 +229,15 @@ class UnavailabilityOfTransmissionInfrastructure(Outages):
         out_domain: str,
         in_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
-        time_interval_update: Optional[str] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
+        time_interval_update: str | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        doc_status: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -300,13 +298,13 @@ class UnavailabilityOfOffshoreGridInfrastructure(Outages):
         self,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        doc_status: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        doc_status: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -375,13 +373,13 @@ class Fallbacks(Outages):
         business_type: str,
         bidding_zone_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        doc_status: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        doc_status: str | None = None,
+        m_rid: str | None = None,
     ):
         """
         Initialize fall-backs parameters.
@@ -444,15 +442,15 @@ class UnavailabilityOfTransmissionInfrastructureAvailableCapacity(Outages):
         self,
         control_area_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
-        asset_registered_resource: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        asset_registered_resource: str | None = None,
+        doc_status: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):
@@ -515,15 +513,15 @@ class UnavailabilityOfTransmissionInfrastructureNetPositionImpact(Outages):
         self,
         ptdf_domain: str,
         # Time period parameters (at least one set required)
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
         # Optional filtering parameters
-        business_type: Optional[str] = None,
-        asset_registered_resource: Optional[str] = None,
-        doc_status: Optional[str] = None,
-        m_rid: Optional[str] = None,
+        business_type: str | None = None,
+        asset_registered_resource: str | None = None,
+        doc_status: str | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):

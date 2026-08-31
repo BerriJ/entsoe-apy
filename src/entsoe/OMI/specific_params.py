@@ -5,8 +5,6 @@ endpoints, each inheriting from OMI and providing preset values for
 fixed parameters based on the ENTSO-E Transparency Platform API specification.
 """
 
-from typing import Optional
-
 from .OMI import OMI
 
 
@@ -31,13 +29,13 @@ class OtherMarketInformation(OMI):
     def __init__(
         self,
         control_area_domain: str,
-        period_start: Optional[int] = None,
-        period_end: Optional[int] = None,
+        period_start: int | None = None,
+        period_end: int | None = None,
         # Optional filtering parameters
-        doc_status: Optional[str] = None,
-        period_start_update: Optional[int] = None,
-        period_end_update: Optional[int] = None,
-        m_rid: Optional[str] = None,
+        doc_status: str | None = None,
+        period_start_update: int | None = None,
+        period_end_update: int | None = None,
+        m_rid: str | None = None,
         # Additional common parameters
         offset: int = 0,
     ):

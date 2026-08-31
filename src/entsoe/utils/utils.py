@@ -1,16 +1,14 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 import inspect
 from xml.etree import ElementTree as ET
 
-import entsoe.xml_models as xml_models
+from entsoe import xml_models
 
 from ..config.config import logger
 
 
 class RangeLimitError(Exception):
     """Raised when the requested date range exceeds API limits."""
-
-    pass
 
 
 def parse_entsoe_datetime(date_int: int) -> datetime:
@@ -44,7 +42,7 @@ def format_entsoe_datetime(dt: datetime) -> int:
         Date in YYYYMMDDHHMM format as integer
     """
     if dt.tzinfo is not None:
-        utc_timestamp = dt.astimezone(timezone.utc)
+        utc_timestamp = dt.astimezone(UTC)
         return int(utc_timestamp.strftime("%Y%m%d%H%M"))
     else:
         # Assume naive timestamps are in UTC

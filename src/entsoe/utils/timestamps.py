@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Literal
+from typing import Any, Literal
 
 import isodate
 
@@ -63,7 +63,7 @@ def calculate_timestamp(
     return timestamp_str
 
 
-def find_field_key(record: Dict[str, Any], search_field: str) -> str | None:
+def find_field_key(record: dict[str, Any], search_field: str) -> str | None:
     """
     Find a field key in the record by exact match or suffix match.
 
@@ -79,7 +79,7 @@ def find_field_key(record: Dict[str, Any], search_field: str) -> str | None:
         return search_field
 
     # Then try suffix match
-    for key in record.keys():
+    for key in record:
         if key.endswith(search_field):
             return key
 
@@ -87,13 +87,13 @@ def find_field_key(record: Dict[str, Any], search_field: str) -> str | None:
 
 
 def add_timestamps(
-    records: List[Dict[str, Any]],
+    records: list[dict[str, Any]],
     start_field: str = "period.time_interval.start",
     resolution_field: str = "period.resolution",
     position_field: str = "period.point.position",
     timestamp_field: str = "timestamp",
     interval_type: Literal["start", "end"] = "start",
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """
     Add calculated timestamps to records from extract_records().
 
