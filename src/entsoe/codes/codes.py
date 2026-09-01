@@ -1013,6 +1013,7 @@ class StandardProcessTypeList(Enum):
     A34 = "Contracted"
     A35 = "Network information"
     A36 = "Congestion Management Settlement"
+    A36 = "Creation"
     A37 = "Modification"
     A38 = "Deactivation process"
     A39 = "Synchronisation process"
