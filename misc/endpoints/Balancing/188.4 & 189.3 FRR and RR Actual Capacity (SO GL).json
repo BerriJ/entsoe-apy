@@ -15,7 +15,7 @@
     {
       "key": "businessType",
       "value": "C77",
-      "description": "[M] C77 = Min; C78 = Avg; C79 = Max"
+      "description": "[M] C77 = Min; C78 = Avg; C79 = Max (All business Types are exported regardless of whether the queried Business Type is C77, C78 or C79)"
     },
     {
       "key": "area_Domain",
