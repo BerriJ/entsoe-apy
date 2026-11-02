@@ -31,7 +31,7 @@ class ActualTotalLoad(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize actual total load parameters.
@@ -78,7 +78,7 @@ class DayAheadTotalLoadForecast(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize day-ahead total load forecast parameters.
@@ -125,7 +125,7 @@ class WeekAheadTotalLoadForecast(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize week-ahead total load forecast parameters.
@@ -172,7 +172,7 @@ class MonthAheadTotalLoadForecast(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize month-ahead total load forecast parameters.
@@ -219,7 +219,7 @@ class YearAheadTotalLoadForecast(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize year-ahead total load forecast parameters.
@@ -266,7 +266,7 @@ class YearAheadForecastMargin(Load):
         period_start: int,
         period_end: int,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize year-ahead forecast margin parameters.

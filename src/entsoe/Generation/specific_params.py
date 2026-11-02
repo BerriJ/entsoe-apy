@@ -38,7 +38,7 @@ class InstalledCapacityPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize installed capacity per production type parameters.
@@ -87,7 +87,7 @@ class WaterReservoirsAndHydroStorage(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize water reservoirs and hydro storage parameters.
@@ -139,7 +139,7 @@ class ActualGenerationPerProductionType(Generation):
         # Optional generation-specific parameters
         psr_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize actual generation per production type parameters.
@@ -196,7 +196,7 @@ class ActualGenerationPerGenerationUnit(Generation):
         psr_type: str | None = None,
         registered_resource: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize actual generation per generation unit parameters.
@@ -248,7 +248,7 @@ class GenerationForecastDayAhead(Generation):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize generation forecast day ahead parameters.
@@ -299,7 +299,7 @@ class GenerationForecastWindAndSolar(Generation):
         process_type: str = "A01",  # Default to Day ahead
         psr_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize generation forecast wind and solar parameters.
@@ -353,7 +353,7 @@ class InstalledCapacityPerProductionUnit(Generation):
         # Optional generation-specific parameters
         psr_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize installed capacity per production unit parameters.

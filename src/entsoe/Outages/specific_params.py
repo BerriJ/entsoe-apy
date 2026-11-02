@@ -173,7 +173,7 @@ class AggregatedUnavailabilityOfConsumptionUnits(Outages):
         # Optional filtering parameters
         business_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize aggregated unavailability of consumption units parameters.

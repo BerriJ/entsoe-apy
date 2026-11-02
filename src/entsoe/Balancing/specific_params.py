@@ -41,7 +41,7 @@ class PricesOfActivatedBalancingEnergy(Balancing):
         original_market_product: str | None = None,
         export_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize prices of activated balancing energy parameters.
@@ -110,7 +110,7 @@ class VolumesAndPricesOfContractedReserves(Balancing):
         psr_type: str | None = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize volumes and prices of contracted reserves parameters.
@@ -167,7 +167,7 @@ class ImbalancePrices(Balancing):
         # Optional parameters
         psr_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize imbalance prices parameters.
@@ -215,7 +215,7 @@ class TotalImbalanceVolumes(Balancing):
         # Optional balancing-specific parameters
         business_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize total imbalance volumes parameters.
@@ -262,7 +262,7 @@ class FinancialExpensesAndIncomeForBalancing(Balancing):
         period_end: int,
         control_area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize financial expenses and income for balancing parameters.
@@ -369,7 +369,7 @@ class AggregatedBalancingEnergyBids(Balancing):
         area_domain: str,
         process_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize aggregated balancing energy bids parameters.
@@ -420,7 +420,7 @@ class ProcuredBalancingCapacity(Balancing):
         process_type: str,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize procured balancing capacity parameters.
@@ -477,7 +477,7 @@ class AllocationAndUseOfCrossZonalBalancingCapacity(Balancing):
         # Optional parameters
         type_marketagreement_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize allocation and use of cross-zonal balancing capacity parameters.
@@ -529,7 +529,7 @@ class CurrentBalancingState(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize current balancing state parameters.
@@ -576,7 +576,7 @@ class FCRTotalCapacity(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize FCR total capacity parameters.
@@ -623,7 +623,7 @@ class SharesOfFCRCapacity(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize shares of FCR capacity parameters.
@@ -671,7 +671,7 @@ class SharingOfFCRBetweenSAs(Balancing):
         period_end: int,
         area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize sharing of FCR between SAs parameters.
@@ -719,7 +719,7 @@ class FRRAndRRCapacityOutlook(Balancing):
         area_domain: str,
         process_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize FRR and RR capacity outlook parameters.
@@ -769,7 +769,7 @@ class FRRAndRRActualCapacity(Balancing):
         process_type: str,
         business_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize FRR and RR actual capacity parameters.
@@ -821,7 +821,7 @@ class OutlookOfReserveCapacitiesOnRR(Balancing):
         area_domain: str,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize outlook of reserve capacities on RR parameters.
@@ -873,7 +873,7 @@ class RRActualCapacity(Balancing):
         area_domain: str,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize RR actual capacity parameters.
@@ -925,7 +925,7 @@ class SharingOfRRAndFRR(Balancing):
         acquiring_domain: str,
         connecting_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize sharing of RR and FRR parameters.
@@ -978,7 +978,7 @@ class ExchangedReserveCapacity(Balancing):
         connecting_domain: str,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize exchanged reserve capacity parameters.
@@ -1033,7 +1033,7 @@ class CrossBorderMarginalPricesForAFRR(Balancing):
         period_end: int,
         control_area_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize cross border marginal prices for aFRR parameters.
@@ -1289,7 +1289,7 @@ class ChangesToBidAvailabilityArchives(Balancing):
         business_type: str | None = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize changes to bid availability archives parameters.
@@ -1346,7 +1346,7 @@ class BalancingBorderCapacityLimitations(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize balancing border capacity limitations parameters.
@@ -1398,7 +1398,7 @@ class PermanentAllocationLimitationsToHVDCLines(Balancing):
         connecting_domain: str,
         process_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize permanent allocation limitations to HVDC lines parameters.
@@ -1449,7 +1449,7 @@ class ResultsOfCriteriaApplicationProcess(Balancing):
         bidding_zone_domain: str,
         process_type: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize results of criteria application process parameters.

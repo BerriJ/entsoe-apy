@@ -32,7 +32,7 @@ class ImplicitFlowBasedAllocationsCongestionIncome(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A07"] = "A01",
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize congestion income parameters.
@@ -85,7 +85,7 @@ class TotalNominatedCapacity(Market):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize total nominated capacity parameters.
@@ -137,7 +137,7 @@ class ImplicitAllocationsOfferedCapacity(Market):
         update_date_and_or_time: str | None = None,
         classification_sequence_position: int | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize implicit allocations offered transfer capacity parameters.
@@ -202,7 +202,7 @@ class EnergyPrices(Market):
         classification_sequence_position: int | None = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize energy prices parameters.
@@ -272,7 +272,7 @@ class TotalCapacityAllocated(Market):
         # Optional parameters
         auction_category: Literal["A01", "A02", "A03", "A04"] | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize total capacity already allocated parameters.
@@ -329,7 +329,7 @@ class ExplicitAllocationsOfferedCapacity(Market):
         auction_category: str | None = None,
         classification_sequence_position: int | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize explicit allocations offered transfer capacity parameters.
@@ -505,7 +505,7 @@ class ContinuousAllocationsOfferedCapacity(Market):
         update_date_and_or_time: str | None = None,
         # Additional common parameters
         offset: int = 0,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize continuous allocations offered transfer capacity parameters.
@@ -573,7 +573,7 @@ class ExplicitAllocationsUseTransferCapacity(Market):
         auction_category: str | None = None,
         classification_sequence_position: int | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize explicit allocations use of transfer capacity parameters.
@@ -639,7 +639,7 @@ class ExplicitAllocationsAuctionRevenue(Market):
             "A01", "A02", "A03", "A04", "A06", "A07", "A08"
         ] = "A01",
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize explicit allocations auction revenue parameters.
@@ -698,7 +698,7 @@ class TransferCapacitiesThirdCountriesExplicit(Market):
         auction_category: str | None = None,
         classification_sequence_position: int | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize transfer capacities allocated with third countries parameters.
@@ -757,7 +757,7 @@ class ImplicitAuctionNetPositions(Market):
         out_domain: str,
         contract_market_agreement_type: Literal["A01", "A05", "A07"] = "A07",
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize implicit auction net positions parameters.

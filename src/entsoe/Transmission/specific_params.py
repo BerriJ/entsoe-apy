@@ -34,7 +34,7 @@ class CrossBorderPhysicalFlows(Transmission):
         out_domain: str,
         in_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize cross-border physical flows parameters.
@@ -88,7 +88,7 @@ class CommercialSchedules(Transmission):
         in_domain: str,
         contract_market_agreement_type: Literal["A01", "A05"] | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize commercial schedules parameters.
@@ -151,7 +151,7 @@ class ForecastedTransferCapacities(Transmission):
         in_domain: str,
         contract_market_agreement_type: Literal["A01", "A02", "A03", "A04"],
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize forecasted transfer capacities parameters.
@@ -208,7 +208,7 @@ class CommercialSchedulesNetPositions(Transmission):
         in_domain: str,
         contract_market_agreement_type: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize commercial schedules net positions parameters.
@@ -264,7 +264,7 @@ class CrossBorderCapacityDCLinks(Transmission):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize DC link capacity parameters.
@@ -315,7 +315,7 @@ class RedispatchingCrossBorder(Transmission):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize cross border redispatching parameters.
@@ -366,7 +366,7 @@ class RedispatchingInternal(Transmission):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize internal redispatching parameters.
@@ -415,7 +415,7 @@ class Countertrading(Transmission):
         in_domain: str,
         out_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize countertrading parameters.
@@ -464,7 +464,7 @@ class CostsOfCongestionManagement(Transmission):
         period_end: int,
         in_domain: str,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize congestion management costs parameters.
@@ -514,7 +514,7 @@ class ExpansionAndDismantlingProject(Transmission):
         business_type: str | None = None,
         doc_status: str | None = None,
         # Additional common parameters
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize expansion and dismantling project parameters.

@@ -19,7 +19,7 @@ class Generation(Base):
         registered_resource: str | None = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize generation data parameters for ENTSO-E Transparency Platform.

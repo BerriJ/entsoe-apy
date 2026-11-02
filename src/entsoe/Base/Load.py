@@ -13,7 +13,7 @@ class Load(Base):
         period_end: int,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize load data parameters for ENTSO-E Transparency Platform.

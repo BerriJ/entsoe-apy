@@ -18,7 +18,7 @@ class Transmission(Base):
         process_type: str | None = None,
         # Additional common parameters
         offset: int | None = None,
-        curve_type: str = "A01",
+        curve_type: str | None = "A01",
     ):
         """
         Initialize transmission data parameters for ENTSO-E Transparency Platform.
