@@ -320,7 +320,7 @@ def handle_acknowledgement(func):
                 logger.info("Acknowledgement: No matching data found")
                 logger.trace("handle_acknowledgement wrapper: Exit with None")
                 return None
-            elif "Unexpected error occurred" in reason:
+            elif "unexpected error occurred" in reason.lower():
                 logger.info(reason)
                 raise UnexpectedError("Acknowledgement: Unexpected error occurred.")
             elif "502 Bad Gateway" in reason:
